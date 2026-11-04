@@ -149,12 +149,34 @@ export interface WeightProfileVersion {
   reason: string;
 }
 
+export interface ScheduleConfig {
+  enabled: boolean;
+  cronExpression: string;      // default '0 7 * * 1' (Every Monday 07:00 ET)
+  dayOfWeek: 'Monday' | 'Tuesday' | 'Wednesday' | 'Thursday' | 'Friday';
+  hourEt: string;              // '07:00'
+  timezone: string;            // 'America/New_York'
+  audiences: AudienceId[];
+  mode: 'grounded_search' | 'deep_research';
+  autoPromoteCredibility3Plus: boolean;
+  lastScheduledRunAt?: string;
+  nextScheduledRunAt: string;
+}
+
+export interface BudgetConfig {
+  monthlyCapUsd: number;       // Default $5.00/mo recommended for HII polling (hard ceiling $15.00)
+  perRunCapUsd: number;        // Default $0.50/run
+  autoDowngradeAt80Pct: boolean;
+  selectedTierId: 'lean_2_50' | 'balanced_5_00' | 'intensive_12_00' | 'custom';
+}
+
 export interface DashboardSettings {
   weights: AudienceWeights;
   weightHistory: WeightProfileVersion[];
   /** The as-of date for scoring. Part of the determinism input. */
   asOfDate: string;
   firstPeriodStart: string; // '2011-03-31' (HII spin-off)
+  schedule?: ScheduleConfig;
+  budgetConfig?: BudgetConfig;
 }
 
 export type RevisionReason =

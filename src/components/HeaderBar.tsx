@@ -2,11 +2,14 @@ import React, { useState } from 'react';
 import {
   Activity,
   Anchor,
+  CalendarClock,
   Check,
   Copy,
   Database,
   FileText,
   GitCommit,
+  Loader2,
+  Play,
   Radar,
   Sliders,
   Sparkles,
@@ -15,13 +18,27 @@ import {
 import { useDashboard, type ActiveTab } from '../context/DashboardContext';
 
 export const HeaderBar: React.FC = () => {
-  const { state, result, budget, activeTab, setActiveTab } = useDashboard();
+  const {
+    state,
+    result,
+    budget,
+    scheduleConfig,
+    activeTab,
+    setActiveTab,
+    isResearchRunning,
+    triggerResearchRun,
+  } = useDashboard();
   const [copiedHash, setCopiedHash] = useState<'ledger' | 'output' | null>(null);
 
   const copyHash = (kind: 'ledger' | 'output', val: string) => {
     void navigator.clipboard?.writeText(val);
     setCopiedHash(kind);
     setTimeout(() => setCopiedHash(null), 1500);
+  };
+
+  const handleRunNowHeader = async () => {
+    setActiveTab('research');
+    await triggerResearchRun(scheduleConfig.audiences, scheduleConfig.mode, false);
   };
 
   const tabs: Array<{ id: ActiveTab; label: string; icon: React.ReactNode; badge?: number }> = [
@@ -41,7 +58,7 @@ export const HeaderBar: React.FC = () => {
     },
     {
       id: 'research',
-      label: 'Vertex Deep Research',
+      label: 'Monday Schedule, Budget & Research',
       icon: <Radar className="w-4 h-4" />,
       badge: state.pending.length > 0 ? state.pending.length : undefined,
     },
@@ -81,29 +98,42 @@ export const HeaderBar: React.FC = () => {
           </div>
         </div>
 
-        {/* Cryptographic Reproducibility Stamps & GCP Budget Guard */}
+        {/* Schedule Status, FinOps Budget Pill, Hash Stamps & Run Now Button */}
         <div className="flex flex-wrap items-center gap-2 text-xs">
-          <button
-            onClick={() => copyHash('ledger', result.ledgerHash)}
-            title="Click to copy canonical SHA-256 Ledger Hash"
-            className="flex items-center gap-1.5 px-2.5 py-1 rounded bg-charcoal/90 border border-steel/70 hover:border-sky transition font-mono"
+          {/* Monday Schedule Badge */}
+          <div
+            onClick={() => setActiveTab('research')}
+            title="Weekly Monday Morning Multi-Agent Schedule"
+            className="cursor-pointer flex items-center gap-1.5 px-2.5 py-1 rounded bg-charcoal/90 border border-sky/50 hover:border-passion transition font-mono"
           >
-            <span className="text-steel">LEDGER SHA256:</span>
-            <span className="text-sky">{result.ledgerHash.slice(0, 10)}…</span>
-            {copiedHash === 'ledger' ? (
-              <Check className="w-3.5 h-3.5 text-passion" />
-            ) : (
-              <Copy className="w-3.5 h-3.5 text-steel" />
-            )}
-          </button>
+            <CalendarClock className="w-3.5 h-3.5 text-sky" />
+            <span className="text-white">
+              Schedule: {scheduleConfig.enabled ? `Every Mon ${scheduleConfig.hourEt} ET` : 'Paused'}
+            </span>
+          </div>
+
+          {/* FinOps Budget Guard Badge */}
+          <div
+            onClick={() => setActiveTab('research')}
+            className="cursor-pointer flex items-center gap-1.5 px-2.5 py-1 rounded bg-charcoal/90 border border-changingsea/60 hover:border-passion transition font-mono"
+            title="Monthly Multi-Agent Polling Budget Guard"
+          >
+            <Sparkles className="w-3.5 h-3.5 text-passion" />
+            <span className="text-white">
+              Budget: ${budget.totalSpendUsd.toFixed(2)} / ${budget.monthlyCapUsd.toFixed(2)}/mo
+            </span>
+            <span className="px-1.5 py-0.2 rounded text-[10px] bg-changingsea/30 text-sky">
+              {budget.circuitBreaker}
+            </span>
+          </div>
 
           <button
             onClick={() => copyHash('output', result.outputHash)}
             title="Click to copy deterministic SHA-256 Score Output Hash"
-            className="flex items-center gap-1.5 px-2.5 py-1 rounded bg-charcoal/90 border border-steel/70 hover:border-sky transition font-mono"
+            className="hidden xl:flex items-center gap-1.5 px-2.5 py-1 rounded bg-charcoal/90 border border-steel/70 hover:border-sky transition font-mono"
           >
-            <span className="text-steel">OUTPUT SHA256:</span>
-            <span className="text-changingsea">{result.outputHash.slice(0, 10)}…</span>
+            <span className="text-steel">SHA256:</span>
+            <span className="text-changingsea">{result.outputHash.slice(0, 8)}…</span>
             {copiedHash === 'output' ? (
               <Check className="w-3.5 h-3.5 text-passion" />
             ) : (
@@ -111,19 +141,25 @@ export const HeaderBar: React.FC = () => {
             )}
           </button>
 
-          <div
-            onClick={() => setActiveTab('research')}
-            className="cursor-pointer flex items-center gap-1.5 px-2.5 py-1 rounded bg-charcoal/90 border border-changingsea/60 hover:border-passion transition font-mono"
-            title="Vertex AI Monthly FinOps Circuit Breaker"
+          {/* Prominent "Run Now" Trigger Button */}
+          <button
+            type="button"
+            disabled={isResearchRunning || budget.totalSpendUsd >= budget.monthlyCapUsd}
+            onClick={() => void handleRunNowHeader()}
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-passion hover:bg-passion/90 disabled:opacity-50 text-xs font-bold text-white shadow-md transition"
           >
-            <Sparkles className="w-3.5 h-3.5 text-passion" />
-            <span className="text-white">
-              GCP FinOps: ${budget.totalSpendUsd.toFixed(2)} / ${budget.monthlyCapUsd.toFixed(2)}
-            </span>
-            <span className="px-1.5 py-0.2 rounded text-[10px] bg-changingsea/30 text-sky">
-              {budget.circuitBreaker}
-            </span>
-          </div>
+            {isResearchRunning ? (
+              <>
+                <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                <span>Agents Running…</span>
+              </>
+            ) : (
+              <>
+                <Play className="w-3.5 h-3.5 fill-white" />
+                <span>Run Now</span>
+              </>
+            )}
+          </button>
         </div>
       </div>
 

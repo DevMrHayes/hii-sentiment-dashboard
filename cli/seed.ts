@@ -252,6 +252,24 @@ function main() {
     ],
     asOfDate: '2026-11-15',
     firstPeriodStart: '2011-03-31',
+    schedule: {
+      enabled: true,
+      cronExpression: '0 7 * * 1',
+      dayOfWeek: 'Monday',
+      hourEt: '07:00',
+      timezone: 'America/New_York',
+      audiences: ['executive', 'congress', 'navy', 'public'],
+      mode: 'deep_research',
+      autoPromoteCredibility3Plus: false,
+      lastScheduledRunAt: '2026-11-02T12:00:00Z',
+      nextScheduledRunAt: '2026-11-09T12:00:00Z',
+    },
+    budgetConfig: {
+      monthlyCapUsd: 5.0,
+      perRunCapUsd: 0.5,
+      autoDowngradeAt80Pct: true,
+      selectedTierId: 'balanced_5_00',
+    },
   };
 
   // Compute genuine retroactive revisions caused by the two research-discovered events ('2025-07-15' and '2026-08-18')

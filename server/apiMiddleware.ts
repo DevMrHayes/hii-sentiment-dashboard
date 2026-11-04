@@ -17,8 +17,10 @@ import {
   upsertEvent,
   type AudienceId,
   type AudienceWeights,
+  type BudgetConfig,
   type EventInput,
   type ForecastCatalyst,
+  type ScheduleConfig,
 } from '../src/engine/index.ts';
 import { loadDiskState, REPO_ROOT, saveDiskState } from './diskStorage.ts';
 
@@ -186,16 +188,57 @@ export function hiiApiPlugin(): Plugin {
         return;
       }
 
-      if (req.method === 'POST' && url === '/api/research/run') {
+      if (req.method === 'POST' && url === '/api/schedule') {
         const body = await readBody(req);
-        const audiences = (body.audiences as AudienceId[]) ?? ['executive', 'congress', 'navy', 'public'];
-        const mode = String(body.mode || 'auto');
+        const schedule = body.schedule as ScheduleConfig;
+        const current = loadDiskState();
+        const nextState = { ...current, settings: { ...current.settings, schedule } };
+        saveDiskState(nextState);
+        sendJson(res, 200, { state: nextState });
+        return;
+      }
+
+      if (req.method === 'POST' && url === '/api/budget') {
+        const body = await readBody(req);
+        const budgetConfig = body.budgetConfig as BudgetConfig;
+        const current = loadDiskState();
+        const nextState = { ...current, settings: { ...current.settings, budgetConfig } };
+        saveDiskState(nextState);
+        sendJson(res, 200, { state: nextState, budget: readBudgetStatus() });
+        return;
+      }
+
+      if (req.method === 'POST' && (url === '/api/research/run' || url === '/api/cron/monday-sweep')) {
+        const body = await readBody(req);
+        const current = loadDiskState();
+        const isCron = url === '/api/cron/monday-sweep';
+        const audiences =
+          (body.audiences as AudienceId[]) ??
+          current.settings.schedule?.audiences ??
+          (['executive', 'congress', 'navy', 'public'] as AudienceId[]);
+        const mode = String(body.mode || current.settings.schedule?.mode || 'auto');
+
+        const budgetStatus = readBudgetStatus();
+        const configuredCap = current.settings.budgetConfig?.monthlyCapUsd ?? 5.0;
+        if (budgetStatus.totalSpendUsd >= configuredCap) {
+          sendJson(res, 429, {
+            error: `Monthly HII Sentiment Polling budget cap ($${configuredCap.toFixed(2)}) reached. Increase cap in the FinOps Budget panel to run additional sweeps.`,
+          });
+          return;
+        }
+
+        const effectiveMode =
+          current.settings.budgetConfig?.autoDowngradeAt80Pct &&
+          budgetStatus.totalSpendUsd >= 0.8 * configuredCap
+            ? 'grounded_search'
+            : mode;
+
         const scriptPath = path.join(REPO_ROOT, 'research', 'run_research.py');
         const pyCmd = process.platform === 'win32' ? 'py' : 'python3';
         const pyArgs =
           process.platform === 'win32'
-            ? ['-3', scriptPath, '--audiences', audiences.join(','), '--mode', mode]
-            : [scriptPath, '--audiences', audiences.join(','), '--mode', mode];
+            ? ['-3', scriptPath, '--audiences', audiences.join(','), '--mode', effectiveMode]
+            : [scriptPath, '--audiences', audiences.join(','), '--mode', effectiveMode];
 
         await new Promise<void>((resolve) => {
           execFile(pyCmd, pyArgs, { cwd: REPO_ROOT, timeout: 120_000 }, () => {
@@ -203,7 +246,33 @@ export function hiiApiPlugin(): Plugin {
           });
         });
 
-        const updated = loadDiskState();
+        let updated = loadDiskState();
+        const nowIso = new Date().toISOString();
+
+        // If scheduled Monday run or auto-promote is enabled, promote Credibility >= 3 discoveries automatically
+        if (current.settings.schedule?.autoPromoteCredibility3Plus) {
+          const highCredIds = updated.pending
+            .filter((p) => p.impacts.every((i) => i.credibility >= 3))
+            .map((p) => p.id);
+          for (const pid of highCredIds) {
+            const promoted = approvePending(updated, pid, nowIso);
+            updated = promoted.state;
+          }
+        }
+
+        if (isCron && updated.settings.schedule) {
+          updated = {
+            ...updated,
+            settings: {
+              ...updated.settings,
+              schedule: {
+                ...updated.settings.schedule,
+                lastScheduledRunAt: nowIso,
+              },
+            },
+          };
+        }
+        saveDiskState(updated);
         sendJson(res, 200, { state: updated, budget: readBudgetStatus() });
         return;
       }

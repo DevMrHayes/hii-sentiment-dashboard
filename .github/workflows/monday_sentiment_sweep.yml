@@ -1,0 +1,60 @@
+name: HII Monday Morning Multi-Agent Sentiment Sweep
+
+on:
+  schedule:
+    # Runs every Monday at 07:00 AM EST (12:00 UTC)
+    - cron: '0 12 * * 1'
+  workflow_dispatch:
+    inputs:
+      audiences:
+        description: 'Comma-separated audiences (executive,congress,navy,public)'
+        required: false
+        default: 'executive,congress,navy,public'
+      mode:
+        description: 'Research depth mode (auto, deep_research, grounded_search)'
+        required: false
+        default: 'auto'
+
+permissions:
+  contents: write
+
+jobs:
+  monday-sentiment-sweep:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Setup Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Execute Multi-Agent Sentiment Research Sweep
+        run: |
+          python3 research/run_research.py \
+            --audiences "${{ github.event.inputs.audiences || 'executive,congress,navy,public' }}" \
+            --mode "${{ github.event.inputs.mode || 'auto' }}"
+
+      - name: Recompute Deterministic Ledger & Verify SHA-256 Output Invariance
+        run: |
+          npm run recompute
+          npm run export:md
+          npm test
+
+      - name: Commit & Push Updated Evidence Ledger & Audit Report
+        run: |
+          git config user.name "HII Sentiment Agent"
+          git config user.email "actions@github.com"
+          git add data/ HII_Sentiment_Audit_Report.md
+          git diff --staged --quiet || git commit -m "chore(ledger): automated Monday morning multi-agent sentiment sweep"
+          git push

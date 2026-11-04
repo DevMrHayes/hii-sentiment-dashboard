@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "gen-lang-client-0353543048"
+  },
+  "targets": {
+    "gen-lang-client-0353543048": {
+      "hosting": {
+        "hii-sentiment-intel": [
+          "hii-sentiment-intel"
+        ]
+      }
+    }
+  }
+}

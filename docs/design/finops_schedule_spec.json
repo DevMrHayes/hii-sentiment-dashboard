@@ -1,0 +1,117 @@
+{
+  "recommendedMonthlyBudgetUsd": 5.00,
+  "costPerWeeklyRunUsd": {
+    "flashGroundedUsd": 0.05,
+    "deepResearchArgonUsd": 0.42
+  },
+  "tiers": [
+    {
+      "id": "tier-a-lean-flash",
+      "name": "Tier A: Lean Grounded Flash Sweep",
+      "monthlyCapUsd": 2.50,
+      "description": "Gemini 3.8 Flash / 2.5 Flash with Google Search grounding and Flash-Lite rubric extraction (~$0.03-$0.08 per 4-audience sweep). Cost-effective baseline coverage.",
+      "estimatedRunsPerMonth": 40
+    },
+    {
+      "id": "tier-b-balanced-deep-argon",
+      "name": "Tier B: Recommended Balanced Deep Research + Argon Verification",
+      "monthlyCapUsd": 5.00,
+      "description": "Weekly Monday Deep Research runs coupled with Argon cross-audience synthesis verification, supporting regular cadence plus 10+ ad-hoc 'Run Now' triggers (~$0.35-$0.50 per deep sweep).",
+      "estimatedRunsPerMonth": 12
+    },
+    {
+      "id": "tier-c-intensive-surge",
+      "name": "Tier C: Intensive Daily / Event-Driven Surge",
+      "monthlyCapUsd": 12.00,
+      "description": "High-frequency daily polling and real-time monitoring during NDAA markups, defense appropriations standoffs, or quarterly earnings weeks, managed under the $15.00 workspace hard ceiling.",
+      "estimatedRunsPerMonth": 30
+    }
+  ],
+  "mondayScheduleConfig": {
+    "cron": "0 7 * * 1",
+    "timezone": "America/New_York",
+    "agentsInSweep": [
+      {
+        "agentId": "audience-executive-branch",
+        "name": "Executive Branch Sentiment Agent",
+        "role": "audience_collector",
+        "executionMode": "parallel",
+        "defaultModel": "gemini-2.5-flash",
+        "deepResearchModel": "gemini-3.8-deep-research",
+        "groundingTool": "google_search"
+      },
+      {
+        "agentId": "audience-us-congress",
+        "name": "U.S. Congress Sentiment Agent",
+        "role": "audience_collector",
+        "executionMode": "parallel",
+        "defaultModel": "gemini-2.5-flash",
+        "deepResearchModel": "gemini-3.8-deep-research",
+        "groundingTool": "google_search"
+      },
+      {
+        "agentId": "audience-dept-of-navy",
+        "name": "Dept. of the Navy Sentiment Agent",
+        "role": "audience_collector",
+        "executionMode": "parallel",
+        "defaultModel": "gemini-2.5-flash",
+        "deepResearchModel": "gemini-3.8-deep-research",
+        "groundingTool": "google_search"
+      },
+      {
+        "agentId": "audience-american-public",
+        "name": "American Public Sentiment Agent",
+        "role": "audience_collector",
+        "executionMode": "parallel",
+        "defaultModel": "gemini-2.5-flash",
+        "deepResearchModel": "gemini-3.8-deep-research",
+        "groundingTool": "google_search"
+      },
+      {
+        "agentId": "synthesizer-rubric-extractor",
+        "name": "Synthesis, Deduplication & Temperature-0.0 Rubric Extractor Agent",
+        "role": "aggregator_and_normalizer",
+        "executionMode": "sequential_after_collection",
+        "defaultModel": "gemini-2.5-flash-lite",
+        "deepResearchModel": "argon-cross-audience-synthesizer",
+        "temperature": 0.0,
+        "enforceStrictSchema": true
+      },
+      {
+        "agentId": "retroactive-revision-detector",
+        "name": "Retroactive Revision Detector Agent",
+        "role": "historical_drift_auditor",
+        "executionMode": "sequential_post_synthesis",
+        "defaultModel": "gemini-2.5-flash-lite",
+        "deepResearchModel": "gemini-2.5-flash-lite",
+        "temperature": 0.0
+      }
+    ]
+  },
+  "budgetGuardrailRules": {
+    "slider": {
+      "minUsd": 1.00,
+      "maxUsd": 15.00,
+      "defaultUsd": 5.00,
+      "stepUsd": 0.50,
+      "dedicatedTarget": "HII Sentiment Polling"
+    },
+    "perRunSpendCapUsd": 0.75,
+    "autoDowngradeThresholdPercent": 80.0,
+    "autoDowngradePolicy": {
+      "triggerCondition": "accumulated_monthly_spend >= 0.80 * monthly_cap",
+      "action": "downgrade_pipeline_to_flash_lite_grounded_search",
+      "activeModels": {
+        "audienceCollection": "gemini-2.5-flash",
+        "synthesisAndExtraction": "gemini-2.5-flash-lite",
+        "revisionDetection": "gemini-2.5-flash-lite"
+      }
+    },
+    "hardStopCircuitBreakerPercent": 100.0,
+    "hardStopPolicy": {
+      "triggerCondition": "accumulated_monthly_spend >= 1.00 * monthly_cap",
+      "action": "reject_ad_hoc_runs_and_suspend_scheduled_sweeps",
+      "alertWebhook": "finops-budget-exhaustion-alert"
+    }
+  }
+}
