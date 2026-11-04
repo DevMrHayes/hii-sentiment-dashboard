@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --hii-charcoal: #24272a;
+  --hii-deepsea: #003b4d;
+  --hii-sky: #75abd1;
+  --hii-changingsea: #509ca2;
+  --hii-steel: #5b6670;
+  --hii-passion: #ea7722;
+  --hii-white: #ffffff;
+}
+
+body {
+  background-color: #24272a;
+  color: #ffffff;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* Custom subtle scrollbars matching HII Steel & Deep Sea */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #24272a;
+}
+::-webkit-scrollbar-thumb {
+  background: #5b6670;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #75abd1;
+}

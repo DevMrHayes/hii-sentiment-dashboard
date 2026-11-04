@@ -1,0 +1,36 @@
+{
+  "name": "hii-sentiment-dashboard",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "HII Sentiment Intelligence Dashboard - deterministic multi-audience sentiment tracking (Executive, Congress, Navy, Public) with composite score, forecast and evidence ledger",
+  "scripts": {
+    "dev": "vite --port 5195 --host",
+    "build": "tsc && vite build",
+    "preview": "vite preview --port 5195",
+    "test": "vitest run",
+    "recompute": "tsx cli/recompute.ts",
+    "export:md": "tsx cli/export-markdown.ts",
+    "promote": "tsx cli/promote-pending.ts",
+    "research": "py -3 research/run_research.py"
+  },
+  "dependencies": {
+    "lucide-react": "^0.475.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "recharts": "^2.15.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.0",
+    "@types/react": "^19.0.8",
+    "@types/react-dom": "^19.0.3",
+    "@vitejs/plugin-react": "^4.3.4",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.5.2",
+    "tailwindcss": "^3.4.17",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "vite": "^6.1.0",
+    "vitest": "^3.0.5"
+  }
+}

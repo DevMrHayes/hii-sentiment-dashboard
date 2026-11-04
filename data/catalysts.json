@@ -1,0 +1,314 @@
+[
+  {
+    "id": "cat-2026-12-ndaa-fy27",
+    "title": "Enactment of Final FY2027 NDAA Authorizing Two Virginia SSNs, Three DDG 51s, and SIB Authorities",
+    "category": "legislation",
+    "sourceType": "legislation",
+    "expectedMonth": "2026-12",
+    "probability": 90,
+    "summary": "Bipartisan conference agreement on the FY2027 National Defense Authorization Act codifying submarine industrial base authorities and multi-ship surface combatant procurement.",
+    "impacts": [
+      {
+        "audience": "executive",
+        "direction": 1,
+        "magnitude": 2,
+        "credibility": 4,
+        "scope": "industry",
+        "persistence": "year"
+      },
+      {
+        "audience": "congress",
+        "direction": 1,
+        "magnitude": 4,
+        "credibility": 4,
+        "scope": "industry",
+        "persistence": "year"
+      },
+      {
+        "audience": "navy",
+        "direction": 1,
+        "magnitude": 3,
+        "credibility": 4,
+        "scope": "industry",
+        "persistence": "year"
+      },
+      {
+        "audience": "public",
+        "direction": 1,
+        "magnitude": 2,
+        "credibility": 3,
+        "scope": "company",
+        "persistence": "quarter"
+      }
+    ],
+    "enabled": true
+  },
+  {
+    "id": "cat-2026-12-cvn79-delivery",
+    "title": "Formal Navy Acceptance and Delivery of John F. Kennedy (CVN 79) at Newport News Shipbuilding",
+    "category": "milestone",
+    "sourceType": "navy_statement",
+    "expectedMonth": "2026-12",
+    "probability": 75,
+    "summary": "Completion of Acceptance Trials with INSURV and formal DD-250 custody transfer of the second Ford-class aircraft carrier CVN 79 to the U.S. Navy, retiring a major legacy fixed-price execution risk.",
+    "impacts": [
+      {
+        "audience": "executive",
+        "direction": 1,
+        "magnitude": 3,
+        "credibility": 4,
+        "scope": "program",
+        "persistence": "year"
+      },
+      {
+        "audience": "congress",
+        "direction": 1,
+        "magnitude": 3,
+        "credibility": 3,
+        "scope": "program",
+        "persistence": "year"
+      },
+      {
+        "audience": "navy",
+        "direction": 1,
+        "magnitude": 4,
+        "credibility": 4,
+        "scope": "program",
+        "persistence": "structural"
+      },
+      {
+        "audience": "public",
+        "direction": 1,
+        "magnitude": 3,
+        "credibility": 3,
+        "scope": "company",
+        "persistence": "year"
+      }
+    ],
+    "enabled": true
+  },
+  {
+    "id": "cat-2027-01-cr-shutdown-risk",
+    "title": "Extended Full-Year Continuing Resolution or Partial Defense Appropriations Lapse",
+    "category": "cr_shutdown",
+    "sourceType": "legislation",
+    "expectedMonth": "2027-01",
+    "probability": 25,
+    "summary": "Failure to enact full-year FY2027 Defense Appropriations in January 2027, forcing a restrictive Continuing Resolution that delays Columbia Build II and Virginia Block VI long-lead awards.",
+    "impacts": [
+      {
+        "audience": "executive",
+        "direction": -1,
+        "magnitude": 2,
+        "credibility": 4,
+        "scope": "macro",
+        "persistence": "quarter"
+      },
+      {
+        "audience": "congress",
+        "direction": -1,
+        "magnitude": 4,
+        "credibility": 4,
+        "scope": "macro",
+        "persistence": "year"
+      },
+      {
+        "audience": "navy",
+        "direction": -1,
+        "magnitude": 3,
+        "credibility": 4,
+        "scope": "industry",
+        "persistence": "quarter"
+      },
+      {
+        "audience": "public",
+        "direction": -1,
+        "magnitude": 2,
+        "credibility": 3,
+        "scope": "company",
+        "persistence": "quarter"
+      }
+    ],
+    "enabled": true
+  },
+  {
+    "id": "cat-2027-02-fy26-earnings-fcf",
+    "title": "HII FY2026 Full-Year Earnings Release Exceeds 7.8% Shipbuilding Margin and Issues Strong FY27 FCF Outlook",
+    "category": "earnings",
+    "sourceType": "earnings",
+    "expectedMonth": "2027-02",
+    "probability": 75,
+    "summary": "Full-year 2026 financial release confirming retirement of pre-COVID legacy hulls and guiding FY2027 shipbuilding operating margins above 8.0% with >$700M in free cash flow.",
+    "impacts": [
+      {
+        "audience": "navy",
+        "direction": 1,
+        "magnitude": 2,
+        "credibility": 3,
+        "scope": "company",
+        "persistence": "quarter"
+      },
+      {
+        "audience": "public",
+        "direction": 1,
+        "magnitude": 4,
+        "credibility": 3,
+        "scope": "company",
+        "persistence": "year"
+      }
+    ],
+    "enabled": true
+  },
+  {
+    "id": "cat-2027-03-pb28-shipbuilding-plan",
+    "title": "FY2028 President's Budget & 30-Year Shipbuilding Plan Expands Maritime Industrial Base Funding",
+    "category": "budget_request",
+    "sourceType": "budget_request",
+    "expectedMonth": "2027-03",
+    "probability": 75,
+    "summary": "Release of the FY2028 President's Budget and updated 30-Year Shipbuilding Plan funding 2 Virginia SSNs, 1 Columbia SSBN, 2+ DDG 51s, and CVN 82 advanced procurement.",
+    "impacts": [
+      {
+        "audience": "executive",
+        "direction": 1,
+        "magnitude": 4,
+        "credibility": 4,
+        "scope": "industry",
+        "persistence": "year"
+      },
+      {
+        "audience": "congress",
+        "direction": 1,
+        "magnitude": 2,
+        "credibility": 3,
+        "scope": "industry",
+        "persistence": "quarter"
+      },
+      {
+        "audience": "navy",
+        "direction": 1,
+        "magnitude": 3,
+        "credibility": 4,
+        "scope": "industry",
+        "persistence": "year"
+      }
+    ],
+    "enabled": true
+  },
+  {
+    "id": "cat-2027-04-columbia-build-ii",
+    "title": "Columbia-Class SSBN Build II Multi-Boat Construction Contract Definitization",
+    "category": "contract_award",
+    "sourceType": "contract_award",
+    "expectedMonth": "2027-04",
+    "probability": 50,
+    "summary": "Definitization of the five-boat Columbia-class Build II contract between NAVSEA, GD Electric Boat, and HII Newport News with updated inflation and workforce escalation protection.",
+    "impacts": [
+      {
+        "audience": "executive",
+        "direction": 1,
+        "magnitude": 3,
+        "credibility": 4,
+        "scope": "program",
+        "persistence": "structural"
+      },
+      {
+        "audience": "congress",
+        "direction": 1,
+        "magnitude": 4,
+        "credibility": 4,
+        "scope": "program",
+        "persistence": "structural"
+      },
+      {
+        "audience": "navy",
+        "direction": 1,
+        "magnitude": 5,
+        "credibility": 4,
+        "scope": "program",
+        "persistence": "structural"
+      },
+      {
+        "audience": "public",
+        "direction": 1,
+        "magnitude": 3,
+        "credibility": 4,
+        "scope": "company",
+        "persistence": "year"
+      }
+    ],
+    "enabled": true
+  },
+  {
+    "id": "cat-2027-05-gao-annual-assessment",
+    "title": "GAO 2027 Weapon Systems Annual Assessment Flags CVN 80 Supply Chain Lag",
+    "category": "oversight",
+    "sourceType": "gao_report",
+    "expectedMonth": "2027-05",
+    "probability": 50,
+    "summary": "Annual GAO audit highlighting vendor material delays on Enterprise (CVN 80) despite improved shipyard labor retention.",
+    "impacts": [
+      {
+        "audience": "congress",
+        "direction": -1,
+        "magnitude": 3,
+        "credibility": 3,
+        "scope": "program",
+        "persistence": "year"
+      },
+      {
+        "audience": "navy",
+        "direction": -1,
+        "magnitude": 2,
+        "credibility": 3,
+        "scope": "program",
+        "persistence": "quarter"
+      },
+      {
+        "audience": "public",
+        "direction": -1,
+        "magnitude": 1,
+        "credibility": 2,
+        "scope": "company",
+        "persistence": "transient"
+      }
+    ],
+    "enabled": true
+  },
+  {
+    "id": "cat-2027-05-aukus-sustainment-award",
+    "title": "HII Mission Technologies & Newport News Awarded AUKUS Submarine Readiness & Training Contract",
+    "category": "contract_award",
+    "sourceType": "contract_award",
+    "expectedMonth": "2027-05",
+    "probability": 25,
+    "summary": "Award of a multi-year AUKUS Pillar I nuclear stewardship, training, and fleet sustainment contract to HII Mission Technologies and Newport News Shipbuilding.",
+    "impacts": [
+      {
+        "audience": "executive",
+        "direction": 1,
+        "magnitude": 3,
+        "credibility": 4,
+        "scope": "company",
+        "persistence": "structural"
+      },
+      {
+        "audience": "navy",
+        "direction": 1,
+        "magnitude": 3,
+        "credibility": 4,
+        "scope": "company",
+        "persistence": "year"
+      },
+      {
+        "audience": "public",
+        "direction": 1,
+        "magnitude": 2,
+        "credibility": 3,
+        "scope": "company",
+        "persistence": "year"
+      }
+    ],
+    "enabled": true
+  }
+]

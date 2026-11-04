@@ -1,0 +1,108 @@
+[
+  {
+    "title": "GAO Supplemental Audit (GAO-26-107412): Submarine Industrial Base Supplier On-Time Delivery Improves 14%",
+    "eventDate": "2026-05-22",
+    "discoveredAt": "2026-11-04T16:15:00Z",
+    "sourceType": "gao_report",
+    "sourceUrls": [
+      "https://www.gao.gov/products/gao-26-107412"
+    ],
+    "summary": "Retroactive discovery: GAO supplemental review of Submarine Industrial Base (SIB) investments finds Tier-2 casting and forging vendor delinquency dropped 14% in Q2 2026, supporting Newport News Virginia-class module flow.",
+    "impacts": [
+      {
+        "audience": "congress",
+        "direction": 1,
+        "magnitude": 2,
+        "credibility": 3,
+        "scope": "industry",
+        "persistence": "year"
+      },
+      {
+        "audience": "navy",
+        "direction": 1,
+        "magnitude": 2,
+        "credibility": 3,
+        "scope": "program",
+        "persistence": "year"
+      }
+    ],
+    "starred": false,
+    "origin": "research",
+    "verification": "verified",
+    "runId": "run_20261104_deep_02",
+    "editHistory": [],
+    "pendingReason": "Discovered by Gemini Deep Research (Congress/GAO pack) — affects closed period Q2 2026 (retroactive revision preview)",
+    "id": "evt_7e1da78f95740248"
+  },
+  {
+    "title": "SECNAV & White House Maritime Directorate Announce Fast-Track Shipyard Automation Tax Credit Guidance",
+    "eventDate": "2026-11-11",
+    "discoveredAt": "2026-11-04T16:15:00Z",
+    "sourceType": "exec_order",
+    "sourceUrls": [
+      "https://www.whitehouse.gov/briefing-room/",
+      "https://www.secnav.navy.mil/"
+    ],
+    "summary": "Joint Executive Branch and Department of the Navy directive accelerating capital depreciation and grant matching for robotic welding and digital twin deployment at Newport News and Ingalls.",
+    "impacts": [
+      {
+        "audience": "executive",
+        "direction": 1,
+        "magnitude": 3,
+        "credibility": 4,
+        "scope": "industry",
+        "persistence": "structural"
+      },
+      {
+        "audience": "navy",
+        "direction": 1,
+        "magnitude": 3,
+        "credibility": 4,
+        "scope": "company",
+        "persistence": "year"
+      },
+      {
+        "audience": "public",
+        "direction": 1,
+        "magnitude": 2,
+        "credibility": 3,
+        "scope": "company",
+        "persistence": "quarter"
+      }
+    ],
+    "starred": true,
+    "origin": "research",
+    "verification": "verified",
+    "runId": "run_20261104_deep_02",
+    "editHistory": [],
+    "pendingReason": "Discovered by Gemini Deep Research (Executive & Navy packs) — current month Nov 2026",
+    "id": "evt_db9f68999cbf498d"
+  },
+  {
+    "title": "Institutional Equity Consensus Note: HII Outperforms Defense Peer Basket by +6.4% Post-Q3 Earnings",
+    "eventDate": "2026-11-12",
+    "discoveredAt": "2026-11-04T16:15:00Z",
+    "sourceType": "stock_move",
+    "sourceUrls": [
+      "https://ir.hii.com/stock-information"
+    ],
+    "summary": "Following Q3 2026 free cash flow guidance uplift and Charleston Operations throughput gains, NYSE:HII posts +6.4% relative alpha against the equal-weighted GD/LMT/NOC/ITA peer basket.",
+    "impacts": [
+      {
+        "audience": "public",
+        "direction": 1,
+        "magnitude": 1,
+        "credibility": 2,
+        "scope": "company",
+        "persistence": "quarter"
+      }
+    ],
+    "starred": false,
+    "origin": "research",
+    "verification": "verified",
+    "runId": "run_20261104_deep_02",
+    "editHistory": [],
+    "pendingReason": "Deterministic market-signal rule (4.0% <= alpha < 8.0% -> Mag 1, Cred 2, quarter)",
+    "id": "evt_2e65572658c2512e"
+  }
+]

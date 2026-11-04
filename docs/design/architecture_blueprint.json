@@ -1,0 +1,316 @@
+{
+  "title": "HII Sentiment Intelligence Dashboard \u2014 Deterministic Evidence-Ledger & Multi-Audience Analytics Architecture",
+  "strategy": "Design a strictly deterministic, audit-grade sentiment intelligence platform separating LLM-based discovery/classification from pure fixed-point mathematical scoring. A shared, zero-dependency TypeScript engine (`src/engine/`) computes multi-granularity historical scores (2011\u20132025 annual, 2026 Q1\u2013Q3 quarterly, 2026 Oct/Nov monthly) and 6-month analytical P10/EV/P90 forecasts using integer basis points (10,000 bps = 1.0000) to guarantee zero floating-point drift across architectures. Persistence uses an append-only, SHA-256 content-addressed JSON Evidence Ledger under `data/` exposed via a clean `StorageAdapter` interface and served by a custom Vite dev-server middleware API (`src/server/apiMiddleware.ts`) capable of spawning the Python Vertex AI / Gemini Deep Research pipeline (`research/run_research.py`) while enforcing the $15/month GCP budget guard.",
+  "files_to_modify": [],
+  "files_to_create": [
+    "package.json",
+    "tsconfig.json",
+    "vite.config.ts",
+    "tailwind.config.js",
+    "postcss.config.js",
+    "index.html",
+    ".gitignore",
+    "src/engine/types.ts",
+    "src/engine/rubric.ts",
+    "src/engine/periods.ts",
+    "src/engine/hash.ts",
+    "src/engine/scorer.ts",
+    "src/engine/revisions.ts",
+    "src/engine/forecast.ts",
+    "src/engine/exporter.ts",
+    "src/engine/index.ts",
+    "src/storage/StorageAdapter.ts",
+    "src/storage/LocalJsonStorage.ts",
+    "src/storage/ApiClientStorage.ts",
+    "src/server/apiMiddleware.ts",
+    "scripts/recompute_cli.ts",
+    "scripts/gcp_budget_guard.py",
+    "research/__init__.py",
+    "research/cloud_agent_mesh.py",
+    "research/query_packs.py",
+    "research/extractor.py",
+    "research/run_research.py",
+    "data/settings.json",
+    "data/evidence_ledger.json",
+    "data/catalysts.json",
+    "data/revisions.json",
+    "data/runs.json",
+    "data/pending/.gitkeep",
+    "src/main.tsx",
+    "src/App.tsx",
+    "src/index.css",
+    "src/context/DashboardContext.tsx",
+    "src/components/HeaderBar.tsx",
+    "src/components/TrendChart.tsx",
+    "src/components/ScoreRail.tsx",
+    "src/components/EventTimeline.tsx",
+    "src/components/ControlPane.tsx",
+    "src/components/WeightsEditor.tsx",
+    "src/components/CatalystEditor.tsx",
+    "src/components/ResearchRunner.tsx",
+    "src/components/RevisionLog.tsx",
+    "src/components/ExportPanel.tsx",
+    "tests/engine.determinism.test.ts",
+    "tests/engine.revisions.test.ts",
+    "tests/engine.forecast.test.ts",
+    "tests/engine.export.test.ts"
+  ],
+  "file_specifications": [
+    {
+      "path": "package.json",
+      "action": "create",
+      "specification": "Configure project `hii-sentiment-dashboard` (port 5195). Dependencies: `react@^19.0.0`, `react-dom@^19.0.0`, `recharts@^2.15.0`, `lucide-react@^0.460.0`, `clsx@^2.1.1`. DevDependencies: `typescript@^5.7.2`, `vite@^6.0.1`, `@vitejs/plugin-react@^4.3.4`, `vitest@^2.1.5`, `tailwindcss@^3.4.15`, `postcss@^8.4.49`, `autoprefixer@^10.4.20`, `tsx@^4.19.2`, `@types/react@^19.0.0`, `@types/react-dom@^19.0.0`, `@types/node@^22.9.0`. Scripts: `dev` (`vite --port 5195`), `build` (`tsc -b && vite build`), `test` (`vitest run`), `recompute` (`tsx scripts/recompute_cli.ts`), `research` (`python3 research/run_research.py`)."
+    },
+    {
+      "path": "tsconfig.json",
+      "action": "create",
+      "specification": "Strict TypeScript 5.7 configuration targeting ES2022, moduleResolution `bundler`, paths alias `@/*` -> `./src/*`, `resolveJsonModule: true`, `strict: true`, `noUncheckedIndexedAccess: true`."
+    },
+    {
+      "path": "tailwind.config.js",
+      "action": "create",
+      "specification": "Configure strict HII brand color tokens under `theme.extend.colors.hii`: `charcoal: '#24272a'`, `deepSea: '#003b4d'`, `skyBlue: '#75abd1'`, `changingSea: '#509ca2'`, `steel: '#5b6670'`, `passion: '#ea7722'`, `white: '#ffffff'`. Font families: mono for tabular numeric scores and sans for UI."
+    },
+    {
+      "path": "postcss.config.js",
+      "action": "create",
+      "specification": "Standard PostCSS config enabling `tailwindcss` and `autoprefixer`."
+    },
+    {
+      "path": "index.html",
+      "action": "create",
+      "specification": "HTML5 entry point with dark background `#24272a`, white text `#ffffff`, title 'HII Sentiment Intelligence Dashboard | Deterministic Multi-Audience Ledger', mounting `#root`."
+    },
+    {
+      "path": ".gitignore",
+      "action": "create",
+      "specification": "Ignore `node_modules/`, `dist/`, `.env*`, `__pycache__/`, `.agents/telemetry/`, `*.pyc`, `.DS_Store`."
+    },
+    {
+      "path": "vite.config.ts",
+      "action": "create",
+      "specification": "Vite 6 config with `@vitejs/plugin-react`, server port `5195`, strictPort `true`, and custom plugin `hiiLocalApiPlugin()` imported from `./src/server/apiMiddleware` that mounts REST endpoints `/api/*` onto `server.middlewares`."
+    },
+    {
+      "path": "src/engine/types.ts",
+      "action": "create",
+      "specification": "Define all core deterministic domain types and constants:\n- `SCORING_ENGINE_VERSION = '1.0.0'`, `RUBRIC_VERSION = '1.0.0'`, `REFERENCE_NOW_ISO = '2026-11-15'`\n- `AudienceId = 'executive' | 'congress' | 'navy' | 'public'`\n- `ALL_AUDIENCES: readonly AudienceId[] = ['executive', 'congress', 'navy', 'public']`\n- `SourceType = 'hearing' | 'gao_report' | 'crs_report' | 'exec_order' | 'budget_request' | 'navy_statement' | 'contract_award' | 'earnings' | 'stock_move' | 'analyst_rating' | 'news_media' | 'legislation'`\n- `DirectionCode = -1 | 0 | 1`\n- `MagnitudeLevel = 1 | 2 | 3 | 4 | 5`\n- `CredibilityTier = 1 | 2 | 3 | 4`\n- `ScopeClass = 'program' | 'company' | 'industry' | 'macro'`\n- `PersistenceClass = 'transient' | 'quarter' | 'year' | 'structural'`\n- `DiscreteProbabilityPct = 5 | 10 | 20 | 25 | 30 | 40 | 50 | 60 | 70 | 75 | 80 | 90 | 95`\n- `AudienceImpact`: `{ audience: AudienceId; direction: DirectionCode; magnitude: MagnitudeLevel; credibility: CredibilityTier; scope: ScopeClass; persistence: PersistenceClass; rationale: string }`\n- `EditAuditEntry`: `{ editedAt: string; author: string; reason: string; previousImpacts: AudienceImpact[]; previousStarred: boolean }`\n- `ImpactEvent`: `{ id: string; title: string; eventDate: string; discoveredAt: string; sourceType: SourceType; sourceUrls: string[]; summary: string; starred: boolean; impacts: AudienceImpact[]; editHistory: EditAuditEntry[]; runId?: string }`\n- `PeriodGranularity = 'annual' | 'quarterly' | 'monthly'`\n- `TimePeriod`: `{ id: string; label: string; granularity: PeriodGranularity; startDate: string; endDate: string; midpointDays: number; isForecast?: boolean }`\n- `EventContribution`: `{ eventId: string; title: string; eventDate: string; starred: boolean; rawPointsBps: number; decayMultiplierBps: number; effectivePointsBps: number; shareOfPeriodPct: number }`\n- `AudiencePeriodScore`: `{ periodId: string; audience: AudienceId; scoreBps: number; displayScore: number; deltaBps: number; displayDelta: number; contributions: EventContribution[] }`\n- `PeriodCompositeRecord`: `{ period: TimePeriod; audiences: Record<AudienceId, AudiencePeriodScore>; compositeScoreBps: number; displayComposite: number; compositeDeltaBps: number; displayCompositeDelta: number; starredEvents: ImpactEvent[]; hasRevision: boolean; revisions: ScoreRevision[] }`\n- `AudienceWeights`: `Record<AudienceId, number>` (integers summing to 100)\n- `DashboardSettings`: `{ weights: AudienceWeights; referenceDate: string; scoringEngineVersion: string; rubricVersion: string; lastUpdated: string }`\n- `ScoreRevision`: `{ id: string; timestamp: string; runId: string; periodId: string; audience: AudienceId | 'composite'; oldScoreBps: number; newScoreBps: number; deltaBps: number; triggeringEventIds: string[]; explanation: string }`\n- `ForecastCatalyst`: `{ id: string; title: string; category: 'legislation' | 'appropriations' | 'cr_shutdown' | 'contract_award' | 'budget_request' | 'milestone'; expectedMonth: string; probabilityPct: DiscreteProbabilityPct; summary: string; impacts: AudienceImpact[]; enabled: boolean }`\n- `ForecastPoint`: `{ period: TimePeriod; audienceScoresBps: Record<AudienceId, { evBps: number; p10Bps: number; p90Bps: number }>; compositeEvBps: number; compositeP10Bps: number; compositeP90Bps: number; displayEv: number; displayP10: number; displayP90: number; activeCatalystIds: string[] }`\n- `ResearchRunRecord`: `{ runId: string; startedAt: string; completedAt?: string; audiences: AudienceId[]; status: 'running' | 'completed' | 'failed' | 'budget_blocked'; mode: 'deep_research' | 'grounding_fallback' | 'offline_simulation'; discoveredCount: number; pendingFile?: string; costUsd: number; log: string[] }`\n- `LedgerComputationResult`: `{ scoringEngineVersion: string; rubricVersion: string; ledgerHash: string; outputHash: string; computedAt: string; settings: DashboardSettings; timeline: PeriodCompositeRecord[]; forecast: ForecastPoint[]; latestScores: Record<AudienceId | 'composite', { scoreBps: number; displayScore: number; deltaBps: number; displayDelta: number }> }`"
+    },
+    {
+      "path": "src/engine/rubric.ts",
+      "action": "create",
+      "specification": "Define immutable integer look-up tables (in basis points where 10,000 bps = 1.0000 index points on the 0\u2013100 sentiment scale, baseline neutral = 500,000 bps = 50.00 display score):\n- `BASELINE_SCORE_BPS = 500_000` (50.00)\n- `MIN_SCORE_BPS = 0` (0.00), `MAX_SCORE_BPS = 1_000_000` (100.00)\n- `MAGNITUDE_BASE_BPS: Record<MagnitudeLevel, number>` -> `{ 1: 15_000, 2: 35_000, 3: 65_000, 4: 105_000, 5: 155_000 }` (i.e. +1.5 to +15.5 display points before multipliers)\n- `CREDIBILITY_MULT_BPS: Record<CredibilityTier, number>` -> `{ 1: 5_000, 2: 7_500, 3: 9_000, 4: 10_000 }` (Tier 4 = official enacted law/SEC filing/contract = 1.00x; Tier 1 = unverified media = 0.50x)\n- `SCOPE_MULT_BPS: Record<ScopeClass, number>` -> `{ program: 7_500, company: 10_000, industry: 6_500, macro: 5_000 }`\n- `PERSISTENCE_HALF_LIFE_DAYS: Record<PersistenceClass, number>` -> `{ transient: 45, quarter: 120, year: 365, structural: 1095 }`\n- `PERSISTENCE_MAX_HORIZON_DAYS: Record<PersistenceClass, number>` -> `{ transient: 180, quarter: 540, year: 1460, structural: 3650 }`\n- Export pure helper `computeRawImpactBps(impact: AudienceImpact): number` using integer math: `Math.trunc((impact.direction * MAGNITUDE_BASE_BPS[impact.magnitude] * CREDIBILITY_MULT_BPS[impact.credibility]) / 10_000 * SCOPE_MULT_BPS[impact.scope] / 10_000)`.\n- Export pure helper `computeDecayMultiplierBps(elapsedDays: number, persistence: PersistenceClass): number`: returns `0` if `elapsedDays < 0` or `elapsedDays > PERSISTENCE_MAX_HORIZON_DAYS[persistence]`. Otherwise uses deterministic piecewise-linear octave interpolation of `2^(-elapsedDays / halfLife)` in integer basis points: let `q = Math.floor(elapsedDays / halfLife)` and `r = elapsedDays % halfLife`; integer octave base is `Math.floor(10_000 / (1 << q))`, next octave is `Math.floor(10_000 / (1 << (q + 1)))`, linear interpolation `base - Math.floor(((base - next) * r) / halfLife)`. Pure integer arithmetic only."
+    },
+    {
+      "path": "src/engine/periods.ts",
+      "action": "create",
+      "specification": "Pure deterministic date/period calendar generator:\n- `parseIsoDateToEpochDays(isoDate: string): number`: parses `YYYY-MM-DD` strictly in UTC (`Date.UTC(y, m-1, d) / 86_400_000`) with `Math.floor`.\n- `buildHistoricalPeriods(referenceDateIso?: string): TimePeriod[]`: Given default `'2026-11-15'`, generates:\n  1. Annual periods `2011` through `2025` (`id: '2011'`, `granularity: 'annual'`, `startDate: '2011-01-01'` (`2011-03-31` for 2011 spin-off year), `endDate: 'YYYY-12-31'`).\n  2. Quarterly periods for current year `2026`: `'2026-Q1'` (`2026-01-01`..`2026-03-31`), `'2026-Q2'` (`2026-04-01`..`2026-06-30`), `'2026-Q3'` (`2026-07-01`..`2026-09-30`).\n  3. Monthly periods within current quarter Q4 2026 up to reference month: `'2026-10'` (`2026-10-01`..`2026-10-31`, label `'Oct 2026'`) and `'2026-11'` (`2026-11-01`..`2026-11-30`, label `'Nov 2026'`).\n- `buildForecastPeriods(referenceDateIso?: string): TimePeriod[]`: Generates 6 monthly forward periods starting after Nov 2026: `'2026-12'` (Dec 2026), `'2027-01'` (Jan 2027), `'2027-02'` (Feb 2027), `'2027-03'` (Mar 2027), `'2027-04'` (Apr 2027), `'2027-05'` (May 2027) with `isForecast: true`."
+    },
+    {
+      "path": "src/engine/hash.ts",
+      "action": "create",
+      "specification": "Deterministic canonical JSON serialization and hashing (browser + Node compatible without external crypto dependency):\n- Implement pure TypeScript SHA-256 (`sha256Hex(input: string): string`) using standard FIPS 180-4 32-bit integer bitwise operations so it runs identically in browser React and Node CLI without async WebCrypto requirements.\n- `canonicalizeJson(value: unknown): string`: recursively sorts object keys lexicographically and serializes arrays in existing order.\n- `computeEventContentId(event: Pick<ImpactEvent, 'title' | 'eventDate' | 'sourceType' | 'sourceUrls'>): string`: returns `'evt_' + sha256Hex(canonicalizeJson({ title: event.title.trim(), eventDate: event.eventDate, sourceType: event.sourceType, sourceUrls: [...event.sourceUrls].sort() })).slice(0, 16)`.\n- `computeLedgerHash(events: ImpactEvent[], settings: DashboardSettings): string`: sorts events by `id` ascending and hashes canonical representation."
+    },
+    {
+      "path": "src/engine/scorer.ts",
+      "action": "create",
+      "specification": "Core deterministic scoring engine (`computeLedgerScores`):\n- `validateWeights(weights: AudienceWeights): boolean`: verifies all 4 audiences are integers >= 0 and sum to exactly 100.\n- `bpsToDisplay(bps: number): number`: returns `Math.round(bps / 100) / 100` (e.g., `542_500` -> `54.25`).\n- `clampScoreBps(bps: number): number`: clamps to `[0, 1_000_000]`.\n- `scoreSinglePeriodAudience(period: TimePeriod, audience: AudienceId, sortedEvents: ImpactEvent[], prevScoreBps: number): AudiencePeriodScore`:\n  - Evaluates all events where `eventDate <= period.endDate`.\n  - Measures `elapsedDays = Math.max(0, parseIsoDateToEpochDays(period.endDate) - parseIsoDateToEpochDays(event.eventDate))` (if event occurs within the period `eventDate >= period.startDate && eventDate <= period.endDate`, `elapsedDays = 0` so full impact is felt in its occurrence period).\n  - Computes `rawPointsBps = computeRawImpactBps(impact)`, `decayMultiplierBps = computeDecayMultiplierBps(elapsedDays, impact.persistence)`, `effectivePointsBps = Math.trunc((rawPointsBps * decayMultiplierBps) / 10_000)`.\n  - Sums `effectivePointsBps` across all active events in deterministic order (`eventDate ASC, id ASC`), adds to `BASELINE_SCORE_BPS`, and clamps via `clampScoreBps`.\n- `computeCompositeBps(audienceScores: Record<AudienceId, AudiencePeriodScore>, weights: AudienceWeights): number`: `Math.trunc((executive * w.executive + congress * w.congress + navy * w.navy + public * w.public) / 100)`.\n- `computeLedgerScores(events: ImpactEvent[], settings: DashboardSettings, revisions?: ScoreRevision[]): LedgerComputationResult`: computes full timeline from 2011 to Nov 2026, attaches starred events occurring in each period, attaches matching `ScoreRevision` records, computes latest scores & deltas vs prior period, and stamps `ledgerHash` and `outputHash`."
+    },
+    {
+      "path": "src/engine/revisions.ts",
+      "action": "create",
+      "specification": "Retroactive revision detector (`detectRetroactiveRevisions`):\n- Signature: `detectRetroactiveRevisions(previousResult: LedgerComputationResult, nextResult: LedgerComputationResult, newlyAddedEvents: ImpactEvent[], runId: string, timestampIso: string): ScoreRevision[]`.\n- Compares every historical `periodId` across `ALL_AUDIENCES` and `'composite'`.\n- Whenever `oldScoreBps !== newScoreBps`, identifies which events from `newlyAddedEvents` have `eventDate <= period.endDate` and non-zero contribution to that period/audience, and constructs a deterministic `ScoreRevision` record with human-readable `explanation` (e.g., `'Retroactive discovery of GAO report (2024-06-12) adjusted 2024 Congress score by -2.45 pts'`)."
+    },
+    {
+      "path": "src/engine/forecast.ts",
+      "action": "create",
+      "specification": "Deterministic 6-month scenario-based Expected Value & analytical P10/P90 band calculator (`computeDeterministicForecast`):\n- Signature: `computeDeterministicForecast(events: ImpactEvent[], catalysts: ForecastCatalyst[], settings: DashboardSettings, lastHistoricalTimelineRecord: PeriodCompositeRecord): ForecastPoint[]`.\n- For each of the 6 forward months (`2026-12` .. `2027-05`):\n  1. Computes deterministic baseline trajectory from existing historical `events` decaying forward to `forecastPeriod.endDate`.\n  2. Filters active enabled `catalysts` whose `expectedMonth <= forecastPeriod.id`.\n  3. For each active catalyst `c` with probability `p = c.probabilityPct` (0..100), computes its decayed impact `impactBps` at `forecastPeriod.endDate`.\n  4. **Exact Binary Scenario Enumeration**: Since active catalysts per horizon are typically <= 12, enumerates the exact `2^k` binary outcomes (sorted by catalyst `id` ASC; if `k > 12`, partitions top 12 by absolute magnitude for exact `2^12 = 4096` distribution plus analytical variance for remainder). Every binary state has exact probability weight and exact score impact.\n  5. Sorts outcomes by resulting score ascending, accumulates probability mass, and extracts exact **Expected Value (`evBps`)**, **10th percentile (`p10Bps`)**, and **90th percentile (`p90Bps`)** per audience and for the weighted composite. Zero Monte Carlo randomness."
+    },
+    {
+      "path": "src/engine/exporter.ts",
+      "action": "create",
+      "specification": "Deterministic Markdown report generator (`generateMarkdownExport`):\n- Signature: `generateMarkdownExport(result: LedgerComputationResult, events: ImpactEvent[], catalysts: ForecastCatalyst[], revisions: ScoreRevision[]): string`.\n- Outputs structured Markdown containing:\n  1. Header & Audit Stamp (`scoringEngineVersion`, `rubricVersion`, `ledgerHash`, `outputHash`, `referenceDate`, Audience Weights table).\n  2. Executive Summary: Current Scores (Nov 2026) & Delta vs prior period per audience and Composite.\n  3. Complete Historical Score Table (2011\u20132025 Annual, 2026 Q1\u2013Q3 Quarterly, 2026 Oct\u2013Nov Monthly) with columns for Executive, Congress, Navy, Public, Composite, Delta, and Revision Flags.\n  4. 6-Month Deterministic Forecast Table (Dec 2026 \u2013 May 2027) with EV and [P10, P90] bands.\n  5. Starred Key Events Catalog with dates, source types, and per-audience contribution points.\n  6. Period-by-Period Contributing Events Breakdown.\n  7. Retroactive Revisions Audit Log."
+    },
+    {
+      "path": "src/engine/index.ts",
+      "action": "create",
+      "specification": "Barrel export of all types and functions from `types`, `rubric`, `periods`, `hash`, `scorer`, `revisions`, `forecast`, and `exporter`."
+    },
+    {
+      "path": "src/storage/StorageAdapter.ts",
+      "action": "create",
+      "specification": "Define the asynchronous `StorageAdapter` interface so local JSON files or Firestore can be swapped transparently:\n- `loadAll(): Promise<{ settings: DashboardSettings; events: ImpactEvent[]; catalysts: ForecastCatalyst[]; revisions: ScoreRevision[]; runs: ResearchRunRecord[]; pendingEvents: ImpactEvent[] }>`\n- `saveSettings(settings: DashboardSettings): Promise<void>`\n- `upsertEvent(event: ImpactEvent, author: string, reason: string): Promise<{ events: ImpactEvent[]; newRevisions: ScoreRevision[] }>`\n- `toggleStarEvent(eventId: string, starred: boolean): Promise<ImpactEvent[]>`\n- `saveCatalysts(catalysts: ForecastCatalyst[]): Promise<void>`\n- `triggerResearchRun(audiences: AudienceId[]): Promise<ResearchRunRecord>`\n- `approvePendingEvent(eventId: string): Promise<{ events: ImpactEvent[]; pendingEvents: ImpactEvent[]; newRevisions: ScoreRevision[] }>`\n- `rejectPendingEvent(eventId: string): Promise<ImpactEvent[]>`"
+    },
+    {
+      "path": "src/storage/LocalJsonStorage.ts",
+      "action": "create",
+      "specification": "Node.js filesystem implementation of `StorageAdapter` reading/writing `data/settings.json`, `data/evidence_ledger.json`, `data/catalysts.json`, `data/revisions.json`, `data/runs.json`, and `data/pending/*.json`. Enforces deterministic sorting by `eventDate ASC, id ASC` on save, appends `EditAuditEntry` whenever an existing event's rubric codes change, and invokes `detectRetroactiveRevisions` whenever new or edited evidence alters historical period scores, automatically appending any resulting `ScoreRevision` records to `data/revisions.json`."
+    },
+    {
+      "path": "src/storage/ApiClientStorage.ts",
+      "action": "create",
+      "specification": "Browser implementation of `StorageAdapter` that calls the Vite middleware REST endpoints (`/api/state`, `/api/settings`, `/api/events`, `/api/events/star`, `/api/catalysts`, `/api/research/run`, `/api/pending/approve`, `/api/pending/reject`) with automatic fallback to bundled static JSON imports (`data/*.json`) plus `localStorage` overlay if running as a static preview build."
+    },
+    {
+      "path": "src/server/apiMiddleware.ts",
+      "action": "create",
+      "specification": "Vite dev-server middleware plugin (`hiiLocalApiPlugin`) using `LocalJsonStorage` and Node `child_process.spawn`:\n- `GET /api/state`: returns full ledger, settings, catalysts, revisions, runs, and pending events.\n- `POST /api/settings`: validates integer weights summing to 100 and persists to `data/settings.json`.\n- `POST /api/events`: creates or updates an `ImpactEvent` with audit trail and retroactive revision detection.\n- `POST /api/events/star`: toggles `starred` flag on an event.\n- `POST /api/catalysts`: updates `data/catalysts.json`.\n- `POST /api/research/run`: invokes `python3 research/run_research.py --audiences <csv>` (or falls back to deterministic offline discovery simulation if GCP credentials are absent), writes candidate events to `data/pending/`, and logs run telemetry in `data/runs.json`.\n- `POST /api/pending/approve`: promotes a pending event into `data/evidence_ledger.json`, computes `detectRetroactiveRevisions` with the research `runId`, records any `ScoreRevision` entries, and removes the item from pending.\n- `POST /api/pending/reject`: removes candidate event from pending."
+    },
+    {
+      "path": "scripts/recompute_cli.ts",
+      "action": "create",
+      "specification": "Headless Node CLI script using `LocalJsonStorage` and `src/engine`. Computes all historical and forecast scores, prints a formatted ASCII summary table of scores, verifies ledger & output SHA-256 hashes, and optionally writes a Markdown export to `dist/HII_Sentiment_Report.md` when `--export` is passed."
+    },
+    {
+      "path": "scripts/gcp_budget_guard.py",
+      "action": "create",
+      "specification": "Python budget guard module reading/writing `.agents/telemetry/gcp_monthly_spend.json`.\n- Enforces hard limit `MONTHLY_BUDGET_CAP_USD = 15.00`.\n- Provides `check_budget_available(estimated_cost_usd: float) -> tuple[bool, float, str]` and `record_spend(run_id: str, model: str, cost_usd: float) -> dict`.\n- Resets automatically when `YYYY-MM` changes."
+    },
+    {
+      "path": "research/__init__.py",
+      "action": "create",
+      "specification": "Package marker for `research`."
+    },
+    {
+      "path": "research/cloud_agent_mesh.py",
+      "action": "create",
+      "specification": "Python REST helper `CloudAgentMesh` using Application Default Credentials (`gcloud auth print-access-token` or `google.auth`) targeting GCP project `gen-lang-client-0353543048`:\n- Method `run_deep_research(prompt: str, timeout_sec: int = 180) -> dict`: calls Gemini Interactions API with `agent='deep-research-preview-04-2026'`, `background=True`, and polls until completion.\n- Method `run_grounded_generate(prompt: str, model: str = 'gemini-3.8-flash') -> dict`: fallback calling Vertex AI `generateContent` with `tools=[{'googleSearch': {}}]` (supports `gemini-3.8-flash` and `gemini-4-argon`).\n- Method `extract_structured_rubric(raw_findings: str, json_schema: dict) -> list[dict]`: calls Vertex AI at `temperature=0.0` with `responseMimeType='application/json'` and `responseSchema=json_schema` to map raw findings into closed-set discrete rubric codes."
+    },
+    {
+      "path": "research/query_packs.py",
+      "action": "create",
+      "specification": "Defines audience-specific search and deep-research query packs for HII (Huntington Ingalls Industries, Newport News Shipbuilding, Ingalls Shipbuilding, Mission Technologies):\n- `executive`: White House maritime statecraft, OMB defense budget requests, Executive Orders on shipbuilding industrial base, OSD/SecDef briefings.\n- `congress`: HASC Seapower / SASC hearings, NDAA shipbuilding authorizations, GAO reports on Ford-class / Virginia-class / Columbia-class delays, CRS naval force structure reports.\n- `navy`: SECNAV / CNO 30-Year Shipbuilding Plan, NAVSEA contract awards (CVN-80/81, SSN, DDG-51 Flight III, LHA), shipyard workforce & supplier base reviews.\n- `public`: NYSE:HII stock performance vs peers (GD, LMT, NOC, ITA ETF, S&P 500), quarterly earnings releases, Wall Street analyst ratings, national & defense media tone."
+    },
+    {
+      "path": "research/extractor.py",
+      "action": "create",
+      "specification": "Validates and normalizes LLM-extracted candidate events against strict discrete rubric enumerations (`direction in {-1,0,1}`, `magnitude in {1..5}`, `credibility in {1..4}`, `scope in {'program','company','industry','macro'}`, `persistence in {'transient','quarter','year','structural'}`). Computes canonical SHA-256 content ID (`evt_<16hex>`) matching TypeScript `computeEventContentId` and deduplicates against `data/evidence_ledger.json`."
+    },
+    {
+      "path": "research/run_research.py",
+      "action": "create",
+      "specification": "CLI entrypoint invoked by UI or command line (`python3 research/run_research.py --audiences executive,congress,navy,public`).\n1. Checks `scripts/gcp_budget_guard.py` ($15/month cap).\n2. Attempts `CloudAgentMesh.run_deep_research`, falls back to `run_grounded_generate`, and if running in an offline/unauthenticated environment, produces deterministic curated pending discovery items (including a retroactive historical GAO/CRS event and a recent Q4 2026 event) so the full pending-approval and retroactive-revision workflow can be tested offline.\n3. Writes deduplicated candidate events to `data/pending/pending_<runId>.json` and appends run metadata to `data/runs.json`."
+    },
+    {
+      "path": "data/settings.json",
+      "action": "create",
+      "specification": "Default deterministic settings: `weights: { executive: 25, congress: 30, navy: 30, public: 15 }`, `referenceDate: '2026-11-15'`, `scoringEngineVersion: '1.0.0'`, `rubricVersion: '1.0.0'`, `lastUpdated: '2026-11-15T12:00:00Z'`."
+    },
+    {
+      "path": "data/evidence_ledger.json",
+      "action": "create",
+      "specification": "Rich, historically accurate seeded dataset of 32+ HII impact events spanning March 31, 2011 through November 2026 so every annual period (2011\u20132025), quarterly period (2026 Q1\u2013Q3), and monthly period (Oct 2026, Nov 2026) has realistic multi-audience evidence:\n- 2011-03-31: HII Spin-Off from Northrop Grumman on NYSE (starred)\n- 2012-11-15: CVN-79 John F. Kennedy Construction Preparation Contract\n- 2013-03-01: Budget Control Act Sequestration & Continuing Resolution Impact (starred)\n- 2014-04-28: Block IV Virginia-Class Multi-Year Procurement Award (10 SSNs) (starred)\n- 2015-06-05: CVN-79 Detail Design and Construction Contract\n- 2016-12-01: Acquisition of Camber Corporation (Technical Solutions Expansion)\n- 2017-05-31: Delivery of USS Gerald R. Ford (CVN-78) to U.S. Navy (starred)\n- 2018-08-13: FY2019 NDAA Authorizes Two-Carrier Buy Framework\n- 2019-01-31: Historical Block Buy Contract for CVN-80 Enterprise & CVN-81 Doris Miller (starred)\n- 2019-12-02: Block V Virginia-Class Payload Module Multi-Boat Award\n- 2020-04-15: COVID-19 Shipyard Disruption, Absenteeism & Supply Chain Friction (starred)\n- 2021-08-19: Acquisition of Alion Science and Technology ($1.65B Mission Technologies Pivot) (starred)\n- 2022-06-14: GAO Report on Ford-Class & Virginia-Class Schedule Delays\n- 2023-03-14: AUKUS Optimal Pathway Announcement \u2014 Virginia-Class Submarine Pillar (starred)\n- 2023-08-01: Multi-Year Procurement Award for 7 Arleigh Burke Flight III Destroyers at Ingalls\n- 2024-04-02: Navy 45-Day Shipbuilding Review Reveals 1\u20133 Year Delays Across Programs (starred)\n- 2024-10-31: Q3 2024 Earnings Miss & Guidance Reset Amid Labor/Throughput Headwinds (starred)\n- 2025-03-10: Administration Executive Push for Maritime Industrial Base & White House Office of Shipbuilding (starred)\n- 2025-07-18: FY2026 NDAA Markup Adds Submarine & Amphibious Industrial Base Funding\n- 2025-11-06: Navy & HII Reach Wage / Workforce Retention Investment Framework\n- 2026-02-12 (Q1): FY2027 Defense Budget Preview & 30-Year Shipbuilding Plan Update\n- 2026-05-19 (Q2): GAO Annual Weapon Systems Assessment Highlights Shipyard Stabilization\n- 2026-08-06 (Q3): Q2 2026 Earnings Beat & Mission Technologies Record Backlog ($48.5B) (starred)\n- 2026-09-24 (Q3): Multi-Ship Amphibious Warship (LPD/LHA) Bundle Contract Authorization\n- 2026-10-14 (Oct): SASC/HASC Joint Seapower Hearing on Virginia-Class & Columbia-Class Throughput\n- 2026-10-29 (Oct): Q3 2026 Financial Results & Peer-Relative Share Outperformance\n- 2026-11-05 (Nov): SECNAV & CNO Maritime Statecraft Directive Prioritizing Shipyard Automation (starred)\n- 2026-11-12 (Nov): CRS Report on FY2027 Naval Force Structure & Carrier Refueling (RCOH) Schedule."
+    },
+    {
+      "path": "data/catalysts.json",
+      "action": "create",
+      "specification": "Seeded catalog of 6 forward catalysts covering Dec 2026 \u2013 May 2027:\n1. `'cat_fy27_ndaa_enacted'` (2026-12, probability 80%, legislation): FY2027 NDAA Final Conference Enactment with Virginia-Class & Shipyard Infrastructure Provisions.\n2. `'cat_cr_shutdown_risk'` (2027-01, probability 30%, cr_shutdown): Continuing Resolution Extension / Appropriations Standoff Delaying New-Start Awards.\n3. `'cat_q4_2026_earnings'` (2027-02, probability 60%, milestone): FY2026 Full-Year Earnings & 2027 Shipbuilding Margin Guidance Release.\n4. `'cat_pb28_budget_request'` (2027-03, probability 75%, budget_request): President's FY2028 Budget Request & 30-Year Shipbuilding Plan Submission.\n5. `'cat_columbia_build_ii_award'` (2027-04, probability 70%, contract_award): Columbia-Class Build II Module & Submarine Industrial Base Supplier Award.\n6. `'cat_cvn79_delivery_milestone'` (2027-05, probability 60%, milestone): CVN-79 John F. Kennedy Combat Systems Testing & Delivery Readiness Milestone."
+    },
+    {
+      "path": "data/revisions.json",
+      "action": "create",
+      "specification": "Seeded with 2 realistic historical `ScoreRevision` records demonstrating retroactive evidence discovery (e.g., a 2024 GAO shipbuilding audit addendum discovered during a 2026 research run that revised `2024` Congress and Navy scores, and a 2026-Q2 NAVSEA contract modification discovery revising `2026-Q2`)."
+    },
+    {
+      "path": "data/runs.json",
+      "action": "create",
+      "specification": "Seeded with 2 historical `ResearchRunRecord` entries showing completed research runs, discovered event counts, and budget spend tracking."
+    },
+    {
+      "path": "data/pending/.gitkeep",
+      "action": "create",
+      "specification": "Keep directory tracked in git."
+    },
+    {
+      "path": "src/index.css",
+      "action": "create",
+      "specification": "Tailwind directives plus custom scrollbar and HII palette CSS variables (`--hii-charcoal: #24272a`, `--hii-deep-sea: #003b4d`, `--hii-sky-blue: #75abd1`, `--hii-changing-sea: #509ca2`, `--hii-steel: #5b6670`, `--hii-passion: #ea7722`, `--hii-white: #ffffff`)."
+    },
+    {
+      "path": "src/context/DashboardContext.tsx",
+      "action": "create",
+      "specification": "React 19 context provider managing:\n- Loaded ledger state (`events`, `settings`, `catalysts`, `revisions`, `runs`, `pendingEvents`).\n- Memoized deterministic `LedgerComputationResult` computed synchronously via `computeLedgerScores` and `computeDeterministicForecast` whenever `events`, `settings`, or `catalysts` change.\n- UI filter state (`selectedPeriodId`, `selectedAudienceFilter`, `starredOnly`, `activeTab`).\n- Action handlers bound to `ApiClientStorage` (`updateWeights`, `toggleStar`, `addOrEditEvent`, `updateCatalysts`, `runResearch`, `approvePending`, `rejectPending`)."
+    },
+    {
+      "path": "src/components/HeaderBar.tsx",
+      "action": "create",
+      "specification": "Top intelligence bar styled in `#003b4d` Deep Sea with `#5b6670` Steel border and `#ea7722` Passion accent badge. Displays HII NYSE ticker context, deterministic engine & rubric version stamps (`v1.0.0`), truncated SHA-256 `ledgerHash` and `outputHash` badges (with copy button), retroactive revision alert counter, pending discovery counter, and navigation tabs (`Analytics & Timeline`, `Control & Rubric Studio`, `Forecast Catalysts`, `Research Pipeline`, `Revisions Audit`, `Markdown Export`)."
+    },
+    {
+      "path": "src/components/TrendChart.tsx",
+      "action": "create",
+      "specification": "Main interactive multi-line chart built with Recharts (`ComposedChart`, `ResponsiveContainer`):\n- Combines historical periods (`2011`..`2025` Annual, `2026-Q1`..`Q3` Quarterly, `2026-10`..`11` Monthly) and 6 forward forecast periods (`2026-12`..`2027-05`) along a unified variable-granularity x-axis with clear visual dividers between Annual, Quarterly, Monthly, and Forecast zones.\n- Plots 4 audience lines (`Executive`: `#75abd1` Sky Blue, `Congress`: `#509ca2` Changing Sea, `Navy`: `#a3d5ff` Light Naval Blue, `Public`: `#94a3b8` Steel Silver) plus the bold **Composite** line (`#ffffff` White, strokeWidth 3) and forecast EV dashed projection (`#ea7722` Passion).\n- Renders shaded P10\u2013P90 forecast uncertainty band (`Area` with `#ea7722` at 20% opacity) in the 6-month forecast zone.\n- Renders custom `#ea7722` Passion star markers on periods containing starred Key Events and revision badge indicators on periods with retroactive `ScoreRevision` records.\n- Clicking any period node selects that period in `DashboardContext` to inspect its exact event contributions and math breakdown."
+    },
+    {
+      "path": "src/components/ScoreRail.tsx",
+      "action": "create",
+      "specification": "Right-hand intelligence rail (`#003b4d` Deep Sea panels):\n- Hero Composite Score card showing current score (Nov 2026), signed delta vs Oct 2026, 6-month Forecast EV & [P10, P90] range, and active audience weight distribution bar.\n- Four per-audience score cards (`Executive Branch`, `Congress`, `Department of the Navy`, `American Public`) displaying current score, delta vs prior period, weight percentage, and top contributing event for the selected period.\n- Selected Period Inspector showing the exact integer basis-point breakdown (`effectivePointsBps`, decay factor, rubric codes) for whichever period is clicked on the chart."
+    },
+    {
+      "path": "src/components/EventTimeline.tsx",
+      "action": "create",
+      "specification": "Filterable, searchable Impact Events Ledger & Key Events Explorer:\n- Filter by audience, period, sourceType, starred status, or search text.\n- Displays each event's SHA-256 content ID badge, date, sourceType badge, source URLs, star toggle button (`#ea7722` Passion when starred), per-audience discrete rubric pills (`Direction`, `Magnitude 1-5`, `Credibility T1-T4`, `Scope`, `Persistence`), and versioned edit history count.\n- Includes an 'Edit Rubric / Add Event' modal that requires an `author` and `reason` before committing versioned edits to the ledger."
+    },
+    {
+      "path": "src/components/ControlPane.tsx",
+      "action": "create",
+      "specification": "Unified control workspace housing `WeightsEditor`, manual `ImpactEvent` creation/editing form with live deterministic preview of score impact before saving, and quick-access star/unstar management."
+    },
+    {
+      "path": "src/components/WeightsEditor.tsx",
+      "action": "create",
+      "specification": "Audience Composite Weights editor:\n- Interactive sliders + integer inputs for `Executive`, `Congress`, `Navy`, and `Public`.\n- Enforces that weights are integers summing to 100% (includes an 'Auto-Normalize to 100%' button and preset profiles such as 'Balanced Default (25/30/30/15)', 'Capitol Hill & Pentagon Focus (20/40/35/5)', and 'Market & Public Focus (15/20/25/40)').\n- Shows immediate live delta preview on the Composite score."
+    },
+    {
+      "path": "src/components/CatalystEditor.tsx",
+      "action": "create",
+      "specification": "6-Month Forecast Catalyst Studio:\n- Displays all pending catalysts (`2026-12` to `2027-05`), allowing analysts to toggle `enabled`, adjust discrete probability steps (`5%` to `95%`), edit per-audience impact rubric codes, or add a new catalyst.\n- Displays an live analytical comparison table showing how each catalyst shifts the 6-month Expected Value and P10/P90 bounds."
+    },
+    {
+      "path": "src/components/ResearchRunner.tsx",
+      "action": "create",
+      "specification": "Vertex AI / Gemini Deep Research Pipeline Control & Pending Evidence Quarantine queue:\n- Audience checkboxes (`executive`, `congress`, `navy`, `public`) and 'Launch Research Run' button.\n- Displays GCP monthly budget guard telemetry (`$15.00/mo cap`), model routing status (`deep-research-preview-04-2026` -> `gemini-3.8-flash` / `gemini-4-argon` grounding fallback), and historical run logs.\n- **Pending Evidence Review Queue**: lists unapproved candidate events from `data/pending/` with their extracted rubric codes, allowing the user to inspect/tweak rubric classifications and click **Approve & Commit to Ledger** (which triggers retroactive revision detection if `eventDate` falls in a past period) or **Reject**."
+    },
+    {
+      "path": "src/components/RevisionLog.tsx",
+      "action": "create",
+      "specification": "Retroactive Score Revisions Audit view:\n- Lists all `ScoreRevision` records chronologically with `runId`, affected `periodId`, `audience`, `oldScore`, `newScore`, signed `delta`, triggering `ImpactEvent` links, and human-readable explanation.\n- Clicking a revision highlights the corresponding period on the main chart."
+    },
+    {
+      "path": "src/components/ExportPanel.tsx",
+      "action": "create",
+      "specification": "Markdown Export & Reproducibility Verification studio:\n- Renders a live preview of `generateMarkdownExport(...)`.\n- Provides 'Copy Markdown to Clipboard' and 'Download `HII_Sentiment_Ledger_Report.md`' buttons.\n- Includes a 'Verify Determinism Now' button that runs two independent full ledger recomputations in-memory and asserts bit-identical `outputHash` equality."
+    },
+    {
+      "path": "src/App.tsx",
+      "action": "create",
+      "specification": "Main application layout wrapped in `DashboardProvider` using the strict HII palette (`#24272a` Charcoal background, `#003b4d` Deep Sea panels). Renders `HeaderBar`, the primary split view (`TrendChart` + `EventTimeline` on the left 8 columns, `ScoreRail` on the right 4 columns), and tab views for `ControlPane`, `CatalystEditor`, `ResearchRunner`, `RevisionLog`, and `ExportPanel`."
+    },
+    {
+      "path": "src/main.tsx",
+      "action": "create",
+      "specification": "React 19 `createRoot` entry mounting `<App />`."
+    },
+    {
+      "path": "tests/engine.determinism.test.ts",
+      "action": "create",
+      "specification": "Vitest suite verifying:\n1. Bit-identical `outputHash` across 10 consecutive runs of `computeLedgerScores` over `data/evidence_ledger.json`.\n2. Order-invariance: shuffling the input `events` array produces the exact same `ledgerHash`, `outputHash`, and period-by-period basis point scores.\n3. Time granularity check: verifies 2011\u20132025 are annual (15 periods), 2026 Q1\u2013Q3 are quarterly (3 periods), and 2026 Oct/Nov are monthly (2 periods) = 20 historical periods total."
+    },
+    {
+      "path": "tests/engine.revisions.test.ts",
+      "action": "create",
+      "specification": "Vitest suite verifying:\n1. Injecting a newly discovered event dated `2023-06-15` into the ledger recomputes `2023` (and subsequent decayed periods) and `detectRetroactiveRevisions` emits accurate `ScoreRevision` records with matching `oldScoreBps`, `newScoreBps`, `deltaBps`, and `triggeringEventIds`.\n2. Manual rubric edits preserve `editHistory` with `author` and `reason` without mutating prior audit entries."
+    },
+    {
+      "path": "tests/engine.forecast.test.ts",
+      "action": "create",
+      "specification": "Vitest suite verifying:\n1. `validateWeights` rejects weights not summing to 100 or non-integers.\n2. `computeDeterministicForecast` produces 6 monthly forward points (`2026-12` .. `2027-05`) where `p10Bps <= evBps <= p90Bps` holds across all audiences and composite.\n3. Repeated calls to `computeDeterministicForecast` return bit-identical P10, EV, and P90 values."
+    },
+    {
+      "path": "tests/engine.export.test.ts",
+      "action": "create",
+      "specification": "Vitest suite verifying `generateMarkdownExport` contains the engine version, rubric version, SHA-256 ledger hash, all 4 audience headers, starred key events section, 6-month forecast table, and retroactive revisions log."
+    }
+  ],
+  "test_verification_plan": "Run `npm test` (Vitest) to execute `engine.determinism.test.ts`, `engine.revisions.test.ts`, `engine.forecast.test.ts`, and `engine.export.test.ts`. Run `npm run recompute` to verify headless CLI execution against `data/evidence_ledger.json`, and run `npm run build` to verify strict TypeScript 5.7 compilation and Vite production bundling."
+}

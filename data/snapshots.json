@@ -1,0 +1,25 @@
+[
+  {
+    "id": "snap_baseline_202611",
+    "takenAt": "2026-11-04T15:30:00Z",
+    "asOfDate": "2026-11-15",
+    "label": "Baseline Seed Ledger (58 Events, 2011–Nov 2026)",
+    "ledgerHash": "9b25b382664fa8071e1e6f772d706b20d938c4fd3c8662fa79c719d66148b65c",
+    "outputHash": "5ea0e8049be40697a5ac6565a4d03efeed8ececc694e62fdc068d57e7c3b55de",
+    "engineVersion": "engine-v1.0.0",
+    "rubricVersion": "rubric-v1.0.0",
+    "weights": {
+      "executive": 25,
+      "congress": 25,
+      "navy": 30,
+      "public": 20
+    },
+    "latest": {
+      "executive": 8661,
+      "congress": 8446,
+      "navy": 8836,
+      "public": 7709,
+      "composite": 8469
+    }
+  }
+]

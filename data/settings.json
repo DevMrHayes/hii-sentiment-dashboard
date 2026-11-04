@@ -1,0 +1,24 @@
+{
+  "weights": {
+    "executive": 25,
+    "congress": 25,
+    "navy": 30,
+    "public": 20
+  },
+  "weightHistory": [
+    {
+      "id": "wp_default_25_25_30_20",
+      "weights": {
+        "executive": 25,
+        "congress": 25,
+        "navy": 30,
+        "public": 20
+      },
+      "createdAt": "2026-01-01T00:00:00Z",
+      "author": "System Baseline",
+      "reason": "Default defense shipbuilding stakeholder weight profile (Navy 30%, Congress 25%, Executive 25%, Public 20%)"
+    }
+  ],
+  "asOfDate": "2026-11-15",
+  "firstPeriodStart": "2011-03-31"
+}

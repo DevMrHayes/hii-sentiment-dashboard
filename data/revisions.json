@@ -1,0 +1,302 @@
+[
+  {
+    "id": "rev_a7506464172c829b",
+    "timestamp": "2026-11-04T15:30:00Z",
+    "runId": "run_20261104_deep_01",
+    "periodId": "2025",
+    "periodLabel": "2025",
+    "audience": "congress",
+    "oldScoreCenti": 8190,
+    "newScoreCenti": 8160,
+    "deltaCenti": -30,
+    "triggeringEventIds": [
+      "evt_981f92b3c905ecb8"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"GAO Shipbuilding Assessment Notes Stabilization in Hiring but Persistent Supply Chain Delays on CVN 79 and CVN 80\" (2025-07-15) adjusted 2025 Congress from 81.90 to 81.60 (-0.30 pts)."
+  },
+  {
+    "id": "rev_4949117a9e6d04cb",
+    "timestamp": "2026-11-04T15:30:00Z",
+    "runId": "run_20261104_deep_01",
+    "periodId": "2025",
+    "periodLabel": "2025",
+    "audience": "navy",
+    "oldScoreCenti": 8575,
+    "newScoreCenti": 8558,
+    "deltaCenti": -17,
+    "triggeringEventIds": [
+      "evt_981f92b3c905ecb8"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"GAO Shipbuilding Assessment Notes Stabilization in Hiring but Persistent Supply Chain Delays on CVN 79 and CVN 80\" (2025-07-15) adjusted 2025 Department of the Navy from 85.75 to 85.58 (-0.17 pts)."
+  },
+  {
+    "id": "rev_ffe7425527b63a6b",
+    "timestamp": "2026-11-04T15:30:00Z",
+    "runId": "run_20261104_deep_01",
+    "periodId": "2025",
+    "periodLabel": "2025",
+    "audience": "composite",
+    "oldScoreCenti": 8094,
+    "newScoreCenti": 8081,
+    "deltaCenti": -13,
+    "triggeringEventIds": [
+      "evt_749e7d8734563b84",
+      "evt_981f92b3c905ecb8"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"CRS Report RL32665 Update: Navy Force Structure and Shipbuilding Plans — Industrial Base Throughput Analysis\" (2026-08-18); \"GAO Shipbuilding Assessment Notes Stabilization in Hiring but Persistent Supply Chain Delays on CVN 79 and CVN 80\" (2025-07-15) adjusted 2025 Composite from 80.94 to 80.81 (-0.13 pts)."
+  },
+  {
+    "id": "rev_91e373de2bf665b2",
+    "timestamp": "2026-11-04T15:30:00Z",
+    "runId": "run_20261104_deep_01",
+    "periodId": "2026-Q1",
+    "periodLabel": "Q1 2026",
+    "audience": "congress",
+    "oldScoreCenti": 8543,
+    "newScoreCenti": 8511,
+    "deltaCenti": -32,
+    "triggeringEventIds": [
+      "evt_981f92b3c905ecb8"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"GAO Shipbuilding Assessment Notes Stabilization in Hiring but Persistent Supply Chain Delays on CVN 79 and CVN 80\" (2025-07-15) adjusted Q1 2026 Congress from 85.43 to 85.11 (-0.32 pts)."
+  },
+  {
+    "id": "rev_8069f10abf622094",
+    "timestamp": "2026-11-04T15:30:00Z",
+    "runId": "run_20261104_deep_01",
+    "periodId": "2026-Q1",
+    "periodLabel": "Q1 2026",
+    "audience": "navy",
+    "oldScoreCenti": 8810,
+    "newScoreCenti": 8788,
+    "deltaCenti": -22,
+    "triggeringEventIds": [
+      "evt_981f92b3c905ecb8"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"GAO Shipbuilding Assessment Notes Stabilization in Hiring but Persistent Supply Chain Delays on CVN 79 and CVN 80\" (2025-07-15) adjusted Q1 2026 Department of the Navy from 88.10 to 87.88 (-0.22 pts)."
+  },
+  {
+    "id": "rev_be3eacddbc283545",
+    "timestamp": "2026-11-04T15:30:00Z",
+    "runId": "run_20261104_deep_01",
+    "periodId": "2026-Q1",
+    "periodLabel": "Q1 2026",
+    "audience": "composite",
+    "oldScoreCenti": 8457,
+    "newScoreCenti": 8442,
+    "deltaCenti": -15,
+    "triggeringEventIds": [
+      "evt_749e7d8734563b84",
+      "evt_981f92b3c905ecb8"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"CRS Report RL32665 Update: Navy Force Structure and Shipbuilding Plans — Industrial Base Throughput Analysis\" (2026-08-18); \"GAO Shipbuilding Assessment Notes Stabilization in Hiring but Persistent Supply Chain Delays on CVN 79 and CVN 80\" (2025-07-15) adjusted Q1 2026 Composite from 84.57 to 84.42 (-0.15 pts)."
+  },
+  {
+    "id": "rev_83ee3f213671522c",
+    "timestamp": "2026-11-04T15:30:00Z",
+    "runId": "run_20261104_deep_01",
+    "periodId": "2026-Q2",
+    "periodLabel": "Q2 2026",
+    "audience": "congress",
+    "oldScoreCenti": 8486,
+    "newScoreCenti": 8457,
+    "deltaCenti": -29,
+    "triggeringEventIds": [
+      "evt_981f92b3c905ecb8"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"GAO Shipbuilding Assessment Notes Stabilization in Hiring but Persistent Supply Chain Delays on CVN 79 and CVN 80\" (2025-07-15) adjusted Q2 2026 Congress from 84.86 to 84.57 (-0.29 pts)."
+  },
+  {
+    "id": "rev_22add2e598ddd94b",
+    "timestamp": "2026-11-04T15:30:00Z",
+    "runId": "run_20261104_deep_01",
+    "periodId": "2026-Q2",
+    "periodLabel": "Q2 2026",
+    "audience": "navy",
+    "oldScoreCenti": 8850,
+    "newScoreCenti": 8833,
+    "deltaCenti": -17,
+    "triggeringEventIds": [
+      "evt_981f92b3c905ecb8"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"GAO Shipbuilding Assessment Notes Stabilization in Hiring but Persistent Supply Chain Delays on CVN 79 and CVN 80\" (2025-07-15) adjusted Q2 2026 Department of the Navy from 88.50 to 88.33 (-0.17 pts)."
+  },
+  {
+    "id": "rev_6d200ca645c47983",
+    "timestamp": "2026-11-04T15:30:00Z",
+    "runId": "run_20261104_deep_01",
+    "periodId": "2026-Q2",
+    "periodLabel": "Q2 2026",
+    "audience": "composite",
+    "oldScoreCenti": 8471,
+    "newScoreCenti": 8458,
+    "deltaCenti": -13,
+    "triggeringEventIds": [
+      "evt_749e7d8734563b84",
+      "evt_981f92b3c905ecb8"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"CRS Report RL32665 Update: Navy Force Structure and Shipbuilding Plans — Industrial Base Throughput Analysis\" (2026-08-18); \"GAO Shipbuilding Assessment Notes Stabilization in Hiring but Persistent Supply Chain Delays on CVN 79 and CVN 80\" (2025-07-15) adjusted Q2 2026 Composite from 84.71 to 84.58 (-0.13 pts)."
+  },
+  {
+    "id": "rev_d956f5b57e402960",
+    "timestamp": "2026-11-04T15:30:00Z",
+    "runId": "run_20261104_deep_01",
+    "periodId": "2026-Q3",
+    "periodLabel": "Q3 2026",
+    "audience": "congress",
+    "oldScoreCenti": 8546,
+    "newScoreCenti": 8556,
+    "deltaCenti": 10,
+    "triggeringEventIds": [
+      "evt_749e7d8734563b84",
+      "evt_981f92b3c905ecb8"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"CRS Report RL32665 Update: Navy Force Structure and Shipbuilding Plans — Industrial Base Throughput Analysis\" (2026-08-18); \"GAO Shipbuilding Assessment Notes Stabilization in Hiring but Persistent Supply Chain Delays on CVN 79 and CVN 80\" (2025-07-15) adjusted Q3 2026 Congress from 85.46 to 85.56 (+0.10 pts)."
+  },
+  {
+    "id": "rev_da3613d9f59a57a7",
+    "timestamp": "2026-11-04T15:30:00Z",
+    "runId": "run_20261104_deep_01",
+    "periodId": "2026-Q3",
+    "periodLabel": "Q3 2026",
+    "audience": "navy",
+    "oldScoreCenti": 8825,
+    "newScoreCenti": 8820,
+    "deltaCenti": -5,
+    "triggeringEventIds": [
+      "evt_749e7d8734563b84",
+      "evt_981f92b3c905ecb8"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"CRS Report RL32665 Update: Navy Force Structure and Shipbuilding Plans — Industrial Base Throughput Analysis\" (2026-08-18); \"GAO Shipbuilding Assessment Notes Stabilization in Hiring but Persistent Supply Chain Delays on CVN 79 and CVN 80\" (2025-07-15) adjusted Q3 2026 Department of the Navy from 88.25 to 88.20 (-0.05 pts)."
+  },
+  {
+    "id": "rev_c64f76b255ed6369",
+    "timestamp": "2026-11-04T15:30:00Z",
+    "runId": "run_20261104_deep_01",
+    "periodId": "2026-Q3",
+    "periodLabel": "Q3 2026",
+    "audience": "composite",
+    "oldScoreCenti": 8437,
+    "newScoreCenti": 8438,
+    "deltaCenti": 1,
+    "triggeringEventIds": [
+      "evt_749e7d8734563b84",
+      "evt_981f92b3c905ecb8"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"CRS Report RL32665 Update: Navy Force Structure and Shipbuilding Plans — Industrial Base Throughput Analysis\" (2026-08-18); \"GAO Shipbuilding Assessment Notes Stabilization in Hiring but Persistent Supply Chain Delays on CVN 79 and CVN 80\" (2025-07-15) adjusted Q3 2026 Composite from 84.37 to 84.38 (+0.01 pts)."
+  },
+  {
+    "id": "rev_c33623f0629ac24f",
+    "timestamp": "2026-11-04T15:30:00Z",
+    "runId": "run_20261104_deep_01",
+    "periodId": "2026-10",
+    "periodLabel": "Oct 2026",
+    "audience": "congress",
+    "oldScoreCenti": 8441,
+    "newScoreCenti": 8461,
+    "deltaCenti": 20,
+    "triggeringEventIds": [
+      "evt_749e7d8734563b84",
+      "evt_981f92b3c905ecb8"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"CRS Report RL32665 Update: Navy Force Structure and Shipbuilding Plans — Industrial Base Throughput Analysis\" (2026-08-18); \"GAO Shipbuilding Assessment Notes Stabilization in Hiring but Persistent Supply Chain Delays on CVN 79 and CVN 80\" (2025-07-15) adjusted Oct 2026 Congress from 84.41 to 84.61 (+0.20 pts)."
+  },
+  {
+    "id": "rev_43b120b4d86fddc7",
+    "timestamp": "2026-11-04T15:30:00Z",
+    "runId": "run_20261104_deep_01",
+    "periodId": "2026-10",
+    "periodLabel": "Oct 2026",
+    "audience": "navy",
+    "oldScoreCenti": 8812,
+    "newScoreCenti": 8809,
+    "deltaCenti": -3,
+    "triggeringEventIds": [
+      "evt_749e7d8734563b84",
+      "evt_981f92b3c905ecb8"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"CRS Report RL32665 Update: Navy Force Structure and Shipbuilding Plans — Industrial Base Throughput Analysis\" (2026-08-18); \"GAO Shipbuilding Assessment Notes Stabilization in Hiring but Persistent Supply Chain Delays on CVN 79 and CVN 80\" (2025-07-15) adjusted Oct 2026 Department of the Navy from 88.12 to 88.09 (-0.03 pts)."
+  },
+  {
+    "id": "rev_f4a87c2233a54976",
+    "timestamp": "2026-11-04T15:30:00Z",
+    "runId": "run_20261104_deep_01",
+    "periodId": "2026-10",
+    "periodLabel": "Oct 2026",
+    "audience": "composite",
+    "oldScoreCenti": 8414,
+    "newScoreCenti": 8418,
+    "deltaCenti": 4,
+    "triggeringEventIds": [
+      "evt_749e7d8734563b84",
+      "evt_981f92b3c905ecb8"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"CRS Report RL32665 Update: Navy Force Structure and Shipbuilding Plans — Industrial Base Throughput Analysis\" (2026-08-18); \"GAO Shipbuilding Assessment Notes Stabilization in Hiring but Persistent Supply Chain Delays on CVN 79 and CVN 80\" (2025-07-15) adjusted Oct 2026 Composite from 84.14 to 84.18 (+0.04 pts)."
+  },
+  {
+    "id": "rev_61a4550a23dba598",
+    "timestamp": "2026-11-04T15:30:00Z",
+    "runId": "run_20261104_deep_01",
+    "periodId": "2026-11",
+    "periodLabel": "Nov 2026",
+    "audience": "congress",
+    "oldScoreCenti": 8429,
+    "newScoreCenti": 8446,
+    "deltaCenti": 17,
+    "triggeringEventIds": [
+      "evt_749e7d8734563b84",
+      "evt_981f92b3c905ecb8"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"CRS Report RL32665 Update: Navy Force Structure and Shipbuilding Plans — Industrial Base Throughput Analysis\" (2026-08-18); \"GAO Shipbuilding Assessment Notes Stabilization in Hiring but Persistent Supply Chain Delays on CVN 79 and CVN 80\" (2025-07-15) adjusted Nov 2026 Congress from 84.29 to 84.46 (+0.17 pts)."
+  },
+  {
+    "id": "rev_bce6cb57e1ffb53f",
+    "timestamp": "2026-11-04T15:30:00Z",
+    "runId": "run_20261104_deep_01",
+    "periodId": "2026-11",
+    "periodLabel": "Nov 2026",
+    "audience": "navy",
+    "oldScoreCenti": 8838,
+    "newScoreCenti": 8836,
+    "deltaCenti": -2,
+    "triggeringEventIds": [
+      "evt_749e7d8734563b84",
+      "evt_981f92b3c905ecb8"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"CRS Report RL32665 Update: Navy Force Structure and Shipbuilding Plans — Industrial Base Throughput Analysis\" (2026-08-18); \"GAO Shipbuilding Assessment Notes Stabilization in Hiring but Persistent Supply Chain Delays on CVN 79 and CVN 80\" (2025-07-15) adjusted Nov 2026 Department of the Navy from 88.38 to 88.36 (-0.02 pts)."
+  },
+  {
+    "id": "rev_90577741be21ac77",
+    "timestamp": "2026-11-04T15:30:00Z",
+    "runId": "run_20261104_deep_01",
+    "periodId": "2026-11",
+    "periodLabel": "Nov 2026",
+    "audience": "composite",
+    "oldScoreCenti": 8466,
+    "newScoreCenti": 8469,
+    "deltaCenti": 3,
+    "triggeringEventIds": [
+      "evt_749e7d8734563b84",
+      "evt_981f92b3c905ecb8"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"CRS Report RL32665 Update: Navy Force Structure and Shipbuilding Plans — Industrial Base Throughput Analysis\" (2026-08-18); \"GAO Shipbuilding Assessment Notes Stabilization in Hiring but Persistent Supply Chain Delays on CVN 79 and CVN 80\" (2025-07-15) adjusted Nov 2026 Composite from 84.66 to 84.69 (+0.03 pts)."
+  }
+]

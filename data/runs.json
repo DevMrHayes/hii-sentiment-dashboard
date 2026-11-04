@@ -1,0 +1,41 @@
+[
+  {
+    "runId": "run_20261104_deep_01",
+    "startedAt": "2026-11-04T15:28:10Z",
+    "completedAt": "2026-11-04T15:30:00Z",
+    "audiences": [
+      "congress",
+      "navy"
+    ],
+    "status": "completed",
+    "mode": "deep_research",
+    "discoveredCount": 2,
+    "costUsd": 0.0412,
+    "log": [
+      "Checked GCP budget guard ($0.20 / $15.00 used -> [ACTIVE])",
+      "Dispatched congressional GAO/CRS query pack via Vertex AI",
+      "Extracted 2 discrete rubric events at temperature=0.0; 2 promoted to ledger (triggered 8 retroactive period/audience revisions)"
+    ]
+  },
+  {
+    "runId": "run_20261104_deep_02",
+    "startedAt": "2026-11-04T16:12:40Z",
+    "completedAt": "2026-11-04T16:15:00Z",
+    "audiences": [
+      "executive",
+      "congress",
+      "navy",
+      "public"
+    ],
+    "status": "completed",
+    "mode": "deep_research",
+    "discoveredCount": 3,
+    "pendingFile": "data/pending/pending_seed.json",
+    "costUsd": 0.0584,
+    "log": [
+      "Checked GCP budget guard ($0.24 / $15.00 used -> [ACTIVE])",
+      "Queried all 4 audiences (Executive, Congress, Navy, American Public)",
+      "Staged 3 new candidate events in Pending Quarantine Queue for analyst review"
+    ]
+  }
+]
