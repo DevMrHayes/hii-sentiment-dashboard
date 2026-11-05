@@ -14,6 +14,7 @@ import {
   Sliders,
   Sparkles,
   TrendingUp,
+  RotateCcw,
 } from 'lucide-react';
 import { useDashboard, type ActiveTab } from '../context/DashboardContext';
 
@@ -27,6 +28,7 @@ export const HeaderBar: React.FC = () => {
     setActiveTab,
     isResearchRunning,
     triggerResearchRun,
+    resetToLatestSeed,
   } = useDashboard();
   const [copiedHash, setCopiedHash] = useState<'ledger' | 'output' | null>(null);
 
@@ -126,6 +128,15 @@ export const HeaderBar: React.FC = () => {
               {budget.circuitBreaker}
             </span>
           </div>
+
+          <button
+            onClick={resetToLatestSeed}
+            title="Reset/Sync browser cache to latest 152-event Deep Research Ledger"
+            className="hidden lg:flex items-center gap-1.5 px-2.5 py-1 rounded bg-charcoal/90 border border-steel/70 hover:border-sky transition text-sky hover:text-white font-mono text-xs"
+          >
+            <RotateCcw className="w-3.5 h-3.5 text-changingsea" />
+            <span>Sync Seed ({state.events.length})</span>
+          </button>
 
           <button
             onClick={() => copyHash('output', result.outputHash)}

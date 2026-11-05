@@ -160,22 +160,33 @@ interface DashboardContextValue {
   rejectPending: (pendingId: string) => Promise<void>;
   triggerResearchRun: (audiences: AudienceId[], mode?: string, isMondayScheduledSweep?: boolean) => Promise<void>;
   takeSnapshot: (label: string) => Promise<void>;
+  resetToLatestSeed: () => void;
 }
 
-const STORAGE_KEY = 'hii_sentiment_ledger_state_v2';
+const CURRENT_LEDGER_SEED_VERSION = 'v3_152_events';
+const SEED_VERSION_KEY = 'hii_sentiment_seed_version';
+const STORAGE_KEY = 'hii_sentiment_ledger_state_v3';
 
 const DashboardContext = createContext<DashboardContextValue | null>(null);
 
 export const DashboardProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [state, setState] = useState<LedgerState>(() => {
     try {
+      const storedVer = localStorage.getItem(SEED_VERSION_KEY);
       const cached = localStorage.getItem(STORAGE_KEY);
-      if (cached) {
+      if (storedVer === CURRENT_LEDGER_SEED_VERSION && cached) {
         const parsed = JSON.parse(cached) as LedgerState;
-        if (parsed?.events?.length && parsed?.settings?.weights) {
+        if (
+          parsed?.events?.length >= SEED_LEDGER_STATE.events.length &&
+          parsed?.settings?.weights
+        ) {
           return parsed;
         }
       }
+      // Clean up previous cached versions and adopt latest 152-event seed
+      localStorage.removeItem('hii_sentiment_ledger_state_v1');
+      localStorage.removeItem('hii_sentiment_ledger_state_v2');
+      localStorage.setItem(SEED_VERSION_KEY, CURRENT_LEDGER_SEED_VERSION);
     } catch {
       // ignore
     }
@@ -220,7 +231,9 @@ export const DashboardProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   useEffect(() => {
     let cancelled = false;
     fetch('/api/state')
-      .then((r) => (r.ok ? r.json() : null))
+      .then((r) =>
+        r.ok && r.headers.get('content-type')?.includes('application/json') ? r.json() : null,
+      )
       .then((data) => {
         if (!cancelled && data?.state?.events) {
           setState(data.state);
@@ -668,6 +681,18 @@ export const DashboardProvider: React.FC<{ children: React.ReactNode }> = ({ chi
     [state],
   );
 
+  const resetToLatestSeed = useCallback(() => {
+    try {
+      localStorage.removeItem('hii_sentiment_ledger_state_v1');
+      localStorage.removeItem('hii_sentiment_ledger_state_v2');
+      localStorage.removeItem(STORAGE_KEY);
+      localStorage.setItem(SEED_VERSION_KEY, CURRENT_LEDGER_SEED_VERSION);
+    } catch {
+      // ignore
+    }
+    setState(SEED_LEDGER_STATE);
+  }, []);
+
   return (
     <DashboardContext.Provider
       value={{
@@ -699,6 +724,7 @@ export const DashboardProvider: React.FC<{ children: React.ReactNode }> = ({ chi
         rejectPending,
         triggerResearchRun,
         takeSnapshot,
+        resetToLatestSeed,
       }}
     >
       {children}

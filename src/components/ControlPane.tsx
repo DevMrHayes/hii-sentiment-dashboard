@@ -45,7 +45,7 @@ const PRESET_PROFILES: Array<{ label: string; weights: AudienceWeights; desc: st
 ];
 
 export const ControlPane: React.FC = () => {
-  const { state, result, updateWeights, upsertEvent } = useDashboard();
+  const { state, result, updateWeights, upsertEvent, resetToLatestSeed } = useDashboard();
 
   // Weights state
   const [draftWeights, setDraftWeights] = useState<AudienceWeights>({ ...state.settings.weights });
@@ -265,6 +265,24 @@ export const ControlPane: React.FC = () => {
             <span>{weightSavedMsg}</span>
           </div>
         )}
+
+        {/* Ledger State Cache Synchronization */}
+        <div className="pt-3 border-t border-steel/40 flex items-center justify-between text-xs">
+          <div>
+            <span className="font-semibold text-white block">Deep Research Ledger Cache</span>
+            <span className="text-sky/80 text-[11px]">
+              Active in memory: {state.events.length} historical events (2011–2026)
+            </span>
+          </div>
+          <button
+            type="button"
+            onClick={resetToLatestSeed}
+            className="px-3 py-1.5 rounded bg-charcoal border border-steel hover:border-sky text-sky hover:text-white flex items-center gap-1.5 text-xs font-mono transition"
+          >
+            <RotateCcw className="w-3.5 h-3.5 text-changingsea" />
+            <span>Reset Cache to Seed (152 Events)</span>
+          </button>
+        </div>
       </div>
 
       {/* Right Column: Manual Evidence & Rubric Entry Studio */}
@@ -478,10 +496,10 @@ export const ControlPane: React.FC = () => {
                       }
                       className="bg-deepsea border border-steel rounded px-1.5 py-1 text-white"
                     >
-                      <option value="transient">Half-life 45d</option>
-                      <option value="quarter">Half-life 120d</option>
-                      <option value="year">Half-life 365d</option>
-                      <option value="structural">Half-life 1095d</option>
+                      <option value="transient">Transient (Half-life 35d)</option>
+                      <option value="quarter">Quarter (Half-life 90d)</option>
+                      <option value="year">Annual (Half-life 180d)</option>
+                      <option value="structural">Structural (Half-life 420d)</option>
                     </select>
                   </div>
                 )}
