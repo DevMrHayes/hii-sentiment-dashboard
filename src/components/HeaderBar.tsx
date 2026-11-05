@@ -89,7 +89,7 @@ export const HeaderBar: React.FC = () => {
             className="cursor-pointer flex items-center justify-center p-1.5 rounded-lg bg-[#24272a] border border-steel/50 hover:border-sky transition shadow-inner"
             title="Huntington Ingalls Industries (NYSE: HII)"
           >
-            <HIILogo size="md" showWordmark={true} variant="light" className="h-9 w-auto" />
+            <HIILogo size="md" showWordmark={true} variant="dark" className="h-9 w-auto" />
           </div>
           <div>
             <div className="flex items-center gap-2">

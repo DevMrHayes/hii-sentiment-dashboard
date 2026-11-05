@@ -13,7 +13,13 @@ import { RevisionsPanel } from './components/RevisionsPanel';
 import { ExportPanel } from './components/ExportPanel';
 
 const DashboardContent: React.FC = () => {
-  const { activeTab, recentRevisionsBanner, dismissRevisionsBanner, setActiveTab } = useDashboard();
+  const {
+    activeTab,
+    recentRevisionsBanner,
+    dismissRevisionsBanner,
+    setActiveTab,
+    isChartExpanded,
+  } = useDashboard();
 
   return (
     <div className="min-h-screen bg-charcoal text-white flex flex-col">
@@ -50,17 +56,40 @@ const DashboardContent: React.FC = () => {
         </div>
       )}
 
-      <main className="max-w-[1600px] w-full mx-auto px-4 py-5 flex-1">
+      <main
+        className={`w-full mx-auto px-4 py-5 flex-1 transition-all duration-300 ${
+          isChartExpanded && activeTab === 'dashboard' ? 'max-w-[1850px]' : 'max-w-[1600px]'
+        }`}
+      >
         {activeTab === 'dashboard' && (
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
-            <div className="lg:col-span-8 space-y-5">
-              <TrendChart />
-              <EventTimeline compact />
+          isChartExpanded ? (
+            <div className="space-y-6">
+              {/* Full Width Expanded Presentation Chart */}
+              <div className="w-full">
+                <TrendChart />
+              </div>
+
+              {/* High-density grid underneath full-width chart */}
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
+                <div className="lg:col-span-8">
+                  <EventTimeline compact />
+                </div>
+                <div className="lg:col-span-4">
+                  <ScoreRail />
+                </div>
+              </div>
             </div>
-            <div className="lg:col-span-4">
-              <ScoreRail />
+          ) : (
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
+              <div className="lg:col-span-8 space-y-5">
+                <TrendChart />
+                <EventTimeline compact />
+              </div>
+              <div className="lg:col-span-4">
+                <ScoreRail />
+              </div>
             </div>
-          </div>
+          )
         )}
 
         {activeTab === 'divisions' && <DivisionSentimentView />}

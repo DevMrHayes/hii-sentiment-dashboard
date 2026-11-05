@@ -1,99 +1,103 @@
 import React from 'react';
 
-export interface HIILogoProps extends React.SVGAttributes<SVGSVGElement> {
+export interface HIILogoProps extends React.SVGProps<SVGSVGElement> {
   className?: string;
   size?: 'sm' | 'md' | 'lg';
   showWordmark?: boolean;
-  variant?: 'dark' | 'light';
+  variant?: 'dark' | 'light' | 'color';
+  subtitle?: boolean;
 }
 
-const SIZE_MAP = {
-  sm: {
-    icon: { width: 32, height: 28 },
-    full: { width: 110, height: 28 },
-  },
-  md: {
-    icon: { width: 48, height: 42 },
-    full: { width: 165, height: 42 },
-  },
-  lg: {
-    icon: { width: 64, height: 56 },
-    full: { width: 220, height: 56 },
-  },
-} as const;
+const sizeClasses: Record<NonNullable<HIILogoProps['size']>, string> = {
+  sm: 'h-7',
+  md: 'h-9',
+  lg: 'h-12',
+};
 
 export const HIILogo: React.FC<HIILogoProps> = ({
   className = '',
   size = 'md',
   showWordmark = true,
-  variant = 'dark',
-  ...svgProps
+  variant = 'color',
+  subtitle = false,
+  ...props
 }) => {
-  const dimensions = showWordmark ? SIZE_MAP[size].full : SIZE_MAP[size].icon;
-  const viewBox = showWordmark ? '0 0 220 56' : '0 0 64 56';
+  const isDark = variant === 'dark';
+  const emblemBg = '#003b4d';
+  const cutoutColor = '#ffffff';
+  const textFill = isDark ? '#ffffff' : '#003b4d';
 
-  const primaryColor = variant === 'dark' ? '#003b4d' : '#ffffff';
-  const textColor = variant === 'dark' ? '#24272a' : '#ffffff';
-  const lightBlue = '#75abd1';
-  const orangeAccent = '#ea7722';
+  const viewBox = showWordmark ? '0 0 270 148' : '0 16 118 116';
+  const widthRatio = showWordmark ? 'aspect-[270/148]' : 'aspect-[118/116]';
 
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox={viewBox}
-      width={dimensions.width}
-      height={dimensions.height}
-      className={className}
+      fill="none"
+      className={`w-auto ${sizeClasses[size]} ${widthRatio} ${className}`.trim()}
       role="img"
       aria-label="Huntington Ingalls Industries Logo"
-      {...svgProps}
+      {...props}
     >
+      {/* Emblem */}
       <g id="hii-emblem">
-        {/* Main Aft Sail / Dark Blue Chevron */}
-        <path
-          d="M2.5 53.5L25.2 2.5H41.8L19.1 53.5H2.5Z"
-          fill={primaryColor}
+        <rect
+          x="0"
+          y="16"
+          width="118"
+          height="116"
+          rx="3"
+          fill={emblemBg}
         />
-        {/* Forward Upper Sail / Light Blue Chevron */}
+        {/* Left Slot: Notch pointing rightward */}
         <path
-          d="M22.8 53.5L38.4 18.2H54.9L39.3 53.5H22.8Z"
-          fill={lightBlue}
+          d="M 18 31 H 35 V 63 H 45 V 85 H 35 V 117 H 18 Z"
+          fill={cutoutColor}
         />
-        {/* Dynamic Bow Wave / Orange Accent Wedge */}
+        {/* Middle Slot: Straight vertical cutout */}
+        <rect
+          x="50"
+          y="31"
+          width="18"
+          height="86"
+          fill={cutoutColor}
+        />
+        {/* Right Slot: Notch pointing leftward */}
         <path
-          d="M42.8 53.5L50.4 36.4H61.5L53.9 53.5H42.8Z"
-          fill={orangeAccent}
+          d="M 83 31 H 100 V 117 H 83 V 85 H 73 V 63 H 83 Z"
+          fill={cutoutColor}
         />
       </g>
 
+      {/* Monogram / Wordmark */}
       {showWordmark && (
-        <g id="hii-wordmark" transform="translate(74, 0)">
-          {/* Primary Monogram "HII" */}
-          <text
-            x="0"
-            y="35"
-            fill={primaryColor}
-            fontFamily="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif"
-            fontWeight="900"
-            fontSize="34"
-            letterSpacing="1.5"
-          >
-            HII
-          </text>
+        <g id="hii-wordmark" fill={textFill}>
+          {/* Letter 'H' */}
+          <rect x="155" y="39" width="11" height="70" />
+          <rect x="166" y="69" width="34" height="10" />
+          <rect x="200" y="39" width="11" height="70" />
 
-          {/* Corporate Sub-label */}
-          <text
-            x="1.5"
-            y="49"
-            fill={textColor}
-            fontFamily="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif"
-            fontWeight="600"
-            fontSize="7"
-            letterSpacing="1.8"
-            opacity={variant === 'dark' ? 0.85 : 0.9}
-          >
-            HUNTINGTON INGALLS INDUSTRIES
-          </text>
+          {/* Letter 'I' (first) */}
+          <rect x="227" y="39" width="11" height="70" />
+
+          {/* Letter 'I' (second) */}
+          <rect x="254" y="39" width="11" height="70" />
+
+          {/* Optional Subtitle */}
+          {subtitle && (
+            <text
+              x="155"
+              y="124"
+              fill={textFill}
+              fontFamily="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
+              fontSize="8"
+              fontWeight="700"
+              letterSpacing="0.08em"
+            >
+              HUNTINGTON INGALLS INDUSTRIES
+            </text>
+          )}
         </g>
       )}
     </svg>

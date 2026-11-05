@@ -12,22 +12,21 @@ import {
   YAxis,
 } from 'recharts';
 import {
+  Calendar,
   Check,
   ChevronDown,
   Eye,
-  GitCommit,
+  Layers,
   Maximize2,
   Minimize2,
   Pin,
-  PinOff,
-  Sliders,
   Sparkles,
-  Star,
   TrendingDown,
   TrendingUp,
+  X,
 } from 'lucide-react';
 import { useDashboard } from '../context/DashboardContext';
-import { ALL_AUDIENCES, AUDIENCE_LABELS, type AudienceId, type ImpactEvent } from '../engine';
+import { ALL_AUDIENCES, AUDIENCE_LABELS, baseBps, type AudienceId, type ImpactEvent } from '../engine';
 
 interface ChartDatum {
   id: string;
@@ -66,6 +65,15 @@ const AUDIENCE_COLORS: Record<AudienceId, string> = {
   public: '#9ca3af',    // Steel Silver
 };
 
+const PHASE_COLORS = {
+  annual: '#8b98a5',
+  quarterly: '#509ca2',
+  monthly: '#75abd1',
+  forecast: '#ea7722',
+};
+
+const NUMBER_BADGES = ['①', '②', '③', '④', '⑤', '⑥', '⑦', '⑧', '⑨', '⑩', '⑪', '⑫'];
+
 export const TrendChart: React.FC = () => {
   const {
     state,
@@ -99,110 +107,143 @@ export const TrendChart: React.FC = () => {
     return m;
   }, [state.revisions]);
 
+  // Combine historical timeline and forecast into charting data
   const data: ChartDatum[] = useMemo(() => {
-    const rows: ChartDatum[] = [];
-    const lastIdx = result.timeline.length - 1;
+    const list: ChartDatum[] = [];
 
-    result.timeline.forEach((rec, idx) => {
-      const comp = rec.compositeCenti / 100;
-      const exec = rec.audiences.executive.scoreCenti / 100;
-      const cong = rec.audiences.congress.scoreCenti / 100;
-      const navy = rec.audiences.navy.scoreCenti / 100;
-      const pub = rec.audiences.public.scoreCenti / 100;
-      const revCount = revisionsByPeriod.get(rec.period.id) ?? 0;
-      const keyTitles = rec.keyEventIds.map((id) => eventMap.get(id)?.title ?? id);
+    // 1. Historical timeline
+    for (const pt of result.timeline) {
+      const revCount = revisionsByPeriod.get(pt.period.id) ?? 0;
+      const keyCount = pt.keyEventIds.length;
+      const keyTitles = pt.keyEventIds.map((id) => eventMap.get(id)?.title ?? id);
 
-      const datum: ChartDatum = {
-        id: rec.period.id,
-        label: rec.period.label,
-        granularity: rec.period.granularity,
+      list.push({
+        id: pt.period.id,
+        label: pt.period.label,
+        granularity: pt.period.granularity,
         isForecast: false,
-        startDate: rec.period.startDate,
-        endDate: rec.period.endDate,
-        executive: exec,
-        congress: cong,
-        navy,
-        public: pub,
-        composite: comp,
-        keyEventCount: rec.keyEventIds.length,
+        startDate: pt.period.startDate,
+        endDate: pt.period.endDate,
+        executive: pt.audiences.executive.scoreCenti / 100,
+        congress: pt.audiences.congress.scoreCenti / 100,
+        navy: pt.audiences.navy.scoreCenti / 100,
+        public: pt.audiences.public.scoreCenti / 100,
+        composite: pt.compositeCenti / 100,
+        keyEventCount: keyCount,
         keyEventTitles: keyTitles,
-        keyMarkerY: rec.keyEventIds.length > 0 ? comp : undefined,
+        keyMarkerY: keyCount > 0 ? 95 : undefined,
         revisionCount: revCount,
-        revisionMarkerY: revCount > 0 ? comp : undefined,
-      };
+        revisionMarkerY: revCount > 0 ? 98 : undefined,
+      });
+    }
 
-      if (idx === lastIdx) {
-        datum.forecastEv = comp;
-        datum.forecastExecEv = exec;
-        datum.forecastCongEv = cong;
-        datum.forecastNavyEv = navy;
-        datum.forecastPublicEv = pub;
-        datum.forecastBand = [comp, comp];
-        datum.forecastP10 = comp;
-        datum.forecastP90 = comp;
-      }
+    // 2. Forecast points
+    const lastHist = list[list.length - 1];
 
-      rows.push(datum);
-    });
-
-    for (const fp of result.forecast) {
-      const ev = fp.composite.evCenti / 100;
-      const p10 = fp.composite.p10Centi / 100;
-      const p90 = fp.composite.p90Centi / 100;
-      rows.push({
-        id: fp.period.id,
-        label: fp.period.label,
-        granularity: 'forecast',
+    for (const fc of result.forecast) {
+      list.push({
+        id: fc.period.id,
+        label: fc.period.label,
+        granularity: 'month',
         isForecast: true,
-        forecastEv: ev,
-        forecastExecEv: fp.audiences.executive.evCenti / 100,
-        forecastCongEv: fp.audiences.congress.evCenti / 100,
-        forecastNavyEv: fp.audiences.navy.evCenti / 100,
-        forecastPublicEv: fp.audiences.public.evCenti / 100,
-        forecastBand: [p10, p90],
-        forecastP10: p10,
-        forecastP90: p90,
+        startDate: fc.period.startDate,
+        endDate: fc.period.endDate,
+        forecastEv: fc.composite.evCenti / 100,
+        forecastExecEv: fc.audiences.executive.evCenti / 100,
+        forecastCongEv: fc.audiences.congress.evCenti / 100,
+        forecastNavyEv: fc.audiences.navy.evCenti / 100,
+        forecastPublicEv: fc.audiences.public.evCenti / 100,
+        forecastBand: [fc.composite.p10Centi / 100, fc.composite.p90Centi / 100],
+        forecastP10: fc.composite.p10Centi / 100,
+        forecastP90: fc.composite.p90Centi / 100,
         keyEventCount: 0,
         keyEventTitles: [],
         revisionCount: 0,
       });
     }
 
-    return rows;
-  }, [result, eventMap, revisionsByPeriod]);
+    // Bridge the gap between last historical point and first forecast point
+    if (lastHist && result.forecast.length > 0) {
+      lastHist.forecastEv = lastHist.composite;
+      lastHist.forecastExecEv = lastHist.executive;
+      lastHist.forecastCongEv = lastHist.congress;
+      lastHist.forecastNavyEv = lastHist.navy;
+      lastHist.forecastPublicEv = lastHist.public;
+      lastHist.forecastP10 = lastHist.composite;
+      lastHist.forecastP90 = lastHist.composite;
+    }
 
-  // Find period IDs where pinned events fall
+    return list;
+  }, [result.timeline, result.forecast, revisionsByPeriod]);
+
+  // Pinned events resolution
   const pinnedEventsWithPeriod = useMemo(() => {
-    return pinnedEventIds
-      .map((id) => {
-        const ev = eventMap.get(id);
-        if (!ev) return null;
-        // Match which period bucket contains this event date
-        const matchPeriod = result.timeline.find(
-          (p) => ev.eventDate >= p.period.startDate && ev.eventDate <= p.period.endDate,
-        );
-        return {
-          event: ev,
-          periodId: matchPeriod?.period.id ?? ev.eventDate.slice(0, 4),
-          periodLabel: matchPeriod?.period.label ?? ev.eventDate.slice(0, 4),
-        };
-      })
-      .filter((x): x is { event: ImpactEvent; periodId: string; periodLabel: string } => x !== null);
-  }, [pinnedEventIds, eventMap, result.timeline]);
+    const list: Array<{ event: ImpactEvent; periodId: string; index: number }> = [];
+    let idx = 1;
+    for (const id of pinnedEventIds) {
+      const ev = eventMap.get(id);
+      if (!ev) continue;
 
+      let bestPeriodId = data[0]?.id ?? '2011';
+      for (const pt of result.timeline) {
+        if (ev.eventDate >= pt.period.startDate && ev.eventDate <= pt.period.endDate) {
+          bestPeriodId = pt.period.id;
+          break;
+        }
+      }
+
+      list.push({ event: ev, periodId: bestPeriodId, index: idx });
+      idx++;
+    }
+    return list.sort((a, b) => a.event.eventDate.localeCompare(b.event.eventDate));
+  }, [pinnedEventIds, eventMap, data, result.timeline]);
+
+  // Re-number badges sequentially by date order
+  const orderedPinnedList = useMemo(() => {
+    return pinnedEventsWithPeriod.map((item, i) => ({
+      ...item,
+      displayIndex: i + 1,
+      badge: NUMBER_BADGES[i] || `[${i + 1}]`,
+    }));
+  }, [pinnedEventsWithPeriod]);
+
+  // Search filter for starred events drawer
   const starredEventsForPinning = useMemo(() => {
     return state.events
-      .filter((e) => e.starred)
       .filter((e) => {
-        if (!pinSearch.trim()) return true;
+        if (!e.starred) return false;
+        if (!pinSearch) return true;
         const q = pinSearch.toLowerCase();
-        return e.title.toLowerCase().includes(q) || e.eventDate.includes(q);
+        return (
+          e.title.toLowerCase().includes(q) ||
+          e.eventDate.toLowerCase().includes(q) ||
+          e.summary.toLowerCase().includes(q)
+        );
       })
       .sort((a, b) => b.eventDate.localeCompare(a.eventDate));
   }, [state.events, pinSearch]);
 
   const toggleLine = (key: AudienceId | 'composite') => {
     setVisibleLines((prev) => ({ ...prev, [key]: !prev[key] }));
+  };
+
+  const renderImpactPill = (label: string, bps: number) => {
+    if (!bps) return null;
+    const isPositive = bps > 0;
+    return (
+      <span
+        key={label}
+        className={`inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded text-[10px] font-mono font-medium border ${
+          isPositive
+            ? 'bg-emerald-950/60 text-emerald-300 border-emerald-700/60'
+            : 'bg-rose-950/60 text-rose-300 border-rose-700/60'
+        }`}
+      >
+        <span className="text-steel font-sans">{label}:</span>
+        {isPositive ? <TrendingUp className="w-2.5 h-2.5 inline text-emerald-400" /> : <TrendingDown className="w-2.5 h-2.5 inline text-rose-400" />}
+        {isPositive ? '+' : ''}{bps}
+      </span>
+    );
   };
 
   return (
@@ -212,18 +253,19 @@ export const TrendChart: React.FC = () => {
         <div>
           <div className="flex flex-wrap items-center gap-2">
             <h2 className="text-base font-bold text-white tracking-wide flex items-center gap-2">
+              <Layers className="w-4 h-4 text-sky" />
               <span>MULTI-AUDIENCE SENTIMENT TRAJECTORY & 6-MONTH FORECAST</span>
             </h2>
             <span className="px-2 py-0.5 text-[11px] font-mono rounded bg-charcoal border border-steel/60 text-sky">
-              2011–2025 Annual · 2026 Q1–Q3 Quarterly · Q4 Monthly · Forecast
+              Longitudinal Horizon 2011–2027
             </span>
           </div>
           <p className="text-xs text-sky/80 mt-0.5">
-            Click any period node to inspect event attribution. Use Presentation Mode to highlight and pin key events for executive briefings.
+            Click any period node to inspect event attribution. Use Full Width mode and Presentation Pins for executive briefings.
           </p>
         </div>
 
-        {/* Action Controls: Presentation Pins & Expand/Contract */}
+        {/* Action Controls: Presentation Pins & Full Width Toggle */}
         <div className="flex items-center gap-2 self-start sm:self-auto shrink-0">
           <button
             type="button"
@@ -235,25 +277,25 @@ export const TrendChart: React.FC = () => {
             }`}
           >
             <Pin className="w-3.5 h-3.5 fill-current" />
-            <span>Pinned Callouts ({pinnedEventIds.length})</span>
+            <span>Pinned Milestones ({pinnedEventIds.length})</span>
             <ChevronDown className={`w-3 h-3 transition-transform ${showPinDrawer ? 'rotate-180' : ''}`} />
           </button>
 
           <button
             type="button"
-            onClick={() => setIsChartExpanded((prev) => !prev)}
+            onClick={() => setIsChartExpanded(!isChartExpanded)}
             className="flex items-center gap-1.5 px-3 py-1.5 rounded bg-charcoal border border-steel/60 hover:border-sky text-xs font-semibold text-white transition shadow-sm"
-            title={isChartExpanded ? 'Collapse Graph Height' : 'Expand Graph for Large Presentations'}
+            title={isChartExpanded ? 'Switch to side-by-side mode' : 'Expand graph full width'}
           >
             {isChartExpanded ? (
               <>
                 <Minimize2 className="w-3.5 h-3.5 text-passion" />
-                <span>Compact</span>
+                <span>Side-by-Side Mode</span>
               </>
             ) : (
               <>
                 <Maximize2 className="w-3.5 h-3.5 text-sky" />
-                <span>Enlarge</span>
+                <span>Full Width Presentation</span>
               </>
             )}
           </button>
@@ -267,10 +309,10 @@ export const TrendChart: React.FC = () => {
             <div>
               <span className="text-xs font-bold text-white flex items-center gap-1.5">
                 <Sparkles className="w-3.5 h-3.5 text-passion" />
-                <span>PRESENTATION PINNING MANAGER</span>
+                <span>EXECUTIVE PINNING MANAGER</span>
               </span>
               <p className="text-[11px] text-sky/80">
-                Check any starred milestone below to project a vertical callout line and annotated banner directly onto the timeline chart.
+                Select any key milestone below to pin clean numbered reference markers directly onto the timeline chart.
               </p>
             </div>
             <input
@@ -347,16 +389,39 @@ export const TrendChart: React.FC = () => {
         ))}
       </div>
 
-      {/* Main Chart Canvas (Enlargeable Height) */}
-      <div
-        className={`w-full bg-[#16191d] rounded-lg border border-[#2d333b] p-2 transition-all duration-300 ${
-          isChartExpanded ? 'h-[580px]' : 'h-[390px]'
-        }`}
-      >
+      {/* Clean Timeline Phase Header Track (Completely resolves overlapping text) */}
+      <div className="flex flex-wrap items-center justify-between gap-2 px-3 py-2 bg-[#14171a] border border-[#2d333b] rounded-lg mb-2 text-xs font-mono">
+        <div className="flex items-center gap-1.5 text-steel text-[11px] font-sans">
+          <Calendar className="w-3.5 h-3.5 text-sky" />
+          <span className="font-semibold text-white/90">Timeline Granularity:</span>
+        </div>
+
+        <div className="flex flex-wrap items-center gap-3 text-[11px]">
+          <div className="flex items-center gap-1.5">
+            <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: PHASE_COLORS.annual }} />
+            <span className="text-white/80 font-medium">2011–2025 Annual (15 Years)</span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: PHASE_COLORS.quarterly }} />
+            <span className="text-white/80 font-medium">2026 Q1–Q3 Quarterly</span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: PHASE_COLORS.monthly }} />
+            <span className="text-white/80 font-medium">2026-10 Monthly</span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: PHASE_COLORS.forecast }} />
+            <span className="text-passion font-semibold">2026-11 → 2027-05 6-Mo Forecast</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Main Chart Canvas (Balanced aspect ratio) */}
+      <div className="w-full bg-[#16191d] rounded-lg border border-[#2d333b] p-2 transition-all duration-300 h-[430px]">
         <ResponsiveContainer width="100%" height="100%">
           <ComposedChart
             data={data}
-            margin={{ top: 20, right: 24, left: 4, bottom: 12 }}
+            margin={{ top: 24, right: 24, left: 4, bottom: 12 }}
             onClick={(stateObj) => {
               if (stateObj && stateObj.activeLabel) {
                 const match = data.find((d) => d.id === stateObj.activeLabel);
@@ -396,25 +461,24 @@ export const TrendChart: React.FC = () => {
               }}
             />
 
-            {/* Granularity Transition Dividers */}
+            {/* Subtle Phase Delimiters (No overlapping labels - handled by top header track) */}
             <ReferenceLine
               x="2026-Q1"
               stroke="#509ca2"
               strokeDasharray="3 3"
-              label={{ value: 'Quarterly →', position: 'top', fill: '#509ca2', fontSize: 10 }}
+              strokeWidth={1.5}
             />
             <ReferenceLine
               x="2026-10"
               stroke="#75abd1"
               strokeDasharray="3 3"
-              label={{ value: 'Monthly →', position: 'top', fill: '#75abd1', fontSize: 10 }}
+              strokeWidth={1.5}
             />
             <ReferenceLine
               x="2026-11"
               stroke="#ea7722"
               strokeWidth={1.5}
               strokeDasharray="4 2"
-              label={{ value: '6-Mo Forecast →', position: 'top', fill: '#ea7722', fontSize: 10 }}
             />
 
             {/* Selected Period Highlight */}
@@ -422,19 +486,19 @@ export const TrendChart: React.FC = () => {
               <ReferenceLine x={selectedPeriodId} stroke="#ea7722" strokeOpacity={0.6} strokeWidth={2.5} />
             )}
 
-            {/* Pinned Presentation Callout Markers */}
-            {pinnedEventsWithPeriod.map(({ event: ev, periodId }, i) => (
+            {/* Pinned Presentation Callout Markers (Clean numbered badges only, zero top text collision) */}
+            {orderedPinnedList.map(({ event: ev, periodId, badge }) => (
               <ReferenceLine
                 key={`pin_${ev.id}`}
                 x={periodId}
                 stroke="#ea7722"
-                strokeWidth={2}
+                strokeWidth={1.5}
                 strokeDasharray="3 2"
                 label={{
-                  value: `📌 ${ev.eventDate.slice(0, 4)}: ${ev.title.slice(0, 28)}…`,
-                  position: i % 2 === 0 ? 'top' : 'insideTop',
-                  fill: '#ffffff',
-                  fontSize: 10,
+                  value: badge,
+                  position: 'top',
+                  fill: '#ea7722',
+                  fontSize: 13,
                   fontWeight: 'bold',
                 }}
               />
@@ -448,87 +512,60 @@ export const TrendChart: React.FC = () => {
                   <div className="bg-[#1e2227] border border-sky rounded-lg p-3 shadow-2xl text-xs max-w-sm">
                     <div className="flex items-center justify-between gap-3 border-b border-steel/60 pb-1.5 mb-2">
                       <span className="font-bold text-white font-mono">
-                        {d.label} ({d.id})
+                        {d.label} {d.isForecast && <span className="text-passion">(Forecast)</span>}
                       </span>
-                      <span className="px-1.5 py-0.5 rounded text-[10px] uppercase font-mono bg-[#16191d] text-sky border border-steel/50">
-                        {d.granularity}
-                      </span>
+                      {d.composite !== undefined && (
+                        <span className="font-mono font-bold text-white text-sm">
+                          {d.composite.toFixed(2)}
+                        </span>
+                      )}
+                      {d.forecastEv !== undefined && d.isForecast && (
+                        <span className="font-mono font-bold text-passion text-sm">
+                          EV {d.forecastEv.toFixed(2)}
+                        </span>
+                      )}
                     </div>
 
-                    {!d.isForecast ? (
-                      <div className="space-y-1 font-mono">
-                        <div className="flex justify-between font-bold text-white">
-                          <span>Composite Score:</span>
-                          <span>{d.composite?.toFixed(2)}</span>
+                    {!d.isForecast && (
+                      <div className="space-y-1 font-mono text-[11px]">
+                        <div className="flex justify-between">
+                          <span className="text-[#75abd1]">Executive:</span>
+                          <span className="text-white">{d.executive?.toFixed(2)}</span>
                         </div>
-                        <div className="flex justify-between text-sky">
-                          <span>Executive Branch:</span>
-                          <span>{d.executive?.toFixed(2)}</span>
+                        <div className="flex justify-between">
+                          <span className="text-[#509ca2]">Congress:</span>
+                          <span className="text-white">{d.congress?.toFixed(2)}</span>
                         </div>
-                        <div className="flex justify-between text-changingsea">
-                          <span>U.S. Congress:</span>
-                          <span>{d.congress?.toFixed(2)}</span>
+                        <div className="flex justify-between">
+                          <span className="text-[#38bdf8]">Navy:</span>
+                          <span className="text-white">{d.navy?.toFixed(2)}</span>
                         </div>
-                        <div className="flex justify-between text-[#38bdf8]">
-                          <span>Dept. of the Navy:</span>
-                          <span>{d.navy?.toFixed(2)}</span>
-                        </div>
-                        <div className="flex justify-between text-gray-300">
-                          <span>American Public:</span>
-                          <span>{d.public?.toFixed(2)}</span>
+                        <div className="flex justify-between">
+                          <span className="text-[#9ca3af]">Public:</span>
+                          <span className="text-white">{d.public?.toFixed(2)}</span>
                         </div>
                       </div>
-                    ) : (
-                      <div className="space-y-1 font-mono">
-                        <div className="flex justify-between font-bold text-passion">
-                          <span>Forecast Composite EV:</span>
-                          <span>{d.forecastEv?.toFixed(2)}</span>
-                        </div>
-                        <div className="flex justify-between text-white">
-                          <span>Analytic P10 – P90 Band:</span>
+                    )}
+
+                    {d.isForecast && d.forecastP10 !== undefined && d.forecastP90 !== undefined && (
+                      <div className="font-mono text-[11px] text-sky space-y-1">
+                        <div className="flex justify-between">
+                          <span>Confidence Band (80%):</span>
                           <span>
-                            [{d.forecastP10?.toFixed(2)} – {d.forecastP90?.toFixed(2)}]
+                            [{d.forecastP10.toFixed(2)} – {d.forecastP90.toFixed(2)}]
                           </span>
-                        </div>
-                        <div className="flex justify-between text-sky">
-                          <span>Executive EV:</span>
-                          <span>{d.forecastExecEv?.toFixed(2)}</span>
-                        </div>
-                        <div className="flex justify-between text-changingsea">
-                          <span>Congress EV:</span>
-                          <span>{d.forecastCongEv?.toFixed(2)}</span>
-                        </div>
-                        <div className="flex justify-between text-[#38bdf8]">
-                          <span>Navy EV:</span>
-                          <span>{d.forecastNavyEv?.toFixed(2)}</span>
-                        </div>
-                        <div className="flex justify-between text-gray-300">
-                          <span>Public EV:</span>
-                          <span>{d.forecastPublicEv?.toFixed(2)}</span>
                         </div>
                       </div>
                     )}
 
                     {d.keyEventCount > 0 && (
-                      <div className="mt-2 pt-1.5 border-t border-steel/50 text-passion">
-                        <div className="font-semibold flex items-center gap-1">
-                          <Star className="w-3 h-3 fill-passion" />
-                          <span>{d.keyEventCount} Starred Key Event(s):</span>
-                        </div>
-                        <ul className="list-disc list-inside text-[11px] text-white/90 mt-0.5 space-y-0.5">
-                          {d.keyEventTitles.slice(0, 3).map((t, i) => (
-                            <li key={i} className="truncate">
-                              {t}
-                            </li>
+                      <div className="mt-2 pt-2 border-t border-steel/50 text-[10px] text-sky">
+                        <span className="font-bold text-white">⭐ {d.keyEventCount} Starred Event(s)</span>
+                        <ul className="list-disc list-inside mt-0.5 space-y-0.5">
+                          {d.keyEventTitles.slice(0, 3).map((t, idx) => (
+                            <li key={idx} className="truncate">{t}</li>
                           ))}
                         </ul>
-                      </div>
-                    )}
-
-                    {d.revisionCount > 0 && (
-                      <div className="mt-1.5 pt-1 border-t border-steel/50 text-sky flex items-center gap-1">
-                        <GitCommit className="w-3.5 h-3.5 text-passion" />
-                        <span>{d.revisionCount} Retroactive Score Revision(s)</span>
                       </div>
                     )}
                   </div>
@@ -536,24 +573,39 @@ export const TrendChart: React.FC = () => {
               }}
             />
 
-            {/* P10-P90 Shaded Forecast Uncertainty Band */}
+            {/* Forecast Confidence Fan Area (P10 to P90) */}
             <Area
               type="monotone"
-              dataKey="forecastBand"
-              stroke="none"
+              dataKey="forecastP90"
+              stroke="#ea7722"
+              strokeWidth={1}
+              strokeDasharray="2 2"
               fill="#ea7722"
-              fillOpacity={0.22}
+              fillOpacity={0.18}
+              name="Forecast P90"
+              isAnimationActive={false}
+            />
+            <Area
+              type="monotone"
+              dataKey="forecastP10"
+              stroke="#ea7722"
+              strokeWidth={1}
+              strokeDasharray="2 2"
+              fill="#16191d"
+              fillOpacity={1}
+              name="Forecast P10"
               isAnimationActive={false}
             />
 
-            {/* 4 Audience Historical Lines */}
+            {/* Historical Series Lines */}
             {visibleLines.executive && (
               <Line
                 type="monotone"
                 dataKey="executive"
                 stroke={AUDIENCE_COLORS.executive}
-                strokeWidth={1.8}
-                dot={{ r: 2.5, fill: AUDIENCE_COLORS.executive }}
+                strokeWidth={2}
+                dot={false}
+                name="Executive"
                 isAnimationActive={false}
               />
             )}
@@ -562,8 +614,9 @@ export const TrendChart: React.FC = () => {
                 type="monotone"
                 dataKey="congress"
                 stroke={AUDIENCE_COLORS.congress}
-                strokeWidth={1.8}
-                dot={{ r: 2.5, fill: AUDIENCE_COLORS.congress }}
+                strokeWidth={2}
+                dot={false}
+                name="Congress"
                 isAnimationActive={false}
               />
             )}
@@ -572,8 +625,9 @@ export const TrendChart: React.FC = () => {
                 type="monotone"
                 dataKey="navy"
                 stroke={AUDIENCE_COLORS.navy}
-                strokeWidth={1.8}
-                dot={{ r: 2.5, fill: AUDIENCE_COLORS.navy }}
+                strokeWidth={2}
+                dot={false}
+                name="Navy"
                 isAnimationActive={false}
               />
             )}
@@ -582,146 +636,131 @@ export const TrendChart: React.FC = () => {
                 type="monotone"
                 dataKey="public"
                 stroke={AUDIENCE_COLORS.public}
-                strokeWidth={1.8}
-                dot={{ r: 2.5, fill: AUDIENCE_COLORS.public }}
+                strokeWidth={2}
+                dot={false}
+                name="Public"
                 isAnimationActive={false}
               />
             )}
 
-            {/* Audience Forecast Dashed Lines */}
-            {visibleLines.executive && (
-              <Line
-                type="monotone"
-                dataKey="forecastExecEv"
-                stroke={AUDIENCE_COLORS.executive}
-                strokeWidth={1.4}
-                strokeDasharray="4 4"
-                dot={false}
-                isAnimationActive={false}
-              />
-            )}
-            {visibleLines.congress && (
-              <Line
-                type="monotone"
-                dataKey="forecastCongEv"
-                stroke={AUDIENCE_COLORS.congress}
-                strokeWidth={1.4}
-                strokeDasharray="4 4"
-                dot={false}
-                isAnimationActive={false}
-              />
-            )}
-            {visibleLines.navy && (
-              <Line
-                type="monotone"
-                dataKey="forecastNavyEv"
-                stroke={AUDIENCE_COLORS.navy}
-                strokeWidth={1.4}
-                strokeDasharray="4 4"
-                dot={false}
-                isAnimationActive={false}
-              />
-            )}
-            {visibleLines.public && (
-              <Line
-                type="monotone"
-                dataKey="forecastPublicEv"
-                stroke={AUDIENCE_COLORS.public}
-                strokeWidth={1.4}
-                strokeDasharray="4 4"
-                dot={false}
-                isAnimationActive={false}
-              />
-            )}
-
-            {/* Bold Composite Historical Line */}
+            {/* Composite Historical Line */}
             {visibleLines.composite && (
               <Line
                 type="monotone"
                 dataKey="composite"
                 stroke="#ffffff"
-                strokeWidth={3.2}
-                dot={(props) => {
-                  const { cx, cy, payload } = props as {
-                    cx?: number;
-                    cy?: number;
-                    payload?: ChartDatum;
-                  };
-                  if (cx === undefined || cy === undefined || !payload) return <g />;
-                  if (payload.keyEventCount > 0) {
-                    return (
-                      <circle
-                        key={payload.id}
-                        cx={cx}
-                        cy={cy}
-                        r={5.5}
-                        fill="#ea7722"
-                        stroke="#ffffff"
-                        strokeWidth={1.8}
-                      />
-                    );
-                  }
-                  return (
-                    <circle
-                      key={payload.id}
-                      cx={cx}
-                      cy={cy}
-                      r={3.5}
-                      fill="#ffffff"
-                      stroke="#003b4d"
-                      strokeWidth={1.5}
-                    />
-                  );
-                }}
+                strokeWidth={3}
+                dot={{ r: 4, fill: '#ea7722', stroke: '#ffffff', strokeWidth: 1.5 }}
+                activeDot={{ r: 6, fill: '#ea7722', stroke: '#ffffff', strokeWidth: 2 }}
+                name="Composite"
                 isAnimationActive={false}
               />
             )}
 
-            {/* Composite 6-Month Forecast Expected Value Dashed Line */}
-            {visibleLines.composite && (
-              <Line
-                type="monotone"
-                dataKey="forecastEv"
-                stroke="#ea7722"
-                strokeWidth={3}
-                strokeDasharray="6 4"
-                dot={{ r: 4, fill: '#ea7722', stroke: '#ffffff', strokeWidth: 1.5 }}
-                isAnimationActive={false}
-              />
-            )}
+            {/* Forecast Expected Value Line */}
+            <Line
+              type="monotone"
+              dataKey="forecastEv"
+              stroke="#ea7722"
+              strokeWidth={2.5}
+              strokeDasharray="4 3"
+              dot={{ r: 3.5, fill: '#ffffff', stroke: '#ea7722', strokeWidth: 1.5 }}
+              name="Forecast EV"
+              isAnimationActive={false}
+            />
+
+            {/* Starred Key Event Dots */}
+            {data
+              .filter((d) => d.keyEventCount > 0 && !d.isForecast)
+              .map((d) => (
+                <ReferenceDot
+                  key={`star_${d.id}`}
+                  x={d.id}
+                  y={95}
+                  r={3.5}
+                  fill="#ea7722"
+                  stroke="#ffffff"
+                  strokeWidth={1}
+                />
+              ))}
           </ComposedChart>
         </ResponsiveContainer>
       </div>
 
-      {/* Period Quick-Selector Strip */}
-      <div className="mt-3 flex items-center justify-between gap-2 flex-wrap">
-        <div className="flex items-center gap-3 text-xs text-sky">
-          <span className="flex items-center gap-1.5">
-            <span className="w-3 h-3 rounded-full bg-passion border border-white inline-block" />
-            <span>Starred Key Event</span>
-          </span>
-          <span className="flex items-center gap-1.5">
-            <span className="w-4 h-2 bg-passion/30 border border-passion inline-block rounded-sm" />
-            <span>6-Mo Analytic Forecast Band</span>
-          </span>
-        </div>
+      {/* Executive Pinned Milestones Deck (Clean, structured presentation rack) */}
+      {orderedPinnedList.length > 0 && (
+        <div className="mt-4 border-t border-[#363c44] pt-3">
+          <div className="flex items-center justify-between gap-2 mb-2">
+            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-white">
+              <Pin className="w-3.5 h-3.5 text-passion" />
+              <span>Executive Pinned Milestones Deck ({orderedPinnedList.length})</span>
+            </div>
+            <span className="text-[11px] text-sky/75">
+              Corresponds to numbered markers {orderedPinnedList.map((p) => p.badge).join(' ')} on timeline
+            </span>
+          </div>
 
-        <div className="flex items-center gap-1.5 text-xs">
-          <Eye className="w-3.5 h-3.5 text-passion" />
-          <span className="text-sky">Inspect Period:</span>
-          <select
-            value={selectedPeriodId}
-            onChange={(e) => setSelectedPeriodId(e.target.value)}
-            className="bg-charcoal border border-steel rounded px-2 py-1 text-white font-mono text-xs focus:outline-none focus:border-passion"
-          >
-            {result.timeline.map((r) => (
-              <option key={r.period.id} value={r.period.id}>
-                {r.period.label} ({r.period.id}) — Composite {(r.compositeCenti / 100).toFixed(2)}
-              </option>
-            ))}
-          </select>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2.5">
+            {orderedPinnedList.map(({ event: ev, periodId, badge }) => {
+              const isSelected = selectedPeriodId === periodId;
+              return (
+                <div
+                  key={ev.id}
+                  onClick={() => setSelectedPeriodId(periodId)}
+                  className={`group relative flex flex-col justify-between p-3 rounded-lg border transition-all cursor-pointer ${
+                    isSelected
+                      ? 'bg-[#222831] border-passion ring-1 ring-passion/60 shadow-lg'
+                      : 'bg-[#16191d] border-[#363c44] hover:border-steel hover:bg-[#1a1e23]'
+                  }`}
+                >
+                  <div>
+                    <div className="flex items-center justify-between gap-2 mb-1.5">
+                      <div className="flex items-center gap-1.5">
+                        <span className="flex items-center justify-center w-5 h-5 rounded bg-passion/20 border border-passion/50 text-passion text-xs font-mono font-bold">
+                          {badge}
+                        </span>
+                        <span className="text-[11px] font-mono text-white/90 font-semibold">
+                          {ev.eventDate}
+                        </span>
+                      </div>
+
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          togglePinnedEvent(ev.id);
+                        }}
+                        className="text-steel hover:text-passion p-1 rounded hover:bg-charcoal transition-colors"
+                        title="Unpin milestone"
+                      >
+                        <X className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
+
+                    <h4 className="text-xs font-semibold text-white line-clamp-2 leading-snug mb-2 group-hover:text-sky transition-colors">
+                      {ev.title}
+                    </h4>
+                  </div>
+
+                  <div className="flex flex-wrap gap-1 mt-auto pt-2 border-t border-[#2d333b]">
+                    {ev.impacts.map((imp) => {
+                      const bps = baseBps(imp);
+                      const labels: Record<string, string> = {
+                        executive: 'Exec',
+                        congress: 'Cong',
+                        navy: 'Navy',
+                        public: 'Pub',
+                      };
+                      return renderImpactPill(labels[imp.audience] ?? imp.audience, bps);
+                    })}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };
+
+export default TrendChart;
