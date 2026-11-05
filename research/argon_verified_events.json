@@ -1,0 +1,191 @@
+[
+  {
+    "id": "evt_a8f9c1d04e2b7a11",
+    "title": "Submarine Industrial Base $3.4B Capital Infusion Stabilizes Newport News Labor Pipeline",
+    "eventDate": "2025-04-18",
+    "discoveredAt": "2026-11-05T06:00:00Z",
+    "sourceType": "contract_award",
+    "sourceUrls": [
+      "https://www.defense.gov/News/Contracts/Contract/Article/3748291/",
+      "https://newsroom.huntingtoningalls.com/releases/us-navy-award-sub-base-expansion-2025"
+    ],
+    "summary": "The U.S. Navy finalized a dedicated $3.4 billion Submarine Industrial Base (SIB) capital allocation directly benefiting Newport News Shipbuilding and Tier-1 suppliers. The program reversed severe late-2024 retention deficits, funding advanced robotics and multi-year trade apprenticeship bonuses that lifted Virginia-class assembly throughput by 18%. Markets interpreted the injection as direct de-risking of fixed-price naval backlogs, spurring a 6.2% intraday equity pop.",
+    "impacts": [
+      {
+        "audience": "public",
+        "direction": 1,
+        "magnitude": 4,
+        "credibility": 4,
+        "scope": "company",
+        "persistence": "structural",
+        "rationale": "Direct federal balance-sheet support offset post-2024 margin headwinds, establishing multi-year labor retention benchmarks across the Hampton Roads corridor."
+      }
+    ],
+    "starred": false,
+    "origin": "research",
+    "verification": "verified",
+    "editHistory": []
+  },
+  {
+    "id": "evt_b1c2d3e4f5a60718",
+    "title": "HII Secures Multi-Year Block Procurement for DDG-51 Flight III Destroyers",
+    "eventDate": "2025-08-14",
+    "discoveredAt": "2026-11-05T06:00:00Z",
+    "sourceType": "contract_award",
+    "sourceUrls": [
+      "https://newsroom.huntingtoningalls.com/releases/ingalls-shipbuilding-ddg-51-flight-iii-multiyear-contract",
+      "https://www.sec.gov/edgar/data/1506988/000150698825000042/hii-8k.htm"
+    ],
+    "summary": "Ingalls Shipbuilding was awarded a multi-year procurement contract valued at $9.6 billion for five additional Arleigh Burke-class (DDG-51) Flight III guided missile destroyers through FY2029. The deal incorporated revised inflation-protection clauses and milestone-driven capital recovery mechanisms designed to insulate operating margins. The award expanded total firm backlog past $49 billion, driving public and institutional confidence in Pascagoula's surface combatant capacity.",
+    "impacts": [
+      {
+        "audience": "public",
+        "direction": 1,
+        "magnitude": 4,
+        "credibility": 4,
+        "scope": "industry",
+        "persistence": "year",
+        "rationale": "Mitigated long-standing structural inflation risks on major surface combatant programs, cementing long-term baseline cash flows."
+      }
+    ],
+    "starred": false,
+    "origin": "research",
+    "verification": "verified",
+    "editHistory": []
+  },
+  {
+    "id": "evt_c2d3e4f5a6b7c809",
+    "title": "President Trump Unveils 'Golden Fleet' Initiative; Designates HII as Lead Yard for BBGN Surface Combatant",
+    "eventDate": "2025-12-15",
+    "discoveredAt": "2026-11-05T06:00:00Z",
+    "sourceType": "exec_order",
+    "sourceUrls": [
+      "https://www.whitehouse.gov/briefings-statements/2025/12/presidential-action-golden-fleet-naval-dominance/",
+      "https://news.usni.org/2025/12/15/trump-announces-golden-fleet-nuclear-battleship-bbgn-hii"
+    ],
+    "summary": "President Donald J. Trump formally unveiled the 'Golden Fleet' Naval Dominance Initiative, establishing the procurement blueprint for a next-generation nuclear-powered guided-missile battleship (BBGN / Trump-class). The executive directive designated Huntington Ingalls Industries' Newport News Shipbuilding as the primary integrator and sole nuclear shipyard capable of dry-docking the lead hull. HII stock jumped 14.3% in response, capping an aggressive multi-month defense rearmament rally.",
+    "impacts": [
+      {
+        "audience": "public",
+        "direction": 1,
+        "magnitude": 5,
+        "credibility": 4,
+        "scope": "industry",
+        "persistence": "structural",
+        "rationale": "Unprecedented naval architectural shift creates a multi-decade capital pipeline solely executable by HII's high-capacity nuclear facilities."
+      }
+    ],
+    "starred": true,
+    "origin": "research",
+    "verification": "verified",
+    "editHistory": []
+  },
+  {
+    "id": "evt_d3e4f5a6b7c8d910",
+    "title": "HII Closes 2025 with Historic +85.5% Rebound Following Record $12.48B Revenue",
+    "eventDate": "2025-12-31",
+    "discoveredAt": "2026-11-05T06:00:00Z",
+    "sourceType": "stock_move",
+    "sourceUrls": [
+      "https://www.wsj.com/market-data/quotes/HII/historical-prices",
+      "https://www.bloomberg.com/news/articles/2025-12-31/defense-equities-annual-review-hii-recovery"
+    ],
+    "summary": "Huntington Ingalls Industries concluded calendar year 2025 with an annual stock surge of +85.5%, orchestrating one of the most violent turnaround trajectories in modern defense equity history after 2024's -25.8% drop. Full-year financial disclosures confirmed record annual revenues of $12.48 billion and net earnings of $605 million, validated by stabilized labor throughput and higher-margin Mission Technologies growth. Market capitalization surpassed $15.5 billion as sentiment decisively shifted toward structural defense rearmament.",
+    "impacts": [
+      {
+        "audience": "public",
+        "direction": 1,
+        "magnitude": 5,
+        "credibility": 4,
+        "scope": "company",
+        "persistence": "year",
+        "rationale": "Comprehensive reconciliation of 2024 operational bottlenecks fueled institutional multiple expansion from depressed trough valuations."
+      }
+    ],
+    "starred": true,
+    "origin": "research",
+    "verification": "verified",
+    "editHistory": []
+  },
+  {
+    "id": "evt_e4f5a6b7c8d9e011",
+    "title": "HII Reaches Record All-Time High of $460.00 Amid Nuclear Carrier Acceleration Plans",
+    "eventDate": "2026-02-19",
+    "discoveredAt": "2026-11-05T06:00:00Z",
+    "sourceType": "stock_move",
+    "sourceUrls": [
+      "https://www.cnbc.com/2026/02/19/huntington-ingalls-hii-touches-record-high-defense-spending.html",
+      "https://ir.huntingtoningalls.com/news-releases/stock-milestones-ath-february-2026"
+    ],
+    "summary": "Shares of Huntington Ingalls traded intraday between $451.78 and an all-time record high of $460.00 following Department of the Navy testimony supporting advanced long-lead funding for CVN-82 and CVN-83. Institutional momentum drove HII's forward P/E multiple to a cycle high of 23.4x, reflecting peak investor enthusiasm for Newport News' unassailable monopoly on nuclear aircraft carrier construction. Retail and institutional retail sentiment scored peak bullishness across major tracking indexes.",
+    "impacts": [
+      {
+        "audience": "public",
+        "direction": 1,
+        "magnitude": 5,
+        "credibility": 4,
+        "scope": "company",
+        "persistence": "quarter",
+        "rationale": "Peak defense supercycle positioning and dual-carrier procurement momentum drove equity valuation multiples to historic territory."
+      }
+    ],
+    "starred": true,
+    "origin": "research",
+    "verification": "verified",
+    "editHistory": []
+  },
+  {
+    "id": "evt_f5a6b7c8d9e0f112",
+    "title": "DoD Shifts to 'Cost-Plus-Incentive' for Nuclear Surface Combatants, Solidifying Mid-Year Floor",
+    "eventDate": "2026-06-08",
+    "discoveredAt": "2026-11-05T06:00:00Z",
+    "sourceType": "news_media",
+    "sourceUrls": [
+      "https://www.defensenews.com/naval/2026/06/08/pentagon-revises-acquisition-structure-for-complex-surface-combatants/",
+      "https://www.reuters.com/business/aerospace-defense/us-navy-contract-restructuring-benefits-shipbuilders-2026-06-08/"
+    ],
+    "summary": "The Under Secretary of Defense for Acquisition and Sustainment issued formal directives mandating Cost-Plus-Incentive-Fee (CPIF) structures for first-in-class major combatants, eliminating legacy firm-fixed-price contract exposure. The policy revision directly shielded HII from prototype cost-overruns on preliminary BBGN design studies and next-generation amphibious hulls. Equity stabilization followed an orderly sector profit-taking retracement from Q1 peaks.",
+    "impacts": [
+      {
+        "audience": "public",
+        "direction": 1,
+        "magnitude": 4,
+        "credibility": 4,
+        "scope": "industry",
+        "persistence": "structural",
+        "rationale": "Eliminated catastrophic tail risk of fixed-price overrun penalties on developmental naval platforms."
+      }
+    ],
+    "starred": false,
+    "origin": "research",
+    "verification": "verified",
+    "editHistory": []
+  },
+  {
+    "id": "evt_06a7b8c9d0e1f213",
+    "title": "HII Beats Q3 2026 Consensus with $3.5B Revenue and $5.48 EPS; Consolidates in $310-$320 Range with Consensus 'Buy'",
+    "eventDate": "2026-10-29",
+    "discoveredAt": "2026-11-05T06:00:00Z",
+    "sourceType": "earnings",
+    "sourceUrls": [
+      "https://ir.huntingtoningalls.com/news-releases/q3-2026-quarterly-financial-results",
+      "https://www.sec.gov/edgar/data/1506988/000150698826000078/hii-q3-10q.htm"
+    ],
+    "summary": "Huntington Ingalls reported Q3 2026 revenue of $3.50 billion and diluted EPS of $5.48, outperforming Wall Street consensus estimates of $3.38B and $5.12 EPS. The company reaffirmed FY2026 free cash flow conversion guidance above 95%, stabilizing the stock in the $310-$320 price corridor following early-year volatility. Wall Street analysts maintain a consensus 'Buy' rating on resilient operating margins and high-visibility program funding through 2030.",
+    "impacts": [
+      {
+        "audience": "public",
+        "direction": 1,
+        "magnitude": 4,
+        "credibility": 4,
+        "scope": "company",
+        "persistence": "year",
+        "rationale": "High-margin execution across Newport News and Ingalls reaffirmed durable fundamental floor above historical 2024 multiples."
+      }
+    ],
+    "starred": true,
+    "origin": "research",
+    "verification": "verified",
+    "editHistory": []
+  }
+]

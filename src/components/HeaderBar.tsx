@@ -9,14 +9,18 @@ import {
   FileText,
   GitCommit,
   Loader2,
+  LogOut,
   Play,
   Radar,
+  RotateCcw,
+  Shield,
   Sliders,
   Sparkles,
   TrendingUp,
-  RotateCcw,
+  UserCheck,
 } from 'lucide-react';
 import { useDashboard, type ActiveTab } from '../context/DashboardContext';
+import { useAuth } from '../context/AuthContext';
 import { HIILogo } from './HIILogo';
 
 export const HeaderBar: React.FC = () => {
@@ -31,6 +35,14 @@ export const HeaderBar: React.FC = () => {
     triggerResearchRun,
     resetToLatestSeed,
   } = useDashboard();
+
+  const {
+    currentUser,
+    userRole,
+    pendingRequests,
+    setShowUserModal,
+    signOut,
+  } = useAuth();
   const [copiedHash, setCopiedHash] = useState<'ledger' | 'output' | null>(null);
 
   const copyHash = (kind: 'ledger' | 'output', val: string) => {
@@ -159,25 +171,83 @@ export const HeaderBar: React.FC = () => {
             )}
           </button>
 
-          {/* Prominent "Run Now" Trigger Button */}
-          <button
-            type="button"
-            disabled={isResearchRunning || budget.totalSpendUsd >= budget.monthlyCapUsd}
-            onClick={() => void handleRunNowHeader()}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-passion hover:bg-passion/90 disabled:opacity-50 text-xs font-bold text-white shadow-md transition"
-          >
-            {isResearchRunning ? (
-              <>
-                <Loader2 className="w-3.5 h-3.5 animate-spin" />
-                <span>Agents Running…</span>
-              </>
-            ) : (
-              <>
-                <Play className="w-3.5 h-3.5 fill-white" />
-                <span>Run Now</span>
-              </>
-            )}
-          </button>
+          {/* Admin Clearance & User Requests Manager */}
+          {userRole === 'admin' && (
+            <button
+              type="button"
+              onClick={() => setShowUserModal(true)}
+              className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded bg-charcoal border border-sky/70 hover:border-passion text-xs font-semibold text-white transition shadow-sm font-mono"
+              title="Manage access requests and approved viewers"
+            >
+              <Shield className="w-3.5 h-3.5 text-passion" />
+              <span>Clearance</span>
+              {pendingRequests.length > 0 && (
+                <span className="px-1.5 py-0.2 rounded-full bg-passion text-white text-[10px] font-bold animate-pulse">
+                  {pendingRequests.length}
+                </span>
+              )}
+            </button>
+          )}
+
+          {/* Prominent "Run Now" Trigger Button (Admin only) */}
+          {userRole === 'admin' ? (
+            <button
+              type="button"
+              disabled={isResearchRunning || budget.totalSpendUsd >= budget.monthlyCapUsd}
+              onClick={() => void handleRunNowHeader()}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-passion hover:bg-passion/90 disabled:opacity-50 text-xs font-bold text-white shadow-md transition"
+            >
+              {isResearchRunning ? (
+                <>
+                  <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                  <span>Agents Running…</span>
+                </>
+              ) : (
+                <>
+                  <Play className="w-3.5 h-3.5 fill-white" />
+                  <span>Run Now</span>
+                </>
+              )}
+            </button>
+          ) : (
+            <span
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-[#16191d] border border-steel/60 text-sky text-xs font-mono"
+              title="Viewer access (Read-Only). Contact administrator to trigger agent runs."
+            >
+              <UserCheck className="w-3.5 h-3.5 text-changingsea" />
+              <span>Viewer (Read-Only)</span>
+            </span>
+          )}
+
+          {/* User Identity Chip & Sign Out */}
+          {currentUser && (
+            <div className="flex items-center gap-2 pl-1 border-l border-[#363c44]">
+              {currentUser.photoURL ? (
+                <img
+                  src={currentUser.photoURL}
+                  alt={currentUser.displayName || 'User'}
+                  className="w-7 h-7 rounded-full border border-steel/70"
+                  title={`${currentUser.displayName} (${currentUser.email})`}
+                />
+              ) : (
+                <div
+                  className="w-7 h-7 rounded-full bg-[#24272a] border border-steel flex items-center justify-center text-xs font-bold text-white"
+                  title={currentUser.email || ''}
+                >
+                  {(currentUser.email || 'U')[0].toUpperCase()}
+                </div>
+              )}
+
+              <button
+                type="button"
+                onClick={signOut}
+                className="p-1.5 rounded text-steel hover:text-white hover:bg-charcoal transition"
+                title={`Sign out (${currentUser.email})`}
+              >
+                <LogOut className="w-3.5 h-3.5" />
+              </button>
+            </div>
+          )}
         </div>
       </div>
 

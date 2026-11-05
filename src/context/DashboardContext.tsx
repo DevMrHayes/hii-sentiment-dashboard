@@ -20,6 +20,7 @@ import {
   type ScheduleConfig,
   type ScoreRevision,
 } from '../engine';
+import { useAuth } from './AuthContext';
 import { SEED_LEDGER_STATE } from '../data/seedBundle';
 
 export type ActiveTab = 'dashboard' | 'divisions' | 'ledger' | 'control' | 'forecast' | 'research' | 'revisions' | 'export';
@@ -167,13 +168,21 @@ interface DashboardContextValue {
   setIsChartExpanded: (v: boolean | ((prev: boolean) => boolean)) => void;
 }
 
-const CURRENT_LEDGER_SEED_VERSION = 'v3_152_events';
+const CURRENT_LEDGER_SEED_VERSION = 'v4_159_events';
 const SEED_VERSION_KEY = 'hii_sentiment_seed_version';
-const STORAGE_KEY = 'hii_sentiment_ledger_state_v3';
+const STORAGE_KEY = 'hii_sentiment_ledger_state_v4';
 
 const DashboardContext = createContext<DashboardContextValue | null>(null);
 
 export const DashboardProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  let userRole: 'admin' | 'viewer' | 'pending' | 'denied' = 'admin';
+  try {
+    const authCtx = useAuth();
+    if (authCtx?.userRole) userRole = authCtx.userRole;
+  } catch {
+    // running in test or without AuthProvider
+  }
+
   const [state, setState] = useState<LedgerState>(() => {
     try {
       const storedVer = localStorage.getItem(SEED_VERSION_KEY);
@@ -187,9 +196,10 @@ export const DashboardProvider: React.FC<{ children: React.ReactNode }> = ({ chi
           return parsed;
         }
       }
-      // Clean up previous cached versions and adopt latest 152-event seed
+      // Clean up previous cached versions and adopt latest 159-event seed
       localStorage.removeItem('hii_sentiment_ledger_state_v1');
       localStorage.removeItem('hii_sentiment_ledger_state_v2');
+      localStorage.removeItem('hii_sentiment_ledger_state_v3');
       localStorage.setItem(SEED_VERSION_KEY, CURRENT_LEDGER_SEED_VERSION);
     } catch {
       // ignore
@@ -310,6 +320,10 @@ export const DashboardProvider: React.FC<{ children: React.ReactNode }> = ({ chi
 
   const updateWeights = useCallback(
     async (weights: AudienceWeights, author: string, reason: string) => {
+      if (userRole === 'viewer') {
+        alert('Weight adjustments are restricted to administrator hayesorhaze@gmail.com.');
+        return;
+      }
       try {
         const res = await fetch('/api/weights', {
           method: 'POST',
@@ -333,6 +347,10 @@ export const DashboardProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   );
 
   const updateSchedule = useCallback(async (schedule: ScheduleConfig) => {
+    if (userRole === 'viewer') {
+      alert('Schedule configuration is restricted to administrator hayesorhaze@gmail.com.');
+      return;
+    }
     try {
       const res = await fetch('/api/schedule', {
         method: 'POST',
@@ -354,6 +372,10 @@ export const DashboardProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   }, []);
 
   const updateBudgetConfig = useCallback(async (cfg: BudgetConfig) => {
+    if (userRole === 'viewer') {
+      alert('Budget configuration is restricted to administrator hayesorhaze@gmail.com.');
+      return;
+    }
     try {
       const res = await fetch('/api/budget', {
         method: 'POST',
@@ -505,6 +527,10 @@ export const DashboardProvider: React.FC<{ children: React.ReactNode }> = ({ chi
 
   const triggerResearchRun = useCallback(
     async (audiences: AudienceId[], mode = 'auto', isMondayScheduledSweep = false) => {
+      if (userRole === 'viewer') {
+        alert('Initiating agent deep research runs is restricted to administrator hayesorhaze@gmail.com.');
+        return;
+      }
       if (spendUsd >= budgetConfig.monthlyCapUsd) {
         return;
       }

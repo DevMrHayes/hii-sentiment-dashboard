@@ -1,5 +1,8 @@
 import React from 'react';
 import { GitCommit, X } from 'lucide-react';
+import { AuthProvider } from './context/AuthContext';
+import { AuthWall } from './components/AuthWall';
+import { UserManagementModal } from './components/UserManagementModal';
 import { DashboardProvider, useDashboard } from './context/DashboardContext';
 import { HeaderBar } from './components/HeaderBar';
 import { TrendChart } from './components/TrendChart';
@@ -106,9 +109,14 @@ const DashboardContent: React.FC = () => {
 
 export function App() {
   return (
-    <DashboardProvider>
-      <DashboardContent />
-    </DashboardProvider>
+    <AuthProvider>
+      <AuthWall>
+        <DashboardProvider>
+          <DashboardContent />
+          <UserManagementModal />
+        </DashboardProvider>
+      </AuthWall>
+    </AuthProvider>
   );
 }
 
