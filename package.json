@@ -13,7 +13,7 @@
     "export:md": "tsx cli/export-markdown.ts",
     "promote": "tsx cli/promote-pending.ts",
     "research": "py -3 research/run_research.py",
-    "deploy": "npm run build && firebase deploy --only hosting --project gen-lang-client-0353543048"
+    "deploy": "npm run build && firebase deploy --only hosting,firestore:rules --project gen-lang-client-0353543048"
   },
   "dependencies": {
     "firebase": "^13.2.0",

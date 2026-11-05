@@ -26,7 +26,7 @@ import {
   X,
 } from 'lucide-react';
 import { useDashboard } from '../context/DashboardContext';
-import { ALL_AUDIENCES, AUDIENCE_LABELS, baseBps, type AudienceId, type ImpactEvent } from '../engine';
+import { ALL_AUDIENCES, AUDIENCE_LABELS, baseBps, bpsToDisplay, type AudienceId, type ImpactEvent } from '../engine';
 
 interface ChartDatum {
   id: string;
@@ -241,7 +241,7 @@ export const TrendChart: React.FC = () => {
       >
         <span className="text-steel font-sans">{label}:</span>
         {isPositive ? <TrendingUp className="w-2.5 h-2.5 inline text-emerald-400" /> : <TrendingDown className="w-2.5 h-2.5 inline text-rose-400" />}
-        {isPositive ? '+' : ''}{bps}
+        <span>{bpsToDisplay(bps)} pts</span>
       </span>
     );
   };
