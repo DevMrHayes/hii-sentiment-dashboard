@@ -192,7 +192,7 @@ export const DashboardProvider: React.FC<{ children: React.ReactNode }> = ({ chi
     [state.settings.budgetConfig],
   );
 
-  const [spendUsd, setSpendUsd] = useState<number>(0.6134);
+  const [spendUsd, setSpendUsd] = useState<number>(0.116);
 
   const budget = useMemo<BudgetStatus>(() => {
     const cap = budgetConfig.monthlyCapUsd;
@@ -200,7 +200,12 @@ export const DashboardProvider: React.FC<{ children: React.ReactNode }> = ({ chi
       monthlyCapUsd: cap,
       totalSpendUsd: spendUsd,
       remainingUsd: Math.max(0, cap - spendUsd),
-      circuitBreaker: spendUsd >= cap ? 'TRIPPED' : spendUsd >= 0.8 * cap ? 'AUTO-DOWNGRADE (80%)' : 'ACTIVE',
+      circuitBreaker:
+        spendUsd >= cap
+          ? 'TRIPPED'
+          : spendUsd >= 0.8 * cap
+          ? 'AUTO-DOWNGRADE (80%)'
+          : 'ACTIVE (TIER B)',
     };
   }, [budgetConfig.monthlyCapUsd, spendUsd]);
 

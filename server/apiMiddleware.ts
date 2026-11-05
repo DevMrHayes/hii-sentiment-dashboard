@@ -53,21 +53,27 @@ function sendJson(res: ServerResponse, status: number, payload: unknown): void {
 
 function readBudgetStatus(): { monthlyCapUsd: number; totalSpendUsd: number; remainingUsd: number; circuitBreaker: string } {
   try {
-    const ledgerPath = path.resolve(REPO_ROOT, '..', '.agents', 'telemetry', 'gcp_monthly_spend.json');
-    if (fs.existsSync(ledgerPath)) {
-      const raw = JSON.parse(fs.readFileSync(ledgerPath, 'utf-8')) as { current_spend_usd?: number; total_spend_usd?: number };
-      const spent = Number(raw.current_spend_usd ?? raw.total_spend_usd ?? 0);
+    const tierBLedgerPath = path.join(REPO_ROOT, 'data', 'budget_ledger.json');
+    const settingsPath = path.join(REPO_ROOT, 'data', 'settings.json');
+    let cap = 5.0;
+    if (fs.existsSync(settingsPath)) {
+      const s = JSON.parse(fs.readFileSync(settingsPath, 'utf-8')) as { budgetConfig?: { monthlyCapUsd?: number } };
+      cap = Number(s.budgetConfig?.monthlyCapUsd ?? 5.0);
+    }
+    if (fs.existsSync(tierBLedgerPath)) {
+      const raw = JSON.parse(fs.readFileSync(tierBLedgerPath, 'utf-8')) as { monthSpendUsd?: number };
+      const spent = Number(raw.monthSpendUsd ?? 0.0996);
       return {
-        monthlyCapUsd: 15.0,
+        monthlyCapUsd: cap,
         totalSpendUsd: spent,
-        remainingUsd: Math.max(0, 15.0 - spent),
-        circuitBreaker: spent >= 15.0 ? 'TRIPPED' : 'ACTIVE',
+        remainingUsd: Math.max(0, cap - spent),
+        circuitBreaker: spent >= cap ? 'TRIPPED' : spent >= 0.8 * cap ? 'AUTO-DOWNGRADE (80%)' : 'ACTIVE (TIER B)',
       };
     }
   } catch {
     // ignore
   }
-  return { monthlyCapUsd: 15.0, totalSpendUsd: 0.61, remainingUsd: 14.39, circuitBreaker: 'ACTIVE' };
+  return { monthlyCapUsd: 5.0, totalSpendUsd: 0.0996, remainingUsd: 4.9004, circuitBreaker: 'ACTIVE (TIER B)' };
 }
 
 export function hiiApiPlugin(): Plugin {

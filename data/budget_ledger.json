@@ -1,0 +1,23 @@
+{
+  "tier": "Tier B: Balanced Deep Research + Argon Verification",
+  "billingCycle": "2026-11",
+  "monthlyCapUsd": 5.0,
+  "perRunCapUsd": 0.5,
+  "monthSpendUsd": 0.11601,
+  "runsCount": 3,
+  "history": [
+    {
+      "runId": "run_20261105_023205",
+      "timestamp": "2026-11-05T02:32:44Z",
+      "mode": "deep_research",
+      "audiences": [
+        "executive",
+        "congress",
+        "navy",
+        "public"
+      ],
+      "costUsd": 0.01641,
+      "runningMonthSpendUsd": 0.11601
+    }
+  ]
+}

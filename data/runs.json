@@ -1,5 +1,29 @@
 [
   {
+    "runId": "run_20261105_023205",
+    "startedAt": "2026-11-05T02:32:05Z",
+    "completedAt": "2026-11-05T02:32:44Z",
+    "audiences": [
+      "executive",
+      "congress",
+      "navy",
+      "public"
+    ],
+    "status": "completed",
+    "mode": "deep_research",
+    "discoveredCount": 3,
+    "pendingFile": "data/pending/pending_seed.json",
+    "costUsd": 0.01641,
+    "log": [
+      "[Tier B: Balanced Deep Research + Argon] Started run run_20261105_023205 for audiences: executive, congress, navy, public",
+      "Tier B Budget Guard: $0.0996 / $5.00 used (2.0%) -> 4 Parallel Flash Collectors + Gemini 4 Argon Verifier",
+      "Dispatching 4 parallel Audience Collectors on Vertex AI (gemini-3.8-flash)...",
+      "Invoking Tier B Verifier & Rubric Extractor (gemini-4-argon) at temperature=0.0...",
+      "Tier B Swarm completed: 4 Flash Collectors + 1 gemini-4-argon Verifier extracted 3 multi-audience events (actual Vertex cost: $0.01641)",
+      "Staged 3 new unique candidate events into Pending Quarantine Queue (Tier B Month-to-Date Spend: $0.1160 / $5.00)."
+    ]
+  },
+  {
     "runId": "run_20261104_deep_01",
     "startedAt": "2026-11-04T15:28:10Z",
     "completedAt": "2026-11-04T15:30:00Z",
