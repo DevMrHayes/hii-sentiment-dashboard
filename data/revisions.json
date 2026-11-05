@@ -1,302 +1,533 @@
 [
   {
-    "id": "rev_a7506464172c829b",
+    "id": "rev_38ce8f8bf451e7ef",
+    "timestamp": "2026-11-04T15:30:00Z",
+    "runId": "run_20261104_deep_01",
+    "periodId": "2025",
+    "periodLabel": "2025",
+    "audience": "executive",
+    "oldScoreCenti": 6265,
+    "newScoreCenti": 6010,
+    "deltaCenti": -255,
+    "triggeringEventIds": [
+      "evt_5761988041c76e7f"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"FY2026 Federal Government Shutdown & Appropriations Lapse Begins Oct 1, 2025 as Congress Misses Fiscal Year Deadline; DoD Furloughs Civilian Acquisition Staff and Halts New Contract Awards\" (2025-10-01) adjusted 2025 Executive Branch from 62.65 to 60.10 (-2.55 pts)."
+  },
+  {
+    "id": "rev_a67002473ec0b794",
     "timestamp": "2026-11-04T15:30:00Z",
     "runId": "run_20261104_deep_01",
     "periodId": "2025",
     "periodLabel": "2025",
     "audience": "congress",
-    "oldScoreCenti": 8190,
-    "newScoreCenti": 8160,
-    "deltaCenti": -30,
+    "oldScoreCenti": 4609,
+    "newScoreCenti": 4193,
+    "deltaCenti": -416,
     "triggeringEventIds": [
+      "evt_5761988041c76e7f",
       "evt_981f92b3c905ecb8"
     ],
     "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
-    "explanation": "Retroactive discovery of \"GAO Shipbuilding Assessment Notes Stabilization in Hiring but Persistent Supply Chain Delays on CVN 79 and CVN 80\" (2025-07-15) adjusted 2025 Congress from 81.90 to 81.60 (-0.30 pts)."
+    "explanation": "Retroactive discovery of \"FY2026 Federal Government Shutdown & Appropriations Lapse Begins Oct 1, 2025 as Congress Misses Fiscal Year Deadline; DoD Furloughs Civilian Acquisition Staff and Halts New Contract Awards\" (2025-10-01); \"GAO Shipbuilding Assessment Notes Stabilization in Hiring but Persistent Supply Chain Delays on CVN 79 and CVN 80\" (2025-07-15) adjusted 2025 Congress from 46.09 to 41.93 (-4.16 pts)."
   },
   {
-    "id": "rev_4949117a9e6d04cb",
+    "id": "rev_d070c3492b807f82",
     "timestamp": "2026-11-04T15:30:00Z",
     "runId": "run_20261104_deep_01",
     "periodId": "2025",
     "periodLabel": "2025",
     "audience": "navy",
-    "oldScoreCenti": 8575,
-    "newScoreCenti": 8558,
-    "deltaCenti": -17,
+    "oldScoreCenti": 3353,
+    "newScoreCenti": 2940,
+    "deltaCenti": -413,
     "triggeringEventIds": [
+      "evt_5761988041c76e7f",
       "evt_981f92b3c905ecb8"
     ],
     "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
-    "explanation": "Retroactive discovery of \"GAO Shipbuilding Assessment Notes Stabilization in Hiring but Persistent Supply Chain Delays on CVN 79 and CVN 80\" (2025-07-15) adjusted 2025 Department of the Navy from 85.75 to 85.58 (-0.17 pts)."
+    "explanation": "Retroactive discovery of \"FY2026 Federal Government Shutdown & Appropriations Lapse Begins Oct 1, 2025 as Congress Misses Fiscal Year Deadline; DoD Furloughs Civilian Acquisition Staff and Halts New Contract Awards\" (2025-10-01); \"GAO Shipbuilding Assessment Notes Stabilization in Hiring but Persistent Supply Chain Delays on CVN 79 and CVN 80\" (2025-07-15) adjusted 2025 Department of the Navy from 33.53 to 29.40 (-4.13 pts)."
   },
   {
-    "id": "rev_ffe7425527b63a6b",
+    "id": "rev_db9a6e6e6cb0b3d0",
+    "timestamp": "2026-11-04T15:30:00Z",
+    "runId": "run_20261104_deep_01",
+    "periodId": "2025",
+    "periodLabel": "2025",
+    "audience": "public",
+    "oldScoreCenti": 2374,
+    "newScoreCenti": 2162,
+    "deltaCenti": -212,
+    "triggeringEventIds": [
+      "evt_5761988041c76e7f"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"FY2026 Federal Government Shutdown & Appropriations Lapse Begins Oct 1, 2025 as Congress Misses Fiscal Year Deadline; DoD Furloughs Civilian Acquisition Staff and Halts New Contract Awards\" (2025-10-01) adjusted 2025 American Public from 23.74 to 21.62 (-2.12 pts)."
+  },
+  {
+    "id": "rev_bf5e33667018c7d1",
     "timestamp": "2026-11-04T15:30:00Z",
     "runId": "run_20261104_deep_01",
     "periodId": "2025",
     "periodLabel": "2025",
     "audience": "composite",
-    "oldScoreCenti": 8094,
-    "newScoreCenti": 8081,
-    "deltaCenti": -13,
+    "oldScoreCenti": 4199,
+    "newScoreCenti": 3865,
+    "deltaCenti": -334,
     "triggeringEventIds": [
+      "evt_5761988041c76e7f",
       "evt_749e7d8734563b84",
-      "evt_981f92b3c905ecb8"
+      "evt_981f92b3c905ecb8",
+      "evt_fb4be53700f55252"
     ],
     "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
-    "explanation": "Retroactive discovery of \"CRS Report RL32665 Update: Navy Force Structure and Shipbuilding Plans — Industrial Base Throughput Analysis\" (2026-08-18); \"GAO Shipbuilding Assessment Notes Stabilization in Hiring but Persistent Supply Chain Delays on CVN 79 and CVN 80\" (2025-07-15) adjusted 2025 Composite from 80.94 to 80.81 (-0.13 pts)."
+    "explanation": "Retroactive discovery of \"FY2026 Federal Government Shutdown & Appropriations Lapse Begins Oct 1, 2025 as Congress Misses Fiscal Year Deadline; DoD Furloughs Civilian Acquisition Staff and Halts New Contract Awards\" (2025-10-01); \"CRS Report RL32665 Update: Navy Force Structure and Shipbuilding Plans — Industrial Base Throughput Analysis\" (2026-08-18); \"GAO Shipbuilding Assessment Notes Stabilization in Hiring but Persistent Supply Chain Delays on CVN 79 and CVN 80\" (2025-07-15); \"DOGE Round 2 DoD Services & Management Support Audit Terminates Legacy C5ISR Knowledge-Based Services Task Orders, Trimming HII Mission Technologies Backlog by $340M\" (2026-01-28) adjusted 2025 Composite from 41.99 to 38.65 (-3.34 pts)."
   },
   {
-    "id": "rev_91e373de2bf665b2",
+    "id": "rev_55de56fa839df037",
+    "timestamp": "2026-11-04T15:30:00Z",
+    "runId": "run_20261104_deep_01",
+    "periodId": "2026-Q1",
+    "periodLabel": "Q1 2026",
+    "audience": "executive",
+    "oldScoreCenti": 8059,
+    "newScoreCenti": 6934,
+    "deltaCenti": -1125,
+    "triggeringEventIds": [
+      "evt_5761988041c76e7f",
+      "evt_fb4be53700f55252"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"FY2026 Federal Government Shutdown & Appropriations Lapse Begins Oct 1, 2025 as Congress Misses Fiscal Year Deadline; DoD Furloughs Civilian Acquisition Staff and Halts New Contract Awards\" (2025-10-01); \"DOGE Round 2 DoD Services & Management Support Audit Terminates Legacy C5ISR Knowledge-Based Services Task Orders, Trimming HII Mission Technologies Backlog by $340M\" (2026-01-28) adjusted Q1 2026 Executive Branch from 80.59 to 69.34 (-11.25 pts)."
+  },
+  {
+    "id": "rev_ec1d8906c7b8e4a7",
     "timestamp": "2026-11-04T15:30:00Z",
     "runId": "run_20261104_deep_01",
     "periodId": "2026-Q1",
     "periodLabel": "Q1 2026",
     "audience": "congress",
-    "oldScoreCenti": 8543,
-    "newScoreCenti": 8511,
-    "deltaCenti": -32,
+    "oldScoreCenti": 7234,
+    "newScoreCenti": 6360,
+    "deltaCenti": -874,
     "triggeringEventIds": [
+      "evt_5761988041c76e7f",
       "evt_981f92b3c905ecb8"
     ],
     "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
-    "explanation": "Retroactive discovery of \"GAO Shipbuilding Assessment Notes Stabilization in Hiring but Persistent Supply Chain Delays on CVN 79 and CVN 80\" (2025-07-15) adjusted Q1 2026 Congress from 85.43 to 85.11 (-0.32 pts)."
+    "explanation": "Retroactive discovery of \"FY2026 Federal Government Shutdown & Appropriations Lapse Begins Oct 1, 2025 as Congress Misses Fiscal Year Deadline; DoD Furloughs Civilian Acquisition Staff and Halts New Contract Awards\" (2025-10-01); \"GAO Shipbuilding Assessment Notes Stabilization in Hiring but Persistent Supply Chain Delays on CVN 79 and CVN 80\" (2025-07-15) adjusted Q1 2026 Congress from 72.34 to 63.60 (-8.74 pts)."
   },
   {
-    "id": "rev_8069f10abf622094",
+    "id": "rev_d6da46142bd6848a",
     "timestamp": "2026-11-04T15:30:00Z",
     "runId": "run_20261104_deep_01",
     "periodId": "2026-Q1",
     "periodLabel": "Q1 2026",
     "audience": "navy",
-    "oldScoreCenti": 8810,
-    "newScoreCenti": 8788,
-    "deltaCenti": -22,
+    "oldScoreCenti": 7148,
+    "newScoreCenti": 4462,
+    "deltaCenti": -2686,
     "triggeringEventIds": [
-      "evt_981f92b3c905ecb8"
+      "evt_5761988041c76e7f",
+      "evt_981f92b3c905ecb8",
+      "evt_fb4be53700f55252"
     ],
     "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
-    "explanation": "Retroactive discovery of \"GAO Shipbuilding Assessment Notes Stabilization in Hiring but Persistent Supply Chain Delays on CVN 79 and CVN 80\" (2025-07-15) adjusted Q1 2026 Department of the Navy from 88.10 to 87.88 (-0.22 pts)."
+    "explanation": "Retroactive discovery of \"FY2026 Federal Government Shutdown & Appropriations Lapse Begins Oct 1, 2025 as Congress Misses Fiscal Year Deadline; DoD Furloughs Civilian Acquisition Staff and Halts New Contract Awards\" (2025-10-01); \"GAO Shipbuilding Assessment Notes Stabilization in Hiring but Persistent Supply Chain Delays on CVN 79 and CVN 80\" (2025-07-15); \"DOGE Round 2 DoD Services & Management Support Audit Terminates Legacy C5ISR Knowledge-Based Services Task Orders, Trimming HII Mission Technologies Backlog by $340M\" (2026-01-28) adjusted Q1 2026 Department of the Navy from 71.48 to 44.62 (-26.86 pts)."
   },
   {
-    "id": "rev_be3eacddbc283545",
+    "id": "rev_5f22951820af4079",
+    "timestamp": "2026-11-04T15:30:00Z",
+    "runId": "run_20261104_deep_01",
+    "periodId": "2026-Q1",
+    "periodLabel": "Q1 2026",
+    "audience": "public",
+    "oldScoreCenti": 4973,
+    "newScoreCenti": 2669,
+    "deltaCenti": -2304,
+    "triggeringEventIds": [
+      "evt_5761988041c76e7f",
+      "evt_fb4be53700f55252"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"FY2026 Federal Government Shutdown & Appropriations Lapse Begins Oct 1, 2025 as Congress Misses Fiscal Year Deadline; DoD Furloughs Civilian Acquisition Staff and Halts New Contract Awards\" (2025-10-01); \"DOGE Round 2 DoD Services & Management Support Audit Terminates Legacy C5ISR Knowledge-Based Services Task Orders, Trimming HII Mission Technologies Backlog by $340M\" (2026-01-28) adjusted Q1 2026 American Public from 49.73 to 26.69 (-23.04 pts)."
+  },
+  {
+    "id": "rev_3fd7c6b9b47fe07c",
     "timestamp": "2026-11-04T15:30:00Z",
     "runId": "run_20261104_deep_01",
     "periodId": "2026-Q1",
     "periodLabel": "Q1 2026",
     "audience": "composite",
-    "oldScoreCenti": 8457,
-    "newScoreCenti": 8442,
-    "deltaCenti": -15,
+    "oldScoreCenti": 6962,
+    "newScoreCenti": 5196,
+    "deltaCenti": -1766,
     "triggeringEventIds": [
+      "evt_5761988041c76e7f",
       "evt_749e7d8734563b84",
-      "evt_981f92b3c905ecb8"
+      "evt_981f92b3c905ecb8",
+      "evt_fb4be53700f55252"
     ],
     "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
-    "explanation": "Retroactive discovery of \"CRS Report RL32665 Update: Navy Force Structure and Shipbuilding Plans — Industrial Base Throughput Analysis\" (2026-08-18); \"GAO Shipbuilding Assessment Notes Stabilization in Hiring but Persistent Supply Chain Delays on CVN 79 and CVN 80\" (2025-07-15) adjusted Q1 2026 Composite from 84.57 to 84.42 (-0.15 pts)."
+    "explanation": "Retroactive discovery of \"FY2026 Federal Government Shutdown & Appropriations Lapse Begins Oct 1, 2025 as Congress Misses Fiscal Year Deadline; DoD Furloughs Civilian Acquisition Staff and Halts New Contract Awards\" (2025-10-01); \"CRS Report RL32665 Update: Navy Force Structure and Shipbuilding Plans — Industrial Base Throughput Analysis\" (2026-08-18); \"GAO Shipbuilding Assessment Notes Stabilization in Hiring but Persistent Supply Chain Delays on CVN 79 and CVN 80\" (2025-07-15); \"DOGE Round 2 DoD Services & Management Support Audit Terminates Legacy C5ISR Knowledge-Based Services Task Orders, Trimming HII Mission Technologies Backlog by $340M\" (2026-01-28) adjusted Q1 2026 Composite from 69.62 to 51.96 (-17.66 pts)."
   },
   {
-    "id": "rev_83ee3f213671522c",
+    "id": "rev_fd6c26721ce33a26",
+    "timestamp": "2026-11-04T15:30:00Z",
+    "runId": "run_20261104_deep_01",
+    "periodId": "2026-Q2",
+    "periodLabel": "Q2 2026",
+    "audience": "executive",
+    "oldScoreCenti": 8276,
+    "newScoreCenti": 7782,
+    "deltaCenti": -494,
+    "triggeringEventIds": [
+      "evt_5761988041c76e7f",
+      "evt_fb4be53700f55252"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"FY2026 Federal Government Shutdown & Appropriations Lapse Begins Oct 1, 2025 as Congress Misses Fiscal Year Deadline; DoD Furloughs Civilian Acquisition Staff and Halts New Contract Awards\" (2025-10-01); \"DOGE Round 2 DoD Services & Management Support Audit Terminates Legacy C5ISR Knowledge-Based Services Task Orders, Trimming HII Mission Technologies Backlog by $340M\" (2026-01-28) adjusted Q2 2026 Executive Branch from 82.76 to 77.82 (-4.94 pts)."
+  },
+  {
+    "id": "rev_bbdea47ca3489591",
     "timestamp": "2026-11-04T15:30:00Z",
     "runId": "run_20261104_deep_01",
     "periodId": "2026-Q2",
     "periodLabel": "Q2 2026",
     "audience": "congress",
-    "oldScoreCenti": 8486,
-    "newScoreCenti": 8457,
-    "deltaCenti": -29,
+    "oldScoreCenti": 6994,
+    "newScoreCenti": 6290,
+    "deltaCenti": -704,
     "triggeringEventIds": [
+      "evt_5761988041c76e7f",
       "evt_981f92b3c905ecb8"
     ],
     "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
-    "explanation": "Retroactive discovery of \"GAO Shipbuilding Assessment Notes Stabilization in Hiring but Persistent Supply Chain Delays on CVN 79 and CVN 80\" (2025-07-15) adjusted Q2 2026 Congress from 84.86 to 84.57 (-0.29 pts)."
+    "explanation": "Retroactive discovery of \"FY2026 Federal Government Shutdown & Appropriations Lapse Begins Oct 1, 2025 as Congress Misses Fiscal Year Deadline; DoD Furloughs Civilian Acquisition Staff and Halts New Contract Awards\" (2025-10-01); \"GAO Shipbuilding Assessment Notes Stabilization in Hiring but Persistent Supply Chain Delays on CVN 79 and CVN 80\" (2025-07-15) adjusted Q2 2026 Congress from 69.94 to 62.90 (-7.04 pts)."
   },
   {
-    "id": "rev_22add2e598ddd94b",
+    "id": "rev_63581872a892319f",
     "timestamp": "2026-11-04T15:30:00Z",
     "runId": "run_20261104_deep_01",
     "periodId": "2026-Q2",
     "periodLabel": "Q2 2026",
     "audience": "navy",
-    "oldScoreCenti": 8850,
-    "newScoreCenti": 8833,
-    "deltaCenti": -17,
+    "oldScoreCenti": 7447,
+    "newScoreCenti": 5965,
+    "deltaCenti": -1482,
     "triggeringEventIds": [
-      "evt_981f92b3c905ecb8"
+      "evt_5761988041c76e7f",
+      "evt_981f92b3c905ecb8",
+      "evt_fb4be53700f55252"
     ],
     "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
-    "explanation": "Retroactive discovery of \"GAO Shipbuilding Assessment Notes Stabilization in Hiring but Persistent Supply Chain Delays on CVN 79 and CVN 80\" (2025-07-15) adjusted Q2 2026 Department of the Navy from 88.50 to 88.33 (-0.17 pts)."
+    "explanation": "Retroactive discovery of \"FY2026 Federal Government Shutdown & Appropriations Lapse Begins Oct 1, 2025 as Congress Misses Fiscal Year Deadline; DoD Furloughs Civilian Acquisition Staff and Halts New Contract Awards\" (2025-10-01); \"GAO Shipbuilding Assessment Notes Stabilization in Hiring but Persistent Supply Chain Delays on CVN 79 and CVN 80\" (2025-07-15); \"DOGE Round 2 DoD Services & Management Support Audit Terminates Legacy C5ISR Knowledge-Based Services Task Orders, Trimming HII Mission Technologies Backlog by $340M\" (2026-01-28) adjusted Q2 2026 Department of the Navy from 74.47 to 59.65 (-14.82 pts)."
   },
   {
-    "id": "rev_6d200ca645c47983",
+    "id": "rev_f1e3f27be247f0d6",
+    "timestamp": "2026-11-04T15:30:00Z",
+    "runId": "run_20261104_deep_01",
+    "periodId": "2026-Q2",
+    "periodLabel": "Q2 2026",
+    "audience": "public",
+    "oldScoreCenti": 5184,
+    "newScoreCenti": 3258,
+    "deltaCenti": -1926,
+    "triggeringEventIds": [
+      "evt_5761988041c76e7f",
+      "evt_fb4be53700f55252"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"FY2026 Federal Government Shutdown & Appropriations Lapse Begins Oct 1, 2025 as Congress Misses Fiscal Year Deadline; DoD Furloughs Civilian Acquisition Staff and Halts New Contract Awards\" (2025-10-01); \"DOGE Round 2 DoD Services & Management Support Audit Terminates Legacy C5ISR Knowledge-Based Services Task Orders, Trimming HII Mission Technologies Backlog by $340M\" (2026-01-28) adjusted Q2 2026 American Public from 51.84 to 32.58 (-19.26 pts)."
+  },
+  {
+    "id": "rev_29067c146da5181b",
     "timestamp": "2026-11-04T15:30:00Z",
     "runId": "run_20261104_deep_01",
     "periodId": "2026-Q2",
     "periodLabel": "Q2 2026",
     "audience": "composite",
-    "oldScoreCenti": 8471,
-    "newScoreCenti": 8458,
-    "deltaCenti": -13,
+    "oldScoreCenti": 7088,
+    "newScoreCenti": 5959,
+    "deltaCenti": -1129,
     "triggeringEventIds": [
+      "evt_5761988041c76e7f",
       "evt_749e7d8734563b84",
-      "evt_981f92b3c905ecb8"
+      "evt_981f92b3c905ecb8",
+      "evt_fb4be53700f55252"
     ],
     "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
-    "explanation": "Retroactive discovery of \"CRS Report RL32665 Update: Navy Force Structure and Shipbuilding Plans — Industrial Base Throughput Analysis\" (2026-08-18); \"GAO Shipbuilding Assessment Notes Stabilization in Hiring but Persistent Supply Chain Delays on CVN 79 and CVN 80\" (2025-07-15) adjusted Q2 2026 Composite from 84.71 to 84.58 (-0.13 pts)."
+    "explanation": "Retroactive discovery of \"FY2026 Federal Government Shutdown & Appropriations Lapse Begins Oct 1, 2025 as Congress Misses Fiscal Year Deadline; DoD Furloughs Civilian Acquisition Staff and Halts New Contract Awards\" (2025-10-01); \"CRS Report RL32665 Update: Navy Force Structure and Shipbuilding Plans — Industrial Base Throughput Analysis\" (2026-08-18); \"GAO Shipbuilding Assessment Notes Stabilization in Hiring but Persistent Supply Chain Delays on CVN 79 and CVN 80\" (2025-07-15); \"DOGE Round 2 DoD Services & Management Support Audit Terminates Legacy C5ISR Knowledge-Based Services Task Orders, Trimming HII Mission Technologies Backlog by $340M\" (2026-01-28) adjusted Q2 2026 Composite from 70.88 to 59.59 (-11.29 pts)."
   },
   {
-    "id": "rev_d956f5b57e402960",
+    "id": "rev_690c4457e3c02a30",
+    "timestamp": "2026-11-04T15:30:00Z",
+    "runId": "run_20261104_deep_01",
+    "periodId": "2026-Q3",
+    "periodLabel": "Q3 2026",
+    "audience": "executive",
+    "oldScoreCenti": 7934,
+    "newScoreCenti": 7459,
+    "deltaCenti": -475,
+    "triggeringEventIds": [
+      "evt_5761988041c76e7f",
+      "evt_fb4be53700f55252"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"FY2026 Federal Government Shutdown & Appropriations Lapse Begins Oct 1, 2025 as Congress Misses Fiscal Year Deadline; DoD Furloughs Civilian Acquisition Staff and Halts New Contract Awards\" (2025-10-01); \"DOGE Round 2 DoD Services & Management Support Audit Terminates Legacy C5ISR Knowledge-Based Services Task Orders, Trimming HII Mission Technologies Backlog by $340M\" (2026-01-28) adjusted Q3 2026 Executive Branch from 79.34 to 74.59 (-4.75 pts)."
+  },
+  {
+    "id": "rev_e0cd9683572c4522",
     "timestamp": "2026-11-04T15:30:00Z",
     "runId": "run_20261104_deep_01",
     "periodId": "2026-Q3",
     "periodLabel": "Q3 2026",
     "audience": "congress",
-    "oldScoreCenti": 8546,
-    "newScoreCenti": 8556,
-    "deltaCenti": 10,
+    "oldScoreCenti": 6719,
+    "newScoreCenti": 6407,
+    "deltaCenti": -312,
     "triggeringEventIds": [
+      "evt_5761988041c76e7f",
       "evt_749e7d8734563b84",
       "evt_981f92b3c905ecb8"
     ],
     "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
-    "explanation": "Retroactive discovery of \"CRS Report RL32665 Update: Navy Force Structure and Shipbuilding Plans — Industrial Base Throughput Analysis\" (2026-08-18); \"GAO Shipbuilding Assessment Notes Stabilization in Hiring but Persistent Supply Chain Delays on CVN 79 and CVN 80\" (2025-07-15) adjusted Q3 2026 Congress from 85.46 to 85.56 (+0.10 pts)."
+    "explanation": "Retroactive discovery of \"FY2026 Federal Government Shutdown & Appropriations Lapse Begins Oct 1, 2025 as Congress Misses Fiscal Year Deadline; DoD Furloughs Civilian Acquisition Staff and Halts New Contract Awards\" (2025-10-01); \"CRS Report RL32665 Update: Navy Force Structure and Shipbuilding Plans — Industrial Base Throughput Analysis\" (2026-08-18); \"GAO Shipbuilding Assessment Notes Stabilization in Hiring but Persistent Supply Chain Delays on CVN 79 and CVN 80\" (2025-07-15) adjusted Q3 2026 Congress from 67.19 to 64.07 (-3.12 pts)."
   },
   {
-    "id": "rev_da3613d9f59a57a7",
+    "id": "rev_435c7f4b3b957a3d",
     "timestamp": "2026-11-04T15:30:00Z",
     "runId": "run_20261104_deep_01",
     "periodId": "2026-Q3",
     "periodLabel": "Q3 2026",
     "audience": "navy",
-    "oldScoreCenti": 8825,
-    "newScoreCenti": 8820,
-    "deltaCenti": -5,
+    "oldScoreCenti": 6930,
+    "newScoreCenti": 5855,
+    "deltaCenti": -1075,
     "triggeringEventIds": [
+      "evt_5761988041c76e7f",
       "evt_749e7d8734563b84",
-      "evt_981f92b3c905ecb8"
+      "evt_981f92b3c905ecb8",
+      "evt_fb4be53700f55252"
     ],
     "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
-    "explanation": "Retroactive discovery of \"CRS Report RL32665 Update: Navy Force Structure and Shipbuilding Plans — Industrial Base Throughput Analysis\" (2026-08-18); \"GAO Shipbuilding Assessment Notes Stabilization in Hiring but Persistent Supply Chain Delays on CVN 79 and CVN 80\" (2025-07-15) adjusted Q3 2026 Department of the Navy from 88.25 to 88.20 (-0.05 pts)."
+    "explanation": "Retroactive discovery of \"FY2026 Federal Government Shutdown & Appropriations Lapse Begins Oct 1, 2025 as Congress Misses Fiscal Year Deadline; DoD Furloughs Civilian Acquisition Staff and Halts New Contract Awards\" (2025-10-01); \"CRS Report RL32665 Update: Navy Force Structure and Shipbuilding Plans — Industrial Base Throughput Analysis\" (2026-08-18); \"GAO Shipbuilding Assessment Notes Stabilization in Hiring but Persistent Supply Chain Delays on CVN 79 and CVN 80\" (2025-07-15); \"DOGE Round 2 DoD Services & Management Support Audit Terminates Legacy C5ISR Knowledge-Based Services Task Orders, Trimming HII Mission Technologies Backlog by $340M\" (2026-01-28) adjusted Q3 2026 Department of the Navy from 69.30 to 58.55 (-10.75 pts)."
   },
   {
-    "id": "rev_c64f76b255ed6369",
+    "id": "rev_a62b30982025b905",
+    "timestamp": "2026-11-04T15:30:00Z",
+    "runId": "run_20261104_deep_01",
+    "periodId": "2026-Q3",
+    "periodLabel": "Q3 2026",
+    "audience": "public",
+    "oldScoreCenti": 4378,
+    "newScoreCenti": 3097,
+    "deltaCenti": -1281,
+    "triggeringEventIds": [
+      "evt_5761988041c76e7f",
+      "evt_fb4be53700f55252"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"FY2026 Federal Government Shutdown & Appropriations Lapse Begins Oct 1, 2025 as Congress Misses Fiscal Year Deadline; DoD Furloughs Civilian Acquisition Staff and Halts New Contract Awards\" (2025-10-01); \"DOGE Round 2 DoD Services & Management Support Audit Terminates Legacy C5ISR Knowledge-Based Services Task Orders, Trimming HII Mission Technologies Backlog by $340M\" (2026-01-28) adjusted Q3 2026 American Public from 43.78 to 30.97 (-12.81 pts)."
+  },
+  {
+    "id": "rev_a838246aab65096b",
     "timestamp": "2026-11-04T15:30:00Z",
     "runId": "run_20261104_deep_01",
     "periodId": "2026-Q3",
     "periodLabel": "Q3 2026",
     "audience": "composite",
-    "oldScoreCenti": 8437,
-    "newScoreCenti": 8438,
-    "deltaCenti": 1,
+    "oldScoreCenti": 6618,
+    "newScoreCenti": 5842,
+    "deltaCenti": -776,
     "triggeringEventIds": [
+      "evt_5761988041c76e7f",
       "evt_749e7d8734563b84",
-      "evt_981f92b3c905ecb8"
+      "evt_981f92b3c905ecb8",
+      "evt_fb4be53700f55252"
     ],
     "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
-    "explanation": "Retroactive discovery of \"CRS Report RL32665 Update: Navy Force Structure and Shipbuilding Plans — Industrial Base Throughput Analysis\" (2026-08-18); \"GAO Shipbuilding Assessment Notes Stabilization in Hiring but Persistent Supply Chain Delays on CVN 79 and CVN 80\" (2025-07-15) adjusted Q3 2026 Composite from 84.37 to 84.38 (+0.01 pts)."
+    "explanation": "Retroactive discovery of \"FY2026 Federal Government Shutdown & Appropriations Lapse Begins Oct 1, 2025 as Congress Misses Fiscal Year Deadline; DoD Furloughs Civilian Acquisition Staff and Halts New Contract Awards\" (2025-10-01); \"CRS Report RL32665 Update: Navy Force Structure and Shipbuilding Plans — Industrial Base Throughput Analysis\" (2026-08-18); \"GAO Shipbuilding Assessment Notes Stabilization in Hiring but Persistent Supply Chain Delays on CVN 79 and CVN 80\" (2025-07-15); \"DOGE Round 2 DoD Services & Management Support Audit Terminates Legacy C5ISR Knowledge-Based Services Task Orders, Trimming HII Mission Technologies Backlog by $340M\" (2026-01-28) adjusted Q3 2026 Composite from 66.18 to 58.42 (-7.76 pts)."
   },
   {
-    "id": "rev_c33623f0629ac24f",
+    "id": "rev_e67ab6ddeeb690de",
+    "timestamp": "2026-11-04T15:30:00Z",
+    "runId": "run_20261104_deep_01",
+    "periodId": "2026-10",
+    "periodLabel": "Oct 2026",
+    "audience": "executive",
+    "oldScoreCenti": 6930,
+    "newScoreCenti": 6076,
+    "deltaCenti": -854,
+    "triggeringEventIds": [
+      "evt_5761988041c76e7f",
+      "evt_fb4be53700f55252"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"FY2026 Federal Government Shutdown & Appropriations Lapse Begins Oct 1, 2025 as Congress Misses Fiscal Year Deadline; DoD Furloughs Civilian Acquisition Staff and Halts New Contract Awards\" (2025-10-01); \"DOGE Round 2 DoD Services & Management Support Audit Terminates Legacy C5ISR Knowledge-Based Services Task Orders, Trimming HII Mission Technologies Backlog by $340M\" (2026-01-28) adjusted Oct 2026 Executive Branch from 69.30 to 60.76 (-8.54 pts)."
+  },
+  {
+    "id": "rev_b21446d9eb4bec3b",
     "timestamp": "2026-11-04T15:30:00Z",
     "runId": "run_20261104_deep_01",
     "periodId": "2026-10",
     "periodLabel": "Oct 2026",
     "audience": "congress",
-    "oldScoreCenti": 8441,
-    "newScoreCenti": 8461,
-    "deltaCenti": 20,
+    "oldScoreCenti": 5960,
+    "newScoreCenti": 5643,
+    "deltaCenti": -317,
     "triggeringEventIds": [
+      "evt_5761988041c76e7f",
       "evt_749e7d8734563b84",
       "evt_981f92b3c905ecb8"
     ],
     "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
-    "explanation": "Retroactive discovery of \"CRS Report RL32665 Update: Navy Force Structure and Shipbuilding Plans — Industrial Base Throughput Analysis\" (2026-08-18); \"GAO Shipbuilding Assessment Notes Stabilization in Hiring but Persistent Supply Chain Delays on CVN 79 and CVN 80\" (2025-07-15) adjusted Oct 2026 Congress from 84.41 to 84.61 (+0.20 pts)."
+    "explanation": "Retroactive discovery of \"FY2026 Federal Government Shutdown & Appropriations Lapse Begins Oct 1, 2025 as Congress Misses Fiscal Year Deadline; DoD Furloughs Civilian Acquisition Staff and Halts New Contract Awards\" (2025-10-01); \"CRS Report RL32665 Update: Navy Force Structure and Shipbuilding Plans — Industrial Base Throughput Analysis\" (2026-08-18); \"GAO Shipbuilding Assessment Notes Stabilization in Hiring but Persistent Supply Chain Delays on CVN 79 and CVN 80\" (2025-07-15) adjusted Oct 2026 Congress from 59.60 to 56.43 (-3.17 pts)."
   },
   {
-    "id": "rev_43b120b4d86fddc7",
+    "id": "rev_dcb371234ccdddf4",
     "timestamp": "2026-11-04T15:30:00Z",
     "runId": "run_20261104_deep_01",
     "periodId": "2026-10",
     "periodLabel": "Oct 2026",
     "audience": "navy",
-    "oldScoreCenti": 8812,
-    "newScoreCenti": 8809,
-    "deltaCenti": -3,
+    "oldScoreCenti": 4797,
+    "newScoreCenti": 3620,
+    "deltaCenti": -1177,
     "triggeringEventIds": [
+      "evt_5761988041c76e7f",
       "evt_749e7d8734563b84",
-      "evt_981f92b3c905ecb8"
+      "evt_981f92b3c905ecb8",
+      "evt_fb4be53700f55252"
     ],
     "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
-    "explanation": "Retroactive discovery of \"CRS Report RL32665 Update: Navy Force Structure and Shipbuilding Plans — Industrial Base Throughput Analysis\" (2026-08-18); \"GAO Shipbuilding Assessment Notes Stabilization in Hiring but Persistent Supply Chain Delays on CVN 79 and CVN 80\" (2025-07-15) adjusted Oct 2026 Department of the Navy from 88.12 to 88.09 (-0.03 pts)."
+    "explanation": "Retroactive discovery of \"FY2026 Federal Government Shutdown & Appropriations Lapse Begins Oct 1, 2025 as Congress Misses Fiscal Year Deadline; DoD Furloughs Civilian Acquisition Staff and Halts New Contract Awards\" (2025-10-01); \"CRS Report RL32665 Update: Navy Force Structure and Shipbuilding Plans — Industrial Base Throughput Analysis\" (2026-08-18); \"GAO Shipbuilding Assessment Notes Stabilization in Hiring but Persistent Supply Chain Delays on CVN 79 and CVN 80\" (2025-07-15); \"DOGE Round 2 DoD Services & Management Support Audit Terminates Legacy C5ISR Knowledge-Based Services Task Orders, Trimming HII Mission Technologies Backlog by $340M\" (2026-01-28) adjusted Oct 2026 Department of the Navy from 47.97 to 36.20 (-11.77 pts)."
   },
   {
-    "id": "rev_f4a87c2233a54976",
+    "id": "rev_a4a7623398398519",
+    "timestamp": "2026-11-04T15:30:00Z",
+    "runId": "run_20261104_deep_01",
+    "periodId": "2026-10",
+    "periodLabel": "Oct 2026",
+    "audience": "public",
+    "oldScoreCenti": 2651,
+    "newScoreCenti": 2232,
+    "deltaCenti": -419,
+    "triggeringEventIds": [
+      "evt_5761988041c76e7f",
+      "evt_fb4be53700f55252"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"FY2026 Federal Government Shutdown & Appropriations Lapse Begins Oct 1, 2025 as Congress Misses Fiscal Year Deadline; DoD Furloughs Civilian Acquisition Staff and Halts New Contract Awards\" (2025-10-01); \"DOGE Round 2 DoD Services & Management Support Audit Terminates Legacy C5ISR Knowledge-Based Services Task Orders, Trimming HII Mission Technologies Backlog by $340M\" (2026-01-28) adjusted Oct 2026 American Public from 26.51 to 22.32 (-4.19 pts)."
+  },
+  {
+    "id": "rev_3c4cb234b5506044",
     "timestamp": "2026-11-04T15:30:00Z",
     "runId": "run_20261104_deep_01",
     "periodId": "2026-10",
     "periodLabel": "Oct 2026",
     "audience": "composite",
-    "oldScoreCenti": 8414,
-    "newScoreCenti": 8418,
-    "deltaCenti": 4,
+    "oldScoreCenti": 5192,
+    "newScoreCenti": 4462,
+    "deltaCenti": -730,
     "triggeringEventIds": [
+      "evt_5761988041c76e7f",
       "evt_749e7d8734563b84",
-      "evt_981f92b3c905ecb8"
+      "evt_981f92b3c905ecb8",
+      "evt_fb4be53700f55252"
     ],
     "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
-    "explanation": "Retroactive discovery of \"CRS Report RL32665 Update: Navy Force Structure and Shipbuilding Plans — Industrial Base Throughput Analysis\" (2026-08-18); \"GAO Shipbuilding Assessment Notes Stabilization in Hiring but Persistent Supply Chain Delays on CVN 79 and CVN 80\" (2025-07-15) adjusted Oct 2026 Composite from 84.14 to 84.18 (+0.04 pts)."
+    "explanation": "Retroactive discovery of \"FY2026 Federal Government Shutdown & Appropriations Lapse Begins Oct 1, 2025 as Congress Misses Fiscal Year Deadline; DoD Furloughs Civilian Acquisition Staff and Halts New Contract Awards\" (2025-10-01); \"CRS Report RL32665 Update: Navy Force Structure and Shipbuilding Plans — Industrial Base Throughput Analysis\" (2026-08-18); \"GAO Shipbuilding Assessment Notes Stabilization in Hiring but Persistent Supply Chain Delays on CVN 79 and CVN 80\" (2025-07-15); \"DOGE Round 2 DoD Services & Management Support Audit Terminates Legacy C5ISR Knowledge-Based Services Task Orders, Trimming HII Mission Technologies Backlog by $340M\" (2026-01-28) adjusted Oct 2026 Composite from 51.92 to 44.62 (-7.30 pts)."
   },
   {
-    "id": "rev_61a4550a23dba598",
+    "id": "rev_80e2f830006853ad",
+    "timestamp": "2026-11-04T15:30:00Z",
+    "runId": "run_20261104_deep_01",
+    "periodId": "2026-11",
+    "periodLabel": "Nov 2026",
+    "audience": "executive",
+    "oldScoreCenti": 6887,
+    "newScoreCenti": 6068,
+    "deltaCenti": -819,
+    "triggeringEventIds": [
+      "evt_5761988041c76e7f",
+      "evt_fb4be53700f55252"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"FY2026 Federal Government Shutdown & Appropriations Lapse Begins Oct 1, 2025 as Congress Misses Fiscal Year Deadline; DoD Furloughs Civilian Acquisition Staff and Halts New Contract Awards\" (2025-10-01); \"DOGE Round 2 DoD Services & Management Support Audit Terminates Legacy C5ISR Knowledge-Based Services Task Orders, Trimming HII Mission Technologies Backlog by $340M\" (2026-01-28) adjusted Nov 2026 Executive Branch from 68.87 to 60.68 (-8.19 pts)."
+  },
+  {
+    "id": "rev_2dd0c2af7eb78a81",
     "timestamp": "2026-11-04T15:30:00Z",
     "runId": "run_20261104_deep_01",
     "periodId": "2026-11",
     "periodLabel": "Nov 2026",
     "audience": "congress",
-    "oldScoreCenti": 8429,
-    "newScoreCenti": 8446,
-    "deltaCenti": 17,
+    "oldScoreCenti": 5939,
+    "newScoreCenti": 5622,
+    "deltaCenti": -317,
     "triggeringEventIds": [
+      "evt_5761988041c76e7f",
       "evt_749e7d8734563b84",
       "evt_981f92b3c905ecb8"
     ],
     "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
-    "explanation": "Retroactive discovery of \"CRS Report RL32665 Update: Navy Force Structure and Shipbuilding Plans — Industrial Base Throughput Analysis\" (2026-08-18); \"GAO Shipbuilding Assessment Notes Stabilization in Hiring but Persistent Supply Chain Delays on CVN 79 and CVN 80\" (2025-07-15) adjusted Nov 2026 Congress from 84.29 to 84.46 (+0.17 pts)."
+    "explanation": "Retroactive discovery of \"FY2026 Federal Government Shutdown & Appropriations Lapse Begins Oct 1, 2025 as Congress Misses Fiscal Year Deadline; DoD Furloughs Civilian Acquisition Staff and Halts New Contract Awards\" (2025-10-01); \"CRS Report RL32665 Update: Navy Force Structure and Shipbuilding Plans — Industrial Base Throughput Analysis\" (2026-08-18); \"GAO Shipbuilding Assessment Notes Stabilization in Hiring but Persistent Supply Chain Delays on CVN 79 and CVN 80\" (2025-07-15) adjusted Nov 2026 Congress from 59.39 to 56.22 (-3.17 pts)."
   },
   {
-    "id": "rev_bce6cb57e1ffb53f",
+    "id": "rev_f467f48d3edf322f",
     "timestamp": "2026-11-04T15:30:00Z",
     "runId": "run_20261104_deep_01",
     "periodId": "2026-11",
     "periodLabel": "Nov 2026",
     "audience": "navy",
-    "oldScoreCenti": 8838,
-    "newScoreCenti": 8836,
-    "deltaCenti": -2,
+    "oldScoreCenti": 6148,
+    "newScoreCenti": 4885,
+    "deltaCenti": -1263,
     "triggeringEventIds": [
+      "evt_5761988041c76e7f",
       "evt_749e7d8734563b84",
-      "evt_981f92b3c905ecb8"
+      "evt_981f92b3c905ecb8",
+      "evt_fb4be53700f55252"
     ],
     "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
-    "explanation": "Retroactive discovery of \"CRS Report RL32665 Update: Navy Force Structure and Shipbuilding Plans — Industrial Base Throughput Analysis\" (2026-08-18); \"GAO Shipbuilding Assessment Notes Stabilization in Hiring but Persistent Supply Chain Delays on CVN 79 and CVN 80\" (2025-07-15) adjusted Nov 2026 Department of the Navy from 88.38 to 88.36 (-0.02 pts)."
+    "explanation": "Retroactive discovery of \"FY2026 Federal Government Shutdown & Appropriations Lapse Begins Oct 1, 2025 as Congress Misses Fiscal Year Deadline; DoD Furloughs Civilian Acquisition Staff and Halts New Contract Awards\" (2025-10-01); \"CRS Report RL32665 Update: Navy Force Structure and Shipbuilding Plans — Industrial Base Throughput Analysis\" (2026-08-18); \"GAO Shipbuilding Assessment Notes Stabilization in Hiring but Persistent Supply Chain Delays on CVN 79 and CVN 80\" (2025-07-15); \"DOGE Round 2 DoD Services & Management Support Audit Terminates Legacy C5ISR Knowledge-Based Services Task Orders, Trimming HII Mission Technologies Backlog by $340M\" (2026-01-28) adjusted Nov 2026 Department of the Navy from 61.48 to 48.85 (-12.63 pts)."
   },
   {
-    "id": "rev_90577741be21ac77",
+    "id": "rev_f90d83d75868cd28",
+    "timestamp": "2026-11-04T15:30:00Z",
+    "runId": "run_20261104_deep_01",
+    "periodId": "2026-11",
+    "periodLabel": "Nov 2026",
+    "audience": "public",
+    "oldScoreCenti": 2764,
+    "newScoreCenti": 2333,
+    "deltaCenti": -431,
+    "triggeringEventIds": [
+      "evt_5761988041c76e7f",
+      "evt_fb4be53700f55252"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"FY2026 Federal Government Shutdown & Appropriations Lapse Begins Oct 1, 2025 as Congress Misses Fiscal Year Deadline; DoD Furloughs Civilian Acquisition Staff and Halts New Contract Awards\" (2025-10-01); \"DOGE Round 2 DoD Services & Management Support Audit Terminates Legacy C5ISR Knowledge-Based Services Task Orders, Trimming HII Mission Technologies Backlog by $340M\" (2026-01-28) adjusted Nov 2026 American Public from 27.64 to 23.33 (-4.31 pts)."
+  },
+  {
+    "id": "rev_d432287ccfb5a4a0",
     "timestamp": "2026-11-04T15:30:00Z",
     "runId": "run_20261104_deep_01",
     "periodId": "2026-11",
     "periodLabel": "Nov 2026",
     "audience": "composite",
-    "oldScoreCenti": 8466,
-    "newScoreCenti": 8469,
-    "deltaCenti": 3,
+    "oldScoreCenti": 5604,
+    "newScoreCenti": 4855,
+    "deltaCenti": -749,
     "triggeringEventIds": [
+      "evt_5761988041c76e7f",
       "evt_749e7d8734563b84",
-      "evt_981f92b3c905ecb8"
+      "evt_981f92b3c905ecb8",
+      "evt_fb4be53700f55252"
     ],
     "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
-    "explanation": "Retroactive discovery of \"CRS Report RL32665 Update: Navy Force Structure and Shipbuilding Plans — Industrial Base Throughput Analysis\" (2026-08-18); \"GAO Shipbuilding Assessment Notes Stabilization in Hiring but Persistent Supply Chain Delays on CVN 79 and CVN 80\" (2025-07-15) adjusted Nov 2026 Composite from 84.66 to 84.69 (+0.03 pts)."
+    "explanation": "Retroactive discovery of \"FY2026 Federal Government Shutdown & Appropriations Lapse Begins Oct 1, 2025 as Congress Misses Fiscal Year Deadline; DoD Furloughs Civilian Acquisition Staff and Halts New Contract Awards\" (2025-10-01); \"CRS Report RL32665 Update: Navy Force Structure and Shipbuilding Plans — Industrial Base Throughput Analysis\" (2026-08-18); \"GAO Shipbuilding Assessment Notes Stabilization in Hiring but Persistent Supply Chain Delays on CVN 79 and CVN 80\" (2025-07-15); \"DOGE Round 2 DoD Services & Management Support Audit Terminates Legacy C5ISR Knowledge-Based Services Task Orders, Trimming HII Mission Technologies Backlog by $340M\" (2026-01-28) adjusted Nov 2026 Composite from 56.04 to 48.55 (-7.49 pts)."
   }
 ]

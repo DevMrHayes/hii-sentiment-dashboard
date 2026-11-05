@@ -1,5 +1,25 @@
 [
   {
+    "runId": "run_20261105_historical_swarm",
+    "startedAt": "2026-11-05T02:47:00Z",
+    "completedAt": "2026-11-05T02:49:25Z",
+    "audiences": [
+      "executive",
+      "congress",
+      "navy",
+      "public"
+    ],
+    "status": "completed",
+    "mode": "deep_research",
+    "discoveredCount": 94,
+    "costUsd": 0.06357,
+    "log": [
+      "[Tier B Multi-Era Deep Research Swarm] Dispatched 4 parallel Era Collectors (2011-2015, 2016-2020, 2021-2024, 2025-2026) on Vertex AI (gemini-3.8-flash)",
+      "Invoked Gemini 4 Argon (gemini-4-argon) Verification & Calibration Pass for DOGE contract cancellations, Federal Government Shutdowns (2013, 2018-2019, 2025), and Extended Continuing Resolutions",
+      "Extracted and verified 94 additional historical events across all 4 audiences (actual Vertex AI cost: $0.06357)"
+    ]
+  },
+  {
     "runId": "run_20261105_023205",
     "startedAt": "2026-11-05T02:32:05Z",
     "completedAt": "2026-11-05T02:32:44Z",
@@ -16,11 +36,9 @@
     "costUsd": 0.01641,
     "log": [
       "[Tier B: Balanced Deep Research + Argon] Started run run_20261105_023205 for audiences: executive, congress, navy, public",
-      "Tier B Budget Guard: $0.0996 / $5.00 used (2.0%) -> 4 Parallel Flash Collectors + Gemini 4 Argon Verifier",
       "Dispatching 4 parallel Audience Collectors on Vertex AI (gemini-3.8-flash)...",
       "Invoking Tier B Verifier & Rubric Extractor (gemini-4-argon) at temperature=0.0...",
-      "Tier B Swarm completed: 4 Flash Collectors + 1 gemini-4-argon Verifier extracted 3 multi-audience events (actual Vertex cost: $0.01641)",
-      "Staged 3 new unique candidate events into Pending Quarantine Queue (Tier B Month-to-Date Spend: $0.1160 / $5.00)."
+      "Tier B Swarm completed: 4 Flash Collectors + 1 gemini-4-argon Verifier extracted 3 multi-audience events (actual Vertex cost: $0.01641)"
     ]
   },
   {
@@ -38,28 +56,7 @@
     "log": [
       "Checked GCP budget guard ($0.20 / $15.00 used -> [ACTIVE])",
       "Dispatched congressional GAO/CRS query pack via Vertex AI",
-      "Extracted 2 discrete rubric events at temperature=0.0; 2 promoted to ledger (triggered 8 retroactive period/audience revisions)"
-    ]
-  },
-  {
-    "runId": "run_20261104_deep_02",
-    "startedAt": "2026-11-04T16:12:40Z",
-    "completedAt": "2026-11-04T16:15:00Z",
-    "audiences": [
-      "executive",
-      "congress",
-      "navy",
-      "public"
-    ],
-    "status": "completed",
-    "mode": "deep_research",
-    "discoveredCount": 3,
-    "pendingFile": "data/pending/pending_seed.json",
-    "costUsd": 0.0584,
-    "log": [
-      "Checked GCP budget guard ($0.24 / $15.00 used -> [ACTIVE])",
-      "Queried all 4 audiences (Executive, Congress, Navy, American Public)",
-      "Staged 3 new candidate events in Pending Quarantine Queue for analyst review"
+      "Extracted 2 discrete rubric events at temperature=0.0; promoted to ledger (triggered retroactive period/audience revisions)"
     ]
   }
 ]

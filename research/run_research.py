@@ -197,7 +197,7 @@ async def run_tier_b_vertex_pipeline(
         combined_briefs = []
         for idx, res in enumerate(collector_results):
             aud_name = audiences[idx]
-            brief_text = res.get("output") or str(res.get("error", ""))
+            brief_text = res.get("result") or res.get("output") or str(res.get("error", ""))
             combined_briefs.append(f"=== {aud_name.upper()} COLLECTOR FINDINGS ===\n{brief_text}")
 
         # Stage 2: Tier B Argon Cross-Audience Verifier & Temperature-0.0 Discrete Rubric Extractor

@@ -1,0 +1,1911 @@
+[
+  {
+    "title": "HII Q3 2011 $300M Goodwill Impairment Charge & Post-Spin Margin Pressure at Ingalls",
+    "eventDate": "2011-11-09",
+    "sourceType": "earnings",
+    "sourceUrls": [
+      "https://newsroom.huntingtoningalls.com/releases/huntington-ingalls-industries-reports-third-quarter-2011-results"
+    ],
+    "summary": "Huntington Ingalls Industries booked a non-cash pre-tax goodwill impairment charge of $290 million to $300 million for its Gulf Coast operations during its first post-spinoff earnings cycle. Operating margins plunged as Ingalls struggled with post-Katrina operational recovery, LPD flight-1 cost growth, and legacy Northrop Grumman contract overruns.",
+    "keyEvent": false,
+    "impacts": [
+      {
+        "audience": "PUBLIC",
+        "direction": -1,
+        "magnitude": 4,
+        "credibility": 4,
+        "scope": "company",
+        "persistence": "year"
+      },
+      {
+        "audience": "NAVY",
+        "direction": -1,
+        "magnitude": 3,
+        "credibility": 4,
+        "scope": "program",
+        "persistence": "quarter"
+      }
+    ]
+  },
+  {
+    "title": "Navy Delivery of Amphibious Transport Dock San Diego (LPD 22) Triggers Hull Scrutiny",
+    "eventDate": "2011-12-19",
+    "sourceType": "navy_statement",
+    "sourceUrls": [
+      "https://www.secnav.navy.mil/snr",
+      "https://www.naval-technology.com/news/newshuntington-delivers-sixth-san-antonio-class-amphibious-transport-dock-to-us-navy/"
+    ],
+    "summary": "Ingalls Shipbuilding delivered San Diego (LPD 22) to the U.S. Navy following extensive INSURV remediation efforts on the San Antonio class. While marking engineering improvements over earlier hulls, NAVSEA maintained rigorous warranty withholding reserves due to recurring engineering plant reliability issues across the class.",
+    "keyEvent": false,
+    "impacts": [
+      {
+        "audience": "NAVY",
+        "direction": 1,
+        "magnitude": 2,
+        "credibility": 3,
+        "scope": "program",
+        "persistence": "quarter"
+      },
+      {
+        "audience": "PUBLIC",
+        "direction": -1,
+        "magnitude": 2,
+        "credibility": 3,
+        "scope": "company",
+        "persistence": "quarter"
+      }
+    ]
+  },
+  {
+    "title": "FY2013 President's Budget Proposes Early Cruiser Decommissionings & Delays CVN-79 John F. Kennedy by Two Years",
+    "eventDate": "2012-02-13",
+    "sourceType": "budget_request",
+    "sourceUrls": [
+      "https://comptroller.defense.gov/Budget-Materials/Budget2013/",
+      "https://crsreports.congress.gov/product/pdf/RS/RS20643"
+    ],
+    "summary": "The Obama Administration's FY2013 defense budget request proposed early retirement for seven Ticonderoga-class guided missile cruisers to absorb Budget Control Act caps. Crucially for Newport News Shipbuilding, the submission slipped the detail design and construction award for USS John F. Kennedy (CVN 79) by two fiscal years to 2013/2014, disrupting the carrier industrial workforce cadence.",
+    "keyEvent": false,
+    "impacts": [
+      {
+        "audience": "EXEC",
+        "direction": -1,
+        "magnitude": 4,
+        "credibility": 4,
+        "scope": "industry",
+        "persistence": "year"
+      },
+      {
+        "audience": "NAVY",
+        "direction": -1,
+        "magnitude": 4,
+        "credibility": 4,
+        "scope": "program",
+        "persistence": "year"
+      },
+      {
+        "audience": "CONG",
+        "direction": -1,
+        "magnitude": 3,
+        "credibility": 4,
+        "scope": "industry",
+        "persistence": "year"
+      }
+    ]
+  },
+  {
+    "title": "Ingalls Shipbuilding Reaches 5-Year Master Collective Bargaining Agreement with Metal Trades Council",
+    "eventDate": "2012-03-11",
+    "sourceType": "corporate_action",
+    "sourceUrls": [
+      "https://newsroom.huntingtoningalls.com/releases/ingalls-shipbuilding-union-approves-contract"
+    ],
+    "summary": "Unionized workers represented by the Pascagoula Metal Trades Council ratified a new five-year collective bargaining agreement with Ingalls Shipbuilding. The resolution removed a critical strike overhang that threatened production baselines for DDG 51 and LHA programs during fragile post-spin margin recovery.",
+    "keyEvent": false,
+    "impacts": [
+      {
+        "audience": "PUBLIC",
+        "direction": 1,
+        "magnitude": 3,
+        "credibility": 4,
+        "scope": "company",
+        "persistence": "year"
+      },
+      {
+        "audience": "NAVY",
+        "direction": 1,
+        "magnitude": 3,
+        "credibility": 3,
+        "scope": "company",
+        "persistence": "year"
+      }
+    ]
+  },
+  {
+    "title": "Continuing Resolution (P.L. 112-175) Freezes FY2013 New-Start Shipbuilding Authorities & Threatens Sequestration",
+    "eventDate": "2012-09-28",
+    "sourceType": "legislation",
+    "sourceUrls": [
+      "https://www.congress.gov/bill/112th-congress/house-joint-resolution/117",
+      "https://crsreports.congress.gov/product/pdf/R/R42775"
+    ],
+    "summary": "President Obama signed Public Law 112-175, funding the federal government under a six-month continuing resolution through March 2013. The CR restricted naval procurement by prohibiting new-start procurement programs, freezing multi-year contracts, and amplifying sequestration warnings under the 2011 Budget Control Act.",
+    "keyEvent": false,
+    "impacts": [
+      {
+        "audience": "CONG",
+        "direction": -1,
+        "magnitude": 3,
+        "credibility": 4,
+        "scope": "industry",
+        "persistence": "quarter"
+      },
+      {
+        "audience": "EXEC",
+        "direction": -1,
+        "magnitude": 3,
+        "credibility": 4,
+        "scope": "macro",
+        "persistence": "quarter"
+      },
+      {
+        "audience": "NAVY",
+        "direction": -1,
+        "magnitude": 4,
+        "credibility": 4,
+        "scope": "industry",
+        "persistence": "quarter"
+      }
+    ]
+  },
+  {
+    "title": "Navy Defers USS Abraham Lincoln (CVN 72) Refueling Overhaul at Newport News Due to Continuing Resolution & Budget Impasse",
+    "eventDate": "2013-02-07",
+    "sourceType": "navy_statement",
+    "sourceUrls": [
+      "https://www.navy.mil/Press-Office/News-Stories/Article/2253818/refueling-and-complex-overhaul-rcoh/",
+      "https://news.usni.org/2013/02/08/navy-delays-lincoln-rcoh"
+    ],
+    "summary": "The Department of the Navy announced the indefinite postponement of the multi-billion-dollar Refueling and Complex Overhaul (RCOH) for USS Abraham Lincoln (CVN 72) at Newport News Shipbuilding. CNO Admiral Jonathan Greenert cited lack of an enacted FY2013 appropriations bill and the looming sequester, forcing HII to redeploy or idle nuclear shipbuilders.",
+    "keyEvent": false,
+    "impacts": [
+      {
+        "audience": "NAVY",
+        "direction": -1,
+        "magnitude": 4,
+        "credibility": 4,
+        "scope": "program",
+        "persistence": "quarter"
+      },
+      {
+        "audience": "CONG",
+        "direction": -1,
+        "magnitude": 3,
+        "credibility": 4,
+        "scope": "program",
+        "persistence": "quarter"
+      },
+      {
+        "audience": "PUBLIC",
+        "direction": -1,
+        "magnitude": 4,
+        "credibility": 4,
+        "scope": "company",
+        "persistence": "quarter"
+      }
+    ]
+  },
+  {
+    "title": "Navy Restores and Awards USS Abraham Lincoln (CVN 72) $2.6B RCOH Execution Contract After Reprogramming",
+    "eventDate": "2013-03-29",
+    "sourceType": "contract_award",
+    "sourceUrls": [
+      "https://www.defense.gov/News/Contracts/Contract/Article/606558/",
+      "https://newsroom.huntingtoningalls.com/releases/huntington-ingalls-industries-awarded-2-6-billion-refueling-and-complex-overhaul-contract-for-uss-abraham-lincoln-cvn-72"
+    ],
+    "summary": "NAVSEA awarded HII Newport News Shipbuilding a $2.6 billion cost-plus-incentive-fee contract for the final execution of the CVN 72 RCOH. Award finalization followed congressional passage of the Consolidated and Further Continuing Appropriations Act of 2013, avoiding severe nuclear engineering furloughs.",
+    "keyEvent": false,
+    "impacts": [
+      {
+        "audience": "NAVY",
+        "direction": 1,
+        "magnitude": 4,
+        "credibility": 4,
+        "scope": "program",
+        "persistence": "year"
+      },
+      {
+        "audience": "PUBLIC",
+        "direction": 1,
+        "magnitude": 4,
+        "credibility": 4,
+        "scope": "company",
+        "persistence": "year"
+      },
+      {
+        "audience": "CONG",
+        "direction": 1,
+        "magnitude": 3,
+        "credibility": 4,
+        "scope": "program",
+        "persistence": "year"
+      }
+    ]
+  },
+  {
+    "title": "Navy Awards Multi-Year Procurement (MYP) Contracts for 9 DDG-51 Destroyers Including Ingalls Allocation",
+    "eventDate": "2013-06-03",
+    "sourceType": "contract_award",
+    "sourceUrls": [
+      "https://www.defense.gov/News/Contracts/Contract/Article/606822/",
+      "https://newsroom.huntingtoningalls.com/releases/ingalls-shipbuilding-awarded-multibillion-dollar-destroyer-contract"
+    ],
+    "summary": "NAVSEA finalized the FY2013-FY2017 Flight IIA Arleigh Burke multi-year procurement, awarding Ingalls a initial $3.33 billion contract for five DDG 51 destroyers. The multi-year procurement locked in shipyard volume and fixed overhead absorption through the peak era of sequestration pressures.",
+    "keyEvent": false,
+    "impacts": [
+      {
+        "audience": "NAVY",
+        "direction": 1,
+        "magnitude": 4,
+        "credibility": 4,
+        "scope": "program",
+        "persistence": "structural"
+      },
+      {
+        "audience": "PUBLIC",
+        "direction": 1,
+        "magnitude": 4,
+        "credibility": 4,
+        "scope": "company",
+        "persistence": "structural"
+      }
+    ]
+  },
+  {
+    "title": "Newport News Shipbuilding Delivers Fast-Attack Submarine USS Minnesota (SSN 783) 11 Months Ahead of Schedule",
+    "eventDate": "2013-06-06",
+    "sourceType": "navy_statement",
+    "sourceUrls": [
+      "https://newsroom.huntingtoningalls.com/releases/huntington-ingalls-industries-delivers-virginia-class-submarine-minnesota-ssn-783-to-u-s-navy"
+    ],
+    "summary": "Huntington Ingalls delivered Virginia-class submarine Minnesota (SSN 783) to the U.S. Navy 11 months ahead of the contractual delivery date and under target budget. The milestone demonstrated robust co-production efficiency with General Dynamics Electric Boat, counterbalancing naval scrutiny over carrier performance.",
+    "keyEvent": false,
+    "impacts": [
+      {
+        "audience": "NAVY",
+        "direction": 1,
+        "magnitude": 3,
+        "credibility": 4,
+        "scope": "program",
+        "persistence": "quarter"
+      },
+      {
+        "audience": "PUBLIC",
+        "direction": 1,
+        "magnitude": 3,
+        "credibility": 3,
+        "scope": "company",
+        "persistence": "quarter"
+      }
+    ]
+  },
+  {
+    "title": "GAO Report (GAO-13-695) Warns Ford-Class Lead Ship (CVN 78) Cost Growth Exceeds $2.3B Above Cap with EMALS/AAG Reliability Risks",
+    "eventDate": "2013-07-24",
+    "sourceType": "gao_report",
+    "sourceUrls": [
+      "https://www.gao.gov/products/gao-13-695"
+    ],
+    "summary": "The Government Accountability Office issued a critical report documenting that CVN 78 procurement costs had grown 22 percent to $12.8 billion, exceeding statutory cost caps by $2.3 billion. GAO singled out immature dual-band radar, advanced arrestor gear (AAG), and EMALS technologies, warning of severe follow-on cost escalation for CVN 79.",
+    "keyEvent": false,
+    "impacts": [
+      {
+        "audience": "CONG",
+        "direction": -1,
+        "magnitude": 4,
+        "credibility": 4,
+        "scope": "program",
+        "persistence": "year"
+      },
+      {
+        "audience": "NAVY",
+        "direction": -1,
+        "magnitude": 4,
+        "credibility": 4,
+        "scope": "program",
+        "persistence": "year"
+      },
+      {
+        "audience": "PUBLIC",
+        "direction": -1,
+        "magnitude": 3,
+        "credibility": 4,
+        "scope": "company",
+        "persistence": "year"
+      }
+    ]
+  },
+  {
+    "title": "16-Day U.S. Federal Government Shutdown Furloughs DoD Civilian Inspectors/SUPSHIP and Disrupts Defense Contractor Cash Flows",
+    "eventDate": "2013-10-01",
+    "sourceType": "legislation",
+    "sourceUrls": [
+      "https://www.crs.gov/Reports/R43338",
+      "https://www.gao.gov/products/gao-15-86"
+    ],
+    "summary": "The federal government entered a 16-day partial shutdown after Congress failed to pass FY2014 appropriations, leading to the immediate furlough of thousands of civilian Pentagon workers. Shipyard operations at Newport News and Ingalls faced major disruption as SUPSHIP quality inspectors and program milestone certifiers were kept away from dry docks.",
+    "keyEvent": true,
+    "impacts": [
+      {
+        "audience": "CONG",
+        "direction": -1,
+        "magnitude": 5,
+        "credibility": 4,
+        "scope": "macro",
+        "persistence": "quarter"
+      },
+      {
+        "audience": "EXEC",
+        "direction": -1,
+        "magnitude": 5,
+        "credibility": 4,
+        "scope": "macro",
+        "persistence": "quarter"
+      },
+      {
+        "audience": "NAVY",
+        "direction": -1,
+        "magnitude": 4,
+        "credibility": 4,
+        "scope": "industry",
+        "persistence": "quarter"
+      },
+      {
+        "audience": "PUBLIC",
+        "direction": -1,
+        "magnitude": 4,
+        "credibility": 4,
+        "scope": "industry",
+        "persistence": "quarter"
+      }
+    ]
+  },
+  {
+    "title": "Christening of USS Gerald R. Ford (CVN 78) at Newport News Amid Cost Controversy",
+    "eventDate": "2013-11-09",
+    "sourceType": "navy_statement",
+    "sourceUrls": [
+      "https://newsroom.huntingtoningalls.com/releases/photo-release-huntington-ingalls-industries-christens-aircraft-carrier-gerald-r-ford-cvn-78"
+    ],
+    "summary": "Newport News Shipbuilding formally christened lead carrier Gerald R. Ford (CVN 78) with ship sponsor Susan Ford Bales dry-dock side. The ceremony marked structural completion and launch of the hull into the James River while highlighting high construction costs that continued to spark debate in Congress.",
+    "keyEvent": false,
+    "impacts": [
+      {
+        "audience": "PUBLIC",
+        "direction": 1,
+        "magnitude": 2,
+        "credibility": 3,
+        "scope": "program",
+        "persistence": "quarter"
+      },
+      {
+        "audience": "NAVY",
+        "direction": 1,
+        "magnitude": 2,
+        "credibility": 3,
+        "scope": "program",
+        "persistence": "quarter"
+      }
+    ]
+  },
+  {
+    "title": "Bipartisan Budget Act of 2013 (Murray-Ryan) Partially Relieves FY14-FY15 Sequestration Caps and Restores CVN-72 RCOH Funding",
+    "eventDate": "2013-12-26",
+    "sourceType": "legislation",
+    "sourceUrls": [
+      "https://www.congress.gov/bill/113th-congress/house-joint-resolution/59",
+      "https://crsreports.congress.gov/product/pdf/R/R43343"
+    ],
+    "summary": "President Obama enacted the Bipartisan Budget Act of 2013 (P.L. 113-67), negotiated by Sen. Patty Murray and Rep. Paul Ryan, establishing statutory defense discretionary caps for FY14 and FY15. The legislation eliminated short-term sequestration rollbacks, stabilizing funding lines for carrier overhauls and procurement lines at HII.",
+    "keyEvent": false,
+    "impacts": [
+      {
+        "audience": "CONG",
+        "direction": 1,
+        "magnitude": 4,
+        "credibility": 4,
+        "scope": "macro",
+        "persistence": "year"
+      },
+      {
+        "audience": "EXEC",
+        "direction": 1,
+        "magnitude": 4,
+        "credibility": 4,
+        "scope": "macro",
+        "persistence": "year"
+      },
+      {
+        "audience": "NAVY",
+        "direction": 1,
+        "magnitude": 4,
+        "credibility": 4,
+        "scope": "industry",
+        "persistence": "year"
+      }
+    ]
+  },
+  {
+    "title": "FY2015 President's Budget Threatens to Inactivate USS George Washington (CVN 73) Instead of Funding Newport News RCOH",
+    "eventDate": "2014-03-04",
+    "sourceType": "budget_request",
+    "sourceUrls": [
+      "https://comptroller.defense.gov/Budget-Materials/Budget2015/",
+      "https://news.usni.org/2014/03/04/fy-2015-budget-navy-leave-carrier-fleet-unfunded-rcoh"
+    ],
+    "summary": "The Department of Defense FY2015 budget request failed to fund the core mid-life nuclear refueling of USS George Washington (CVN 73), warning the carrier would be retired early if BCA sequestration returned in FY2016. The proposed de-facto fleet cut to 10 carriers sent shockwaves through Hampton Roads, threatening thousands of advanced nuclear fabrication jobs.",
+    "keyEvent": true,
+    "impacts": [
+      {
+        "audience": "EXEC",
+        "direction": -1,
+        "magnitude": 5,
+        "credibility": 4,
+        "scope": "program",
+        "persistence": "year"
+      },
+      {
+        "audience": "NAVY",
+        "direction": -1,
+        "magnitude": 4,
+        "credibility": 4,
+        "scope": "program",
+        "persistence": "year"
+      },
+      {
+        "audience": "CONG",
+        "direction": -1,
+        "magnitude": 5,
+        "credibility": 4,
+        "scope": "program",
+        "persistence": "year"
+      },
+      {
+        "audience": "PUBLIC",
+        "direction": -1,
+        "magnitude": 4,
+        "credibility": 4,
+        "scope": "company",
+        "persistence": "year"
+      }
+    ]
+  },
+  {
+    "title": "Navy Awards Historic $17.6B Virginia-Class Block IV Submarine Contract to General Dynamics and HII",
+    "eventDate": "2014-04-28",
+    "sourceType": "contract_award",
+    "sourceUrls": [
+      "https://www.defense.gov/News/Contracts/Contract/Article/608240/",
+      "https://newsroom.huntingtoningalls.com/releases/huntington-ingalls-industries-participates-in-historic-virginia-class-attack-submarine-award"
+    ],
+    "summary": "NAVSEA awarded a multi-year $17.6 billion contract for 10 Virginia-class Block IV submarines to General Dynamics Electric Boat, with HII Newport News Shipbuilding sharing roughly half the value as co-builder. The contract reduced planned design changes and anchored HII submarine construction revenue out toward 2023.",
+    "keyEvent": false,
+    "impacts": [
+      {
+        "audience": "NAVY",
+        "direction": 1,
+        "magnitude": 5,
+        "credibility": 4,
+        "scope": "industry",
+        "persistence": "structural"
+      },
+      {
+        "audience": "PUBLIC",
+        "direction": 1,
+        "magnitude": 5,
+        "credibility": 4,
+        "scope": "company",
+        "persistence": "structural"
+      },
+      {
+        "audience": "CONG",
+        "direction": 1,
+        "magnitude": 3,
+        "credibility": 4,
+        "scope": "program",
+        "persistence": "structural"
+      }
+    ]
+  },
+  {
+    "title": "HII Completes Acquisition of UniversalPegasus International to Expand into Oil & Gas Engineering",
+    "eventDate": "2014-05-14",
+    "sourceType": "corporate_action",
+    "sourceUrls": [
+      "https://newsroom.huntingtoningalls.com/releases/huntington-ingalls-industries-completes-acquisition-of-universalpegasus-international"
+    ],
+    "summary": "Huntington Ingalls acquired UniversalPegasus International (UPI) for approximately $100 million in cash to seed a non-defense commercial energy segment. Closing right before global crude markets collapsed, the unhedged offshore engineering play exposed corporate balance-sheet capital to volatile oil-field markets.",
+    "keyEvent": false,
+    "impacts": [
+      {
+        "audience": "PUBLIC",
+        "direction": -1,
+        "magnitude": 3,
+        "credibility": 4,
+        "scope": "company",
+        "persistence": "year"
+      }
+    ]
+  },
+  {
+    "title": "Ingalls Delivers Lead Amphibious Assault Ship USS America (LHA 6) After Protracted Delivery Delays",
+    "eventDate": "2014-07-11",
+    "sourceType": "navy_statement",
+    "sourceUrls": [
+      "https://newsroom.huntingtoningalls.com/releases/photo-release-ingalls-shipbuilding-delivers-amphibious-assault-ship-america-lha-6-to-u-s-navy"
+    ],
+    "summary": "Ingalls Shipbuilding formally delivered the aviation-centric amphibious assault ship USS America (LHA 6) to the Navy in Pascagoula. Delivery followed years of design updates to support MV-22 and F-35B operations, stabilizing the Ingalls large-deck amphibious backlog.",
+    "keyEvent": false,
+    "impacts": [
+      {
+        "audience": "NAVY",
+        "direction": 1,
+        "magnitude": 3,
+        "credibility": 4,
+        "scope": "program",
+        "persistence": "quarter"
+      },
+      {
+        "audience": "PUBLIC",
+        "direction": 1,
+        "magnitude": 2,
+        "credibility": 3,
+        "scope": "company",
+        "persistence": "quarter"
+      }
+    ]
+  },
+  {
+    "title": "FY2015 Continuing Resolution Delays Appropriations; Congress Rejects CVN-73 Retirement and Funds RCOH",
+    "eventDate": "2014-10-01",
+    "sourceType": "legislation",
+    "sourceUrls": [
+      "https://www.congress.gov/bill/113th-congress/house-joint-resolution/124",
+      "https://news.usni.org/2014/12/04/cromnibus-bill-spares-carrier-george-washington-funds-overhaul"
+    ],
+    "summary": "Congress passed a short-term Continuing Resolution (P.L. 113-164) that preserved naval shipbuilding lines and prevented premature carrier retirement. Lawmakers rejected the Pentagon's CVN 73 inactivation, ultimately adding over $750 million in advance procurement to fully preserve the ship's mid-life RCOH.",
+    "keyEvent": false,
+    "impacts": [
+      {
+        "audience": "CONG",
+        "direction": 1,
+        "magnitude": 4,
+        "credibility": 4,
+        "scope": "program",
+        "persistence": "year"
+      },
+      {
+        "audience": "NAVY",
+        "direction": 1,
+        "magnitude": 3,
+        "credibility": 4,
+        "scope": "program",
+        "persistence": "year"
+      },
+      {
+        "audience": "EXEC",
+        "direction": -1,
+        "magnitude": 3,
+        "credibility": 4,
+        "scope": "macro",
+        "persistence": "year"
+      }
+    ]
+  },
+  {
+    "title": "Oil Price Collapse Triggers UniversalPegasus Impairment & Energy Segment Restructuring at HII",
+    "eventDate": "2015-02-11",
+    "sourceType": "earnings",
+    "sourceUrls": [
+      "https://newsroom.huntingtoningalls.com/releases/huntington-ingalls-industries-reports-fourth-quarter-and-full-year-2014-results"
+    ],
+    "summary": "Huntington Ingalls reported Q4 and full-year 2014 financial results burdened by operational write-downs and goodwill impairments across its newly created Energy segment. Crude oil dropped below $50 per barrel, leading management to initiate a fast-track cost containment and strategic restructuring inside the UniversalPegasus subsidiary.",
+    "keyEvent": false,
+    "impacts": [
+      {
+        "audience": "PUBLIC",
+        "direction": -1,
+        "magnitude": 3,
+        "credibility": 4,
+        "scope": "company",
+        "persistence": "year"
+      }
+    ]
+  },
+  {
+    "title": "Navy Awards $3.35B Detail Design and Construction Contract for Carrier John F. Kennedy (CVN 79)",
+    "eventDate": "2015-06-05",
+    "sourceType": "contract_award",
+    "sourceUrls": [
+      "https://www.defense.gov/News/Contracts/Contract/Article/604561/",
+      "https://newsroom.huntingtoningalls.com/releases/huntington-ingalls-industries-awarded-construction-contract-for-aircraft-carrier-john-f-kennedy-cvn-79"
+    ],
+    "summary": "NAVSEA awarded Newport News Shipbuilding a $3.35 billion fixed-price incentive contract modification for detail design and construction of John F. Kennedy (CVN 79). The award set a firm target cost, compelling HII to incorporate modular manufacturing lessons learned from CVN 78.",
+    "keyEvent": false,
+    "impacts": [
+      {
+        "audience": "NAVY",
+        "direction": 1,
+        "magnitude": 4,
+        "credibility": 4,
+        "scope": "program",
+        "persistence": "structural"
+      },
+      {
+        "audience": "PUBLIC",
+        "direction": 1,
+        "magnitude": 4,
+        "credibility": 4,
+        "scope": "company",
+        "persistence": "structural"
+      }
+    ]
+  },
+  {
+    "title": "Senate Armed Services Committee Holds Hearing Blast on CVN-78 Gerald R. Ford Cost Overruns and Testing Delays",
+    "eventDate": "2015-06-15",
+    "sourceType": "hearing",
+    "sourceUrls": [
+      "https://www.armed-services.senate.gov/hearings/15-06-15-carrier-acquisition-programs",
+      "https://www.congress.gov/114/chrg/CHRG-114shrg97541/CHRG-114shrg97541.pdf"
+    ],
+    "summary": "Senate Armed Services Committee Chairman John McCain convened a public hearing probing the $12.9 billion price tag of lead carrier Gerald R. Ford (CVN 78). McCain criticized both the Navy and HII leadership over concurrent development and persistent reliability failures in the advanced arresting gear, threatening further statutory cost caps on CVN 79.",
+    "keyEvent": true,
+    "impacts": [
+      {
+        "audience": "CONG",
+        "direction": -1,
+        "magnitude": 5,
+        "credibility": 4,
+        "scope": "program",
+        "persistence": "year"
+      },
+      {
+        "audience": "NAVY",
+        "direction": -1,
+        "magnitude": 4,
+        "credibility": 4,
+        "scope": "program",
+        "persistence": "year"
+      },
+      {
+        "audience": "PUBLIC",
+        "direction": -1,
+        "magnitude": 4,
+        "credibility": 4,
+        "scope": "company",
+        "persistence": "quarter"
+      }
+    ]
+  },
+  {
+    "title": "FY2016 Continuing Resolution Enacted Amid Budget Cap Standoff; President Obama Vetoes Initial NDAA Over OCO Gimmick",
+    "eventDate": "2015-09-30",
+    "sourceType": "legislation",
+    "sourceUrls": [
+      "https://www.congress.gov/bill/114th-congress/house-bill/719",
+      "https://www.whitehouse.gov/briefing-room/legislation/2015/10/22/veto-message-ndaa"
+    ],
+    "summary": "President Obama signed a short-term Continuing Resolution (P.L. 114-53) to keep agencies open while budget negotiations stalled, followed by a formal veto on October 22 of the FY2016 National Defense Authorization Act. Obama vetoed the bill because it shifted base procurement into the uncapped Overseas Contingency Operations (OCO) account, keeping naval capital planning in flux.",
+    "keyEvent": false,
+    "impacts": [
+      {
+        "audience": "EXEC",
+        "direction": -1,
+        "magnitude": 4,
+        "credibility": 4,
+        "scope": "macro",
+        "persistence": "quarter"
+      },
+      {
+        "audience": "CONG",
+        "direction": -1,
+        "magnitude": 4,
+        "credibility": 4,
+        "scope": "industry",
+        "persistence": "quarter"
+      },
+      {
+        "audience": "NAVY",
+        "direction": -1,
+        "magnitude": 4,
+        "credibility": 4,
+        "scope": "industry",
+        "persistence": "quarter"
+      }
+    ]
+  },
+  {
+    "id": "hii-2016-06-28",
+    "date": "2016-06-28",
+    "headline": "DOT&E Memo Warns CVN-78 Delivery Unviable Due to Critical System Deficiencies",
+    "summary": "Pentagon Operational Test Chief (DOT&E) J. Michael Gilmore issues an internal memorandum warning that critical systems aboard lead ship USS Gerald R. Ford (CVN 78)\u2014including Advanced Arresting Gear (AAG), Electromagnetic Aircraft Launch System (EMALS), Dual Band Radar (DBR), and Advanced Weapons Elevators (AWE)\u2014remain fundamentally unreliable, rendering the planned July delivery unrealistic.",
+    "starred": true,
+    "impacts": {
+      "EXEC": 0,
+      "CONG": -1,
+      "NAVY": -1,
+      "PUBLIC": -1
+    }
+  },
+  {
+    "id": "hii-2016-09-29",
+    "date": "2016-09-29",
+    "headline": "Enactment of FY2017 Continuing Resolution Freezes New Shipbuilding Starts",
+    "summary": "Congress passes H.R. 5325, enacting a stopgap Continuing Resolution (CR) funding the federal government through April 2017. The seven-month statutory freeze restricts the Navy from executing production rate increases, initiates programmatic friction on advance procurement, and temporarily halts new-start naval construction contracts across Newport News and Ingalls shipyards.",
+    "starred": false,
+    "impacts": {
+      "EXEC": 0,
+      "CONG": -1,
+      "NAVY": -1,
+      "PUBLIC": 0
+    }
+  },
+  {
+    "id": "hii-2016-12-07",
+    "date": "2016-12-07",
+    "headline": "Ingalls Delivers Guided Missile Destroyer John Finn (DDG 113) After Program Restart",
+    "summary": "Huntington Ingalls Industries' Ingalls Shipbuilding division delivers the Aegis guided missile destroyer John Finn (DDG 113) to the U.S. Navy. The delivery represents the successful operational resumption of the Arleigh Burke-class construction line in Pascagoula following the Navy's strategic truncation of the Zumwalt (DDG 1000) program.",
+    "starred": false,
+    "impacts": {
+      "EXEC": 1,
+      "CONG": 1,
+      "NAVY": 1,
+      "PUBLIC": 1
+    }
+  },
+  {
+    "id": "hii-2017-05-31",
+    "date": "2017-05-31",
+    "headline": "Newport News Delivers USS Gerald R. Ford (CVN 78) to U.S. Navy",
+    "summary": "Newport News Shipbuilding formally delivers the lead supercarrier USS Gerald R. Ford (CVN 78) to the U.S. Navy following the completion of acceptance trials, ending an extended construction phase marked by first-in-class integration challenges and establishing the technical baseline for the Navy's nuclear aircraft carrier fleet.",
+    "starred": false,
+    "impacts": {
+      "EXEC": 1,
+      "CONG": 1,
+      "NAVY": 1,
+      "PUBLIC": 1
+    }
+  },
+  {
+    "id": "hii-2017-06-13",
+    "date": "2017-06-13",
+    "headline": "GAO Report Audits CVN-79 Cost Basis and Cites Premature Contract Award Risk",
+    "summary": "The Government Accountability Office publishes report GAO-17-575, concluding that the Navy's budget baseline for John F. Kennedy (CVN 79) remains fundamentally understated. The audit criticizes the detail design and construction contract award timing, asserting that deferred design iterations from CVN-78 and unresolved technology maturities risk additional cost-cap increases.",
+    "starred": false,
+    "impacts": {
+      "EXEC": 0,
+      "CONG": -1,
+      "NAVY": -1,
+      "PUBLIC": 0
+    }
+  },
+  {
+    "id": "hii-2017-08-24",
+    "date": "2017-08-24",
+    "headline": "Newport News Awarded $2.8B RCOH Contract for USS John C. Stennis (CVN 74)",
+    "summary": "The Department of Defense awards Huntington Ingalls Industries an advance planning and execution framework modification valued up to $2.8 billion for the Refueling and Complex Overhaul (RCOH) of the Nimitz-class carrier USS John C. Stennis (CVN 74), reinforcing long-term industrial backlog stability at Newport News.",
+    "starred": false,
+    "impacts": {
+      "EXEC": 1,
+      "CONG": 1,
+      "NAVY": 1,
+      "PUBLIC": 1
+    }
+  },
+  {
+    "id": "hii-2017-10-09",
+    "date": "2017-10-09",
+    "headline": "Hurricane Nate Makes Gulf Coast Landfall, Forcing Temporary Ingalls Operations Standdown",
+    "summary": "Category 1 Hurricane Nate makes landfall near the mouth of the Mississippi River and moves across the Mississippi Gulf Coast, causing facility disruptions, regional infrastructure damage, and localized tidal flooding at Ingalls Shipbuilding in Pascagoula. Operations are halted, resulting in shift cancellations and production schedule compression.",
+    "starred": false,
+    "impacts": {
+      "EXEC": 0,
+      "CONG": 0,
+      "NAVY": -1,
+      "PUBLIC": -1
+    }
+  },
+  {
+    "id": "hii-2018-01-20",
+    "date": "2018-01-20",
+    "headline": "Government Shutdown and Consecutive FY2018 CRs Stall Naval Acquisition Milestones",
+    "summary": "A federal government shutdown combined with sequential Continuing Resolutions suspends critical execution milestones across major Navy acquisition programs. The budgetary gridlock halts rate adjustments and advance procurement contracting across HII yards until finalization of the Consolidated Appropriations Act in March 2018.",
+    "starred": true,
+    "impacts": {
+      "EXEC": -1,
+      "CONG": -1,
+      "NAVY": -1,
+      "PUBLIC": -1
+    }
+  },
+  {
+    "id": "hii-2018-05-08",
+    "date": "2018-05-08",
+    "headline": "USS Gerald R. Ford Aborts Sea Trials Following Main Thrust Bearing Mechanical Failure",
+    "summary": "Lead supercarrier USS Gerald R. Ford (CVN 78) experiences a critical propulsion plant casualty during operational sea trials attributed to a manufacturing defect in a main thrust bearing. The carrier is forced to return to Newport News Shipbuilding ahead of schedule, expanding the timeline and scope of its upcoming Post-Shakedown Availability (PSA).",
+    "starred": true,
+    "impacts": {
+      "EXEC": 0,
+      "CONG": -1,
+      "NAVY": -1,
+      "PUBLIC": -1
+    }
+  },
+  {
+    "id": "hii-2018-09-27",
+    "date": "2018-09-27",
+    "headline": "Navy Awards Ingalls $5.1B Multi-Year Procurement Contract for Six Flight III DDGs",
+    "summary": "Naval Sea Systems Command awards Ingalls Shipbuilding a $5.1 billion multi-year procurement (MYP) contract for the construction of six Arleigh Burke-class Flight III guided missile destroyers (DDG 51), anchoring baseline throughput and integrating the AN/SPY-6(V)1 Air and Missile Defense Radar at Pascagoula.",
+    "starred": false,
+    "impacts": {
+      "EXEC": 1,
+      "CONG": 1,
+      "NAVY": 1,
+      "PUBLIC": 1
+    }
+  },
+  {
+    "id": "hii-2018-12-22",
+    "date": "2018-12-22",
+    "headline": "Historic 35-Day Federal Shutdown Disrupts Coast Guard Outlays and Facility Workflows",
+    "summary": "The 35-day partial shutdown of the federal government lapses funding for the Department of Homeland Security, suspending progress payments, procurement authorizations, and design approvals for the Legend-class National Security Cutter (NSC) program at Ingalls Shipbuilding while introducing administrative delays across military port authorities.",
+    "starred": true,
+    "impacts": {
+      "EXEC": -1,
+      "CONG": -1,
+      "NAVY": -1,
+      "PUBLIC": -1
+    }
+  },
+  {
+    "id": "hii-2019-01-31",
+    "date": "2019-01-31",
+    "headline": "Navy Finalizes Block-Buy Contract with Newport News for CVN 80 and CVN 81",
+    "summary": "The Department of the Navy executes a dual-ship construction contract modification with Newport News Shipbuilding for Enterprise (CVN 80) and Doris Miller (CVN 81). The structural block-buy generates an estimated $4 billion in fleet cost savings while stabilizing component procurement across the nuclear shipbuilding supply chain.",
+    "starred": false,
+    "impacts": {
+      "EXEC": 1,
+      "CONG": 1,
+      "NAVY": 1,
+      "PUBLIC": 1
+    }
+  },
+  {
+    "id": "hii-2019-02-26",
+    "date": "2019-02-26",
+    "headline": "FY2020 Budget Request Proposes Cancellation of Mid-Life RCOH for USS Harry S. Truman",
+    "summary": "The Pentagon's FY2020 budget submission details a cost-saving initiative to cancel the scheduled mid-life Refueling and Complex Overhaul of USS Harry S. Truman (CVN 75), retiring the nuclear carrier approximately 25 years early. The proposal threatens substantial direct shipyard labor volume and supply chain commitments at Newport News.",
+    "starred": true,
+    "impacts": {
+      "EXEC": -1,
+      "CONG": -1,
+      "NAVY": -1,
+      "PUBLIC": -1
+    }
+  },
+  {
+    "id": "hii-2019-04-30",
+    "date": "2019-04-30",
+    "headline": "Executive Branch Reverses Truman Retirement Proposal Following Congressional Opposition",
+    "summary": "Following unanimous bipartisan opposition from the House and Senate Armed Services Committees, the White House officially reverses its decision to retire USS Harry S. Truman (CVN 75). Vice President Mike Pence confirms the policy reversal during an address at Newport News Shipbuilding, restoring the multi-billion-dollar RCOH industrial baseline.",
+    "starred": false,
+    "impacts": {
+      "EXEC": 1,
+      "CONG": 1,
+      "NAVY": 1,
+      "PUBLIC": 1
+    }
+  },
+  {
+    "id": "hii-2019-10-22",
+    "date": "2019-10-22",
+    "headline": "SECNAV and SASC Condemn Newport News Delivery Timeline for Ford Advanced Weapons Elevators",
+    "summary": "Secretary of the Navy Richard V. Spencer and members of the Senate Armed Services Committee publicly fault Huntington Ingalls over persistent technical defects and timeline growth on the 11 Advanced Weapons Elevators (AWE) aboard USS Gerald R. Ford. With only 4 elevators certified operational, the ship's Post-Shakedown Availability (PSA) reflects a cumulative 15-month schedule delay.",
+    "starred": true,
+    "impacts": {
+      "EXEC": 0,
+      "CONG": -1,
+      "NAVY": -1,
+      "PUBLIC": -1
+    }
+  },
+  {
+    "id": "hii-2019-11-07",
+    "date": "2019-11-07",
+    "headline": "HII Reports Q3 2019 Earnings Miss Driven by Virginia Block IV Margin Compression",
+    "summary": "Huntington Ingalls Industries discloses Q3 2019 financial results below market consensus, driven by operational write-downs and margin contraction at Newport News. Corporate leadership cites severe labor-learning curve headwinds on Virginia-class Block IV attack submarines alongside overhead inefficiencies tied to the extended post-delivery schedule on CVN-78.",
+    "starred": false,
+    "impacts": {
+      "EXEC": 0,
+      "CONG": 0,
+      "NAVY": -1,
+      "PUBLIC": -1
+    }
+  },
+  {
+    "id": "hii-2019-12-02",
+    "date": "2019-12-02",
+    "headline": "Navy Awards $22.2B Multi-Year Contract for Nine Virginia-Class Block V Submarines",
+    "summary": "Naval Sea Systems Command awards prime contractor General Dynamics Electric Boat and subcontractor Newport News Shipbuilding a $22.2 billion fixed-price incentive contract for nine Block V Virginia-class submarines, integrating the Virginia Payload Module (VPM) across eight hulls to augment undersea strike capacity.",
+    "starred": false,
+    "impacts": {
+      "EXEC": 1,
+      "CONG": 1,
+      "NAVY": 1,
+      "PUBLIC": 1
+    }
+  },
+  {
+    "id": "hii-2020-02-28",
+    "date": "2020-02-28",
+    "headline": "Ingalls Delivers Amphibious Assault Ship Tripoli (LHA 7) Following Damage Remediation",
+    "summary": "Ingalls Shipbuilding delivers the America-class amphibious assault ship Tripoli (LHA 7) to the U.S. Navy. The delivery formalizes transfer following remediation of technical defects and repair of a January 2018 shipboard compartment fire, providing expanded aviation capability designed to support Marine Corps F-35B operations.",
+    "starred": false,
+    "impacts": {
+      "EXEC": 1,
+      "CONG": 1,
+      "NAVY": 1,
+      "PUBLIC": 1
+    }
+  },
+  {
+    "id": "hii-2020-03-25",
+    "date": "2020-03-25",
+    "headline": "COVID-19 Wave Strikes Shipyards, Causing Labor Absenteeism and Capital Market Selloff",
+    "summary": "The rapid expansion of the COVID-19 pandemic severely impacts production lines at Newport News and Ingalls, driving shipyard absenteeism above 25% and prompting union petitions for operational closures. HII shares drop 32% during the March equity liquidation as manufacturing disruption, quarantine protocols, and supply chain bottlenecks materialize.",
+    "starred": true,
+    "impacts": {
+      "EXEC": -1,
+      "CONG": -1,
+      "NAVY": -1,
+      "PUBLIC": -1
+    }
+  },
+  {
+    "id": "hii-2020-04-17",
+    "date": "2020-04-17",
+    "headline": "Navy Administratively Commissions Submarine Delaware (SSN 791) During Pandemic Standdown",
+    "summary": "The Navy administratively places the Newport News-built Virginia-class attack submarine USS Delaware (SSN 791) in full commission without a public ceremony due to nationwide COVID-19 physical distancing orders, demonstrating operational delivery execution despite industrial hygiene protocols across defense manufacturing sites.",
+    "starred": false,
+    "impacts": {
+      "EXEC": 1,
+      "CONG": 1,
+      "NAVY": 1,
+      "PUBLIC": 1
+    }
+  },
+  {
+    "id": "hii-2020-10-01",
+    "date": "2020-10-01",
+    "headline": "Enactment of FY2021 Continuing Resolution Imposes Defense Spending Restraints",
+    "summary": "Congress enacts Public Law 116-159 to fund the federal government under a Continuing Resolution at prior-year funding levels ahead of the 2020 elections. The funding mechanism restricts planned execution rates for Columbia-class advance construction and leaves defense capital valuations discounted amid uncertainty in the Future Years Defense Program (FYDP).",
+    "starred": false,
+    "impacts": {
+      "EXEC": 0,
+      "CONG": -1,
+      "NAVY": 0,
+      "PUBLIC": -1
+    }
+  },
+  {
+    "id": "hii-2020-12-10",
+    "date": "2020-12-10",
+    "headline": "Pentagon Releases Battle Force 2045 Plan to Bipartisan Congressional Skepticism",
+    "summary": "Secretary of Defense Mark Esper's long-range Battle Force 2045 shipbuilding architecture is formally presented, calling for a fleet of over 500 manned and unmanned vessels. Congressional defense committees push back against the plan, pointing out that its aggressive carrier and attack submarine procurement goals depend on unspecified budgetary reallocations.",
+    "starred": false,
+    "impacts": {
+      "EXEC": 1,
+      "CONG": -1,
+      "NAVY": -1,
+      "PUBLIC": 0
+    }
+  },
+  {
+    "id": "HII-2021-01",
+    "date": "2021-05-28",
+    "title": "FY2022 President's Budget Cuts DDG-51 Destroyer Procurement to One Ship and Reduces Shipbuilding Request",
+    "description": "The Biden administration's FY2022 defense budget requests procurement of only one Flight III Arleigh Burke-class destroyer (DDG-51) instead of the planned two, signaling immediate downward volume pressure on Ingalls Shipbuilding and destabilizing supplier multi-year procurement assumptions.",
+    "starred": true,
+    "sentiment": {
+      "EXEC": -1,
+      "CONG": -1,
+      "NAVY": -1,
+      "PUBLIC": -1
+    },
+    "categories": [
+      "BUDGET",
+      "SURFACE_COMBATANTS",
+      "PROCUREMENT"
+    ]
+  },
+  {
+    "id": "HII-2021-02",
+    "date": "2021-07-06",
+    "title": "HII Announces Acquisition of Alion Science and Technology for $1.65B to Expand Mission Technologies",
+    "description": "HII moves aggressively beyond legacy naval shipbuilding by acquiring Alion Science and Technology, integrating it alongside Hydroid into a high-margin C5ISR, cyber, electronic warfare, and unmanned systems division later branded as Mission Technologies.",
+    "starred": false,
+    "sentiment": {
+      "EXEC": 1,
+      "CONG": 0,
+      "NAVY": 1,
+      "PUBLIC": 1
+    },
+    "categories": [
+      "M&A",
+      "MISSION_TECHNOLOGIES",
+      "UNMANNED_SYSTEMS"
+    ]
+  },
+  {
+    "id": "HII-2021-03",
+    "date": "2021-09-30",
+    "title": "Six-Month FY2022 Continuing Resolution Freezes Columbia/Virginia Submarine Industrial Base Ramps; CNO Gilday Warns of Irreversible Schedule Loss",
+    "description": "Enactment of a stopgap funding measure prohibits production rate increases, new-start contracts, and advance procurement obligations, triggering explicit warnings from Chief of Naval Operations Adm. Michael Gilday regarding compounding delays in the nuclear shipbuilding supply chain.",
+    "starred": true,
+    "sentiment": {
+      "EXEC": -1,
+      "CONG": -1,
+      "NAVY": -1,
+      "PUBLIC": -1
+    },
+    "categories": [
+      "CONTINUING_RESOLUTION",
+      "SUBMARINES",
+      "INDUSTRIAL_BASE"
+    ]
+  },
+  {
+    "id": "HII-2021-04",
+    "date": "2021-12-22",
+    "title": "Newport News Completes Installation and Navy Certification of Final Advanced Weapons Elevator on USS Gerald R. Ford (CVN 78)",
+    "description": "Newport News Shipbuilding turns over the 11th and final Advanced Weapons Elevator (Upper Stage #3) to ship's force aboard CVN 78, resolving an infamous technological and schedule liability that bottlenecked the lead carrier's fleet introduction for years.",
+    "starred": false,
+    "sentiment": {
+      "EXEC": 1,
+      "CONG": 1,
+      "NAVY": 1,
+      "PUBLIC": 1
+    },
+    "categories": [
+      "AIRCRAFT_CARRIERS",
+      "MILESTONES",
+      "TECHNICAL_RISK"
+    ]
+  },
+  {
+    "id": "HII-2022-01",
+    "date": "2022-03-28",
+    "title": "FY2023 President's Budget Proposes Decommissioning 24 Ships and Terminating LPD Flight II Line at Ingalls",
+    "description": "The Navy's FY2023 budget request sends shockwaves through Pascagoula by proposing to truncate the San Antonio-class (LPD 17 Flight II) amphibious transport dock program at LPD 32 while accelerating premature retirement of 24 ships, drawing furious pushback from Marine Corps leadership and Congressional authorizers.",
+    "starred": true,
+    "sentiment": {
+      "EXEC": -1,
+      "CONG": -1,
+      "NAVY": -1,
+      "PUBLIC": 0
+    },
+    "categories": [
+      "BUDGET",
+      "AMPHIBIOUS_WARFARE",
+      "SHIPBUILDING_FORCE_STRUCTURE"
+    ]
+  },
+  {
+    "id": "HII-2022-02",
+    "date": "2022-06-08",
+    "title": "GAO Weapon Systems Annual Assessment (GAO-22-105230) Reports Newport News Virginia-Class Staffing 20% Below Plan and Growing Work Backlog on Columbia Modules",
+    "description": "Government Accountability Office assessment documents critical structural labor deficits at Newport News Shipbuilding, noting production headcounts fall 20% below requirements as specialized personnel are diverted from Virginia-class construction to mitigate existential schedule slippage on lead ballistic-missile boat District of Columbia (SSBN 826).",
+    "starred": false,
+    "sentiment": {
+      "EXEC": 0,
+      "CONG": -1,
+      "NAVY": -1,
+      "PUBLIC": -1
+    },
+    "categories": [
+      "GAO_REPORT",
+      "SUBMARINES",
+      "WORKFORCE_ATTRITION"
+    ]
+  },
+  {
+    "id": "HII-2022-03",
+    "date": "2022-08-04",
+    "title": "Post-COVID Inflation & Skilled Trade Attrition Squeeze HII Shipbuilding Operating Margins on Pre-Inflation Fixed-Price Contracts",
+    "description": "HII reports mounting margin pressure in Q2 2022 as post-pandemic skilled labor shortages, rising hourly wage friction, and surging raw materials costs collide with fixed-price incentive fee structures negotiated prior to 2021 macroeconomic shifts, driving EAC (Estimate-at-Completion) cost adjustments across legacy programs.",
+    "starred": false,
+    "sentiment": {
+      "EXEC": 0,
+      "CONG": 0,
+      "NAVY": -1,
+      "PUBLIC": -1
+    },
+    "categories": [
+      "FINANCIAL_EARNINGS",
+      "INFLATION",
+      "LABOR_MARKET"
+    ]
+  },
+  {
+    "id": "HII-2022-04",
+    "date": "2022-10-01",
+    "title": "FY2023 Continuing Resolution Enacted Through Late December, Delaying Multi-Year Procurement Authorities",
+    "description": "Congress places the Department of Defense on a stopgap resolution at the start of FY2023, freezing crucial procurement capital and delaying economic order quantity (EOQ) investments for the multi-year DDG-51 Flight III and Virginia-class supplier pipelines.",
+    "starred": false,
+    "sentiment": {
+      "EXEC": 0,
+      "CONG": -1,
+      "NAVY": -1,
+      "PUBLIC": 0
+    },
+    "categories": [
+      "CONTINUING_RESOLUTION",
+      "CONGRESSIONAL_GRIDLOCK",
+      "PROCUREMENT"
+    ]
+  },
+  {
+    "id": "HII-2022-05",
+    "date": "2022-12-07",
+    "title": "Ingalls Completes Delivery of Guided-Missile Destroyer USS Frank E. Petersen Jr. (DDG 121) Following Trials",
+    "description": "Ingalls Shipbuilding hands over the 33rd Arleigh Burke-class destroyer to the Navy, demonstrating solid operational execution on legacy DDG-51 Flight IIA ships despite widespread post-pandemic supply chain disturbances.",
+    "starred": false,
+    "sentiment": {
+      "EXEC": 1,
+      "CONG": 1,
+      "NAVY": 1,
+      "PUBLIC": 1
+    },
+    "categories": [
+      "DELIVERY",
+      "SURFACE_COMBATANTS"
+    ]
+  },
+  {
+    "id": "HII-2023-01",
+    "date": "2023-03-23",
+    "title": "Navy Announces 1-Year Delivery Delay for John F. Kennedy (CVN 79) from 2024 to July 2025 Due to Single-Phase Delivery Scope & Supply Chain Bottlenecks",
+    "description": "Naval Sea Systems Command formally reschedules delivery of CVN 79 from mid-2024 to July 2025, accommodating a Congressional mandate to convert construction from two-phase to single-phase delivery (incorporating F-35C capabilities) while absorbing persistent tier-two supplier shortfalls.",
+    "starred": true,
+    "sentiment": {
+      "EXEC": 0,
+      "CONG": -1,
+      "NAVY": -1,
+      "PUBLIC": -1
+    },
+    "categories": [
+      "AIRCRAFT_CARRIERS",
+      "SCHEDULE_DELAYS",
+      "SUPPLY_CHAIN"
+    ]
+  },
+  {
+    "id": "HII-2023-02",
+    "date": "2023-05-25",
+    "title": "USS George Washington (CVN 73) Completes 6-Year RCOH at Newport News After Severe Overhaul Delays and Quality-of-Life Inquiries",
+    "description": "CVN 73 finally redelivers to the fleet following a grueling 2,120-day Refueling and Complex Overhaul, two full years beyond original schedule, concluding an arduous yard period characterized by deep labor bottlenecks, COVID disruption, and intense Congressional scrutiny over sailor quality of life.",
+    "starred": false,
+    "sentiment": {
+      "EXEC": 1,
+      "CONG": 0,
+      "NAVY": 1,
+      "PUBLIC": 1
+    },
+    "categories": [
+      "AIRCRAFT_CARRIERS",
+      "RCOH",
+      "MAINTENANCE"
+    ]
+  },
+  {
+    "id": "HII-2023-03",
+    "date": "2023-06-03",
+    "title": "Fiscal Responsibility Act of 2023 (Debt Ceiling Deal) Caps FY2024 Defense Budget at $886B and Limits FY2025 Growth to 1% (Real Cut After Inflation)",
+    "description": "Enactment of the statutory debt ceiling agreement imposes binding discretionary budget caps for two fiscal years, locking FY2024 defense funding to requested levels and capping FY2025 topline growth below forecast inflation, effectively requiring real purchasing-power reductions across Navy shipbuilding accounts.",
+    "starred": true,
+    "sentiment": {
+      "EXEC": -1,
+      "CONG": -1,
+      "NAVY": -1,
+      "PUBLIC": -1
+    },
+    "categories": [
+      "DEBT_CEILING",
+      "DEFENSE_CAPS",
+      "BUDGET_STATUTES"
+    ]
+  },
+  {
+    "id": "HII-2023-04",
+    "date": "2023-06-08",
+    "title": "GAO Report (GAO-23-106059) Reveals Virginia-Class Submarines Running 24 to 36 Months Late as Cadence Stalls at 1.2 Boats/Year vs 2.0 Target",
+    "description": "A sweeping GAO audit confirms systemic delivery delays across the Virginia-class fast attack submarine program, noting Newport News and General Dynamics Electric Boat collectively deliver approximately 1.2 boats per year against the statutory and operational baseline cadence of 2.0, jeopardizing AUKUS commitments and domestic force readiness.",
+    "starred": true,
+    "sentiment": {
+      "EXEC": 0,
+      "CONG": -1,
+      "NAVY": -1,
+      "PUBLIC": -1
+    },
+    "categories": [
+      "GAO_REPORT",
+      "SUBMARINES",
+      "INDUSTRIAL_CAPACITY"
+    ]
+  },
+  {
+    "id": "HII-2023-05",
+    "date": "2023-08-01",
+    "title": "Ingalls Awarded $5.8B Multi-Year Procurement Contract for Six Additional DDG-51 Flight III Destroyers",
+    "description": "The Navy confirms multi-year procurement contract awards spanning FY2023-FY2027, allocating six Flight III Arleigh Burke destroyers to Ingalls Shipbuilding and four to Bath Iron Works, stabilizing long-term industrial backlog in Pascagoula.",
+    "starred": false,
+    "sentiment": {
+      "EXEC": 1,
+      "CONG": 1,
+      "NAVY": 1,
+      "PUBLIC": 1
+    },
+    "categories": [
+      "CONTRACT_AWARDS",
+      "SURFACE_COMBATANTS",
+      "MYP"
+    ]
+  },
+  {
+    "id": "HII-2023-06",
+    "date": "2023-10-01",
+    "title": "Six-Month FY2024 Continuing Resolution & House Speaker Ouster Paralyze Defense Appropriations Until March 2024, Delaying Submarine Industrial Base (SIB) Supplier Funding",
+    "description": "A paralyzed House of Representatives leaves the Department of Defense operating under a series of Stopgap Continuing Resolutions for half the fiscal year, preventing early-stage disbursement of billions allocated for Submarine Industrial Base (SIB) capitalization and tier-two supplier stabilization.",
+    "starred": true,
+    "sentiment": {
+      "EXEC": -1,
+      "CONG": -1,
+      "NAVY": -1,
+      "PUBLIC": -1
+    },
+    "categories": [
+      "CONTINUING_RESOLUTION",
+      "CONGRESSIONAL_CRISIS",
+      "SIB_CAPITALIZATION"
+    ]
+  },
+  {
+    "id": "HII-2024-01",
+    "date": "2024-03-11",
+    "title": "FY2025 President's Budget Cuts Virginia-Class Procurement from Two Boats to Only One Boat in FY25 Due to Fiscal Responsibility Act Caps & Yard Backlog",
+    "description": "Citing statutory budget limits imposed by the Fiscal Responsibility Act and an unliquidated backlog of over a dozen delayed attack boats, the Navy drops one planned Virginia-class submarine from its FY2025 submission, provoking intense bipartisan Congressional pushback and raising unit costs for Newport News and Electric Boat.",
+    "starred": true,
+    "sentiment": {
+      "EXEC": -1,
+      "CONG": -1,
+      "NAVY": -1,
+      "PUBLIC": -1
+    },
+    "categories": [
+      "BUDGET",
+      "SUBMARINES",
+      "FORCE_STRUCTURE"
+    ]
+  },
+  {
+    "id": "HII-2024-02",
+    "date": "2024-04-02",
+    "title": "Navy 45-Day Comprehensive Shipbuilding Review Unveils Up to 3-Year Delays Across Columbia, Virginia, Constellation, and CVN Programs",
+    "description": "Secretary of the Navy Carlos Del Toro releases top-line results of a 45-day review outlining historic across-the-board delivery deferrals, citing widespread workforce experience deficits, supplier parts shortages, and long design-completion tails impacting both HII shipyards.",
+    "starred": false,
+    "sentiment": {
+      "EXEC": -1,
+      "CONG": -1,
+      "NAVY": -1,
+      "PUBLIC": -1
+    },
+    "categories": [
+      "NAVY_REVIEW",
+      "SCHEDULE_DELAYS",
+      "SHIPBUILDING_CRISIS"
+    ]
+  },
+  {
+    "id": "HII-2024-03",
+    "date": "2024-04-25",
+    "title": "HII Newport News Shipbuilding Delays Delivery of Virginia-Class Submarine New Jersey (SSN 796) by Additional Months",
+    "description": "Newport News Shipbuilding shifts final acceptance trials and Navy delivery for SSN 796 into late summer 2024, highlighting persistent difficulty in achieving post-COVID test and checkout milestones on pre-Block V submarines.",
+    "starred": false,
+    "sentiment": {
+      "EXEC": 0,
+      "CONG": -1,
+      "NAVY": -1,
+      "PUBLIC": -1
+    },
+    "categories": [
+      "SUBMARINES",
+      "TEST_AND_EVALUATION",
+      "DELIVERY"
+    ]
+  },
+  {
+    "id": "HII-2024-04",
+    "date": "2024-06-17",
+    "title": "GAO Report (GAO-24-106831) Warns Columbia-Class Lead Submarine (SSBN 826) Faces 12-to-16 Month Schedule Delay with Newport News Bow/Stern Module Late Deliveries",
+    "description": "GAO warns that the nation's top defense acquisition priority, the Columbia-class strategic ballistic missile submarine, faces up to a 16-month delay driven in critical part by Newport News Shipbuilding falling behind schedule on modular bow and stern super-structures shipped to Electric Boat.",
+    "starred": true,
+    "sentiment": {
+      "EXEC": 0,
+      "CONG": -1,
+      "NAVY": -1,
+      "PUBLIC": -1
+    },
+    "categories": [
+      "GAO_REPORT",
+      "COLUMBIA_CLASS",
+      "CRITICAL_PATH_RISK"
+    ]
+  },
+  {
+    "id": "HII-2024-05",
+    "date": "2024-08-01",
+    "title": "HII Q2 2024 Earnings Show Shipbuilding Margin Contraction and Weak Free Cash Flow Amid Unresolved Navy Virginia-Class Contract Negotiations",
+    "description": "HII reports a sharp reduction in nuclear shipbuilding operating margin guidance as long-running negotiations with Naval Sea Systems Command over Block V Virginia-class economic adjustments, labor incentives, and inflation reconciliation fail to reach terms.",
+    "starred": false,
+    "sentiment": {
+      "EXEC": 0,
+      "CONG": 0,
+      "NAVY": -1,
+      "PUBLIC": -1
+    },
+    "categories": [
+      "FINANCIAL_EARNINGS",
+      "CONTRACT_NEGOTIATIONS",
+      "FREE_CASH_FLOW"
+    ]
+  },
+  {
+    "id": "HII-2024-06",
+    "date": "2024-08-20",
+    "title": "HII Delays Delivery of Fast-Attack Submarine New Jersey (SSN 796) to U.S. Navy",
+    "description": "HII formally delivers the Virginia-class attack submarine New Jersey (SSN 796) to the Navy, closing out a heavily protracted delivery schedule and freeing up dry dock and pier-side specialized trade workforce at Newport News for SSN 798 and SSBN 826.",
+    "starred": false,
+    "sentiment": {
+      "EXEC": 1,
+      "CONG": 0,
+      "NAVY": 1,
+      "PUBLIC": 1
+    },
+    "categories": [
+      "DELIVERY",
+      "SUBMARINES",
+      "CAPACITY_RELIEF"
+    ]
+  },
+  {
+    "id": "HII-2024-07",
+    "date": "2024-09-26",
+    "title": "FY2025 Continuing Resolution Enacted Without Submarine Anomaly; Navy Warns Delay in $17B Block V/VI Wage & Inflation Adjustment Threatens Yard Retention",
+    "description": "Congress approves a temporary stopgap running through December 20, 2024, excluding requested anomaly authorizations required to immediately execute emergency multi-billion-dollar contractor workforce stabilization packages, further imperiling yard retention targets.",
+    "starred": false,
+    "sentiment": {
+      "EXEC": -1,
+      "CONG": -1,
+      "NAVY": -1,
+      "PUBLIC": -1
+    },
+    "categories": [
+      "CONTINUING_RESOLUTION",
+      "WORKFORCE_INCENTIVES",
+      "BUDGET_GRIDLOCK"
+    ]
+  },
+  {
+    "id": "HII-2024-08",
+    "date": "2024-10-31",
+    "title": "HII Slashes Full-Year Guidance and Records Historic Free Cash Flow Collapse on Disrupted Shipbuilding Assumptions and Unsettled Block V/VI Terms",
+    "description": "HII stuns the equity market by drastically cutting 2024 shipbuilding margin guidance from ~7.5% down to 5.0%-5.5%, slashing Free Cash Flow guidance to zero, and taking extensive EAC cumulative downward revisions on submarine and carrier construction portfolios.",
+    "starred": false,
+    "sentiment": {
+      "EXEC": -1,
+      "CONG": -1,
+      "NAVY": -1,
+      "PUBLIC": -1
+    },
+    "categories": [
+      "EARNINGS_CRASH",
+      "GUIDANCE_REDUCTION",
+      "EAC_REDUCTIONS"
+    ]
+  },
+  {
+    "id": "HII-2024-09",
+    "date": "2024-11-01",
+    "title": "Wall Street Downgrades Follow HII's Oct 31 Earnings Collapse (-26% Single-Day Plunge, Worst Since 2011 Spin-Off) Over Pulled 5-Year FCF Guidance",
+    "description": "Investment banks (JPMorgan, Bank of America, Citi) issue sweeping multi-notch downgrades on HII stock following a 26.2% single-day equity collapse, triggered by executive leadership withdrawing the long-term 5-year $3.2B free cash flow target amid intractable supply-chain and labor headwinds.",
+    "starred": true,
+    "sentiment": {
+      "EXEC": 0,
+      "CONG": 0,
+      "NAVY": -1,
+      "PUBLIC": -1
+    },
+    "categories": [
+      "WALL_STREET_DOWNGRADE",
+      "EQUITY_SELLOFF",
+      "CAPITAL_MARKETS"
+    ]
+  },
+  {
+    "date": "2025-01-20",
+    "title": "Executive Order Establishes Department of Government Efficiency (DOGE), Triggering Immediate Freeze and Audit of Federal Consulting, IT, and Defense Support Contracts",
+    "summary": "President Trump signs an Executive Order establishing DOGE, initiating a sweeping 90-day review of federal services and IT contracts. The directive creates immediate uncertainty for HII's Mission Technologies division, which relies heavily on knowledge-based C5ISR and fleet sustainment task orders.",
+    "starred": true,
+    "scores": {
+      "EXEC": -1,
+      "CONG": 0,
+      "NAVY": -1,
+      "PUBLIC": -1
+    },
+    "tags": [
+      "DOGE",
+      "Mission Technologies",
+      "Executive Order",
+      "Contract Freeze"
+    ]
+  },
+  {
+    "date": "2025-02-06",
+    "title": "HII Q4 2024 / Full-Year Earnings Report Confirms Negative FY24 Free Cash Flow and Guides Conservative 5.5%-6.5% FY25 Shipbuilding Margin; Stock Tests Multi-Year Lows Near $165",
+    "summary": "HII reports full-year 2024 results reflecting persistent supply chain bottlenecks and labor inefficiencies at Newport News Shipbuilding. Wall Street reacts sharply to negative free cash flow and subdued FY2025 margin guidance, sending HII shares near multi-year lows.",
+    "starred": true,
+    "scores": {
+      "EXEC": 0,
+      "CONG": 0,
+      "NAVY": -1,
+      "PUBLIC": -1
+    },
+    "tags": [
+      "Earnings",
+      "Shipbuilding Margins",
+      "Free Cash Flow",
+      "Newport News"
+    ]
+  },
+  {
+    "date": "2025-02-28",
+    "title": "DOGE & DoD Contract Efficiency Review Cancels/Descopes Tranche of Defense Advisory, Training, and IT Task Orders, Pressuring HII Mission Technologies Growth Outlook",
+    "summary": "Following initial DOGE audits, the Pentagon issues stop-work and descoping notices across dozens of management support and training contracts. HII Mission Technologies sees reduced ceiling utilization on legacy enterprise IT and defense advisory programs.",
+    "starred": true,
+    "scores": {
+      "EXEC": -1,
+      "CONG": 0,
+      "NAVY": -1,
+      "PUBLIC": -1
+    },
+    "tags": [
+      "DOGE",
+      "Mission Technologies",
+      "Task Order Cancellation",
+      "DoD Audit"
+    ]
+  },
+  {
+    "date": "2025-03-15",
+    "title": "Congress Enacts Unprecedented Full-Year FY2025 Continuing Resolution (P.L. 119-4), Disrupting Standard Line-Item Shipbuilding Appropriations and Delaying New Program Starts",
+    "summary": "Congress passes a full-year Continuing Resolution for FY2025, locking Pentagon accounts into prior-year structures despite selected anomalies. The absence of a traditional appropriations bill complicates long-lead material procurement and multi-ship contracting flexibility.",
+    "starred": true,
+    "scores": {
+      "EXEC": 0,
+      "CONG": -1,
+      "NAVY": -1,
+      "PUBLIC": -1
+    },
+    "tags": [
+      "Continuing Resolution",
+      "FY2025 Budget",
+      "Appropriations",
+      "Shipbuilding"
+    ]
+  },
+  {
+    "date": "2025-04-02",
+    "title": "Newly Announced Steel, Aluminum, and Reciprocal Import Tariffs Raise Cost Concerns for Specialty Marine Valves, Castings, and Shipyard Capital Equipment",
+    "summary": "Broad reciprocal trade tariffs and expanded Section 232 metals duties increase input costs for specialized maritime sub-tier suppliers. Shipbuilders warn that inflationary ripples on foreign-sourced machinery components and raw castings could pressure fixed-price incentive contracts.",
+    "starred": false,
+    "scores": {
+      "EXEC": -1,
+      "CONG": 0,
+      "NAVY": -1,
+      "PUBLIC": -1
+    },
+    "tags": [
+      "Tariffs",
+      "Supply Chain",
+      "Inflation",
+      "Fixed-Price Contracts"
+    ]
+  },
+  {
+    "date": "2025-04-28",
+    "title": "White House Signs Executive Order on Restoring America's Maritime Dominance and Establishes White House Office of Shipbuilding",
+    "summary": "The administration launches a comprehensive maritime industrial revitalization strategy aimed at countering Chinese shipbuilding capacity. The order prioritizes naval industrial base recapitalization, workforce incentives, and streamlined environmental permitting for U.S. shipyards.",
+    "starred": true,
+    "scores": {
+      "EXEC": 1,
+      "CONG": 1,
+      "NAVY": 1,
+      "PUBLIC": 1
+    },
+    "tags": [
+      "Office of Shipbuilding",
+      "Maritime Industrial Base",
+      "Executive Order"
+    ]
+  },
+  {
+    "date": "2025-05-05",
+    "title": "DOGE / OSD Civilian Workforce Reductions (DRP) Shrink NAVSEA and SUPSHIP Contracting & Quality Assurance Staff, Slowing Engineering Change Proposals at Newport News and Ingalls",
+    "summary": "Deferred resignation programs and civilian hiring freezes across the Department of the Navy reduce headcount at Supervisor of Shipbuilding (SUPSHIP) offices. Thinner government oversight staffs lengthen turnaround times for engineering change proposals and technical sign-offs.",
+    "starred": true,
+    "scores": {
+      "EXEC": -1,
+      "CONG": -1,
+      "NAVY": -1,
+      "PUBLIC": 0
+    },
+    "tags": [
+      "DOGE",
+      "SUPSHIP",
+      "NAVSEA",
+      "Workforce Reductions"
+    ]
+  },
+  {
+    "date": "2025-07-04",
+    "title": "Congress Enacts FY2025 Budget Reconciliation Package Including Historic $29B Maritime Industrial Base and Shipbuilding Supplemental",
+    "summary": "Defense hawks secure nearly $29 billion in mandatory reconciliation funding dedicated to the Submarine Industrial Base, second Virginia-class boat procurement, and shipyard infrastructure modernization. The package provides a vital multi-year capital infusion for HII and its supplier network.",
+    "starred": true,
+    "scores": {
+      "EXEC": 1,
+      "CONG": 1,
+      "NAVY": 1,
+      "PUBLIC": 1
+    },
+    "tags": [
+      "Reconciliation",
+      "Submarine Industrial Base",
+      "Virginia-Class",
+      "Shipbuilding Supplemental"
+    ]
+  },
+  {
+    "date": "2025-07-10",
+    "title": "Navy Confirms Further Schedule Slip for John F. Kennedy (CVN 79) Delivery Into 2027 in FY2026 Budget Justification Books Due to Advanced Weapons Elevator & Combat Systems Integration",
+    "summary": "Newly released FY2026 Navy budget documents reveal that delivery of the second Ford-class aircraft carrier, John F. Kennedy (CVN 79), has slipped from July 2025 into 2027. Lawmakers criticize Newport News Shipbuilding and NAVSEA over persistent post-launch outfitting and compartment completion delays.",
+    "starred": true,
+    "scores": {
+      "EXEC": 0,
+      "CONG": -1,
+      "NAVY": -1,
+      "PUBLIC": -1
+    },
+    "tags": [
+      "CVN 79",
+      "Ford-Class",
+      "Schedule Slip",
+      "Newport News"
+    ]
+  },
+  {
+    "date": "2025-09-18",
+    "title": "Newport News Shipbuilding Delivers Virginia-Class Submarine Massachusetts (SSN 798) to U.S. Navy Following Successful Sea Trials",
+    "summary": "HII's Newport News division formally signs over SSN 798 to the Navy after completing alpha and bravo sea trials. The delivery marks a critical operational milestone for Block IV submarine production and unlocks key milestone cash receipts.",
+    "starred": false,
+    "scores": {
+      "EXEC": 0,
+      "CONG": 1,
+      "NAVY": 1,
+      "PUBLIC": 1
+    },
+    "tags": [
+      "SSN 798",
+      "Virginia-Class",
+      "Submarine Delivery",
+      "Newport News"
+    ]
+  },
+  {
+    "date": "2025-10-01",
+    "title": "FY2026 Federal Government Shutdown & Appropriations Lapse Begins Oct 1, 2025 as Congress Misses Fiscal Year Deadline; DoD Furloughs Civilian Acquisition Staff and Halts New Contract Awards",
+    "summary": "Partisan gridlock over federal spending levels triggers a government-wide shutdown at the start of FY2026. While funded shipyard work continues, furloughs of non-excepted DoD contracting officers freeze new contract modifications and undeadlined awards.",
+    "starred": true,
+    "scores": {
+      "EXEC": -1,
+      "CONG": -1,
+      "NAVY": -1,
+      "PUBLIC": -1
+    },
+    "tags": [
+      "Government Shutdown",
+      "FY2026 Budget",
+      "Appropriations Lapse",
+      "Furloughs"
+    ]
+  },
+  {
+    "date": "2025-10-24",
+    "title": "Prolonged October 2025 Government Shutdown Delays Progress Payment Certifications and Contract Modifications for Tier-2/Tier-3 Submarine Suppliers",
+    "summary": "As the federal shutdown enters its fourth week, DFAS processing backlogs and SUPSHIP administrative bottlenecks slow cash flow to smaller maritime suppliers. Industry associations warn that working-capital strain on fragile sub-tier vendors risks undoing recent supply chain stabilization.",
+    "starred": false,
+    "scores": {
+      "EXEC": 0,
+      "CONG": -1,
+      "NAVY": -1,
+      "PUBLIC": -1
+    },
+    "tags": [
+      "Government Shutdown",
+      "Submarine Suppliers",
+      "Progress Payments",
+      "Supply Chain"
+    ]
+  },
+  {
+    "date": "2025-11-12",
+    "title": "Congress Ends Fall 2025 Government Shutdown with Stopgap Continuing Resolution, Leaving Full FY2026 Defense Appropriations Unresolved into Winter",
+    "summary": "Lawmakers pass a short-term Continuing Resolution to reopen federal agencies, ending a disruptive six-week funding lapse. However, the stopgap measure leaves major FY2026 shipbuilding procurement and wage-adjustment anomalies in limbo until early 2026.",
+    "starred": false,
+    "scores": {
+      "EXEC": -1,
+      "CONG": -1,
+      "NAVY": -1,
+      "PUBLIC": 0
+    },
+    "tags": [
+      "Continuing Resolution",
+      "Government Shutdown",
+      "FY2026 Budget"
+    ]
+  },
+  {
+    "date": "2025-12-19",
+    "title": "Ingalls Shipbuilding Delivers Arleigh Burke-Class Flight III Destroyer Ted Stevens (DDG 128) and Secures Amphibious Ship Long-Lead Contract",
+    "summary": "HII's Ingalls Shipbuilding division finishes 2025 on a high note by delivering DDG 128 to the Navy and booking advanced procurement funding for amphibious transport dock construction. The execution demonstrates stronger surface combatant throughput along the Gulf Coast.",
+    "starred": false,
+    "scores": {
+      "EXEC": 1,
+      "CONG": 1,
+      "NAVY": 1,
+      "PUBLIC": 1
+    },
+    "tags": [
+      "DDG 128",
+      "Ingalls Shipbuilding",
+      "Flight III",
+      "Ship Delivery"
+    ]
+  },
+  {
+    "date": "2026-01-28",
+    "title": "DOGE Round 2 DoD Services & Management Support Audit Terminates Legacy C5ISR Knowledge-Based Services Task Orders, Trimming HII Mission Technologies Backlog by $340M",
+    "summary": "A second wave of DOGE-mandated efficiency cuts targets defense consulting and legacy C5ISR engineering support contracts across the combatant commands. HII writes down $340 million in unfunded Mission Technologies backlog and restructures divisional overhead.",
+    "starred": true,
+    "scores": {
+      "EXEC": -1,
+      "CONG": 0,
+      "NAVY": -1,
+      "PUBLIC": -1
+    },
+    "tags": [
+      "DOGE",
+      "Mission Technologies",
+      "Backlog Reduction",
+      "C5ISR"
+    ]
+  },
+  {
+    "date": "2026-02-19",
+    "title": "CBO Report on 2026 Shipbuilding Plan Estimates Navy Fleet Plan Costs 28% More Than Pentagon Projections and Flags Persistent Nuclear Shipyard Labor Bottlenecks",
+    "summary": "The Congressional Budget Office releases its annual analysis of the Navy's 30-year shipbuilding plan, projecting annual costs far above Pentagon estimates. The report highlights chronic attrition among nuclear-certified trades at Newport News and Electric Boat as the primary constraint on submarine output.",
+    "starred": false,
+    "scores": {
+      "EXEC": 0,
+      "CONG": -1,
+      "NAVY": -1,
+      "PUBLIC": -1
+    },
+    "tags": [
+      "CBO Report",
+      "Shipbuilding Plan",
+      "Nuclear Labor",
+      "Cost Growth"
+    ]
+  },
+  {
+    "date": "2026-03-12",
+    "title": "Navy Awards HII & General Dynamics Electric Boat Long-Awaited Virginia-Class Block VI Multi-Boat Contract Modification Including Workforce Wage Support",
+    "summary": "Following months of intense negotiations over inflation protection and labor escalation, NAVSEA awards the initial Block VI Virginia-class construction modification. The agreement incorporates reconciliation funds to boost shipyard trade wages and stabilize long-term operating margins.",
+    "starred": true,
+    "scores": {
+      "EXEC": 1,
+      "CONG": 1,
+      "NAVY": 1,
+      "PUBLIC": 1
+    },
+    "tags": [
+      "Virginia-Class",
+      "Block VI",
+      "Contract Award",
+      "Workforce Wages"
+    ]
+  },
+  {
+    "date": "2026-04-14",
+    "title": "SASC Seapower Subcommittee Hearing Grills Navy and Industry Executives Over CVN-80 Enterprise 18-Month Delay and Columbia-Class Cost Growth",
+    "summary": "Senators express frustration during a Seapower Subcommittee hearing as Navy officials confirm an 18-month schedule slip for the future carrier Enterprise (CVN 80) due to late material deliveries from suppliers. Committee leaders demand stricter accountability from prime shipbuilders before authorizing additional industrial base grants.",
+    "starred": true,
+    "scores": {
+      "EXEC": 0,
+      "CONG": -1,
+      "NAVY": -1,
+      "PUBLIC": -1
+    },
+    "tags": [
+      "SASC Hearing",
+      "CVN 80",
+      "Columbia-Class",
+      "Schedule Delay"
+    ]
+  },
+  {
+    "date": "2026-05-18",
+    "title": "HII Acquires South Carolina Commercial Metal Fabrication Facility to Expand Modular Outfitting Capacity for Submarine and Carrier Structures",
+    "summary": "Executing on its distributed shipbuilding strategy, HII completes the acquisition and conversion of a commercial industrial fabrication complex in Charleston. The site immediately begins producing structural sub-assemblies for Newport News, alleviating main-yard platen congestion.",
+    "starred": false,
+    "scores": {
+      "EXEC": 1,
+      "CONG": 1,
+      "NAVY": 1,
+      "PUBLIC": 1
+    },
+    "tags": [
+      "Distributed Shipbuilding",
+      "Modular Construction",
+      "Capacity Expansion",
+      "Newport News"
+    ]
+  },
+  {
+    "date": "2026-06-22",
+    "title": "AUKUS Pillar 1 Milestone: HII Completes First Australian Sovereign Submarine Industrial Base Supplier Qualifications and Maintenance Training Cohort",
+    "summary": "HII announces that its first cohort of Australian naval personnel and industrial specialists has completed nuclear stewardship training at Newport News, alongside initial qualification of Australian precision-machining vendors. The milestone reinforces HII's strategic international growth pipeline under AUKUS.",
+    "starred": false,
+    "scores": {
+      "EXEC": 1,
+      "CONG": 1,
+      "NAVY": 1,
+      "PUBLIC": 1
+    },
+    "tags": [
+      "AUKUS",
+      "Submarine Industrial Base",
+      "International",
+      "Newport News"
+    ]
+  },
+  {
+    "date": "2026-07-22",
+    "title": "GAO Report (GAO-26-108115) Audits Submarine Industrial Base (SIB) Funds, Warning That Despite $10B+ Appropriations, Virginia-Class Delivery Cadence Remains Below 1.5 Boats/Year in 2026",
+    "summary": "A Government Accountability Office audit reveals that billions in taxpayer investments into the Submarine Industrial Base have yet to lift actual Virginia-class production to the target 2.0 boats per year. GAO cites insufficient metrics from NAVSEA and persistent rework at prime shipyards.",
+    "starred": true,
+    "scores": {
+      "EXEC": 0,
+      "CONG": -1,
+      "NAVY": -1,
+      "PUBLIC": -1
+    },
+    "tags": [
+      "GAO Report",
+      "Submarine Industrial Base",
+      "Virginia-Class",
+      "Production Cadence"
+    ]
+  },
+  {
+    "date": "2026-08-19",
+    "title": "Ingalls Shipbuilding Christens Amphibious Assault Ship Fallujah (LHA 9) Ahead of Revised Schedule Milestone and Expands Robotic Welding Deployment",
+    "summary": "Ingalls Shipbuilding christens the America-class amphibious assault ship Fallujah (LHA 9) in Pascagoula, showcasing productivity improvements from newly deployed automated panel lines and robotic welding units. Navy leadership praises Ingalls as a bright spot in surface fleet production.",
+    "starred": false,
+    "scores": {
+      "EXEC": 1,
+      "CONG": 1,
+      "NAVY": 1,
+      "PUBLIC": 1
+    },
+    "tags": [
+      "LHA 9",
+      "Ingalls Shipbuilding",
+      "Shipyard Automation",
+      "Christening"
+    ]
+  },
+  {
+    "date": "2026-09-30",
+    "title": "FY2027 Continuing Resolution Enacted at Sept 30 Fiscal Year-End as Election-Year Congress Punts Full Defense Appropriations to Lame-Duck Session",
+    "summary": "With midterm elections approaching, Congress passes a Continuing Resolution through December 2026 rather than regular FY2027 appropriations bills. The recurring budgetary stalemate delays planned amphibious and destroyer contract awards until the lame-duck session.",
+    "starred": true,
+    "scores": {
+      "EXEC": -1,
+      "CONG": -1,
+      "NAVY": -1,
+      "PUBLIC": -1
+    },
+    "tags": [
+      "Continuing Resolution",
+      "FY2027 Budget",
+      "Appropriations",
+      "Election Year"
+    ]
+  },
+  {
+    "date": "2026-10-15",
+    "title": "HII Mission Technologies Wins $1.2B U.S. Navy Lionfish & REMUS Unmanned Underwater Vehicle (UUV) Full-Rate Production Contract",
+    "summary": "Offsetting earlier DOGE consulting cancellations, HII Mission Technologies captures a $1.2 billion multi-year production award for small and medium unmanned undersea vehicles. The hardware-centric maritime autonomy win validates HII's strategic pivot toward high-priority naval lethality systems.",
+    "starred": false,
+    "scores": {
+      "EXEC": 1,
+      "CONG": 1,
+      "NAVY": 1,
+      "PUBLIC": 1
+    },
+    "tags": [
+      "Mission Technologies",
+      "REMUS UUV",
+      "Unmanned Systems",
+      "Contract Award"
+    ]
+  },
+  {
+    "date": "2026-10-28",
+    "title": "DOGE & Pentagon Fixed-Price Contracting Directive Mandates Stricter Cost-Share Caps on Future Block VI Submarine & Destroyer Overruns",
+    "summary": "The Office of the Secretary of Defense and DOGE issue a joint acquisition policy directive tightening ceiling prices and limiting equitable adjustment payouts on future naval vessel contracts. Financial analysts warn the policy could cap upside margin recovery if skilled labor inflation persists.",
+    "starred": true,
+    "scores": {
+      "EXEC": -1,
+      "CONG": 0,
+      "NAVY": -1,
+      "PUBLIC": -1
+    },
+    "tags": [
+      "DOGE",
+      "Fixed-Price Directive",
+      "Acquisition Policy",
+      "Shipbuilding Margins"
+    ]
+  },
+  {
+    "date": "2026-11-05",
+    "title": "HII Q3 2026 Earnings Report Shows Mixed Picture: Record $51B Backlog and Ingalls DDG Throughput Gains Offset by Newport News CVN-80 Labor Escalation and DOGE Mission Tech Headwinds",
+    "summary": "HII reports Q3 2026 earnings featuring a record $51 billion backlog and improving surface ship margins at Ingalls, balanced against an unfavorable EAC charge on CVN 80 at Newport News and lower Mission Technologies services revenue. Investors weigh strong multi-year backlog visibility against ongoing nuclear shipyard execution hurdles.",
+    "starred": false,
+    "scores": {
+      "EXEC": 0,
+      "CONG": 0,
+      "NAVY": 1,
+      "PUBLIC": -1
+    },
+    "tags": [
+      "Earnings",
+      "Backlog",
+      "CVN 80",
+      "Ingalls Shipbuilding"
+    ]
+  }
+]

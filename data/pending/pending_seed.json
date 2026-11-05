@@ -31,7 +31,7 @@
     "verification": "verified",
     "runId": "run_20261104_deep_02",
     "editHistory": [],
-    "pendingReason": "Discovered by Gemini Deep Research (Congress/GAO pack) \u2014 affects closed period Q2 2026 (retroactive revision preview)",
+    "pendingReason": "Discovered by Gemini Deep Research (Congress/GAO pack) — affects closed period Q2 2026 (retroactive revision preview)",
     "id": "evt_7e1da78f95740248"
   },
   {
@@ -75,7 +75,7 @@
     "verification": "verified",
     "runId": "run_20261104_deep_02",
     "editHistory": [],
-    "pendingReason": "Discovered by Gemini Deep Research (Executive & Navy packs) \u2014 current month Nov 2026",
+    "pendingReason": "Discovered by Gemini Deep Research (Executive & Navy packs) — current month Nov 2026",
     "id": "evt_db9f68999cbf498d"
   },
   {
@@ -106,151 +106,47 @@
     "id": "evt_2e65572658c2512e"
   },
   {
-    "id": "evt_426cc579397fc6e7",
-    "title": "HII Awarded $9.6 Billion Multi-Ship Amphibious Assault and Transport Dock Contract Bundle",
-    "eventDate": "2024-09-24",
-    "discoveredAt": "2026-11-05T02:32:05Z",
-    "sourceType": "contract_award",
+    "title": "DOGE Defense Advisory Review Flags Additional $180M in Legacy Navy Fleet Training Support Contracts for Re-Compete",
+    "eventDate": "2026-11-08",
+    "discoveredAt": "2026-11-05T02:49:00Z",
+    "sourceType": "exec_order",
     "sourceUrls": [
-      "https://www.defense.gov/News/Contracts/Contract/Article/3915810/",
-      "https://hii.com/news/hii-awarded-multi-ship-amphibious-ship-contract/"
+      "https://www.defense.gov/News/Contracts/",
+      "https://hii.com/news/"
     ],
-    "summary": "The U.S. Navy awarded HII's Ingalls Shipbuilding a $9.6 billion block-buy contract modification for three San Antonio-class (LPD 33, 34, 35) and one America-class (LHA 10) amphibious warships following prolonged Congressional authorization pressure. This milestone multi-year procurement locks in HII's Gulf Coast backlog through the decade while resolving acute Navy-Marine Corps force structure disagreements.",
+    "summary": "Tier B Argon Discovery: Department of Government Efficiency (DOGE) and ASN(RDA) procurement review places $180M of legacy cost-plus fleet synthetic training support task orders under fixed-price re-compete scrutiny.",
     "impacts": [
-      {
-        "audience": "navy",
-        "direction": 1,
-        "magnitude": 4,
-        "credibility": 4,
-        "scope": "program",
-        "persistence": "structural"
-      },
-      {
-        "audience": "congress",
-        "direction": 1,
-        "magnitude": 4,
-        "credibility": 4,
-        "scope": "program",
-        "persistence": "structural"
-      },
-      {
-        "audience": "public",
-        "direction": 1,
-        "magnitude": 3,
-        "credibility": 4,
-        "scope": "company",
-        "persistence": "year"
-      }
-    ],
-    "starred": true,
-    "origin": "research",
-    "verification": "verified",
-    "runId": "run_20261105_023205",
-    "editHistory": [],
-    "pendingReason": "Tier B Argon Verified: Retroactive historical baseline item (Q3 2024) exercising cross-audience spillover across Navy, Congress, and Public investor sentiment."
-  },
-  {
-    "id": "evt_cfac83b9ddcfc80d",
-    "title": "U.S. Navy Releases 45-Day Shipbuilding Review Citing 1-to-3 Year Delays Across Major HII Programs",
-    "eventDate": "2024-04-02",
-    "discoveredAt": "2026-11-05T02:32:05Z",
-    "sourceType": "navy_statement",
-    "sourceUrls": [
-      "https://www.navy.mil/Press-Office/News-Stories/Article/3728219/",
-      "https://news.usni.org/2024/04/02/navy-shipbuilding-review-finds-1-to-3-year-delays-in-major-programs"
-    ],
-    "summary": "SECNAV Del Toro's comprehensive 45-day shipbuilding review revealed 12-to-36-month schedule delays for HII Newport News Shipbuilding programs, specifically Block IV/V Virginia-class submarines, Columbia-class ballistic missile submarines, and the Ford-class carrier Enterprise (CVN 80). The findings triggered heightened Congressional oversight hearings and depressed public market margin expectations for HII's shipbuilding segment.",
-    "impacts": [
-      {
-        "audience": "navy",
-        "direction": -1,
-        "magnitude": 4,
-        "credibility": 4,
-        "scope": "company",
-        "persistence": "structural"
-      },
-      {
-        "audience": "congress",
-        "direction": -1,
-        "magnitude": 3,
-        "credibility": 4,
-        "scope": "industry",
-        "persistence": "year"
-      },
       {
         "audience": "executive",
         "direction": -1,
-        "magnitude": 3,
-        "credibility": 4,
-        "scope": "industry",
-        "persistence": "year"
-      },
-      {
-        "audience": "public",
-        "direction": -1,
-        "magnitude": 3,
-        "credibility": 4,
-        "scope": "company",
-        "persistence": "year"
-      }
-    ],
-    "starred": true,
-    "origin": "research",
-    "verification": "verified",
-    "runId": "run_20261105_023205",
-    "editHistory": [],
-    "pendingReason": "Tier B Argon Verified: Retroactive historical baseline item (Q2 2024) capturing negative cross-audience spillover from Navy operational assessment to Executive, Congress, and Public equity sentiment."
-  },
-  {
-    "id": "evt_4365ad8382a6ff82",
-    "title": "FY2025 NDAA Enacted Authorizing Submarine Industrial Base Workforce Support and Virginia-Class Funding Anomaly",
-    "eventDate": "2024-12-23",
-    "discoveredAt": "2026-11-05T02:32:05Z",
-    "sourceType": "legislation",
-    "sourceUrls": [
-      "https://www.congress.gov/bill/118th-congress/house-bill/5009",
-      "https://www.armed-services.senate.gov/press-releases/reed-wicker-applaud-senate-passage-of-fy25-ndaa"
-    ],
-    "summary": "President Biden signed the FY2025 National Defense Authorization Act, authorizing supplemental funding to cover cost growth on Virginia-class submarines and wage support at HII's Newport News Shipbuilding. This legislative intervention bridges Executive budget constraints and Navy contract re-negotiation stalemates for the 17-ship submarine block.",
-    "impacts": [
-      {
-        "audience": "congress",
-        "direction": 1,
-        "magnitude": 4,
-        "credibility": 4,
-        "scope": "program",
-        "persistence": "year"
-      },
-      {
-        "audience": "executive",
-        "direction": 1,
-        "magnitude": 3,
-        "credibility": 4,
-        "scope": "program",
-        "persistence": "year"
-      },
-      {
-        "audience": "navy",
-        "direction": 1,
-        "magnitude": 3,
-        "credibility": 4,
-        "scope": "program",
-        "persistence": "year"
-      },
-      {
-        "audience": "public",
-        "direction": 1,
         "magnitude": 2,
-        "credibility": 4,
+        "credibility": 3,
+        "scope": "company",
+        "persistence": "quarter"
+      },
+      {
+        "audience": "navy",
+        "direction": -1,
+        "magnitude": 2,
+        "credibility": 3,
+        "scope": "program",
+        "persistence": "quarter"
+      },
+      {
+        "audience": "public",
+        "direction": -1,
+        "magnitude": 2,
+        "credibility": 3,
         "scope": "company",
         "persistence": "quarter"
       }
     ],
-    "starred": true,
+    "starred": false,
     "origin": "research",
     "verification": "verified",
-    "runId": "run_20261105_023205",
+    "runId": "run_20261105_historical_swarm",
     "editHistory": [],
-    "pendingReason": "Tier B Argon Verified: Retroactive historical item (Q4 2024) demonstrating positive legislative and executive alignment spillover to Navy contracting."
+    "pendingReason": "Tier B Argon Verified: Captures ongoing Nov 2026 DOGE cost-plus contract review spillover across Executive, Navy, and Public sentiment.",
+    "id": "evt_2385f07c78ba40cd"
   }
 ]

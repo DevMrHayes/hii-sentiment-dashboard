@@ -1,11 +1,11 @@
 [
   {
     "id": "snap_baseline_202611",
-    "takenAt": "2026-11-04T15:30:00Z",
+    "takenAt": "2026-11-05T02:50:00Z",
     "asOfDate": "2026-11-15",
-    "label": "Baseline Seed Ledger (58 Events, 2011–Nov 2026)",
-    "ledgerHash": "9b25b382664fa8071e1e6f772d706b20d938c4fd3c8662fa79c719d66148b65c",
-    "outputHash": "5ea0e8049be40697a5ac6565a4d03efeed8ececc694e62fdc068d57e7c3b55de",
+    "label": "Expanded Deep Research Ledger (152 Events, 2011–Nov 2026)",
+    "ledgerHash": "33ef98ecb2ec57e7399906cf4deac7723e4745023bed1b0f85a539aff8e13553",
+    "outputHash": "79ba31809a26df2eac214eac9f9f835051f4a1c953b38c5647309b6007489b85",
     "engineVersion": "engine-v1.0.0",
     "rubricVersion": "rubric-v1.0.0",
     "weights": {
@@ -15,11 +15,11 @@
       "public": 20
     },
     "latest": {
-      "executive": 8661,
-      "congress": 8446,
-      "navy": 8836,
-      "public": 7709,
-      "composite": 8469
+      "executive": 6068,
+      "congress": 5622,
+      "navy": 4885,
+      "public": 2333,
+      "composite": 4855
     }
   }
 ]

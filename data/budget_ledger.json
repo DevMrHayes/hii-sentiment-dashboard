@@ -3,8 +3,8 @@
   "billingCycle": "2026-11",
   "monthlyCapUsd": 5.0,
   "perRunCapUsd": 0.5,
-  "monthSpendUsd": 0.11601,
-  "runsCount": 3,
+  "monthSpendUsd": 0.18728,
+  "runsCount": 6,
   "history": [
     {
       "runId": "run_20261105_023205",

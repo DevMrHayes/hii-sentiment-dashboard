@@ -9,7 +9,7 @@ import { divRne, divRneBig } from './math';
 
 export const BASELINE_CENTI = 5000;            // 50.00 neutral
 export const HALF_SATURATION_BPS = 250_000;    // K: raw points at which index reaches 75.00
-export const DECAY_CUTOFF_DAYS = 3650;         // 10-year hard horizon
+export const DECAY_CUTOFF_DAYS = 1825;         // 5-year sentiment memory horizon
 
 export const MAGNITUDE_BPS: Record<MagnitudeLevel, number> = {
   1: 20_000, 2: 45_000, 3: 80_000, 4: 130_000, 5: 200_000,
@@ -30,7 +30,7 @@ export const SCOPE_BPS: Record<ScopeClass, number> = {
 };
 
 export const PERSISTENCE_HALF_LIFE_DAYS: Record<PersistenceClass, number> = {
-  transient: 45, quarter: 120, year: 365, structural: 1095,
+  transient: 35, quarter: 90, year: 180, structural: 420,
 };
 
 /** Default credibility tier by source type (used to pre-fill extraction & manual forms). */
