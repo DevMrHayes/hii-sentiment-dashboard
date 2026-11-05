@@ -10,3 +10,4 @@ export * from './revisions';
 export * from './ledger';
 export * from './exporter';
 export * from './division';
+export * from './sanityCheck';

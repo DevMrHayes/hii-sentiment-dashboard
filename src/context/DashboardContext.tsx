@@ -19,6 +19,10 @@ import {
   type PendingEvent,
   type ScheduleConfig,
   type ScoreRevision,
+  type SanityCheckItem,
+  SEEDED_SANITY_CHECKS,
+  createSanityCheckItem,
+  markSanityCheckVerified,
 } from '../engine';
 import { useAuth } from './AuthContext';
 import { SEED_LEDGER_STATE } from '../data/seedBundle';
@@ -166,6 +170,10 @@ interface DashboardContextValue {
   togglePinnedEvent: (id: string) => void;
   isChartExpanded: boolean;
   setIsChartExpanded: (v: boolean | ((prev: boolean) => boolean)) => void;
+  sanityChecks: SanityCheckItem[];
+  addSanityCheck: (input: Omit<SanityCheckItem, 'id' | 'createdAt' | 'status'>) => void;
+  deleteSanityCheck: (id: string) => void;
+  resolveSanityCheck: (id: string, findings: string) => void;
 }
 
 const CURRENT_LEDGER_SEED_VERSION = 'v4_159_events';
@@ -241,6 +249,47 @@ export const DashboardProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   const [isResearchRunning, setIsResearchRunning] = useState(false);
   const [agentStages, setAgentStages] = useState<LiveAgentStage[]>([]);
   const [isChartExpanded, setIsChartExpanded] = useState<boolean>(false);
+
+  const [sanityChecks, setSanityChecks] = useState<SanityCheckItem[]>(() => {
+    try {
+      const saved = localStorage.getItem('hii_sentiment_sanity_checks');
+      if (saved) return JSON.parse(saved);
+    } catch {
+      // ignore
+    }
+    return SEEDED_SANITY_CHECKS;
+  });
+
+  const addSanityCheck = useCallback((input: Omit<SanityCheckItem, 'id' | 'createdAt' | 'status'>) => {
+    const item = createSanityCheckItem(input);
+    setSanityChecks((prev) => {
+      const next = [item, ...prev];
+      try {
+        localStorage.setItem('hii_sentiment_sanity_checks', JSON.stringify(next));
+      } catch {}
+      return next;
+    });
+  }, []);
+
+  const deleteSanityCheck = useCallback((id: string) => {
+    setSanityChecks((prev) => {
+      const next = prev.filter((i) => i.id !== id);
+      try {
+        localStorage.setItem('hii_sentiment_sanity_checks', JSON.stringify(next));
+      } catch {}
+      return next;
+    });
+  }, []);
+
+  const resolveSanityCheck = useCallback((id: string, findings: string) => {
+    setSanityChecks((prev) => {
+      const next = markSanityCheckVerified(prev, id, findings);
+      try {
+        localStorage.setItem('hii_sentiment_sanity_checks', JSON.stringify(next));
+      } catch {}
+      return next;
+    });
+  }, []);
 
   const [pinnedEventIds, setPinnedEventIds] = useState<string[]>(() => {
     try {
@@ -321,7 +370,7 @@ export const DashboardProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   const updateWeights = useCallback(
     async (weights: AudienceWeights, author: string, reason: string) => {
       if (userRole === 'viewer') {
-        alert('Weight adjustments are restricted to administrator hayesorhaze@gmail.com.');
+        alert('Weight adjustments are restricted to System Administrator.');
         return;
       }
       try {
@@ -348,7 +397,7 @@ export const DashboardProvider: React.FC<{ children: React.ReactNode }> = ({ chi
 
   const updateSchedule = useCallback(async (schedule: ScheduleConfig) => {
     if (userRole === 'viewer') {
-      alert('Schedule configuration is restricted to administrator hayesorhaze@gmail.com.');
+      alert('Schedule configuration is restricted to System Administrator.');
       return;
     }
     try {
@@ -373,7 +422,7 @@ export const DashboardProvider: React.FC<{ children: React.ReactNode }> = ({ chi
 
   const updateBudgetConfig = useCallback(async (cfg: BudgetConfig) => {
     if (userRole === 'viewer') {
-      alert('Budget configuration is restricted to administrator hayesorhaze@gmail.com.');
+      alert('Budget configuration is restricted to System Administrator.');
       return;
     }
     try {
@@ -528,7 +577,7 @@ export const DashboardProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   const triggerResearchRun = useCallback(
     async (audiences: AudienceId[], mode = 'auto', isMondayScheduledSweep = false) => {
       if (userRole === 'viewer') {
-        alert('Initiating agent deep research runs is restricted to administrator hayesorhaze@gmail.com.');
+        alert('Initiating agent deep research runs is restricted to System Administrator.');
         return;
       }
       if (spendUsd >= budgetConfig.monthlyCapUsd) {
@@ -789,6 +838,10 @@ export const DashboardProvider: React.FC<{ children: React.ReactNode }> = ({ chi
         togglePinnedEvent,
         isChartExpanded,
         setIsChartExpanded,
+        sanityChecks,
+        addSanityCheck,
+        deleteSanityCheck,
+        resolveSanityCheck,
       }}
     >
       {children}

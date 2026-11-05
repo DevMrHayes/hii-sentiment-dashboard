@@ -96,7 +96,7 @@ export const AuthWall: React.FC<{ children: React.ReactNode }> = ({ children }) 
           </div>
 
           <div className="mt-6 pt-4 border-t border-[#363c44] text-[11px] text-steel">
-            Administrator: <span className="font-mono text-white/90">hayesorhaze@gmail.com</span>
+            System: <span className="font-mono text-white/90">Restricted Defense Intelligence Network</span>
           </div>
         </div>
       </div>
@@ -167,7 +167,7 @@ export const AuthWall: React.FC<{ children: React.ReactNode }> = ({ children }) 
               <div>
                 <h2 className="text-base font-bold text-white">Access Clearance Request Submitted</h2>
                 <p className="text-xs text-sky/85 mt-1 leading-relaxed">
-                  Your request has been delivered to administrator <span className="font-mono font-bold text-white">hayesorhaze@gmail.com</span>. Once approved, your account will instantly gain full intelligence viewer access.
+                  Your request has been delivered to the System Administrator. Once approved, your account will instantly gain full intelligence viewer access.
                 </p>
               </div>
 
@@ -211,7 +211,7 @@ export const AuthWall: React.FC<{ children: React.ReactNode }> = ({ children }) 
                   ) : (
                     <Send className="w-3.5 h-3.5" />
                   )}
-                  <span>{submittingNote ? 'Submitting...' : 'Request Clearance from hayesorhaze@gmail.com'}</span>
+                  <span>{submittingNote ? 'Submitting...' : 'Request Clearance from System Administrator'}</span>
                 </button>
               </div>
             </div>

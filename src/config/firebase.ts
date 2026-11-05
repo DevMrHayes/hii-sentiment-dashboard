@@ -61,7 +61,6 @@ googleProvider.setCustomParameters({ prompt: 'select_account' });
 
 export const ADMIN_EMAILS: readonly string[] = [
   'hayesorhaze@gmail.com',
-  'hayesrhayes@gmail.com',
 ];
 
 export function isAdmin(email?: string | null): boolean {
