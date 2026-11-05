@@ -44,8 +44,8 @@ export const ExportPanel: React.FC = () => {
 
   return (
     <div className="space-y-6">
-      <div className="bg-deepsea border border-steel/60 rounded-xl p-5 shadow-xl">
-        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-steel/50 pb-3 mb-4">
+      <div className="bg-[#1e2227] border border-[#363c44] rounded-xl p-5 shadow-xl">
+        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[#363c44] pb-3 mb-4">
           <div>
             <h2 className="text-base font-bold text-white">
               MARKDOWN EXPORT & DETERMINISTIC REPRODUCIBILITY VERIFIER
@@ -76,7 +76,7 @@ export const ExportPanel: React.FC = () => {
             <button
               type="button"
               onClick={handleCopy}
-              className="inline-flex items-center gap-1.5 px-3 py-2 rounded bg-charcoal border border-sky text-xs font-semibold text-white hover:bg-deepsea transition"
+              className="inline-flex items-center gap-1.5 px-3 py-2 rounded bg-charcoal border border-sky text-xs font-semibold text-white hover:bg-[#2b313a] transition"
             >
               {copied ? <Check className="w-4 h-4 text-passion" /> : <Copy className="w-4 h-4" />}
               <span>{copied ? 'Copied Markdown!' : 'Copy Markdown'}</span>

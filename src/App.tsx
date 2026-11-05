@@ -6,6 +6,7 @@ import { TrendChart } from './components/TrendChart';
 import { ScoreRail } from './components/ScoreRail';
 import { EventTimeline } from './components/EventTimeline';
 import { ControlPane } from './components/ControlPane';
+import { DivisionSentimentView } from './components/DivisionSentimentView';
 import { CatalystStudio } from './components/CatalystStudio';
 import { ResearchPanel } from './components/ResearchPanel';
 import { RevisionsPanel } from './components/RevisionsPanel';
@@ -62,6 +63,7 @@ const DashboardContent: React.FC = () => {
           </div>
         )}
 
+        {activeTab === 'divisions' && <DivisionSentimentView />}
         {activeTab === 'ledger' && <EventTimeline />}
         {activeTab === 'control' && <ControlPane />}
         {activeTab === 'forecast' && <CatalystStudio />}

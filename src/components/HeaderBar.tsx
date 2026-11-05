@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {
   Activity,
-  Anchor,
+  Building2,
   CalendarClock,
   Check,
   Copy,
@@ -17,6 +17,7 @@ import {
   RotateCcw,
 } from 'lucide-react';
 import { useDashboard, type ActiveTab } from '../context/DashboardContext';
+import { HIILogo } from './HIILogo';
 
 export const HeaderBar: React.FC = () => {
   const {
@@ -46,6 +47,11 @@ export const HeaderBar: React.FC = () => {
   const tabs: Array<{ id: ActiveTab; label: string; icon: React.ReactNode; badge?: number }> = [
     { id: 'dashboard', label: 'Analytics & Timeline', icon: <Activity className="w-4 h-4" /> },
     {
+      id: 'divisions',
+      label: 'Division Sentiment (NNS · Ingalls · Mission Tech)',
+      icon: <Building2 className="w-4 h-4" />,
+    },
+    {
       id: 'ledger',
       label: 'Impact Events Ledger',
       icon: <Database className="w-4 h-4" />,
@@ -74,26 +80,27 @@ export const HeaderBar: React.FC = () => {
   ];
 
   return (
-    <header className="bg-deepsea border-b border-steel/60 sticky top-0 z-30 shadow-lg">
+    <header className="bg-[#1a1e23] border-b border-[#363c44] sticky top-0 z-30 shadow-xl">
       <div className="max-w-[1600px] mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-3">
-        {/* Brand & Subject */}
+        {/* Brand & Subject with Official HII Logo */}
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-lg bg-charcoal border border-sky/50 flex items-center justify-center shadow-inner">
-            <Anchor className="w-5 h-5 text-passion" />
+          <div
+            onClick={() => setActiveTab('dashboard')}
+            className="cursor-pointer flex items-center justify-center p-1.5 rounded-lg bg-[#24272a] border border-steel/50 hover:border-sky transition shadow-inner"
+            title="Huntington Ingalls Industries (NYSE: HII)"
+          >
+            <HIILogo size="md" showWordmark={true} variant="light" className="h-9 w-auto" />
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <h1 className="text-lg font-bold tracking-tight text-white">
-                HII SENTIMENT INTELLIGENCE
-              </h1>
               <span className="px-2 py-0.5 text-[11px] font-mono font-semibold rounded bg-passion text-white">
                 NYSE: HII
               </span>
-              <span className="px-2 py-0.5 text-[11px] font-mono rounded bg-charcoal/80 border border-steel text-sky">
+              <span className="px-2 py-0.5 text-[11px] font-mono rounded bg-charcoal/90 border border-steel/70 text-sky">
                 DETERMINISTIC {result.engineVersion}
               </span>
             </div>
-            <p className="text-xs text-sky/90">
+            <p className="text-xs text-sky/90 mt-0.5">
               Multi-Audience Stakeholder Ledger (Executive · Congress · Navy · American Public) · As-Of{' '}
               <span className="font-mono text-white">{result.asOfDate}</span>
             </p>
@@ -175,7 +182,7 @@ export const HeaderBar: React.FC = () => {
       </div>
 
       {/* Navigation Tabs */}
-      <div className="max-w-[1600px] mx-auto px-4 flex items-center gap-1 overflow-x-auto border-t border-steel/40 bg-charcoal/40">
+      <div className="max-w-[1600px] mx-auto px-4 flex items-center gap-1 overflow-x-auto border-t border-[#313740] bg-[#16191d]">
         {tabs.map((t) => {
           const active = activeTab === t.id;
           const isAlertBadge = t.id === 'research' || t.id === 'revisions';
@@ -185,8 +192,8 @@ export const HeaderBar: React.FC = () => {
               onClick={() => setActiveTab(t.id)}
               className={`flex items-center gap-2 px-3.5 py-2.5 text-xs font-medium border-b-2 transition whitespace-nowrap ${
                 active
-                  ? 'border-passion text-white bg-deepsea/80'
-                  : 'border-transparent text-sky/80 hover:text-white hover:bg-deepsea/40'
+                  ? 'border-passion text-white bg-[#22272e]'
+                  : 'border-transparent text-sky/80 hover:text-white hover:bg-[#20252b]'
               }`}
             >
               {t.icon}

@@ -54,7 +54,7 @@ export const ScoreRail: React.FC = () => {
   return (
     <aside className="space-y-4">
       {/* Hero Current Composite Score Card */}
-      <div className="bg-deepsea border-2 border-passion/80 rounded-xl p-4 shadow-xl">
+      <div className="bg-[#1e2227] border-2 border-passion/80 rounded-xl p-4 shadow-xl">
         <div className="flex items-center justify-between">
           <span className="text-xs font-mono uppercase tracking-wider text-sky">
             CURRENT COMPOSITE SCORE ({latestPeriod.period.label})
@@ -114,7 +114,7 @@ export const ScoreRail: React.FC = () => {
           return (
             <div
               key={aud}
-              className={`bg-deepsea border ${AUDIENCE_BORDER[aud]} rounded-xl p-3.5 shadow`}
+              className={`bg-[#1e2227] border ${AUDIENCE_BORDER[aud]} rounded-xl p-3.5 shadow-md`}
             >
               <div className="flex items-center justify-between">
                 <div>
@@ -147,7 +147,7 @@ export const ScoreRail: React.FC = () => {
       </div>
 
       {/* Selected Period Deterministic Math Inspector */}
-      <div className="bg-deepsea border border-steel/70 rounded-xl p-4 shadow-xl">
+      <div className="bg-[#1e2227] border border-[#363c44] rounded-xl p-4 shadow-xl">
         <div className="flex items-center justify-between border-b border-steel/50 pb-2 mb-2.5">
           <div>
             <span className="text-[11px] font-mono uppercase text-passion block">

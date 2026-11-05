@@ -22,7 +22,7 @@ import {
 } from '../engine';
 import { SEED_LEDGER_STATE } from '../data/seedBundle';
 
-export type ActiveTab = 'dashboard' | 'ledger' | 'control' | 'forecast' | 'research' | 'revisions' | 'export';
+export type ActiveTab = 'dashboard' | 'divisions' | 'ledger' | 'control' | 'forecast' | 'research' | 'revisions' | 'export';
 
 export interface BudgetStatus {
   monthlyCapUsd: number;
@@ -161,6 +161,10 @@ interface DashboardContextValue {
   triggerResearchRun: (audiences: AudienceId[], mode?: string, isMondayScheduledSweep?: boolean) => Promise<void>;
   takeSnapshot: (label: string) => Promise<void>;
   resetToLatestSeed: () => void;
+  pinnedEventIds: string[];
+  togglePinnedEvent: (id: string) => void;
+  isChartExpanded: boolean;
+  setIsChartExpanded: (v: boolean | ((prev: boolean) => boolean)) => void;
 }
 
 const CURRENT_LEDGER_SEED_VERSION = 'v3_152_events';
@@ -226,6 +230,36 @@ export const DashboardProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   const [recentRevisionsBanner, setRecentRevisionsBanner] = useState<ScoreRevision[]>([]);
   const [isResearchRunning, setIsResearchRunning] = useState(false);
   const [agentStages, setAgentStages] = useState<LiveAgentStage[]>([]);
+  const [isChartExpanded, setIsChartExpanded] = useState<boolean>(false);
+
+  const [pinnedEventIds, setPinnedEventIds] = useState<string[]>(() => {
+    try {
+      const saved = localStorage.getItem('hii_sentiment_pinned_events');
+      if (saved) return JSON.parse(saved);
+    } catch {
+      // ignore
+    }
+    return [
+      'evt_e14786035efa105f',
+      'evt_c30d7040f61216b6',
+      'evt_b673471b92dadc3d',
+      'evt_04fbc8b723f8de60',
+      'evt_36623d31ec260b0c',
+      'evt_5da22d999f8f8ca5',
+    ];
+  });
+
+  const togglePinnedEvent = useCallback((id: string) => {
+    setPinnedEventIds((prev) => {
+      const next = prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id];
+      try {
+        localStorage.setItem('hii_sentiment_pinned_events', JSON.stringify(next));
+      } catch {
+        // ignore
+      }
+      return next;
+    });
+  }, []);
 
   // Hydrate from local/Cloud Run API if reachable
   useEffect(() => {
@@ -725,6 +759,10 @@ export const DashboardProvider: React.FC<{ children: React.ReactNode }> = ({ chi
         triggerResearchRun,
         takeSnapshot,
         resetToLatestSeed,
+        pinnedEventIds,
+        togglePinnedEvent,
+        isChartExpanded,
+        setIsChartExpanded,
       }}
     >
       {children}

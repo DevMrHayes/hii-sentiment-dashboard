@@ -136,7 +136,7 @@ export const ControlPane: React.FC = () => {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
       {/* Left Column: Audience Composite Weight Studio */}
-      <div className="bg-deepsea border border-steel/60 rounded-xl p-5 shadow-xl space-y-4">
+      <div className="bg-[#1e2227] border border-[#363c44] rounded-xl p-5 shadow-xl space-y-4">
         <div className="flex items-center justify-between border-b border-steel/50 pb-3">
           <div>
             <h2 className="text-base font-bold text-white flex items-center gap-2">
@@ -288,7 +288,7 @@ export const ControlPane: React.FC = () => {
       {/* Right Column: Manual Evidence & Rubric Entry Studio */}
       <form
         onSubmit={(e) => void handleAddEvent(e)}
-        className="bg-deepsea border border-steel/60 rounded-xl p-5 shadow-xl space-y-4"
+        className="bg-[#1e2227] border border-[#363c44] rounded-xl p-5 shadow-xl space-y-4"
       >
         <div className="border-b border-steel/50 pb-3">
           <h2 className="text-base font-bold text-white flex items-center gap-2">

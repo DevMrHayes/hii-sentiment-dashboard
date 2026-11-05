@@ -52,7 +52,7 @@ export const EventTimeline: React.FC<{ compact?: boolean }> = ({ compact = false
   const displayEvents = compact ? filteredEvents.slice(0, 12) : filteredEvents;
 
   return (
-    <div className="bg-deepsea border border-steel/60 rounded-xl p-4 shadow-xl">
+    <div className="bg-[#1e2227] border border-[#363c44] rounded-xl p-4 shadow-xl">
       <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
         <div>
           <h2 className="text-base font-bold text-white tracking-wide flex items-center gap-2">

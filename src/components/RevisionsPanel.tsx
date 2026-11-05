@@ -7,7 +7,7 @@ export const RevisionsPanel: React.FC = () => {
   const { state, setSelectedPeriodId, setActiveTab } = useDashboard();
 
   return (
-    <div className="bg-deepsea border border-steel/60 rounded-xl p-5 shadow-xl space-y-4">
+    <div className="bg-[#1e2227] border border-[#363c44] rounded-xl p-5 shadow-xl space-y-4">
       <div className="border-b border-steel/50 pb-3">
         <h2 className="text-base font-bold text-white flex items-center gap-2">
           <GitCommit className="w-5 h-5 text-passion" />

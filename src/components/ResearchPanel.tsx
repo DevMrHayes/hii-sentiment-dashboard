@@ -103,7 +103,7 @@ export const ResearchPanel: React.FC = () => {
       {/* Top 2-Column Grid: Monday Scheduler + FinOps Monthly Budget Guard */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Column 1: Weekly Monday Morning Multi-Agent Schedule & Run Now */}
-        <div className="bg-deepsea border border-steel/60 rounded-xl p-5 shadow-xl space-y-4">
+        <div className="bg-[#1e2227] border border-[#363c44] rounded-xl p-5 shadow-xl space-y-4">
           <div className="flex items-center justify-between border-b border-steel/50 pb-3">
             <div>
               <h2 className="text-base font-bold text-white flex items-center gap-2">
@@ -251,7 +251,7 @@ export const ResearchPanel: React.FC = () => {
         </div>
 
         {/* Column 2: FinOps Monthly Budget Guard & Cost Model */}
-        <div className="bg-deepsea border border-steel/60 rounded-xl p-5 shadow-xl space-y-4">
+        <div className="bg-[#1e2227] border border-[#363c44] rounded-xl p-5 shadow-xl space-y-4">
           <div className="flex items-center justify-between border-b border-steel/50 pb-3">
             <div>
               <h2 className="text-base font-bold text-white flex items-center gap-2">
@@ -412,7 +412,7 @@ export const ResearchPanel: React.FC = () => {
       )}
 
       {/* Audience Query Pack Selector */}
-      <div className="bg-deepsea border border-steel/60 rounded-xl p-5 shadow-xl">
+      <div className="bg-[#1e2227] border border-[#363c44] rounded-xl p-5 shadow-xl">
         <div className="flex items-center justify-between mb-3">
           <h3 className="text-sm font-bold text-white uppercase tracking-wider">
             ACTIVE AUDIENCE RESEARCH PACKS ({ALL_AUDIENCES.filter((a) => selectedAudiences[a]).length} / 4)
@@ -451,7 +451,7 @@ export const ResearchPanel: React.FC = () => {
       </div>
 
       {/* Pending Evidence Quarantine Queue */}
-      <div className="bg-deepsea border-2 border-passion/70 rounded-xl p-5 shadow-xl">
+      <div className="bg-[#1e2227] border-2 border-passion/70 rounded-xl p-5 shadow-xl">
         <div className="flex items-center justify-between mb-3">
           <div>
             <h3 className="text-sm font-bold text-white uppercase tracking-wider">

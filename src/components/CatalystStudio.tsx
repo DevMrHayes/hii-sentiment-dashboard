@@ -33,7 +33,7 @@ export const CatalystStudio: React.FC = () => {
   return (
     <div className="space-y-6">
       {/* 6-Month Forecast Table */}
-      <div className="bg-deepsea border border-steel/60 rounded-xl p-5 shadow-xl">
+      <div className="bg-[#1e2227] border border-[#363c44] rounded-xl p-5 shadow-xl">
         <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
           <div>
             <h2 className="text-base font-bold text-white flex items-center gap-2">
@@ -95,7 +95,7 @@ export const CatalystStudio: React.FC = () => {
       </div>
 
       {/* Interactive Catalyst Probability & Scenario Cards */}
-      <div className="bg-deepsea border border-steel/60 rounded-xl p-5 shadow-xl">
+      <div className="bg-[#1e2227] border border-[#363c44] rounded-xl p-5 shadow-xl">
         <h3 className="text-sm font-bold text-white uppercase tracking-wider mb-1">
           PENDING LEGISLATION, CONTRACT AWARDS & PROGRAM CATALYSTS ({state.catalysts.length})
         </h3>

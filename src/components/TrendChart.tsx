@@ -4,22 +4,39 @@ import {
   CartesianGrid,
   ComposedChart,
   Line,
+  ReferenceDot,
   ReferenceLine,
   ResponsiveContainer,
   Tooltip,
   XAxis,
   YAxis,
 } from 'recharts';
-import { Eye, GitCommit, Star } from 'lucide-react';
+import {
+  Check,
+  ChevronDown,
+  Eye,
+  GitCommit,
+  Maximize2,
+  Minimize2,
+  Pin,
+  PinOff,
+  Sliders,
+  Sparkles,
+  Star,
+  TrendingDown,
+  TrendingUp,
+} from 'lucide-react';
 import { useDashboard } from '../context/DashboardContext';
-import { ALL_AUDIENCES, AUDIENCE_LABELS, type AudienceId } from '../engine';
+import { ALL_AUDIENCES, AUDIENCE_LABELS, type AudienceId, type ImpactEvent } from '../engine';
 
 interface ChartDatum {
   id: string;
   label: string;
   granularity: string;
   isForecast: boolean;
-  // Historical scores (0..100 float for Recharts)
+  startDate?: string;
+  endDate?: string;
+  // Historical scores
   executive?: number;
   congress?: number;
   navy?: number;
@@ -50,7 +67,17 @@ const AUDIENCE_COLORS: Record<AudienceId, string> = {
 };
 
 export const TrendChart: React.FC = () => {
-  const { state, result, selectedPeriodId, setSelectedPeriodId } = useDashboard();
+  const {
+    state,
+    result,
+    selectedPeriodId,
+    setSelectedPeriodId,
+    pinnedEventIds,
+    togglePinnedEvent,
+    isChartExpanded,
+    setIsChartExpanded,
+  } = useDashboard();
+
   const [visibleLines, setVisibleLines] = useState<Record<AudienceId | 'composite', boolean>>({
     composite: true,
     executive: true,
@@ -59,7 +86,11 @@ export const TrendChart: React.FC = () => {
     public: true,
   });
 
+  const [showPinDrawer, setShowPinDrawer] = useState(false);
+  const [pinSearch, setPinSearch] = useState('');
+
   const eventMap = useMemo(() => new Map(state.events.map((e) => [e.id, e])), [state.events]);
+
   const revisionsByPeriod = useMemo(() => {
     const m = new Map<string, number>();
     for (const r of state.revisions) {
@@ -86,6 +117,8 @@ export const TrendChart: React.FC = () => {
         label: rec.period.label,
         granularity: rec.period.granularity,
         isForecast: false,
+        startDate: rec.period.startDate,
+        endDate: rec.period.endDate,
         executive: exec,
         congress: cong,
         navy,
@@ -98,7 +131,6 @@ export const TrendChart: React.FC = () => {
         revisionMarkerY: revCount > 0 ? comp : undefined,
       };
 
-      // Bridge the last historical point into the forecast series so the line is continuous
       if (idx === lastIdx) {
         datum.forecastEv = comp;
         datum.forecastExecEv = exec;
@@ -139,68 +171,192 @@ export const TrendChart: React.FC = () => {
     return rows;
   }, [result, eventMap, revisionsByPeriod]);
 
+  // Find period IDs where pinned events fall
+  const pinnedEventsWithPeriod = useMemo(() => {
+    return pinnedEventIds
+      .map((id) => {
+        const ev = eventMap.get(id);
+        if (!ev) return null;
+        // Match which period bucket contains this event date
+        const matchPeriod = result.timeline.find(
+          (p) => ev.eventDate >= p.period.startDate && ev.eventDate <= p.period.endDate,
+        );
+        return {
+          event: ev,
+          periodId: matchPeriod?.period.id ?? ev.eventDate.slice(0, 4),
+          periodLabel: matchPeriod?.period.label ?? ev.eventDate.slice(0, 4),
+        };
+      })
+      .filter((x): x is { event: ImpactEvent; periodId: string; periodLabel: string } => x !== null);
+  }, [pinnedEventIds, eventMap, result.timeline]);
+
+  const starredEventsForPinning = useMemo(() => {
+    return state.events
+      .filter((e) => e.starred)
+      .filter((e) => {
+        if (!pinSearch.trim()) return true;
+        const q = pinSearch.toLowerCase();
+        return e.title.toLowerCase().includes(q) || e.eventDate.includes(q);
+      })
+      .sort((a, b) => b.eventDate.localeCompare(a.eventDate));
+  }, [state.events, pinSearch]);
+
   const toggleLine = (key: AudienceId | 'composite') => {
     setVisibleLines((prev) => ({ ...prev, [key]: !prev[key] }));
   };
 
   return (
-    <div className="bg-deepsea border border-steel/60 rounded-xl p-4 shadow-xl">
-      {/* Header & Granularity Legend */}
-      <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
+    <div className="bg-[#1e2227] border border-[#363c44] rounded-xl p-4 shadow-xl transition-all">
+      {/* Header & Controls */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3">
         <div>
-          <div className="flex items-center gap-2">
-            <h2 className="text-base font-bold text-white tracking-wide">
-              MULTI-AUDIENCE HISTORICAL TRAJECTORY & 6-MONTH SCENARIO FORECAST
+          <div className="flex flex-wrap items-center gap-2">
+            <h2 className="text-base font-bold text-white tracking-wide flex items-center gap-2">
+              <span>MULTI-AUDIENCE SENTIMENT TRAJECTORY & 6-MONTH FORECAST</span>
             </h2>
-            <span className="px-2 py-0.5 text-[11px] font-mono rounded bg-charcoal border border-steel text-sky">
-              2011–2025 Annual · 2026 Q1–Q3 Quarterly · Q4 Monthly · 6-Mo Forecast
+            <span className="px-2 py-0.5 text-[11px] font-mono rounded bg-charcoal border border-steel/60 text-sky">
+              2011–2025 Annual · 2026 Q1–Q3 Quarterly · Q4 Monthly · Forecast
             </span>
           </div>
           <p className="text-xs text-sky/80 mt-0.5">
-            Click any period node on the chart to inspect its exact event contributions and integer basis-point math in the right rail.
+            Click any period node to inspect event attribution. Use Presentation Mode to highlight and pin key events for executive briefings.
           </p>
         </div>
 
-        {/* Interactive Series Toggles */}
-        <div className="flex flex-wrap items-center gap-1.5 text-xs">
+        {/* Action Controls: Presentation Pins & Expand/Contract */}
+        <div className="flex items-center gap-2 self-start sm:self-auto shrink-0">
           <button
-            onClick={() => toggleLine('composite')}
-            className={`flex items-center gap-1.5 px-2.5 py-1 rounded border transition font-medium ${
-              visibleLines.composite
-                ? 'bg-charcoal border-white text-white'
-                : 'bg-charcoal/40 border-steel/40 text-steel'
+            type="button"
+            onClick={() => setShowPinDrawer(!showPinDrawer)}
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-semibold font-mono border transition ${
+              pinnedEventIds.length > 0 || showPinDrawer
+                ? 'bg-passion/20 border-passion text-passion'
+                : 'bg-charcoal border-steel/60 text-sky hover:text-white hover:border-sky'
             }`}
           >
-            <span className="w-3 h-1 bg-white rounded-full inline-block" />
-            <span>Composite ({result.weights.executive}/{result.weights.congress}/{result.weights.navy}/{result.weights.public})</span>
+            <Pin className="w-3.5 h-3.5 fill-current" />
+            <span>Pinned Callouts ({pinnedEventIds.length})</span>
+            <ChevronDown className={`w-3 h-3 transition-transform ${showPinDrawer ? 'rotate-180' : ''}`} />
           </button>
 
-          {ALL_AUDIENCES.map((aud) => (
-            <button
-              key={aud}
-              onClick={() => toggleLine(aud)}
-              className={`flex items-center gap-1.5 px-2.5 py-1 rounded border transition ${
-                visibleLines[aud]
-                  ? 'bg-charcoal border-sky/60 text-white'
-                  : 'bg-charcoal/40 border-steel/40 text-steel'
-              }`}
-            >
-              <span
-                className="w-2.5 h-2.5 rounded-full inline-block"
-                style={{ backgroundColor: AUDIENCE_COLORS[aud] }}
-              />
-              <span>{AUDIENCE_LABELS[aud]}</span>
-            </button>
-          ))}
+          <button
+            type="button"
+            onClick={() => setIsChartExpanded((prev) => !prev)}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded bg-charcoal border border-steel/60 hover:border-sky text-xs font-semibold text-white transition shadow-sm"
+            title={isChartExpanded ? 'Collapse Graph Height' : 'Expand Graph for Large Presentations'}
+          >
+            {isChartExpanded ? (
+              <>
+                <Minimize2 className="w-3.5 h-3.5 text-passion" />
+                <span>Compact</span>
+              </>
+            ) : (
+              <>
+                <Maximize2 className="w-3.5 h-3.5 text-sky" />
+                <span>Enlarge</span>
+              </>
+            )}
+          </button>
         </div>
       </div>
 
-      {/* Main Chart Canvas */}
-      <div className="h-[390px] w-full bg-charcoal/70 rounded-lg border border-steel/40 p-2">
+      {/* Presentation Callouts Pinning Drawer */}
+      {showPinDrawer && (
+        <div className="mb-4 p-3.5 rounded-lg bg-[#16191d] border border-passion/50 shadow-inner space-y-3">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-steel/40 pb-2">
+            <div>
+              <span className="text-xs font-bold text-white flex items-center gap-1.5">
+                <Sparkles className="w-3.5 h-3.5 text-passion" />
+                <span>PRESENTATION PINNING MANAGER</span>
+              </span>
+              <p className="text-[11px] text-sky/80">
+                Check any starred milestone below to project a vertical callout line and annotated banner directly onto the timeline chart.
+              </p>
+            </div>
+            <input
+              type="text"
+              value={pinSearch}
+              onChange={(e) => setPinSearch(e.target.value)}
+              placeholder="Search key events..."
+              className="px-2.5 py-1 text-xs rounded bg-charcoal border border-steel text-white placeholder-steel/70 focus:outline-none focus:border-passion w-full sm:w-56"
+            />
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 max-h-56 overflow-y-auto pr-1">
+            {starredEventsForPinning.map((ev) => {
+              const isPinned = pinnedEventIds.includes(ev.id);
+              return (
+                <button
+                  key={ev.id}
+                  type="button"
+                  onClick={() => togglePinnedEvent(ev.id)}
+                  className={`flex items-start gap-2 p-2 rounded text-left text-xs transition border ${
+                    isPinned
+                      ? 'bg-passion/15 border-passion text-white font-medium'
+                      : 'bg-[#1e2227] border-steel/40 text-sky hover:text-white hover:border-steel'
+                  }`}
+                >
+                  <div
+                    className={`w-4 h-4 rounded mt-0.5 flex items-center justify-center shrink-0 border ${
+                      isPinned ? 'bg-passion border-passion text-white' : 'border-steel'
+                    }`}
+                  >
+                    {isPinned && <Check className="w-3 h-3 stroke-[3]" />}
+                  </div>
+                  <div className="min-w-0">
+                    <span className="text-[10px] font-mono text-passion block">{ev.eventDate}</span>
+                    <span className="truncate block font-semibold text-white">{ev.title}</span>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
+      {/* Interactive Series Filter Toggles */}
+      <div className="flex items-center gap-1.5 overflow-x-auto pb-2 mb-2 text-xs">
+        <button
+          onClick={() => toggleLine('composite')}
+          className={`flex items-center gap-1.5 px-2.5 py-1 rounded border transition font-medium whitespace-nowrap ${
+            visibleLines.composite
+              ? 'bg-charcoal border-white text-white font-bold'
+              : 'bg-charcoal/40 border-steel/40 text-steel'
+          }`}
+        >
+          <span className="w-3 h-1 bg-white rounded-full inline-block" />
+          <span>Composite ({result.weights.executive}/{result.weights.congress}/{result.weights.navy}/{result.weights.public})</span>
+        </button>
+
+        {ALL_AUDIENCES.map((aud) => (
+          <button
+            key={aud}
+            onClick={() => toggleLine(aud)}
+            className={`flex items-center gap-1.5 px-2.5 py-1 rounded border transition whitespace-nowrap ${
+              visibleLines[aud]
+                ? 'bg-charcoal border-sky/60 text-white font-medium'
+                : 'bg-charcoal/40 border-steel/40 text-steel'
+            }`}
+          >
+            <span
+              className="w-2.5 h-2.5 rounded-full inline-block"
+              style={{ backgroundColor: AUDIENCE_COLORS[aud] }}
+            />
+            <span>{AUDIENCE_LABELS[aud]}</span>
+          </button>
+        ))}
+      </div>
+
+      {/* Main Chart Canvas (Enlargeable Height) */}
+      <div
+        className={`w-full bg-[#16191d] rounded-lg border border-[#2d333b] p-2 transition-all duration-300 ${
+          isChartExpanded ? 'h-[580px]' : 'h-[390px]'
+        }`}
+      >
         <ResponsiveContainer width="100%" height="100%">
           <ComposedChart
             data={data}
-            margin={{ top: 16, right: 24, left: 4, bottom: 8 }}
+            margin={{ top: 20, right: 24, left: 4, bottom: 12 }}
             onClick={(stateObj) => {
               if (stateObj && stateObj.activeLabel) {
                 const match = data.find((d) => d.id === stateObj.activeLabel);
@@ -210,10 +366,10 @@ export const TrendChart: React.FC = () => {
               }
             }}
           >
-            <CartesianGrid stroke="#5b6670" strokeDasharray="3 3" strokeOpacity={0.35} />
+            <CartesianGrid stroke="#363c44" strokeDasharray="3 3" strokeOpacity={0.6} />
             <XAxis
               dataKey="id"
-              stroke="#75abd1"
+              stroke="#8b98a5"
               tick={{ fill: '#ffffff', fontSize: 11, fontFamily: 'JetBrains Mono' }}
               interval={0}
               angle={-30}
@@ -221,10 +377,10 @@ export const TrendChart: React.FC = () => {
               height={52}
             />
             <YAxis
-              domain={[25, 100]}
-              stroke="#75abd1"
+              domain={[20, 100]}
+              stroke="#8b98a5"
               tick={{ fill: '#ffffff', fontSize: 11, fontFamily: 'JetBrains Mono' }}
-              ticks={[25, 40, 50, 60, 75, 90, 100]}
+              ticks={[20, 30, 40, 50, 60, 70, 80, 90, 100]}
             />
 
             {/* Neutral 50.00 Baseline */}
@@ -263,20 +419,38 @@ export const TrendChart: React.FC = () => {
 
             {/* Selected Period Highlight */}
             {selectedPeriodId && (
-              <ReferenceLine x={selectedPeriodId} stroke="#ea7722" strokeOpacity={0.5} strokeWidth={2} />
+              <ReferenceLine x={selectedPeriodId} stroke="#ea7722" strokeOpacity={0.6} strokeWidth={2.5} />
             )}
+
+            {/* Pinned Presentation Callout Markers */}
+            {pinnedEventsWithPeriod.map(({ event: ev, periodId }, i) => (
+              <ReferenceLine
+                key={`pin_${ev.id}`}
+                x={periodId}
+                stroke="#ea7722"
+                strokeWidth={2}
+                strokeDasharray="3 2"
+                label={{
+                  value: `📌 ${ev.eventDate.slice(0, 4)}: ${ev.title.slice(0, 28)}…`,
+                  position: i % 2 === 0 ? 'top' : 'insideTop',
+                  fill: '#ffffff',
+                  fontSize: 10,
+                  fontWeight: 'bold',
+                }}
+              />
+            ))}
 
             <Tooltip
               content={({ active, payload }) => {
                 if (!active || !payload || !payload.length) return null;
                 const d = payload[0]?.payload as ChartDatum;
                 return (
-                  <div className="bg-charcoal border border-sky rounded-lg p-3 shadow-2xl text-xs max-w-xs">
+                  <div className="bg-[#1e2227] border border-sky rounded-lg p-3 shadow-2xl text-xs max-w-sm">
                     <div className="flex items-center justify-between gap-3 border-b border-steel/60 pb-1.5 mb-2">
                       <span className="font-bold text-white font-mono">
                         {d.label} ({d.id})
                       </span>
-                      <span className="px-1.5 py-0.5 rounded text-[10px] uppercase font-mono bg-deepsea text-sky border border-steel/50">
+                      <span className="px-1.5 py-0.5 rounded text-[10px] uppercase font-mono bg-[#16191d] text-sky border border-steel/50">
                         {d.granularity}
                       </span>
                     </div>
@@ -524,11 +698,11 @@ export const TrendChart: React.FC = () => {
         <div className="flex items-center gap-3 text-xs text-sky">
           <span className="flex items-center gap-1.5">
             <span className="w-3 h-3 rounded-full bg-passion border border-white inline-block" />
-            <span>Starred Key Event Period</span>
+            <span>Starred Key Event</span>
           </span>
           <span className="flex items-center gap-1.5">
             <span className="w-4 h-2 bg-passion/30 border border-passion inline-block rounded-sm" />
-            <span>6-Mo Analytic P10–P90 Forecast Band</span>
+            <span>6-Mo Analytic Forecast Band</span>
           </span>
         </div>
 
