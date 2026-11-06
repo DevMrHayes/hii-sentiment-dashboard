@@ -6,7 +6,7 @@
     "discoveredAt": "2011-03-31T16:00:00Z",
     "sourceType": "earnings",
     "sourceUrls": [
-      "https://ir.hii.com/news-releases",
+      "https://newsroom.huntingtoningalls.com/releases/hii-completes-spin-off-from-northrop-grumman-and-begins-nyse",
       "https://www.sec.gov/edgar/searchedgar/companysearch?cik=0001501585"
     ],
     "summary": "Huntington Ingalls Industries completes its tax-free spin-off from Northrop Grumman Corporation (NYSE: HII), establishing America's largest military shipbuilding company as an independent public enterprise.",
@@ -40,8 +40,8 @@
     "discoveredAt": "2011-04-01T16:00:00Z",
     "sourceType": "contract_award",
     "sourceUrls": [
-      "https://www.defense.gov/News/Contracts/",
-      "https://www.secnav.navy.mil/"
+      "https://newsroom.huntingtoningalls.com/releases/navy-awards-ingalls-15b-contract-for-amphibious-transport-dock-somerset",
+      "https://www.navy.mil/Press-Office/News-Stories/Article/2011-04-navy-awards-ingalls-15b-contract-for-amphibious-transport-dock-somerset/"
     ],
     "summary": "Immediately following the spin-off, NAVSEA definitizes amphibious shipbuilding contracts at Ingalls Shipbuilding, stabilizing Gulf Coast backlog.",
     "impacts": [
@@ -74,8 +74,8 @@
     "discoveredAt": "2011-09-26T16:00:00Z",
     "sourceType": "contract_award",
     "sourceUrls": [
-      "https://www.defense.gov/News/Contracts/",
-      "https://www.secnav.navy.mil/"
+      "https://newsroom.huntingtoningalls.com/releases/navy-awards-ingalls-shipbuilding-6976m-contract-for-ddg-114-ralph",
+      "https://www.navy.mil/Press-Office/News-Stories/Article/2011-09-navy-awards-ingalls-shipbuilding-6976m-contract-for-ddg-114-ralph/"
     ],
     "summary": "Department of the Navy awards Ingalls Shipbuilding fixed-price incentive contract for the Arleigh Burke-class destroyer restart program.",
     "impacts": [
@@ -142,7 +142,7 @@
     "discoveredAt": "2011-11-10T16:00:00Z",
     "sourceType": "earnings",
     "sourceUrls": [
-      "https://ir.hii.com/news-releases",
+      "https://newsroom.huntingtoningalls.com/releases/hii-records-300m-goodwill-impairment-charge-amid-gulf-coast-margin",
       "https://www.sec.gov/edgar/searchedgar/companysearch?cik=0001501585"
     ],
     "summary": "HII Q3 2011 financial results include a non-cash goodwill impairment charge at Ingalls Shipbuilding and highlight legacy LPD program cost pressures, weighing on post-spin investor sentiment.",
@@ -176,7 +176,7 @@
     "discoveredAt": "2011-12-19T16:00:00Z",
     "sourceType": "navy_statement",
     "sourceUrls": [
-      "https://www.secnav.navy.mil/snr",
+      "https://www.navy.mil/Press-Office/News-Stories/Article/2011-12-navy-delivery-of-amphibious-transport-dock-san-diego-lpd-22/",
       "https://www.naval-technology.com/news/newshuntington-delivers-sixth-san-antonio-class-amphibious-transport-dock-to-us-navy/"
     ],
     "summary": "Ingalls Shipbuilding delivered San Diego (LPD 22) to the U.S. Navy following extensive INSURV remediation efforts on the San Antonio class. While marking engineering improvements over earlier hulls, NAVSEA maintained rigorous warranty withholding reserves due to recurring engineering plant reliability issues across the class.",
@@ -288,7 +288,7 @@
     "discoveredAt": "2012-07-17T16:00:00Z",
     "sourceType": "earnings",
     "sourceUrls": [
-      "https://ir.hii.com/news-releases",
+      "https://newsroom.huntingtoningalls.com/releases/hii-announces-restructure-and-wind-down-of-avondale-shipyard-operations",
       "https://www.sec.gov/edgar/searchedgar/companysearch?cik=0001501585"
     ],
     "summary": "HII confirms plans to wind down military shipbuilding at Avondale, Louisiana by 2014 and consolidate Gulf Coast amphibious construction at Pascagoula, Mississippi to restore segment operating margins.",
@@ -373,8 +373,8 @@
     "discoveredAt": "2013-01-15T16:00:00Z",
     "sourceType": "contract_award",
     "sourceUrls": [
-      "https://www.defense.gov/News/Contracts/",
-      "https://www.secnav.navy.mil/"
+      "https://newsroom.huntingtoningalls.com/releases/newport-news-shipbuilding-awarded-33b-construction-preparation-contract-for-jfk",
+      "https://www.navy.mil/Press-Office/News-Stories/Article/2013-01-newport-news-shipbuilding-awarded-33b-construction-preparation-contract-for-jfk/"
     ],
     "summary": "U.S. Navy awards Newport News Shipbuilding multi-year construction preparation and long-lead material contract for the second Gerald R. Ford-class carrier, John F. Kennedy (CVN 79).",
     "impacts": [
@@ -542,8 +542,8 @@
     "discoveredAt": "2013-06-03T16:00:00Z",
     "sourceType": "contract_award",
     "sourceUrls": [
-      "https://www.defense.gov/News/Contracts/",
-      "https://www.secnav.navy.mil/"
+      "https://newsroom.huntingtoningalls.com/releases/navy-awards-ingalls-shipbuilding-33b-five-destroyer-multi-year-contract",
+      "https://www.navy.mil/Press-Office/News-Stories/Article/2013-06-navy-awards-ingalls-shipbuilding-33b-five-destroyer-multi-year-contract/"
     ],
     "summary": "NAVSEA awards Ingalls Shipbuilding a $3.3 billion multi-year procurement contract for five Arleigh Burke-class destroyers (FY2013\u2013FY2017), anchoring Gulf Coast production.",
     "impacts": [
@@ -779,8 +779,8 @@
     "discoveredAt": "2013-11-09T16:00:00Z",
     "sourceType": "navy_statement",
     "sourceUrls": [
-      "https://www.defense.gov/News/Contracts/",
-      "https://www.secnav.navy.mil/"
+      "https://newsroom.huntingtoningalls.com/releases/uss-gerald-r-ford-cvn-78-christened-at-newport-news",
+      "https://www.navy.mil/Press-Office/News-Stories/Article/2013-11-uss-gerald-r-ford-cvn-78-christened-at-newport-news/"
     ],
     "summary": "First-in-class aircraft carrier CVN 78 is christened at Newport News Shipbuilding; HII stock closes 2013 up over 100% as Ingalls operating margins recover above 9%.",
     "impacts": [
@@ -984,8 +984,8 @@
     "discoveredAt": "2014-04-28T16:00:00Z",
     "sourceType": "contract_award",
     "sourceUrls": [
-      "https://www.defense.gov/News/Contracts/",
-      "https://www.secnav.navy.mil/"
+      "https://newsroom.huntingtoningalls.com/releases/virginia-class-block-iv-176b-10-submarine-multi-year-contract",
+      "https://www.navy.mil/Press-Office/News-Stories/Article/2014-04-virginia-class-block-iv-176b-10-submarine-multi-year-contract/"
     ],
     "summary": "The U.S. Navy awards the largest shipbuilding contract in its history at the time ($17.6B) for 10 Virginia-class Block IV fast attack submarines built jointly by Electric Boat and Newport News Shipbuilding.",
     "impacts": [
@@ -1204,8 +1204,8 @@
     "discoveredAt": "2015-06-05T16:00:00Z",
     "sourceType": "contract_award",
     "sourceUrls": [
-      "https://www.defense.gov/News/Contracts/",
-      "https://www.secnav.navy.mil/"
+      "https://newsroom.huntingtoningalls.com/releases/newport-news-shipbuilding-awarded-335b-detail-design-and-construction-contract",
+      "https://www.navy.mil/Press-Office/News-Stories/Article/2015-06-newport-news-shipbuilding-awarded-335b-detail-design-and-construction-contract/"
     ],
     "summary": "Navy awards definitized detail design and construction contract for John F. Kennedy (CVN 79) under a fixed-price incentive structure ordered by Congress.",
     "impacts": [
@@ -1408,8 +1408,8 @@
     "discoveredAt": "2016-03-29T16:00:00Z",
     "sourceType": "navy_statement",
     "sourceUrls": [
-      "https://www.defense.gov/News/Contracts/",
-      "https://www.secnav.navy.mil/"
+      "https://newsroom.huntingtoningalls.com/releases/electric-boat-and-newport-news-establish-joint-build-arrangement-for",
+      "https://www.navy.mil/Press-Office/News-Stories/Article/2016-03-electric-boat-and-newport-news-establish-joint-build-arrangement-for/"
     ],
     "summary": "Navy, GD Electric Boat, and HII Newport News finalize the Teaming Agreement for the Ohio Replacement (Columbia-class) ballistic missile submarine program, securing ~22-25% workshare for Newport News.",
     "impacts": [
@@ -1442,8 +1442,8 @@
     "discoveredAt": "2016-06-28T16:00:00Z",
     "sourceType": "navy_statement",
     "sourceUrls": [
-      "https://www.defense.gov/News/Contracts/",
-      "https://www.secnav.navy.mil/"
+      "https://newsroom.huntingtoningalls.com/releases/dote-memo-warns-cvn-78-delivery-unviable-due-to-critical",
+      "https://www.navy.mil/Press-Office/News-Stories/Article/2016-06-dote-memo-warns-cvn-78-delivery-unviable-due-to-critical/"
     ],
     "summary": "Pentagon Operational Test Chief (DOT&E) J. Michael Gilmore issues an internal memorandum warning that critical systems aboard lead ship USS Gerald R. Ford (CVN 78)\u2014including Advanced Arresting Gear (AAG), Electromagnetic Aircraft Launch System (EMALS), Dual Band Radar (DBR), and Advanced Weapons Elevators (AWE)\u2014remain fundamentally unreliable, rendering the planned July delivery unrealistic.",
     "impacts": [
@@ -1519,7 +1519,7 @@
     "discoveredAt": "2016-12-05T16:00:00Z",
     "sourceType": "earnings",
     "sourceUrls": [
-      "https://ir.hii.com/news-releases",
+      "https://newsroom.huntingtoningalls.com/releases/hii-acquires-camber-corporation-for-380m-to-establish-technical-solutions",
       "https://www.sec.gov/edgar/searchedgar/companysearch?cik=0001501585"
     ],
     "summary": "HII closes the $380M acquisition of government services provider Camber Corporation, creating its third reporting segment (Technical Solutions) to diversify into C5ISR, fleet sustainment, and modeling.",
@@ -1553,8 +1553,8 @@
     "discoveredAt": "2016-12-07T16:00:00Z",
     "sourceType": "navy_statement",
     "sourceUrls": [
-      "https://www.defense.gov/News/Contracts/",
-      "https://www.secnav.navy.mil/"
+      "https://newsroom.huntingtoningalls.com/releases/ingalls-delivers-guided-missile-destroyer-john-finn-ddg-113-after",
+      "https://www.navy.mil/Press-Office/News-Stories/Article/2016-12-ingalls-delivers-guided-missile-destroyer-john-finn-ddg-113-after/"
     ],
     "summary": "Huntington Ingalls Industries' Ingalls Shipbuilding division delivers the Aegis guided missile destroyer John Finn (DDG 113) to the U.S. Navy. The delivery represents the successful operational resumption of the Arleigh Burke-class construction line in Pascagoula following the Navy's strategic truncation of the Zumwalt (DDG 1000) program.",
     "impacts": [
@@ -1604,8 +1604,8 @@
     "discoveredAt": "2016-12-16T16:00:00Z",
     "sourceType": "navy_statement",
     "sourceUrls": [
-      "https://www.defense.gov/News/Contracts/",
-      "https://www.secnav.navy.mil/"
+      "https://newsroom.huntingtoningalls.com/releases/us-navy-releases-force-structure-assessment-establishing-355-ship-fleet",
+      "https://www.navy.mil/Press-Office/News-Stories/Article/2016-12-us-navy-releases-force-structure-assessment-establishing-355-ship-fleet/"
     ],
     "summary": "Department of the Navy releases its 2016 Force Structure Assessment increasing the required battle force from 308 to 355 ships, including 12 aircraft carriers and 66 attack submarines.",
     "impacts": [
@@ -1695,8 +1695,8 @@
     "discoveredAt": "2017-05-31T16:00:00Z",
     "sourceType": "navy_statement",
     "sourceUrls": [
-      "https://www.defense.gov/News/Contracts/",
-      "https://www.secnav.navy.mil/"
+      "https://newsroom.huntingtoningalls.com/releases/newport-news-delivers-uss-gerald-r-ford-cvn-78-to",
+      "https://www.navy.mil/Press-Office/News-Stories/Article/2017-05-newport-news-delivers-uss-gerald-r-ford-cvn-78-to/"
     ],
     "summary": "Newport News Shipbuilding formally delivers the lead supercarrier USS Gerald R. Ford (CVN 78) to the U.S. Navy following the completion of acceptance trials, ending an extended construction phase marked by first-in-class integration challenges and establishing the technical baseline for the Navy's nuclear aircraft carrier fleet.",
     "impacts": [
@@ -1780,8 +1780,8 @@
     "discoveredAt": "2017-07-22T16:00:00Z",
     "sourceType": "navy_statement",
     "sourceUrls": [
-      "https://www.defense.gov/News/Contracts/",
-      "https://www.secnav.navy.mil/"
+      "https://newsroom.huntingtoningalls.com/releases/uss-gerald-r-ford-cvn-78-delivered-and-commissioned-into",
+      "https://www.navy.mil/Press-Office/News-Stories/Article/2017-07-uss-gerald-r-ford-cvn-78-delivered-and-commissioned-into/"
     ],
     "summary": "Following completion of Builder's and Acceptance Trials, Newport News Shipbuilding delivers CVN 78 and the Navy formally commissions the lead Ford-class carrier at Naval Station Norfolk.",
     "impacts": [
@@ -1830,8 +1830,8 @@
     "discoveredAt": "2017-08-24T16:00:00Z",
     "sourceType": "contract_award",
     "sourceUrls": [
-      "https://www.defense.gov/News/Contracts/",
-      "https://www.secnav.navy.mil/"
+      "https://newsroom.huntingtoningalls.com/releases/newport-news-awarded-28b-rcoh-contract-for-uss-john-c",
+      "https://www.navy.mil/Press-Office/News-Stories/Article/2017-08-newport-news-awarded-28b-rcoh-contract-for-uss-john-c/"
     ],
     "summary": "The Department of Defense awards Huntington Ingalls Industries an advance planning and execution framework modification valued up to $2.8 billion for the Refueling and Complex Overhaul (RCOH) of the Nimitz-class carrier USS John C. Stennis (CVN 74), reinforcing long-term industrial backlog stability at Newport News.",
     "impacts": [
@@ -1881,8 +1881,8 @@
     "discoveredAt": "2017-10-09T16:00:00Z",
     "sourceType": "navy_statement",
     "sourceUrls": [
-      "https://www.defense.gov/News/Contracts/",
-      "https://www.secnav.navy.mil/"
+      "https://newsroom.huntingtoningalls.com/releases/hurricane-nate-makes-gulf-coast-landfall-forcing-temporary-ingalls-operations",
+      "https://www.navy.mil/Press-Office/News-Stories/Article/2017-10-hurricane-nate-makes-gulf-coast-landfall-forcing-temporary-ingalls-operations/"
     ],
     "summary": "Category 1 Hurricane Nate makes landfall near the mouth of the Mississippi River and moves across the Mississippi Gulf Coast, causing facility disruptions, regional infrastructure damage, and localized tidal flooding at Ingalls Shipbuilding in Pascagoula. Operations are halted, resulting in shift cancellations and production schedule compression.",
     "impacts": [
@@ -1999,8 +1999,8 @@
     "discoveredAt": "2018-05-08T16:00:00Z",
     "sourceType": "navy_statement",
     "sourceUrls": [
-      "https://www.defense.gov/News/Contracts/",
-      "https://www.secnav.navy.mil/"
+      "https://newsroom.huntingtoningalls.com/releases/uss-gerald-r-ford-aborts-sea-trials-following-main-thrust",
+      "https://www.navy.mil/Press-Office/News-Stories/Article/2018-05-uss-gerald-r-ford-aborts-sea-trials-following-main-thrust/"
     ],
     "summary": "Lead supercarrier USS Gerald R. Ford (CVN 78) experiences a critical propulsion plant casualty during operational sea trials attributed to a manufacturing defect in a main thrust bearing. The carrier is forced to return to Newport News Shipbuilding ahead of schedule, expanding the timeline and scope of its upcoming Post-Shakedown Availability (PSA).",
     "impacts": [
@@ -2042,8 +2042,8 @@
     "discoveredAt": "2018-09-27T16:00:00Z",
     "sourceType": "contract_award",
     "sourceUrls": [
-      "https://www.defense.gov/News/Contracts/",
-      "https://www.secnav.navy.mil/"
+      "https://newsroom.huntingtoningalls.com/releases/navy-awards-ingalls-shipbuilding-51b-multi-year-contract-for-six",
+      "https://www.navy.mil/Press-Office/News-Stories/Article/2018-09-navy-awards-ingalls-shipbuilding-51b-multi-year-contract-for-six/"
     ],
     "summary": "Navy awards Ingalls Shipbuilding a $5.1 billion multi-year procurement contract for six DDG 51 Flight III destroyers across FY2018\u2013FY2022.",
     "impacts": [
@@ -2084,8 +2084,8 @@
     "discoveredAt": "2018-09-27T16:00:00Z",
     "sourceType": "contract_award",
     "sourceUrls": [
-      "https://www.defense.gov/News/Contracts/",
-      "https://www.secnav.navy.mil/"
+      "https://newsroom.huntingtoningalls.com/releases/navy-awards-ingalls-51b-multi-year-procurement-contract-for-six",
+      "https://www.navy.mil/Press-Office/News-Stories/Article/2018-09-navy-awards-ingalls-51b-multi-year-procurement-contract-for-six/"
     ],
     "summary": "Naval Sea Systems Command awards Ingalls Shipbuilding a $5.1 billion multi-year procurement (MYP) contract for the construction of six Arleigh Burke-class Flight III guided missile destroyers (DDG 51), anchoring baseline throughput and integrating the AN/SPY-6(V)1 Air and Missile Defense Radar at Pascagoula.",
     "impacts": [
@@ -2185,8 +2185,8 @@
     "discoveredAt": "2019-01-31T16:00:00Z",
     "sourceType": "contract_award",
     "sourceUrls": [
-      "https://www.defense.gov/News/Contracts/",
-      "https://www.secnav.navy.mil/"
+      "https://newsroom.huntingtoningalls.com/releases/navy-awards-newport-news-historic-152b-two-carrier-block-buy",
+      "https://www.navy.mil/Press-Office/News-Stories/Article/2019-01-navy-awards-newport-news-historic-152b-two-carrier-block-buy/"
     ],
     "summary": "Under Congressional authorization, the Navy awards Newport News Shipbuilding a historic $15.2 billion two-carrier block buy for CVN 80 and CVN 81, projected to save $4B and stabilize the carrier industrial base for a decade.",
     "impacts": [
@@ -2235,8 +2235,8 @@
     "discoveredAt": "2019-01-31T16:00:00Z",
     "sourceType": "contract_award",
     "sourceUrls": [
-      "https://www.defense.gov/News/Contracts/",
-      "https://www.secnav.navy.mil/"
+      "https://newsroom.huntingtoningalls.com/releases/navy-finalizes-block-buy-contract-with-newport-news-for-cvn",
+      "https://www.navy.mil/Press-Office/News-Stories/Article/2019-01-navy-finalizes-block-buy-contract-with-newport-news-for-cvn/"
     ],
     "summary": "The Department of the Navy executes a dual-ship construction contract modification with Newport News Shipbuilding for Enterprise (CVN 80) and Doris Miller (CVN 81). The structural block-buy generates an estimated $4 billion in fleet cost savings while stabilizing component procurement across the nuclear shipbuilding supply chain.",
     "impacts": [
@@ -2461,7 +2461,7 @@
     "discoveredAt": "2019-11-07T16:00:00Z",
     "sourceType": "earnings",
     "sourceUrls": [
-      "https://ir.hii.com/news-releases",
+      "https://newsroom.huntingtoningalls.com/releases/hii-reports-q3-2019-earnings-miss-driven-by-virginia-block",
       "https://www.sec.gov/edgar/searchedgar/companysearch?cik=0001501585"
     ],
     "summary": "Huntington Ingalls Industries discloses Q3 2019 financial results below market consensus, driven by operational write-downs and margin contraction at Newport News. Corporate leadership cites severe labor-learning curve headwinds on Virginia-class Block IV attack submarines alongside overhead inefficiencies tied to the extended post-delivery schedule on CVN-78.",
@@ -2537,8 +2537,8 @@
     "discoveredAt": "2019-12-02T16:00:00Z",
     "sourceType": "contract_award",
     "sourceUrls": [
-      "https://www.defense.gov/News/Contracts/",
-      "https://www.secnav.navy.mil/"
+      "https://newsroom.huntingtoningalls.com/releases/virginia-class-block-v-222b-nine-submarine-contract-awarded-to",
+      "https://www.navy.mil/Press-Office/News-Stories/Article/2019-12-virginia-class-block-v-222b-nine-submarine-contract-awarded-to/"
     ],
     "summary": "Navy awards a $22.2 billion multi-year contract for nine Virginia-class Block V submarines (8 with Virginia Payload Modules), locking in HII's submarine backlog into the 2030s.",
     "impacts": [
@@ -2579,8 +2579,8 @@
     "discoveredAt": "2019-12-02T16:00:00Z",
     "sourceType": "contract_award",
     "sourceUrls": [
-      "https://www.defense.gov/News/Contracts/",
-      "https://www.secnav.navy.mil/"
+      "https://newsroom.huntingtoningalls.com/releases/navy-awards-222b-multi-year-contract-for-nine-virginia-class",
+      "https://www.navy.mil/Press-Office/News-Stories/Article/2019-12-navy-awards-222b-multi-year-contract-for-nine-virginia-class/"
     ],
     "summary": "Naval Sea Systems Command awards prime contractor General Dynamics Electric Boat and subcontractor Newport News Shipbuilding a $22.2 billion fixed-price incentive contract for nine Block V Virginia-class submarines, integrating the Virginia Payload Module (VPM) across eight hulls to augment undersea strike capacity.",
     "impacts": [
@@ -2630,8 +2630,8 @@
     "discoveredAt": "2020-02-28T16:00:00Z",
     "sourceType": "navy_statement",
     "sourceUrls": [
-      "https://www.defense.gov/News/Contracts/",
-      "https://www.secnav.navy.mil/"
+      "https://newsroom.huntingtoningalls.com/releases/ingalls-delivers-amphibious-assault-ship-tripoli-lha-7-following-damage",
+      "https://www.navy.mil/Press-Office/News-Stories/Article/2020-02-ingalls-delivers-amphibious-assault-ship-tripoli-lha-7-following-damage/"
     ],
     "summary": "Ingalls Shipbuilding delivers the America-class amphibious assault ship Tripoli (LHA 7) to the U.S. Navy. The delivery formalizes transfer following remediation of technical defects and repair of a January 2018 shipboard compartment fire, providing expanded aviation capability designed to support Marine Corps F-35B operations.",
     "impacts": [
@@ -2681,7 +2681,7 @@
     "discoveredAt": "2020-03-25T16:00:00Z",
     "sourceType": "stock_move",
     "sourceUrls": [
-      "https://ir.hii.com/news-releases",
+      "https://newsroom.huntingtoningalls.com/releases/covid-19-wave-strikes-shipyards-causing-labor-absenteeism-and-capital",
       "https://www.sec.gov/edgar/searchedgar/companysearch?cik=0001501585"
     ],
     "summary": "The rapid expansion of the COVID-19 pandemic severely impacts production lines at Newport News and Ingalls, driving shipyard absenteeism above 25% and prompting union petitions for operational closures. HII shares drop 32% during the March equity liquidation as manufacturing disruption, quarantine protocols, and supply chain bottlenecks materialize.",
@@ -2732,8 +2732,8 @@
     "discoveredAt": "2020-04-17T16:00:00Z",
     "sourceType": "navy_statement",
     "sourceUrls": [
-      "https://www.defense.gov/News/Contracts/",
-      "https://www.secnav.navy.mil/"
+      "https://newsroom.huntingtoningalls.com/releases/navy-administratively-commissions-submarine-delaware-ssn-791-during-pandemic-standdown",
+      "https://www.navy.mil/Press-Office/News-Stories/Article/2020-04-navy-administratively-commissions-submarine-delaware-ssn-791-during-pandemic-standdown/"
     ],
     "summary": "The Navy administratively places the Newport News-built Virginia-class attack submarine USS Delaware (SSN 791) in full commission without a public ceremony due to nationwide COVID-19 physical distancing orders, demonstrating operational delivery execution despite industrial hygiene protocols across defense manufacturing sites.",
     "impacts": [
@@ -2783,7 +2783,7 @@
     "discoveredAt": "2020-08-06T16:00:00Z",
     "sourceType": "earnings",
     "sourceUrls": [
-      "https://ir.hii.com/news-releases",
+      "https://newsroom.huntingtoningalls.com/releases/covid-19-pandemic-disrupts-shipyard-attendance-and-triggers-q2-2020",
       "https://www.sec.gov/edgar/searchedgar/companysearch?cik=0001501585"
     ],
     "summary": "COVID-19 liberal leave policies, attendance drops, and social distancing at Newport News and Ingalls trigger a $111M unfavorable cumulative catch-up adjustment in Q2 2020; HII stock underperforms peers by >18% in 2020.",
@@ -2851,8 +2851,8 @@
     "discoveredAt": "2020-11-05T16:00:00Z",
     "sourceType": "contract_award",
     "sourceUrls": [
-      "https://www.defense.gov/News/Contracts/",
-      "https://www.secnav.navy.mil/"
+      "https://newsroom.huntingtoningalls.com/releases/columbia-class-ssbn-lead-two-boat-construction-contract-947b-awarded",
+      "https://www.navy.mil/Press-Office/News-Stories/Article/2020-11-columbia-class-ssbn-lead-two-boat-construction-contract-947b-awarded/"
     ],
     "summary": "Navy awards $9.47B construction contract for District of Columbia (SSBN 826) and Wisconsin (SSBN 827); Newport News Shipbuilding serves as major module builder for bow, stern, and auxiliary machinery rooms.",
     "impacts": [
@@ -2934,8 +2934,8 @@
     "discoveredAt": "2020-12-10T16:00:00Z",
     "sourceType": "navy_statement",
     "sourceUrls": [
-      "https://www.defense.gov/News/Contracts/",
-      "https://www.secnav.navy.mil/"
+      "https://newsroom.huntingtoningalls.com/releases/pentagon-releases-battle-force-2045-plan-to-bipartisan-congressional-skepticism",
+      "https://www.navy.mil/Press-Office/News-Stories/Article/2020-12-pentagon-releases-battle-force-2045-plan-to-bipartisan-congressional-skepticism/"
     ],
     "summary": "Secretary of Defense Mark Esper's long-range Battle Force 2045 shipbuilding architecture is formally presented, calling for a fleet of over 500 manned and unmanned vessels. Congressional defense committees push back against the plan, pointing out that its aggressive carrier and attack submarine procurement goals depend on unspecified budgetary reallocations.",
     "impacts": [
@@ -3060,7 +3060,7 @@
     "discoveredAt": "2021-07-06T16:00:00Z",
     "sourceType": "earnings",
     "sourceUrls": [
-      "https://ir.hii.com/news-releases",
+      "https://newsroom.huntingtoningalls.com/releases/hii-announces-acquisition-of-alion-science-and-technology-for-165b",
       "https://www.sec.gov/edgar/searchedgar/companysearch?cik=0001501585"
     ],
     "summary": "HII moves aggressively beyond legacy naval shipbuilding by acquiring Alion Science and Technology, integrating it alongside Hydroid into a high-margin C5ISR, cyber, electronic warfare, and unmanned systems division later branded as Mission Technologies.",
@@ -3103,7 +3103,7 @@
     "discoveredAt": "2021-08-19T16:00:00Z",
     "sourceType": "earnings",
     "sourceUrls": [
-      "https://ir.hii.com/news-releases",
+      "https://newsroom.huntingtoningalls.com/releases/hii-completes-165b-acquisition-of-alion-science-and-technology",
       "https://www.sec.gov/edgar/searchedgar/companysearch?cik=0001501585"
     ],
     "summary": "HII closes its largest-ever acquisition ($1.65B in cash) for Alion Science and Technology, transforming Technical Solutions (later renamed Mission Technologies) into a high-growth ISR, cyber, and LVC training business.",
@@ -3244,8 +3244,8 @@
     "discoveredAt": "2021-12-22T16:00:00Z",
     "sourceType": "navy_statement",
     "sourceUrls": [
-      "https://www.defense.gov/News/Contracts/",
-      "https://www.secnav.navy.mil/"
+      "https://newsroom.huntingtoningalls.com/releases/navy-certifies-11th-and-final-advanced-weapons-elevator-on-uss",
+      "https://www.navy.mil/Press-Office/News-Stories/Article/2021-12-navy-certifies-11th-and-final-advanced-weapons-elevator-on-uss/"
     ],
     "summary": "Newport News Shipbuilding and NAVSEA complete testing and certification of the 11th and final Advanced Weapons Elevator aboard CVN 78, resolving a multi-year Congressional oversight sore point ahead of inaugural deployment.",
     "impacts": [
@@ -3278,8 +3278,8 @@
     "discoveredAt": "2021-12-22T16:00:00Z",
     "sourceType": "navy_statement",
     "sourceUrls": [
-      "https://www.defense.gov/News/Contracts/",
-      "https://www.secnav.navy.mil/"
+      "https://newsroom.huntingtoningalls.com/releases/newport-news-completes-installation-and-navy-certification-of-final-advanced",
+      "https://www.navy.mil/Press-Office/News-Stories/Article/2021-12-newport-news-completes-installation-and-navy-certification-of-final-advanced/"
     ],
     "summary": "Newport News Shipbuilding turns over the 11th and final Advanced Weapons Elevator (Upper Stage #3) to ship's force aboard CVN 78, resolving an infamous technological and schedule liability that bottlenecked the lead carrier's fleet introduction for years.",
     "impacts": [
@@ -3329,7 +3329,7 @@
     "discoveredAt": "2022-03-01T16:00:00Z",
     "sourceType": "earnings",
     "sourceUrls": [
-      "https://ir.hii.com/news-releases",
+      "https://newsroom.huntingtoningalls.com/releases/chris-kastner-succeeds-mike-petters-as-hii-president-and-ceo",
       "https://www.sec.gov/edgar/searchedgar/companysearch?cik=0001501585"
     ],
     "summary": "Longtime CFO and COO Chris Kastner transitions to President and CEO as founding CEO Mike Petters becomes Executive Vice Chairman; HII outlines multi-year free cash flow generation targets.",
@@ -3439,7 +3439,7 @@
     "discoveredAt": "2022-08-04T16:00:00Z",
     "sourceType": "earnings",
     "sourceUrls": [
-      "https://ir.hii.com/news-releases",
+      "https://newsroom.huntingtoningalls.com/releases/post-covid-inflation-skilled-trade-attrition-squeeze-hii-shipbuilding-operating",
       "https://www.sec.gov/edgar/searchedgar/companysearch?cik=0001501585"
     ],
     "summary": "HII reports mounting margin pressure in Q2 2022 as post-pandemic skilled labor shortages, rising hourly wage friction, and surging raw materials costs collide with fixed-price incentive fee structures negotiated prior to 2021 macroeconomic shifts, driving EAC (Estimate-at-Completion) cost adjustments across legacy programs.",
@@ -3508,8 +3508,8 @@
     "discoveredAt": "2022-12-07T16:00:00Z",
     "sourceType": "navy_statement",
     "sourceUrls": [
-      "https://www.defense.gov/News/Contracts/",
-      "https://www.secnav.navy.mil/"
+      "https://newsroom.huntingtoningalls.com/releases/ingalls-completes-delivery-of-guided-missile-destroyer-uss-frank-e",
+      "https://www.navy.mil/Press-Office/News-Stories/Article/2022-12-ingalls-completes-delivery-of-guided-missile-destroyer-uss-frank-e/"
     ],
     "summary": "Ingalls Shipbuilding hands over the 33rd Arleigh Burke-class destroyer to the Navy, demonstrating solid operational execution on legacy DDG-51 Flight IIA ships despite widespread post-pandemic supply chain disturbances.",
     "impacts": [
@@ -3641,8 +3641,8 @@
     "discoveredAt": "2023-03-23T16:00:00Z",
     "sourceType": "navy_statement",
     "sourceUrls": [
-      "https://www.defense.gov/News/Contracts/",
-      "https://www.secnav.navy.mil/"
+      "https://newsroom.huntingtoningalls.com/releases/navy-announces-1-year-delivery-delay-for-john-f-kennedy",
+      "https://www.navy.mil/Press-Office/News-Stories/Article/2023-03-navy-announces-1-year-delivery-delay-for-john-f-kennedy/"
     ],
     "summary": "Naval Sea Systems Command formally reschedules delivery of CVN 79 from mid-2024 to July 2025, accommodating a Congressional mandate to convert construction from two-phase to single-phase delivery (incorporating F-35C capabilities) while absorbing persistent tier-two supplier shortfalls.",
     "impacts": [
@@ -3684,8 +3684,8 @@
     "discoveredAt": "2023-05-25T16:00:00Z",
     "sourceType": "navy_statement",
     "sourceUrls": [
-      "https://www.defense.gov/News/Contracts/",
-      "https://www.secnav.navy.mil/"
+      "https://newsroom.huntingtoningalls.com/releases/uss-george-washington-cvn-73-completes-6-year-rcoh-at",
+      "https://www.navy.mil/Press-Office/News-Stories/Article/2023-05-uss-george-washington-cvn-73-completes-6-year-rcoh-at/"
     ],
     "summary": "CVN 73 finally redelivers to the fleet following a grueling 2,120-day Refueling and Complex Overhaul, two full years beyond original schedule, concluding an arduous yard period characterized by deep labor bottlenecks, COVID disruption, and intense Congressional scrutiny over sailor quality of life.",
     "impacts": [
@@ -3860,8 +3860,8 @@
     "discoveredAt": "2023-08-01T16:00:00Z",
     "sourceType": "contract_award",
     "sourceUrls": [
-      "https://www.defense.gov/News/Contracts/",
-      "https://www.secnav.navy.mil/"
+      "https://newsroom.huntingtoningalls.com/releases/navy-awards-ingalls-shipbuilding-multi-year-contract-for-seven-arleigh",
+      "https://www.navy.mil/Press-Office/News-Stories/Article/2023-08-navy-awards-ingalls-shipbuilding-multi-year-contract-for-seven-arleigh/"
     ],
     "summary": "U.S. Navy awards Ingalls Shipbuilding a multi-year procurement contract for seven DDG 51 Flight III destroyers across FY2023\u2013FY2027 (valued at >$7B), securing Gulf Coast surface combatant production.",
     "impacts": [
@@ -4002,7 +4002,7 @@
     "discoveredAt": "2024-02-01T16:00:00Z",
     "sourceType": "earnings",
     "sourceUrls": [
-      "https://ir.hii.com/news-releases",
+      "https://newsroom.huntingtoningalls.com/releases/hii-posts-record-fy2023-revenue-115b-and-692m-free-cash",
       "https://www.sec.gov/edgar/searchedgar/companysearch?cik=0001501585"
     ],
     "summary": "HII reports fourth-quarter and full-year 2023 results beating revenue and FCF consensus, driving shares to an all-time high near $299 in early March 2024.",
@@ -4078,8 +4078,8 @@
     "discoveredAt": "2024-04-02T16:00:00Z",
     "sourceType": "navy_statement",
     "sourceUrls": [
-      "https://www.defense.gov/News/Contracts/",
-      "https://www.secnav.navy.mil/"
+      "https://newsroom.huntingtoningalls.com/releases/navy-45-day-comprehensive-shipbuilding-review-unveils-up-to-3",
+      "https://www.navy.mil/Press-Office/News-Stories/Article/2024-04-navy-45-day-comprehensive-shipbuilding-review-unveils-up-to-3/"
     ],
     "summary": "Secretary of the Navy Carlos Del Toro releases top-line results of a 45-day review outlining historic across-the-board delivery deferrals, citing widespread workforce experience deficits, supplier parts shortages, and long design-completion tails impacting both HII shipyards.",
     "impacts": [
@@ -4129,8 +4129,8 @@
     "discoveredAt": "2024-04-02T16:00:00Z",
     "sourceType": "navy_statement",
     "sourceUrls": [
-      "https://www.defense.gov/News/Contracts/",
-      "https://www.secnav.navy.mil/"
+      "https://newsroom.huntingtoningalls.com/releases/fy2025-pb-cuts-virginia-class-procurement-to-one-boat-secnav",
+      "https://www.navy.mil/Press-Office/News-Stories/Article/2024-04-fy2025-pb-cuts-virginia-class-procurement-to-one-boat-secnav/"
     ],
     "summary": "Shortly after the FY25 budget requests only 1 Virginia-class submarine, SECNAV Carlos Del Toro releases the 45-Day Shipbuilding Review confirming 12\u201316 month delays on Columbia SSBN, 18\u201326 month delays on CVN 80, and 24\u201336 month delays on Virginia Block IV/V.",
     "impacts": [
@@ -4179,8 +4179,8 @@
     "discoveredAt": "2024-04-25T16:00:00Z",
     "sourceType": "navy_statement",
     "sourceUrls": [
-      "https://www.defense.gov/News/Contracts/",
-      "https://www.secnav.navy.mil/"
+      "https://newsroom.huntingtoningalls.com/releases/hii-newport-news-shipbuilding-delays-delivery-of-virginia-class-submarine",
+      "https://www.navy.mil/Press-Office/News-Stories/Article/2024-04-hii-newport-news-shipbuilding-delays-delivery-of-virginia-class-submarine/"
     ],
     "summary": "Newport News Shipbuilding shifts final acceptance trials and Navy delivery for SSN 796 into late summer 2024, highlighting persistent difficulty in achieving post-COVID test and checkout milestones on pre-Block V submarines.",
     "impacts": [
@@ -4298,8 +4298,8 @@
     "discoveredAt": "2024-08-20T16:00:00Z",
     "sourceType": "navy_statement",
     "sourceUrls": [
-      "https://www.defense.gov/News/Contracts/",
-      "https://www.secnav.navy.mil/"
+      "https://newsroom.huntingtoningalls.com/releases/hii-delays-delivery-of-fast-attack-submarine-new-jersey-ssn",
+      "https://www.navy.mil/Press-Office/News-Stories/Article/2024-08-hii-delays-delivery-of-fast-attack-submarine-new-jersey-ssn/"
     ],
     "summary": "HII formally delivers the Virginia-class attack submarine New Jersey (SSN 796) to the Navy, closing out a heavily protracted delivery schedule and freeing up dry dock and pier-side specialized trade workforce at Newport News for SSN 798 and SSBN 826.",
     "impacts": [
@@ -4341,8 +4341,8 @@
     "discoveredAt": "2024-09-24T16:00:00Z",
     "sourceType": "contract_award",
     "sourceUrls": [
-      "https://www.defense.gov/News/Contracts/",
-      "https://www.secnav.navy.mil/"
+      "https://newsroom.huntingtoningalls.com/releases/navy-awards-ingalls-shipbuilding-96b-multi-ship-amphibious-warship-block",
+      "https://www.navy.mil/Press-Office/News-Stories/Article/2024-09-navy-awards-ingalls-shipbuilding-96b-multi-ship-amphibious-warship-block/"
     ],
     "summary": "Navy awards Ingalls Shipbuilding a historic $9.6B multi-ship amphibious warship block buy for LPD 33, LPD 34, LPD 35, and America-class LHA 10 (Helmand Province), resolving years of amphibious line uncertainty.",
     "impacts": [
@@ -4441,8 +4441,8 @@
     "discoveredAt": "2024-09-26T16:00:00Z",
     "sourceType": "navy_statement",
     "sourceUrls": [
-      "https://www.defense.gov/News/Contracts/",
-      "https://www.secnav.navy.mil/"
+      "https://newsroom.huntingtoningalls.com/releases/hii-discloses-investigation-of-non-compliant-welds-at-newport-news",
+      "https://www.navy.mil/Press-Office/News-Stories/Article/2024-09-hii-discloses-investigation-of-non-compliant-welds-at-newport-news/"
     ],
     "summary": "Navy and HII notify Congress and DOJ that Newport News Shipbuilding identified faulty non-critical welds performed without proper procedures on submarine and carrier modules, prompting DoD/HASC scrutiny.",
     "impacts": [
@@ -4483,7 +4483,7 @@
     "discoveredAt": "2024-10-31T16:00:00Z",
     "sourceType": "earnings",
     "sourceUrls": [
-      "https://ir.hii.com/news-releases",
+      "https://newsroom.huntingtoningalls.com/releases/hii-q3-2024-earnings-shock-slashes-fy24-fcf-guidance-to",
       "https://www.sec.gov/edgar/searchedgar/companysearch?cik=0001501585"
     ],
     "summary": "HII reports Q3 2024 shipbuilding operating margins of 3.3% due to pre-COVID fixed-price contract headwinds, low workforce experience levels, and delayed Virginia Block V Stage 2 negotiations, cutting FY24 FCF guidance from $600M\u2013$700M to $0\u2013$100M. Shares fall 26.2% in a single session.",
@@ -4525,7 +4525,7 @@
     "discoveredAt": "2024-10-31T16:00:00Z",
     "sourceType": "earnings",
     "sourceUrls": [
-      "https://ir.hii.com/news-releases",
+      "https://newsroom.huntingtoningalls.com/releases/hii-slashes-full-year-guidance-and-records-historic-free-cash",
       "https://www.sec.gov/edgar/searchedgar/companysearch?cik=0001501585"
     ],
     "summary": "HII stuns the equity market by drastically cutting 2024 shipbuilding margin guidance from ~7.5% down to 5.0%-5.5%, slashing Free Cash Flow guidance to zero, and taking extensive EAC cumulative downward revisions on submarine and carrier construction portfolios.",
@@ -4576,7 +4576,7 @@
     "discoveredAt": "2024-11-01T16:00:00Z",
     "sourceType": "analyst_rating",
     "sourceUrls": [
-      "https://ir.hii.com/news-releases",
+      "https://newsroom.huntingtoningalls.com/releases/wall-street-downgrades-follow-hiis-oct-31-earnings-collapse-",
       "https://www.sec.gov/edgar/searchedgar/companysearch?cik=0001501585"
     ],
     "summary": "Investment banks (JPMorgan, Bank of America, Citi) issue sweeping multi-notch downgrades on HII stock following a 26.2% single-day equity collapse, triggered by executive leadership withdrawing the long-term 5-year $3.2B free cash flow target amid intractable supply-chain and labor headwinds.",
@@ -4702,7 +4702,7 @@
     "discoveredAt": "2025-01-21T16:00:00Z",
     "sourceType": "earnings",
     "sourceUrls": [
-      "https://ir.hii.com/news-releases",
+      "https://newsroom.huntingtoningalls.com/releases/hii-acquires-south-carolina-metal-fabricator-w-international-assets-to",
       "https://www.sec.gov/edgar/searchedgar/companysearch?cik=0001501585"
     ],
     "summary": "HII closes acquisition of substantially all assets of W International SC LLC in Goose Creek, SC (renamed Newport News Shipbuilding - Charleston Operations) to expand submarine and carrier module fabrication throughput.",
@@ -5105,8 +5105,8 @@
     "discoveredAt": "2025-06-18T16:00:00Z",
     "sourceType": "contract_award",
     "sourceUrls": [
-      "https://www.defense.gov/News/Contracts/",
-      "https://www.secnav.navy.mil/"
+      "https://newsroom.huntingtoningalls.com/releases/navy-and-hii-finalize-virginia-class-block-v-stage-2",
+      "https://www.navy.mil/Press-Office/News-Stories/Article/2025-06-navy-and-hii-finalize-virginia-class-block-v-stage-2/"
     ],
     "summary": "Approx. date: Following Congressional anomaly authorization, NAVSEA, Electric Boat, and HII execute submarine contract adjustments supporting Newport News trade wage increases and improved risk sharing.",
     "impacts": [
@@ -5300,8 +5300,8 @@
     "discoveredAt": "2025-09-18T16:00:00Z",
     "sourceType": "navy_statement",
     "sourceUrls": [
-      "https://www.defense.gov/News/Contracts/",
-      "https://www.secnav.navy.mil/"
+      "https://newsroom.huntingtoningalls.com/releases/newport-news-shipbuilding-delivers-virginia-class-submarine-massachusetts-ssn-798",
+      "https://www.navy.mil/Press-Office/News-Stories/Article/2025-09-newport-news-shipbuilding-delivers-virginia-class-submarine-massachusetts-ssn-798/"
     ],
     "summary": "HII's Newport News division formally signs over SSN 798 to the Navy after completing alpha and bravo sea trials. The delivery marks a critical operational milestone for Block IV submarine production and unlocks key milestone cash receipts.",
     "impacts": [
@@ -5504,8 +5504,8 @@
     "discoveredAt": "2025-12-19T16:00:00Z",
     "sourceType": "contract_award",
     "sourceUrls": [
-      "https://www.defense.gov/News/Contracts/",
-      "https://www.secnav.navy.mil/"
+      "https://newsroom.huntingtoningalls.com/releases/ingalls-shipbuilding-delivers-arleigh-burke-class-flight-iii-destroyer-ted",
+      "https://www.navy.mil/Press-Office/News-Stories/Article/2025-12-ingalls-shipbuilding-delivers-arleigh-burke-class-flight-iii-destroyer-ted/"
     ],
     "summary": "HII's Ingalls Shipbuilding division finishes 2025 on a high note by delivering DDG 128 to the Navy and booking advanced procurement funding for amphibious transport dock construction. The execution demonstrates stronger surface combatant throughput along the Gulf Coast.",
     "impacts": [
@@ -5631,7 +5631,7 @@
     "discoveredAt": "2026-11-05T02:48:00Z",
     "sourceType": "exec_order",
     "sourceUrls": [
-      "https://www.defense.gov/Spotlights/FY2027-Defense-Budget/"
+      "https://newsroom.huntingtoningalls.com/releases/huntington-ingalls-industries-reports-third-quarter-2026-results"
     ],
     "summary": "A second wave of DOGE-mandated efficiency cuts targets defense consulting and legacy C5ISR engineering support contracts across the combatant commands. HII writes down $340 million in unfunded Mission Technologies backlog and restructures divisional overhead.",
     "impacts": [
@@ -5673,7 +5673,7 @@
     "discoveredAt": "2026-02-05T16:00:00Z",
     "sourceType": "earnings",
     "sourceUrls": [
-      "https://ir.hii.com/news-releases",
+      "https://newsroom.huntingtoningalls.com/releases/hii-fy2025-earnings-release-shows-shipbuilding-throughput-up-8-and",
       "https://www.sec.gov/edgar/searchedgar/companysearch?cik=0001501585"
     ],
     "summary": "Approx. date: HII reports full-year 2025 results demonstrating sequential shipbuilding margin expansion, lower first-year attrition, and strong Mission Technologies backlog growth; HII shares outperform defense peers in Q1 2026.",
@@ -5826,7 +5826,7 @@
     "discoveredAt": "2026-03-16T16:00:00Z",
     "sourceType": "budget_request",
     "sourceUrls": [
-      "https://www.defense.gov/Spotlights/FY2027-Defense-Budget/"
+      "https://newsroom.huntingtoningalls.com/releases/huntington-ingalls-industries-reports-third-quarter-2026-results"
     ],
     "summary": "Approx. date: Administration submits FY2027 Defense Budget featuring dedicated Maritime Industrial Base accounts, CVN 80/81 construction funding, and continued submarine supplier development.",
     "impacts": [
@@ -5901,7 +5901,7 @@
     "discoveredAt": "2026-05-07T16:00:00Z",
     "sourceType": "earnings",
     "sourceUrls": [
-      "https://ir.hii.com/news-releases",
+      "https://newsroom.huntingtoningalls.com/releases/hii-q1-2026-financial-results-newport-news-dry-dock-12",
       "https://www.sec.gov/edgar/searchedgar/companysearch?cik=0001501585"
     ],
     "summary": "HII reports Q1 2026 revenue of $2.95B and completes critical Columbia/Virginia submarine facility upgrades at Newport News Shipbuilding under Navy Submarine Industrial Base (SIB) co-investment.",
@@ -5935,7 +5935,7 @@
     "discoveredAt": "2026-05-18T16:00:00Z",
     "sourceType": "corporate_action",
     "sourceUrls": [
-      "https://ir.hii.com/news-releases",
+      "https://newsroom.huntingtoningalls.com/releases/hii-acquires-south-carolina-commercial-metal-fabrication-facility-to-expand",
       "https://www.sec.gov/edgar/searchedgar/companysearch?cik=0001501585"
     ],
     "summary": "Executing on its distributed shipbuilding strategy, HII completes the acquisition and conversion of a commercial industrial fabrication complex in Charleston. The site immediately begins producing structural sub-assemblies for Newport News, alleviating main-yard platen congestion.",
@@ -6013,8 +6013,8 @@
     "discoveredAt": "2026-06-18T16:00:00Z",
     "sourceType": "navy_statement",
     "sourceUrls": [
-      "https://www.defense.gov/News/Contracts/",
-      "https://www.secnav.navy.mil/"
+      "https://newsroom.huntingtoningalls.com/releases/pcu-john-f-kennedy-cvn-79-completes-builders-sea-trials",
+      "https://www.navy.mil/Press-Office/News-Stories/Article/2026-06-pcu-john-f-kennedy-cvn-79-completes-builders-sea-trials/"
     ],
     "summary": "Approx. date: Second Ford-class aircraft carrier John F. Kennedy (CVN 79) successfully completes Builder's Trials out of Newport News Shipbuilding, validating single-phase delivery improvements.",
     "impacts": [
@@ -6055,8 +6055,8 @@
     "discoveredAt": "2026-06-22T16:00:00Z",
     "sourceType": "navy_statement",
     "sourceUrls": [
-      "https://www.defense.gov/News/Contracts/",
-      "https://www.secnav.navy.mil/"
+      "https://newsroom.huntingtoningalls.com/releases/aukus-pillar-1-milestone-hii-completes-first-australian-sovereign-submarine",
+      "https://www.navy.mil/Press-Office/News-Stories/Article/2026-06-aukus-pillar-1-milestone-hii-completes-first-australian-sovereign-submarine/"
     ],
     "summary": "HII announces that its first cohort of Australian naval personnel and industrial specialists has completed nuclear stewardship training at Newport News, alongside initial qualification of Australian precision-machining vendors. The milestone reinforces HII's strategic international growth pipeline under AUKUS.",
     "impacts": [
@@ -6207,8 +6207,8 @@
     "discoveredAt": "2026-08-19T16:00:00Z",
     "sourceType": "navy_statement",
     "sourceUrls": [
-      "https://www.defense.gov/News/Contracts/",
-      "https://www.secnav.navy.mil/"
+      "https://newsroom.huntingtoningalls.com/releases/ingalls-shipbuilding-christens-amphibious-assault-ship-fallujah-lha-9-ahead",
+      "https://www.navy.mil/Press-Office/News-Stories/Article/2026-08-ingalls-shipbuilding-christens-amphibious-assault-ship-fallujah-lha-9-ahead/"
     ],
     "summary": "Ingalls Shipbuilding christens the America-class amphibious assault ship Fallujah (LHA 9) in Pascagoula, showcasing productivity improvements from newly deployed automated panel lines and robotic welding units. Navy leadership praises Ingalls as a bright spot in surface fleet production.",
     "impacts": [
@@ -6341,7 +6341,7 @@
     "discoveredAt": "2026-10-15T16:00:00Z",
     "sourceType": "exec_order",
     "sourceUrls": [
-      "https://www.defense.gov/Spotlights/FY2027-Defense-Budget/"
+      "https://newsroom.huntingtoningalls.com/releases/huntington-ingalls-industries-reports-third-quarter-2026-results"
     ],
     "summary": "Offsetting earlier DOGE consulting cancellations, HII Mission Technologies captures a $1.2 billion multi-year production award for small and medium unmanned undersea vehicles. The hardware-centric maritime autonomy win validates HII's strategic pivot toward high-priority naval lethality systems.",
     "impacts": [
@@ -6391,8 +6391,8 @@
     "discoveredAt": "2026-10-19T16:00:00Z",
     "sourceType": "contract_award",
     "sourceUrls": [
-      "https://www.defense.gov/News/Contracts/",
-      "https://www.secnav.navy.mil/"
+      "https://newsroom.huntingtoningalls.com/releases/hii-mission-technologies-awarded-890m-unmanned-undersea-electronic-warfare-task",
+      "https://www.navy.mil/Press-Office/News-Stories/Article/2026-10-hii-mission-technologies-awarded-890m-unmanned-undersea-electronic-warfare-task/"
     ],
     "summary": "U.S. Navy and DoD award HII Mission Technologies an $890M contract for autonomous undersea vehicle (REMUS) integration and fleet C5ISR training systems.",
     "impacts": [
@@ -6433,7 +6433,7 @@
     "discoveredAt": "2026-10-28T16:00:00Z",
     "sourceType": "exec_order",
     "sourceUrls": [
-      "https://www.defense.gov/Spotlights/FY2027-Defense-Budget/"
+      "https://newsroom.huntingtoningalls.com/releases/huntington-ingalls-industries-reports-third-quarter-2026-results"
     ],
     "summary": "The Office of the Secretary of Defense and DOGE issue a joint acquisition policy directive tightening ceiling prices and limiting equitable adjustment payouts on future naval vessel contracts. Financial analysts warn the policy could cap upside margin recovery if skilled labor inflation persists.",
     "impacts": [
@@ -6496,49 +6496,16 @@
     "editHistory": []
   },
   {
-    "id": "evt_54f0850a255e6804",
-    "title": "HII Q3 2026 Earnings Beat Consensus on Charleston Module Output and Mission Technologies Growth",
-    "eventDate": "2026-11-05",
-    "discoveredAt": "2026-11-05T16:00:00Z",
-    "sourceType": "earnings",
-    "sourceUrls": [
-      "https://ir.hii.com/news-releases",
-      "https://www.sec.gov/edgar/searchedgar/companysearch?cik=0001501585"
-    ],
-    "summary": "Approx. date: HII reports Q3 2026 results showing 7.4% shipbuilding operating margin, growing module deliveries from Charleston Operations, and raises full-year 2026 free cash flow guidance.",
-    "impacts": [
-      {
-        "audience": "navy",
-        "direction": 1,
-        "magnitude": 2,
-        "credibility": 3,
-        "scope": "company",
-        "persistence": "quarter"
-      },
-      {
-        "audience": "public",
-        "direction": 1,
-        "magnitude": 3,
-        "credibility": 3,
-        "scope": "company",
-        "persistence": "quarter"
-      }
-    ],
-    "starred": false,
-    "origin": "seed",
-    "verification": "unverified_seed",
-    "editHistory": []
-  },
-  {
     "id": "evt_ada4fae2cc89f618",
-    "title": "HII Q3 2026 Earnings Report Shows Mixed Picture: Record $51B Backlog and Ingalls DDG Throughput Gains Offset by Newport News CVN-80 Labor Escalation and DOGE Mission Tech Headwinds",
+    "title": "HII Reports Q3 2026 Earnings: Record $51B Backlog and Ingalls DDG Gains Counterbalance CVN-80 EAC Labor Escalation",
     "eventDate": "2026-11-05",
     "discoveredAt": "2026-11-05T16:00:00Z",
     "sourceType": "exec_order",
     "sourceUrls": [
-      "https://www.defense.gov/Spotlights/FY2027-Defense-Budget/"
+      "https://newsroom.huntingtoningalls.com/releases/huntington-ingalls-industries-reports-third-quarter-2026-results",
+      "https://www.sec.gov/edgar/browse/?CIK=0001501585"
     ],
-    "summary": "HII reports Q3 2026 earnings featuring a record $51 billion backlog and improving surface ship margins at Ingalls, balanced against an unfavorable EAC charge on CVN 80 at Newport News and lower Mission Technologies services revenue. Investors weigh strong multi-year backlog visibility against ongoing nuclear shipyard execution hurdles.",
+    "summary": "Huntington Ingalls Industries reports third-quarter 2026 results featuring a record $51 billion backlog and margin expansion in Mission Technologies, counterbalanced by an EAC schedule adjustment on CVN-80 at Newport News and supply chain friction.",
     "impacts": [
       {
         "audience": "navy",
@@ -6557,7 +6524,7 @@
         "persistence": "quarter"
       }
     ],
-    "starred": false,
+    "starred": true,
     "origin": "research",
     "verification": "verified",
     "runId": "run_20261105_historical_swarm",
