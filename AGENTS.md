@@ -1,56 +1,99 @@
 # HII Sentiment Intelligence Dashboard — Agent & Developer Guide
 
 ## Overview
-`hii-sentiment-dashboard` is an audit-grade, strictly deterministic multi-audience sentiment intelligence platform tracking **Huntington Ingalls Industries (NYSE: HII)** from its March 31, 2011 spin-off through the present, with a 6-month scenario-based forecast.
+`hii-sentiment-dashboard` is an audit-grade, strictly deterministic multi-audience sentiment intelligence platform tracking **Huntington Ingalls Industries (NYSE: HII)** from its March 31, 2011 spin-off through the present, featuring a 6-month scenario-based forecast and business division breakdown.
 
-It quantifies sentiment across **four primary stakeholder audiences** plus a weighted **Composite Index**:
-1. **Executive Branch / Administration (`executive`)**: White House Executive Orders, Maritime Directorate, OMB President's Budget Requests, OSD/SecDef briefings.
-2. **United States Congress (`congress`)**: HASC/SASC/Appropriations hearings, NDAA authorizations, Continuing Resolutions, GAO audits, and CRS reports.
-3. **Department of the Navy (`navy`)**: SECNAV/CNO 30-Year Shipbuilding Plan, NAVSEA contract awards, INSURV sea trials, and Submarine Industrial Base (SIB) investments.
-4. **American Public & Capital Markets (`public`)**: NYSE:HII relative stock performance vs. defense peers (`GD`, `LMT`, `NOC`, `ITA`), quarterly earnings & Free Cash Flow guidance, Wall Street analyst ratings, and defense/national media coverage.
+🌐 **Production Deployment**: [https://hii-sentiment-intel.web.app](https://hii-sentiment-intel.web.app) (GCP Project: `gen-lang-client-0353543048`)  
+🔒 **Access Control**: Google OAuth via Firebase Authentication. Dedicated administrator: `hayesorhaze@gmail.com`.
 
 ---
 
-## Strict Determinism Contract (`engine-v1.0.0` / `rubric-v1.0.0`)
-To guarantee 100% bit-identical reproducibility:
-- **LLMs are strictly isolated to Discovery & Rubric Classification**: Vertex AI / Gemini Deep Research agents discover candidate evidence and classify impacts into closed discrete enumerations at `temperature=0.0` (`direction in {-1,0,1}`, `magnitude in {1..5}`, `credibility in {1..4}`, `scope in {'program','company','industry','macro'}`, `persistence in {'transient','quarter','year','structural'}`).
-- **Content-Addressed Evidence Ledger**: Every event is hashed (`evt_<16hex>` via FIPS 180-4 SHA-256 over canonical JSON).
-- **64-Bit Integer Basis-Point Arithmetic**: All scoring and time decay in [`src/engine/`](./src/engine/) uses `BigInt` integer math with Round-Half-To-Even (`divRne`) and a pre-tabulated 65-point fixed-precision binary exponentiation lookup table (`TWO_NEG_FRAC_1E8`). Zero IEEE-754 floating-point instructions are used in the scoring path.
-- **Retroactive Revision Tracking**: When a research run or analyst adds evidence dated in a closed historical period, [`detectRevisions`](./src/engine/revisions.ts) records an immutable `ScoreRevision` explaining which period and audience scores changed and why.
+## 🏛️ Core Architecture & Capabilities
+
+### 1. Multi-Audience + Division Framework
+Quantifies sentiment across **four primary stakeholder audiences** plus a weighted **Composite Index**:
+1. **Executive Branch / Administration (`executive`)**: White House Executive Orders, Maritime Directorate directives, OMB President's Budget Requests, Title III DPA capital grants.
+2. **United States Congress (`congress`)**: HASC/SASC hearings, NDAA authorizations, Continuing Resolutions, GAO audits, and CRS reports.
+3. **Department of the Navy (`navy`)**: SECNAV/CNO 30-Year Shipbuilding Plans, NAVSEA contract definitizations, INSURV sea trials, and Submarine Industrial Base (SIB) investments.
+4. **American Public & Capital Markets (`public`)**: NYSE:HII relative stock performance, quarterly earnings & Free Cash Flow, Wall Street analyst ratings, labor union contracts (USW Local 8888, Pascagoula Metal Trades), and defense journalism.
+
+**Business Division Sentiment (`/divisions`)**:
+- **Newport News Shipbuilding (NNS)**: 55% operating footprint (CVN 78/79/80 carriers, Virginia-class SSN, Columbia-class SSBN modules).
+- **Ingalls Shipbuilding**: 35% operating footprint (DDG 51 Flight III destroyers, LHA amphibious assault ships, LPD amphibious transport docks).
+- **Mission Technologies**: 10% operating footprint (Fleet autonomy, REMUS/LDUUV, C5ISR, cyber operations).
+- **Program Impact Waterfall**: Direct causal tracking showing individual program friction or breakthroughs affecting divisional and composite scores.
 
 ---
 
-## HII Brand Color Palette
-- `#24272a` — **Charcoal** (Primary background)
-- `#003b4d` — **Deep Sea** (Elevated intelligence cards & header)
-- `#75abd1` — **Sky Blue** (Executive line & primary data labels)
-- `#509ca2` — **Changing Sea** (Congress line & positive delta badges)
-- `#5b6670` — **Steel** (Borders & structural dividers)
-- `#ea7722` — **Passion** (Key event star markers, forecast projection, primary CTAs, revision alerts)
-- `#ffffff` — **White** (Bold Composite line & primary typography)
+### 2. Strict Determinism Contract (`engine-v1.0.0` / `rubric-v1.0.0`)
+- **LLM Boundary**: Vertex AI agents are strictly isolated to evidence gathering and closed-rubric classification at `temperature=0.0`. Scoring is 100% deterministic code.
+- **64-Bit Integer Basis-Point Arithmetic**: Pure integer basis points (`BigInt` Round-Half-To-Even via `divRne`) and pre-tabulated 65-point fixed-precision decay tables (`TWO_NEG_FRAC_1E8`). Zero IEEE-754 floats in the scoring path.
+- **Immutable Evidence Ledger**: Every event is hashed (`evt_<16hex>` via SHA-256 over canonical JSON).
+- **Retroactive Revision Auditing**: [`detectRevisions`](./src/engine/revisions.ts) records an immutable `ScoreRevision` log whenever historical evidence is staged, approved, or edited.
 
 ---
 
-## Key Commands
+### 3. 3-Layer Fuzzy & Semantic Deduplication Engine
+Integrated into Monday 07:00 ET sweeps ([`research/run_research.py`](./research/run_research.py), [`research/extractor.py`](./research/extractor.py)) and frontend ingestion ([`src/engine/ledger.ts`](./src/engine/ledger.ts), [`src/context/DashboardContext.tsx`](./src/context/DashboardContext.tsx)):
+- **Layer 1 (Exact SHA-256 ID)**: Content hash over `{ eventDate, sourceType, title }`.
+- **Layer 2 (Article Permalink URL Matching)**: Normalizes deep article URLs and flags identical articles regardless of headline phrasing.
+- **Layer 3 (±14-Day Date Window + Entity/Quarter Collision)**:
+  - Normalizes shipbuilding hull designations (`CVN-79`, `DDG-51`, `SSN-798`, `Q3 2026`, `FY 2027`) and strips corporate boilerplate.
+  - Detects duplicate fiscal-quarter earnings reports within ±14 days.
+  - Computes Jaccard token similarity over significant domain keywords (`>= 40%` overlap rejected or flagged).
+
+---
+
+### 4. User Experience & Design Standard
+- **Theme**: Balanced blend of White and Charcoal (`#24272a`) with Deep Sea (`#003b4d`), Sky Blue (`#75abd1`), Changing Sea (`#509ca2`), Steel (`#5b6670`), and Passion (`#ea7722`) as accents.
+- **Official HII Brand Logo Header**: Replaces generic icons with the official HII logo, live audit proof hash indicator, and dynamic As-Of date (`2026-11-05`).
+- **Mobile-First Responsive Layout**: Optimized for phones, tablets, and wide executive displays.
+- **Expanded Line Graph**: Page-width responsive timeline expansion preserving perspective.
+- **Pinned Milestone Calling**: Starred key events can be pinned directly onto the historical curve with properly scaled basis-point tags (`+1.40 pts`).
+- **Read-Tracking Notification Badges**: Tab badges track unread revisions/catalysts and automatically clear to `0` upon viewing.
+- **Sanity Check Queue**: In-app audit mechanism in the Research tab allowing users to log specific anomalies for prioritized research on the next Vertex AI run.
+
+---
+
+### 5. Deployment & Security Architecture
+- **Primary Hosting Target**: Google Cloud Firebase Hosting (`https://hii-sentiment-intel.web.app`).
+- **Cloud Firestore Security Rules**: Enforces authorization rules authored by `firestore-rules-author` subagent in `firestore.rules`.
+- **Authentication**: Firebase Authentication with Google OAuth provider.
+- **Single Admin Principle**: Only `hayesorhaze@gmail.com` has administrator privileges. Other authenticated users can submit an access request through the UI which creates a document in `access_requests/{uid}` for the administrator to approve.
+- **Cross-Origin Opener Policy**: Configured in `firebase.json` (`same-origin-allow-popups`) to support seamless Google OAuth popups.
+
+---
+
+## 🛠️ Key Developer & Agent Commands
+
 ```powershell
-# Run automated Vitest determinism, forecast, and revision test suite
+# Run automated Vitest test suite (15 tests: determinism, forecast, deduplication, division rollups)
 npm test
 
-# Recompute all historical & forecast scores headlessly in CLI and verify SHA-256 hashes
+# Recompute all historical & forecast scores headlessly in CLI and verify SHA-256 output hashes
 npm run recompute
 
 # Export full historical & forecast audit report to HII_Sentiment_Audit_Report.md
 npm run export:md
 
-# Trigger Vertex AI / Gemini Deep Research discovery pipeline
-npm run research
-
-# Promote pending quarantine discoveries into committed ledger
-npm run promote
-
-# Start local Vite development server + REST API middleware on port 5195
-npm run dev
-
 # Build production bundle
 npm run build
+
+# Deploy directly to Firebase Hosting & Firestore Security Rules
+npm run deploy
+
+# Run local development Vite server (fallback only - production deployments go to Firebase)
+npm run dev
+
+# Execute Tier B Vertex AI research & deduplication sweep
+py -3 research/run_research.py --mode deep_research
 ```
+
+---
+
+## 📋 Agent Operational Guidelines
+
+1. **Production Deployment Target**: Always deploy to Firebase via `npm run deploy`. Do not deploy to a standalone local server as the primary runtime.
+2. **Deterministic Integrity**: Any modifications to [`src/engine/`](./src/engine/) must preserve bit-identical determinism and pass `npm test`.
+3. **Firestore Security Rules**: If modifying `firestore.rules`, ALWAYS delegate rule design and modifications to the mandatory `firestore-rules-author` subagent.
+4. **Git Remote Synchronization**: Always commit and push changes back to `origin/main` after verifying builds and tests.
