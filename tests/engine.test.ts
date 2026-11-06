@@ -3,6 +3,7 @@ import {
   approvePending,
   computeEventId,
   computeLedgerScores,
+  findFuzzyDuplicate,
   generateMarkdownExport,
   normalizeWeights,
   setStar,
@@ -189,5 +190,46 @@ describe('HII Deterministic Sentiment Engine (engine-v1.0.0)', () => {
       sourceType: 'earnings',
     });
     expect(sampleId).toMatch(/^evt_[0-9a-f]{16}$/);
+  });
+
+  it('catches fuzzy/near-duplicate events during Monday sweeps across paraphrased headlines, URLs, and same-quarter earnings', () => {
+    // 1. Paraphrased Q3 2026 earnings headline on same or nearby date
+    const dupEarnings = findFuzzyDuplicate(
+      {
+        title: 'HII Q3 2026 Earnings Beat Consensus on Record $51B Backlog and Mission Tech Growth',
+        eventDate: '2026-11-05',
+        sourceType: 'news_media',
+        sourceUrls: ['https://www.reuters.com/business/aerospace-defense/'],
+      },
+      SEED_LEDGER_STATE.events,
+    );
+    expect(dupEarnings).toBeDefined();
+    expect(dupEarnings?.title).toMatch(/Q3 2026/i);
+
+    // 2. Different headline but matching specific article permalink URL
+    const existingWithUrl = SEED_LEDGER_STATE.events[0]!;
+    const dupUrl = findFuzzyDuplicate(
+      {
+        title: 'Completely Different Paraphrased Headline From Secondary Aggregator',
+        eventDate: '2026-11-10',
+        sourceType: 'news_media',
+        sourceUrls: existingWithUrl.sourceUrls,
+      },
+      SEED_LEDGER_STATE.events,
+    );
+    expect(dupUrl).toBeDefined();
+    expect(dupUrl?.id).toBe(existingWithUrl.id);
+
+    // 3. Truly distinct new event is NOT flagged as duplicate
+    const distinct = findFuzzyDuplicate(
+      {
+        title: 'U.S. Navy Commissions USS Massachusetts (SSN-798) Ahead of Fleet Deployment Schedule',
+        eventDate: '2026-11-18',
+        sourceType: 'navy_statement',
+        sourceUrls: ['https://www.navy.mil/Press-Office/Press-Releases/ssn-798-commissioned'],
+      },
+      SEED_LEDGER_STATE.events,
+    );
+    expect(distinct).toBeUndefined();
   });
 });

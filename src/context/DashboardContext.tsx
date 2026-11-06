@@ -8,6 +8,8 @@ import {
 
   computeLedgerScores,
 
+  findFuzzyDuplicate,
+
   rejectPending as engineRejectPending,
 
   removeEvent as engineRemoveEvent,
@@ -29,6 +31,8 @@ import {
   type EventInput,
 
   type ForecastCatalyst,
+
+  type ImpactEvent,
 
   type LedgerComputationResult,
 
@@ -1347,13 +1351,13 @@ export const DashboardProvider: React.FC<{ children: React.ReactNode }> = ({ chi
 
       const runId = `run_${nowIso.replace(/\D/g, '').slice(0, 14)}`;
 
-      const existingIds = new Set(state.events.map((e) => e.id));
-
-      const existingPendingIds = new Set(state.pending.map((p) => p.id));
-
-
+      const allKnownEvents: Array<Pick<ImpactEvent, 'id' | 'title' | 'eventDate' | 'sourceType' | 'sourceUrls'>> = [
+        ...state.events,
+        ...state.pending,
+      ];
 
       const newPending: PendingEvent[] = [];
+      let skippedDuplicates = 0;
 
       for (const raw of CLIENT_DISCOVERY_CANDIDATES) {
 
@@ -1361,9 +1365,14 @@ export const DashboardProvider: React.FC<{ children: React.ReactNode }> = ({ chi
 
         const id = computeEventId(raw);
 
-        if (existingIds.has(id) || existingPendingIds.has(id)) continue;
+        const dup = findFuzzyDuplicate({ ...raw, id }, allKnownEvents);
 
-        newPending.push({
+        if (dup) {
+          skippedDuplicates++;
+          continue;
+        }
+
+        const item: PendingEvent = {
 
           ...raw,
 
@@ -1373,7 +1382,9 @@ export const DashboardProvider: React.FC<{ children: React.ReactNode }> = ({ chi
 
           runId,
 
-        });
+        };
+        newPending.push(item);
+        allKnownEvents.push(item);
 
       }
 
@@ -1429,7 +1440,7 @@ export const DashboardProvider: React.FC<{ children: React.ReactNode }> = ({ chi
 
               `FinOps Guard: $${(spendUsd + runCost).toFixed(2)} / $${budgetConfig.monthlyCapUsd.toFixed(2)} monthly cap`,
 
-              `Staged ${newPending.length} new unique candidate events into Pending Quarantine Queue`,
+              `Staged ${newPending.length} new unique candidate events into Pending Quarantine Queue (skipped ${skippedDuplicates} duplicate/near-duplicate events)`,
 
             ],
 

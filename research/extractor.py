@@ -2,10 +2,11 @@
 Deterministic canonical SHA-256 Event ID & Rubric Validator for Python research scripts.
 Matches src/engine/hash.ts (`computeEventId`) bit-for-bit.
 """
+import datetime
 import hashlib
 import json
 import re
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Optional
 
 VALID_AUDIENCES = {"executive", "congress", "navy", "public"}
 VALID_SOURCE_TYPES = {
@@ -132,3 +133,96 @@ def validate_and_normalize_candidate(raw: Dict[str, Any], run_id: str, discovere
             )
         ),
     }
+
+
+STOP_WORDS = {
+    "the", "and", "for", "with", "from", "that", "this", "into", "over", "under", "after", "before",
+    "hii", "huntington", "ingalls", "industries", "inc", "corp", "reports", "announces", "announced",
+    "reported", "states", "says", "amid", "new", "update", "navy", "us", "u.s", "shipbuilding", "division",
+}
+
+
+def extract_significant_tokens(text: str) -> set[str]:
+    s = text.lower()
+    s = re.sub(r"cvn[\s-]?(\d+)", r"cvn\1", s)
+    s = re.sub(r"ddg[\s-]?(\d+)", r"ddg\1", s)
+    s = re.sub(r"ssn[\s-]?(\d+)", r"ssn\1", s)
+    s = re.sub(r"lha[\s-]?(\d+)", r"lha\1", s)
+    s = re.sub(r"lpd[\s-]?(\d+)", r"lpd\1", s)
+    s = re.sub(r"q([1-4])\s*(20\d{2})", r"q\1_\2", s)
+    s = re.sub(r"fy\s*(20\d{2})", r"fy\1", s)
+    s = re.sub(r"[^a-z0-9_]+", " ", s)
+    return {w for w in s.split() if len(w) >= 3 and w not in STOP_WORDS}
+
+
+def _normalize_url(url: str) -> str:
+    u = url.strip().lower()
+    u = re.sub(r"^https?://(www\.)?", "", u)
+    return u.rstrip("/")
+
+
+def find_fuzzy_duplicate(cand: Dict[str, Any], pool: List[Dict[str, Any]]) -> Optional[Dict[str, Any]]:
+    """
+    Multi-layer duplicate check for Monday research runs:
+      1. Exact SHA-256 content ID match
+      2. Specific article permalink URL match (excluding generic root URLs)
+      3. Within ±14 days: same fiscal quarter earnings report OR >= 0.40 Jaccard token overlap
+    """
+    cand_id = cand.get("id")
+    for ev in pool:
+        if ev.get("id") == cand_id:
+            return ev
+
+    cand_urls = {
+        _normalize_url(u)
+        for u in cand.get("sourceUrls", [])
+        if u and "/" in _normalize_url(u) and len([p for p in _normalize_url(u).split("/") if p]) >= 2
+    }
+    try:
+        cand_dt = datetime.datetime.strptime(cand.get("eventDate", ""), "%Y-%m-%d")
+    except Exception:
+        cand_dt = None
+
+    cand_title = cand.get("title", "")
+    cand_tokens = extract_significant_tokens(cand_title)
+    cand_q = re.search(r"\bq([1-4])\s*(20\d{2})\b", cand_title.lower())
+    cand_is_earnings = cand.get("sourceType") == "earnings" or bool(
+        re.search(r"\b(earnings|revenue|eps|results|backlog)\b", cand_title, re.I)
+    )
+
+    for ev in pool:
+        # Layer 2: Specific article permalink URL match
+        if cand_urls and ev.get("sourceUrls"):
+            for u in ev.get("sourceUrls", []):
+                if _normalize_url(u) in cand_urls:
+                    return ev
+
+        # Layer 3: Date window (±14 days) + semantic/token overlap
+        if cand_dt is not None:
+            try:
+                ev_dt = datetime.datetime.strptime(ev.get("eventDate", ""), "%Y-%m-%d")
+                days_diff = abs((cand_dt - ev_dt).days)
+            except Exception:
+                days_diff = 9999
+
+            if days_diff <= 14:
+                ev_title = ev.get("title", "")
+                ev_q = re.search(r"\bq([1-4])\s*(20\d{2})\b", ev_title.lower())
+                ev_is_earnings = ev.get("sourceType") == "earnings" or bool(
+                    re.search(r"\b(earnings|revenue|eps|results|backlog)\b", ev_title, re.I)
+                )
+                if cand_is_earnings and ev_is_earnings and cand_q and ev_q:
+                    if cand_q.group(1) == ev_q.group(1) and cand_q.group(2) == ev_q.group(2):
+                        return ev
+
+                if len(cand_tokens) >= 2:
+                    ev_tokens = extract_significant_tokens(ev_title)
+                    if len(ev_tokens) >= 2:
+                        inter = len(cand_tokens & ev_tokens)
+                        union = len(cand_tokens | ev_tokens)
+                        jaccard = inter / union if union > 0 else 0.0
+                        min_ov = inter / min(len(cand_tokens), len(ev_tokens))
+                        if jaccard >= 0.40 or (inter >= 3 and min_ov >= 0.50):
+                            return ev
+
+    return None

@@ -18,6 +18,113 @@ export interface MutationResult {
 
 const AUD_SET = new Set(ALL_AUDIENCES);
 
+const STOP_WORDS = new Set([
+  'the', 'and', 'for', 'with', 'from', 'that', 'this', 'into', 'over', 'under', 'after', 'before',
+  'hii', 'huntington', 'ingalls', 'industries', 'inc', 'corp', 'reports', 'announces', 'announced',
+  'reported', 'states', 'says', 'amid', 'new', 'update', 'navy', 'us', 'u.s', 'shipbuilding', 'division',
+]);
+
+function extractSignificantTokens(text: string): Set<string> {
+  const cleaned = text
+    .toLowerCase()
+    .replace(/cvn[\s-]?(\d+)/g, 'cvn$1')
+    .replace(/ddg[\s-]?(\d+)/g, 'ddg$1')
+    .replace(/ssn[\s-]?(\d+)/g, 'ssn$1')
+    .replace(/lha[\s-]?(\d+)/g, 'lha$1')
+    .replace(/lpd[\s-]?(\d+)/g, 'lpd$1')
+    .replace(/q([1-4])\s*(20\d{2})/g, 'q$1_$2')
+    .replace(/fy\s*(20\d{2})/g, 'fy$1')
+    .replace(/[^a-z0-9_]+/g, ' ');
+  const tokens = new Set<string>();
+  for (const w of cleaned.split(/\s+/)) {
+    if (w.length >= 3 && !STOP_WORDS.has(w)) {
+      tokens.add(w);
+    }
+  }
+  return tokens;
+}
+
+function normalizeUrlForCompare(url: string): string {
+  return url.trim().toLowerCase().replace(/^https?:\/\/(www\.)?/, '').replace(/\/+$/, '');
+}
+
+/**
+ * Multi-layer duplicate detector for Monday research sweeps and manual event ingestion.
+ * Checks:
+ *  1. Exact deterministic SHA-256 content ID match
+ *  2. Exact normalized article permalink URL overlap (excluding generic domain roots)
+ *  3. Within ±14 days: fiscal quarter earnings collision (e.g. both about Q3 2026 earnings)
+ *     or >= 0.40 Jaccard token similarity across significant domain tokens.
+ */
+export function findFuzzyDuplicate(
+  candidate: { id?: string; title: string; eventDate: string; sourceType: ImpactEvent['sourceType']; sourceUrls?: string[] },
+  existingEvents: ReadonlyArray<Pick<ImpactEvent, 'id' | 'title' | 'eventDate' | 'sourceType' | 'sourceUrls'>>,
+): Pick<ImpactEvent, 'id' | 'title' | 'eventDate' | 'sourceType' | 'sourceUrls'> | undefined {
+  const candId = candidate.id ?? computeEventId(candidate);
+  const exact = existingEvents.find((e) => e.id === candId);
+  if (exact) return exact;
+
+  const candUrls = new Set(
+    (candidate.sourceUrls ?? [])
+      .map(normalizeUrlForCompare)
+      .filter((u) => u.includes('/') && u.split('/').filter(Boolean).length >= 2),
+  );
+
+  const candTime = Date.parse(candidate.eventDate);
+  const candTokens = extractSignificantTokens(candidate.title);
+  const candQuarterMatch = candidate.title.toLowerCase().match(/\bq([1-4])\s*(20\d{2})\b/);
+  const candIsEarnings =
+    candidate.sourceType === 'earnings' || /\b(earnings|revenue|eps|results|backlog)\b/i.test(candidate.title);
+
+  for (const ev of existingEvents) {
+    // Layer 2: Specific article permalink match
+    if (candUrls.size > 0 && ev.sourceUrls?.length) {
+      for (const u of ev.sourceUrls) {
+        const norm = normalizeUrlForCompare(u);
+        if (candUrls.has(norm)) return ev;
+      }
+    }
+
+    // Layer 3: Date window (±14 days) + semantic/token overlap
+    const evTime = Date.parse(ev.eventDate);
+    if (!Number.isNaN(candTime) && !Number.isNaN(evTime)) {
+      const daysDiff = Math.abs(candTime - evTime) / (1000 * 60 * 60 * 24);
+      if (daysDiff <= 14) {
+        // Check if both are earnings events for the same fiscal quarter
+        const evQuarterMatch = ev.title.toLowerCase().match(/\bq([1-4])\s*(20\d{2})\b/);
+        const evIsEarnings =
+          ev.sourceType === 'earnings' || /\b(earnings|revenue|eps|results|backlog)\b/i.test(ev.title);
+        if (candIsEarnings && evIsEarnings && candQuarterMatch && evQuarterMatch) {
+          if (candQuarterMatch[1] === evQuarterMatch[1] && candQuarterMatch[2] === evQuarterMatch[2]) {
+            return ev;
+          }
+        }
+
+        // Token Jaccard similarity
+        if (candTokens.size >= 2) {
+          const evTokens = extractSignificantTokens(ev.title);
+          if (evTokens.size >= 2) {
+            let intersection = 0;
+            for (const t of candTokens) {
+              if (evTokens.has(t)) intersection++;
+            }
+            const union = candTokens.size + evTokens.size - intersection;
+            const jaccard = union > 0 ? intersection / union : 0;
+            const minOverlap = Math.min(candTokens.size, evTokens.size) > 0
+              ? intersection / Math.min(candTokens.size, evTokens.size)
+              : 0;
+            if (jaccard >= 0.4 || (intersection >= 3 && minOverlap >= 0.5)) {
+              return ev;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  return undefined;
+}
+
 export function validateImpacts(impacts: AudienceImpact[]): string[] {
   const errs: string[] = [];
   const seen = new Set<string>();
@@ -104,7 +211,8 @@ export function upsertEvent(state: LedgerState, input: EventInput, author: strin
     return withRevisions(state, after, runId, now, rr, [existing, updated]);
   }
   const id = computeEventId(input);
-  if (state.events.some((e) => e.id === id)) throw new Error(`Duplicate event ${id}`);
+  const dup = findFuzzyDuplicate({ ...input, id }, state.events);
+  if (dup) throw new Error(`Duplicate event ${dup.id} (${dup.title})`);
   const ev: ImpactEvent = {
     id,
     title: input.title,
@@ -143,7 +251,7 @@ export function approvePending(state: LedgerState, pendingId: string, now: strin
   const errs = validateImpacts(merged.impacts);
   if (errs.length) throw new Error(`Invalid impacts: ${errs.join(', ')}`);
   const id = computeEventId(merged);
-  if (state.events.some((e) => e.id === id)) {
+  if (state.events.some((e) => e.id === id) || findFuzzyDuplicate({ ...merged, id }, state.events)) {
     return { state: { ...state, pending: state.pending.filter((x) => x.id !== pendingId) }, revisions: [] };
   }
   const { pendingReason: _pr, duplicateOf: _d, ...rest } = merged;

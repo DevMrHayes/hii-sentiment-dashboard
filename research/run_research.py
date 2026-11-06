@@ -28,7 +28,7 @@ for p in (THIS_DIR, SCRIPTS_DIR):
     if p not in sys.path:
         sys.path.insert(0, p)
 
-from extractor import validate_and_normalize_candidate  # noqa: E402
+from extractor import find_fuzzy_duplicate, validate_and_normalize_candidate  # noqa: E402
 from query_packs import AUDIENCE_QUERY_PACKS  # noqa: E402
 
 DATA_DIR = os.path.join(REPO_ROOT, "data")
@@ -318,27 +318,34 @@ async def main_async() -> None:
     )
     save_tier_b_budget(budget_data)
 
-    # Deduplicate against committed ledger and existing pending queue
-    existing_events = []
-    if os.path.exists(LEDGER_FILE):
-        with open(LEDGER_FILE, "r", encoding="utf-8") as f:
-            existing_events = json.load(f)
-    existing_ids = {e["id"] for e in existing_events}
-
-    existing_pending = []
-    if os.path.exists(PENDING_FILE):
-        with open(PENDING_FILE, "r", encoding="utf-8") as f:
-            existing_pending = json.load(f)
-    pending_by_id = {p["id"]: p for p in existing_pending}
-
-    added_count = 0
-    for raw in raw_candidates:
-        norm = validate_and_normalize_candidate(raw, run_id, now_iso)
-        if norm["id"] in existing_ids:
-            log.append(f"Skipped duplicate event already in committed ledger: {norm['id']}")
-            continue
-        if norm["id"] not in pending_by_id:
-            pending_by_id[norm["id"]] = norm
+    # Deduplicate against committed ledger and existing pending queue (Exact ID + URL + ±14d Fuzzy Token/Quarter Match)
+    existing_events = []
+    if os.path.exists(LEDGER_FILE):
+        with open(LEDGER_FILE, "r", encoding="utf-8") as f:
+            existing_events = json.load(f)
+
+    existing_pending = []
+    if os.path.exists(PENDING_FILE):
+        with open(PENDING_FILE, "r", encoding="utf-8") as f:
+            existing_pending = json.load(f)
+    pending_by_id = {p["id"]: p for p in existing_pending}
+
+    all_known_events: List[Dict[str, Any]] = list(existing_events) + list(existing_pending)
+    added_count = 0
+    skipped_dups = 0
+    for raw in raw_candidates:
+        norm = validate_and_normalize_candidate(raw, run_id, now_iso)
+        dup = find_fuzzy_duplicate(norm, all_known_events)
+        if dup is not None:
+            skipped_dups += 1
+            log.append(
+                f"Skipped duplicate/near-duplicate candidate '{norm['title'][:55]}...' "
+                f"(matched {dup.get('id')} on {dup.get('eventDate')})"
+            )
+            continue
+        if norm["id"] not in pending_by_id:
+            pending_by_id[norm["id"]] = norm
+            all_known_events.append(norm)
             added_count += 1
 
     os.makedirs(os.path.dirname(PENDING_FILE), exist_ok=True)
