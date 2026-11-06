@@ -19,7 +19,7 @@
       "reason": "Default defense shipbuilding stakeholder weight profile (Navy 30%, Congress 25%, Executive 25%, Public 20%)"
     }
   ],
-  "asOfDate": "2026-11-15",
+  "asOfDate": "2026-11-05",
   "firstPeriodStart": "2011-03-31",
   "schedule": {
     "enabled": true,
