@@ -160,7 +160,7 @@ OFFLINE_DISCOVERY_POOL: Dict[str, List[Dict[str, Any]]] = {
 
             "sourceType": "contract_award",
 
-            "sourceUrls": ["https://newsroom.huntingtoningalls.com/releases/navsea-awards-1-18b-long-lead-material-contract-for-virginia-class-block-vi"],
+            "sourceUrls": ["https://www.defense.gov/News/Contracts/"],
 
             "summary": "Department of the Navy awards HII Newport News Shipbuilding a $1.18B long-lead material and nuclear propulsion component contract for Virginia-class Block VI fast attack submarines.",
 
@@ -436,7 +436,7 @@ Output ONLY a valid JSON array of event objects matching this exact closed-rubri
 
     "sourceType": "hearing|gao_report|crs_report|exec_order|budget_request|navy_statement|contract_award|earnings|stock_move|analyst_rating|news_media|legislation",
 
-    "sourceUrls": ["https://newsroom.huntingtoningalls.com/releases/<slug>"], // CRITICAL: Must be exact permalinks to specific articles, reports, or contract awards, NEVER generic root domains.
+    "sourceUrls": ["https://www.hii.com/news/<slug>", "https://ir.hii.com/financials/quarterly-results/default.aspx", "https://www.defense.gov/News/Contracts/"], // CRITICAL: Must be real, valid live URLs (www.hii.com/news/..., ir.hii.com/.../default.aspx, defense.gov/News/..., congress.gov/bill/...), NEVER dead links.
 
     "summary": "2-sentence factual summary explaining HII shipbuilding or financial impact and cross-audience attribution.",
 

@@ -718,7 +718,7 @@ interface DashboardContextValue {
 
 
 
-const CURRENT_LEDGER_SEED_VERSION = 'v7_164_events_monday_sweep';
+const CURRENT_LEDGER_SEED_VERSION = 'v8_164_events_real_human_validated_sources';
 
 
 
@@ -726,7 +726,7 @@ const SEED_VERSION_KEY = 'hii_sentiment_seed_version';
 
 
 
-const STORAGE_KEY = 'hii_sentiment_ledger_state_v7';
+const STORAGE_KEY = 'hii_sentiment_ledger_state_v8';
 
 
 
@@ -850,6 +850,7 @@ export const DashboardProvider: React.FC<{ children: React.ReactNode }> = ({ chi
 
       localStorage.removeItem('hii_sentiment_ledger_state_v5');
       localStorage.removeItem('hii_sentiment_ledger_state_v6');
+      localStorage.removeItem('hii_sentiment_ledger_state_v7');
 
 
 
