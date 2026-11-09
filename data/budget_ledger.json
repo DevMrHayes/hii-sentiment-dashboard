@@ -3,9 +3,22 @@
   "billingCycle": "2026-11",
   "monthlyCapUsd": 5.0,
   "perRunCapUsd": 0.5,
-  "monthSpendUsd": 0.18728,
-  "runsCount": 6,
+  "monthSpendUsd": 0.213038,
+  "runsCount": 7,
   "history": [
+    {
+      "runId": "run_20261109_124221",
+      "timestamp": "2026-11-09T12:42:21Z",
+      "mode": "deep_research",
+      "audiences": [
+        "executive",
+        "congress",
+        "navy",
+        "public"
+      ],
+      "costUsd": 0.025758,
+      "runningMonthSpendUsd": 0.213038
+    },
     {
       "runId": "run_20261105_023205",
       "timestamp": "2026-11-05T02:32:44Z",

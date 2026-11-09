@@ -529,5 +529,1157 @@
     ],
     "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
     "explanation": "Retroactive discovery of \"FY2026 Federal Government Shutdown & Appropriations Lapse Begins Oct 1, 2025 as Congress Misses Fiscal Year Deadline; DoD Furloughs Civilian Acquisition Staff and Halts New Contract Awards\" (2025-10-01); \"CRS Report RL32665 Update: Navy Force Structure and Shipbuilding Plans — Industrial Base Throughput Analysis\" (2026-08-18); \"GAO Shipbuilding Assessment Notes Stabilization in Hiring but Persistent Supply Chain Delays on CVN 79 and CVN 80\" (2025-07-15); \"DOGE Round 2 DoD Services & Management Support Audit Terminates Legacy C5ISR Knowledge-Based Services Task Orders, Trimming HII Mission Technologies Backlog by $340M\" (2026-01-28) adjusted Nov 2026 Composite from 56.04 to 48.55 (-7.49 pts)."
+  },
+  {
+    "id": "rev_b492166d5d5be921",
+    "timestamp": "2026-11-15T12:00:00Z",
+    "runId": "run_20261104_deep_02",
+    "periodId": "2026-Q2",
+    "periodLabel": "Q2 2026",
+    "audience": "congress",
+    "oldScoreCenti": 6290,
+    "newScoreCenti": 6509,
+    "deltaCenti": 219,
+    "triggeringEventIds": [
+      "evt_7e1da78f95740248"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"GAO Supplemental Audit (GAO-26-107412): Submarine Industrial Base Supplier On-Time Delivery Improves 14%\" (2026-05-22) adjusted Q2 2026 Congress from 62.90 to 65.09 (+2.19 pts)."
+  },
+  {
+    "id": "rev_4b08588ff01a6588",
+    "timestamp": "2026-11-15T12:00:00Z",
+    "runId": "run_20261104_deep_02",
+    "periodId": "2026-Q2",
+    "periodLabel": "Q2 2026",
+    "audience": "navy",
+    "oldScoreCenti": 5965,
+    "newScoreCenti": 6121,
+    "deltaCenti": 156,
+    "triggeringEventIds": [
+      "evt_7e1da78f95740248"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"GAO Supplemental Audit (GAO-26-107412): Submarine Industrial Base Supplier On-Time Delivery Improves 14%\" (2026-05-22) adjusted Q2 2026 Department of the Navy from 59.65 to 61.21 (+1.56 pts)."
+  },
+  {
+    "id": "rev_7c6c9d66c6a11472",
+    "timestamp": "2026-11-15T12:00:00Z",
+    "runId": "run_20261104_deep_02",
+    "periodId": "2026-Q2",
+    "periodLabel": "Q2 2026",
+    "audience": "composite",
+    "oldScoreCenti": 6913,
+    "newScoreCenti": 7014,
+    "deltaCenti": 101,
+    "triggeringEventIds": [
+      "evt_7e1da78f95740248"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"GAO Supplemental Audit (GAO-26-107412): Submarine Industrial Base Supplier On-Time Delivery Improves 14%\" (2026-05-22) adjusted Q2 2026 Composite from 69.13 to 70.14 (+1.01 pts)."
+  },
+  {
+    "id": "rev_fc76cd7a31799b15",
+    "timestamp": "2026-11-15T12:00:00Z",
+    "runId": "run_20261104_deep_02",
+    "periodId": "2026-Q3",
+    "periodLabel": "Q3 2026",
+    "audience": "congress",
+    "oldScoreCenti": 6407,
+    "newScoreCenti": 6697,
+    "deltaCenti": 290,
+    "triggeringEventIds": [
+      "evt_7e1da78f95740248"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"GAO Supplemental Audit (GAO-26-107412): Submarine Industrial Base Supplier On-Time Delivery Improves 14%\" (2026-05-22) adjusted Q3 2026 Congress from 64.07 to 66.97 (+2.90 pts)."
+  },
+  {
+    "id": "rev_ce86ecfb7f30673c",
+    "timestamp": "2026-11-15T12:00:00Z",
+    "runId": "run_20261104_deep_02",
+    "periodId": "2026-Q3",
+    "periodLabel": "Q3 2026",
+    "audience": "navy",
+    "oldScoreCenti": 5855,
+    "newScoreCenti": 6065,
+    "deltaCenti": 210,
+    "triggeringEventIds": [
+      "evt_7e1da78f95740248"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"GAO Supplemental Audit (GAO-26-107412): Submarine Industrial Base Supplier On-Time Delivery Improves 14%\" (2026-05-22) adjusted Q3 2026 Department of the Navy from 58.55 to 60.65 (+2.10 pts)."
+  },
+  {
+    "id": "rev_e7dd9c244fc94cbc",
+    "timestamp": "2026-11-15T12:00:00Z",
+    "runId": "run_20261104_deep_02",
+    "periodId": "2026-Q3",
+    "periodLabel": "Q3 2026",
+    "audience": "composite",
+    "oldScoreCenti": 6779,
+    "newScoreCenti": 6915,
+    "deltaCenti": 136,
+    "triggeringEventIds": [
+      "evt_7e1da78f95740248"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"GAO Supplemental Audit (GAO-26-107412): Submarine Industrial Base Supplier On-Time Delivery Improves 14%\" (2026-05-22) adjusted Q3 2026 Composite from 67.79 to 69.15 (+1.36 pts)."
+  },
+  {
+    "id": "rev_f2fd74d2b294c4c4",
+    "timestamp": "2026-11-15T12:00:00Z",
+    "runId": "run_20261104_deep_02",
+    "periodId": "2026-10",
+    "periodLabel": "Oct 2026",
+    "audience": "congress",
+    "oldScoreCenti": 5643,
+    "newScoreCenti": 5974,
+    "deltaCenti": 331,
+    "triggeringEventIds": [
+      "evt_7e1da78f95740248"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"GAO Supplemental Audit (GAO-26-107412): Submarine Industrial Base Supplier On-Time Delivery Improves 14%\" (2026-05-22) adjusted Oct 2026 Congress from 56.43 to 59.74 (+3.31 pts)."
+  },
+  {
+    "id": "rev_42283ad6c93f268b",
+    "timestamp": "2026-11-15T12:00:00Z",
+    "runId": "run_20261104_deep_02",
+    "periodId": "2026-10",
+    "periodLabel": "Oct 2026",
+    "audience": "navy",
+    "oldScoreCenti": 3620,
+    "newScoreCenti": 3788,
+    "deltaCenti": 168,
+    "triggeringEventIds": [
+      "evt_7e1da78f95740248"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"GAO Supplemental Audit (GAO-26-107412): Submarine Industrial Base Supplier On-Time Delivery Improves 14%\" (2026-05-22) adjusted Oct 2026 Department of the Navy from 36.20 to 37.88 (+1.68 pts)."
+  },
+  {
+    "id": "rev_27f4e2641b313bdb",
+    "timestamp": "2026-11-15T12:00:00Z",
+    "runId": "run_20261104_deep_02",
+    "periodId": "2026-10",
+    "periodLabel": "Oct 2026",
+    "audience": "composite",
+    "oldScoreCenti": 5507,
+    "newScoreCenti": 5640,
+    "deltaCenti": 133,
+    "triggeringEventIds": [
+      "evt_7e1da78f95740248"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"GAO Supplemental Audit (GAO-26-107412): Submarine Industrial Base Supplier On-Time Delivery Improves 14%\" (2026-05-22) adjusted Oct 2026 Composite from 55.07 to 56.40 (+1.33 pts)."
+  },
+  {
+    "id": "rev_e65eeeebaf13ff1c",
+    "timestamp": "2026-11-15T12:00:00Z",
+    "runId": "run_20261104_deep_02",
+    "periodId": "2026-11",
+    "periodLabel": "Nov 2026",
+    "audience": "congress",
+    "oldScoreCenti": 5635,
+    "newScoreCenti": 5961,
+    "deltaCenti": 326,
+    "triggeringEventIds": [
+      "evt_7e1da78f95740248"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"GAO Supplemental Audit (GAO-26-107412): Submarine Industrial Base Supplier On-Time Delivery Improves 14%\" (2026-05-22) adjusted Nov 2026 Congress from 56.35 to 59.61 (+3.26 pts)."
+  },
+  {
+    "id": "rev_cbc4031ee3ac4930",
+    "timestamp": "2026-11-15T12:00:00Z",
+    "runId": "run_20261104_deep_02",
+    "periodId": "2026-11",
+    "periodLabel": "Nov 2026",
+    "audience": "navy",
+    "oldScoreCenti": 4287,
+    "newScoreCenti": 4521,
+    "deltaCenti": 234,
+    "triggeringEventIds": [
+      "evt_7e1da78f95740248"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"GAO Supplemental Audit (GAO-26-107412): Submarine Industrial Base Supplier On-Time Delivery Improves 14%\" (2026-05-22) adjusted Nov 2026 Department of the Navy from 42.87 to 45.21 (+2.34 pts)."
+  },
+  {
+    "id": "rev_b833a2a9fc4bb598",
+    "timestamp": "2026-11-15T12:00:00Z",
+    "runId": "run_20261104_deep_02",
+    "periodId": "2026-11",
+    "periodLabel": "Nov 2026",
+    "audience": "composite",
+    "oldScoreCenti": 5638,
+    "newScoreCenti": 5790,
+    "deltaCenti": 152,
+    "triggeringEventIds": [
+      "evt_7e1da78f95740248"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"GAO Supplemental Audit (GAO-26-107412): Submarine Industrial Base Supplier On-Time Delivery Improves 14%\" (2026-05-22) adjusted Nov 2026 Composite from 56.38 to 57.90 (+1.52 pts)."
+  },
+  {
+    "id": "rev_f37cd50f7fe9b73c",
+    "timestamp": "2026-11-15T12:00:00Z",
+    "runId": "run_20261109_124221",
+    "periodId": "2024",
+    "periodLabel": "2024",
+    "audience": "executive",
+    "oldScoreCenti": 3778,
+    "newScoreCenti": 4067,
+    "deltaCenti": 289,
+    "triggeringEventIds": [
+      "evt_4a331b7667449fca"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"HASC Seapower Subcommittee FY2025 NDAA Mark Restores Second Virginia-Class Submarine and Authorizes LPD-33\" (2024-05-13) adjusted 2024 Executive Branch from 37.78 to 40.67 (+2.89 pts)."
+  },
+  {
+    "id": "rev_24b3deaa0c7756dc",
+    "timestamp": "2026-11-15T12:00:00Z",
+    "runId": "run_20261109_124221",
+    "periodId": "2024",
+    "periodLabel": "2024",
+    "audience": "congress",
+    "oldScoreCenti": 2537,
+    "newScoreCenti": 2818,
+    "deltaCenti": 281,
+    "triggeringEventIds": [
+      "evt_4a331b7667449fca"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"HASC Seapower Subcommittee FY2025 NDAA Mark Restores Second Virginia-Class Submarine and Authorizes LPD-33\" (2024-05-13) adjusted 2024 Congress from 25.37 to 28.18 (+2.81 pts)."
+  },
+  {
+    "id": "rev_3453a37f8dcb6824",
+    "timestamp": "2026-11-15T12:00:00Z",
+    "runId": "run_20261109_124221",
+    "periodId": "2024",
+    "periodLabel": "2024",
+    "audience": "navy",
+    "oldScoreCenti": 2914,
+    "newScoreCenti": 3111,
+    "deltaCenti": 197,
+    "triggeringEventIds": [
+      "evt_4a331b7667449fca"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"HASC Seapower Subcommittee FY2025 NDAA Mark Restores Second Virginia-Class Submarine and Authorizes LPD-33\" (2024-05-13) adjusted 2024 Department of the Navy from 29.14 to 31.11 (+1.97 pts)."
+  },
+  {
+    "id": "rev_6b8e0d8cc156296f",
+    "timestamp": "2026-11-15T12:00:00Z",
+    "runId": "run_20261109_124221",
+    "periodId": "2024",
+    "periodLabel": "2024",
+    "audience": "public",
+    "oldScoreCenti": 2330,
+    "newScoreCenti": 2381,
+    "deltaCenti": 51,
+    "triggeringEventIds": [
+      "evt_4a331b7667449fca"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"HASC Seapower Subcommittee FY2025 NDAA Mark Restores Second Virginia-Class Submarine and Authorizes LPD-33\" (2024-05-13) adjusted 2024 American Public from 23.30 to 23.81 (+0.51 pts)."
+  },
+  {
+    "id": "rev_89b5f1a7692680b3",
+    "timestamp": "2026-11-15T12:00:00Z",
+    "runId": "run_20261109_124221",
+    "periodId": "2024",
+    "periodLabel": "2024",
+    "audience": "composite",
+    "oldScoreCenti": 2919,
+    "newScoreCenti": 3131,
+    "deltaCenti": 212,
+    "triggeringEventIds": [
+      "evt_4a331b7667449fca"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"HASC Seapower Subcommittee FY2025 NDAA Mark Restores Second Virginia-Class Submarine and Authorizes LPD-33\" (2024-05-13) adjusted 2024 Composite from 29.19 to 31.31 (+2.12 pts)."
+  },
+  {
+    "id": "rev_04d94486c9575ea2",
+    "timestamp": "2026-11-15T12:00:00Z",
+    "runId": "run_20261109_124221",
+    "periodId": "2025",
+    "periodLabel": "2025",
+    "audience": "executive",
+    "oldScoreCenti": 6010,
+    "newScoreCenti": 6115,
+    "deltaCenti": 105,
+    "triggeringEventIds": [
+      "evt_4a331b7667449fca"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"HASC Seapower Subcommittee FY2025 NDAA Mark Restores Second Virginia-Class Submarine and Authorizes LPD-33\" (2024-05-13) adjusted 2025 Executive Branch from 60.10 to 61.15 (+1.05 pts)."
+  },
+  {
+    "id": "rev_884d3b858663c7af",
+    "timestamp": "2026-11-15T12:00:00Z",
+    "runId": "run_20261109_124221",
+    "periodId": "2025",
+    "periodLabel": "2025",
+    "audience": "congress",
+    "oldScoreCenti": 4193,
+    "newScoreCenti": 4535,
+    "deltaCenti": 342,
+    "triggeringEventIds": [
+      "evt_4a331b7667449fca"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"HASC Seapower Subcommittee FY2025 NDAA Mark Restores Second Virginia-Class Submarine and Authorizes LPD-33\" (2024-05-13) adjusted 2025 Congress from 41.93 to 45.35 (+3.42 pts)."
+  },
+  {
+    "id": "rev_3d248668918c0aa7",
+    "timestamp": "2026-11-15T12:00:00Z",
+    "runId": "run_20261109_124221",
+    "periodId": "2025",
+    "periodLabel": "2025",
+    "audience": "navy",
+    "oldScoreCenti": 2940,
+    "newScoreCenti": 3048,
+    "deltaCenti": 108,
+    "triggeringEventIds": [
+      "evt_4a331b7667449fca"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"HASC Seapower Subcommittee FY2025 NDAA Mark Restores Second Virginia-Class Submarine and Authorizes LPD-33\" (2024-05-13) adjusted 2025 Department of the Navy from 29.40 to 30.48 (+1.08 pts)."
+  },
+  {
+    "id": "rev_ddf900f95a69fb61",
+    "timestamp": "2026-11-15T12:00:00Z",
+    "runId": "run_20261109_124221",
+    "periodId": "2025",
+    "periodLabel": "2025",
+    "audience": "public",
+    "oldScoreCenti": 3388,
+    "newScoreCenti": 3398,
+    "deltaCenti": 10,
+    "triggeringEventIds": [
+      "evt_4a331b7667449fca"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"HASC Seapower Subcommittee FY2025 NDAA Mark Restores Second Virginia-Class Submarine and Authorizes LPD-33\" (2024-05-13) adjusted 2025 American Public from 33.88 to 33.98 (+0.10 pts)."
+  },
+  {
+    "id": "rev_2b699ef6226d6e0d",
+    "timestamp": "2026-11-15T12:00:00Z",
+    "runId": "run_20261109_124221",
+    "periodId": "2025",
+    "periodLabel": "2025",
+    "audience": "composite",
+    "oldScoreCenti": 4110,
+    "newScoreCenti": 4256,
+    "deltaCenti": 146,
+    "triggeringEventIds": [
+      "evt_4a331b7667449fca"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"HASC Seapower Subcommittee FY2025 NDAA Mark Restores Second Virginia-Class Submarine and Authorizes LPD-33\" (2024-05-13) adjusted 2025 Composite from 41.10 to 42.56 (+1.46 pts)."
+  },
+  {
+    "id": "rev_b4bd44686728a68a",
+    "timestamp": "2026-11-15T12:00:00Z",
+    "runId": "run_20261109_124221",
+    "periodId": "2026-Q1",
+    "periodLabel": "Q1 2026",
+    "audience": "executive",
+    "oldScoreCenti": 6934,
+    "newScoreCenti": 6972,
+    "deltaCenti": 38,
+    "triggeringEventIds": [
+      "evt_4a331b7667449fca"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"HASC Seapower Subcommittee FY2025 NDAA Mark Restores Second Virginia-Class Submarine and Authorizes LPD-33\" (2024-05-13) adjusted Q1 2026 Executive Branch from 69.34 to 69.72 (+0.38 pts)."
+  },
+  {
+    "id": "rev_632ab06fc811d942",
+    "timestamp": "2026-11-15T12:00:00Z",
+    "runId": "run_20261109_124221",
+    "periodId": "2026-Q1",
+    "periodLabel": "Q1 2026",
+    "audience": "congress",
+    "oldScoreCenti": 6360,
+    "newScoreCenti": 6469,
+    "deltaCenti": 109,
+    "triggeringEventIds": [
+      "evt_4a331b7667449fca"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"HASC Seapower Subcommittee FY2025 NDAA Mark Restores Second Virginia-Class Submarine and Authorizes LPD-33\" (2024-05-13) adjusted Q1 2026 Congress from 63.60 to 64.69 (+1.09 pts)."
+  },
+  {
+    "id": "rev_bb79b870620c185e",
+    "timestamp": "2026-11-15T12:00:00Z",
+    "runId": "run_20261109_124221",
+    "periodId": "2026-Q1",
+    "periodLabel": "Q1 2026",
+    "audience": "navy",
+    "oldScoreCenti": 4462,
+    "newScoreCenti": 4526,
+    "deltaCenti": 64,
+    "triggeringEventIds": [
+      "evt_4a331b7667449fca"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"HASC Seapower Subcommittee FY2025 NDAA Mark Restores Second Virginia-Class Submarine and Authorizes LPD-33\" (2024-05-13) adjusted Q1 2026 Department of the Navy from 44.62 to 45.26 (+0.64 pts)."
+  },
+  {
+    "id": "rev_e9c2cc80f2939fb7",
+    "timestamp": "2026-11-15T12:00:00Z",
+    "runId": "run_20261109_124221",
+    "periodId": "2026-Q1",
+    "periodLabel": "Q1 2026",
+    "audience": "public",
+    "oldScoreCenti": 8003,
+    "newScoreCenti": 8005,
+    "deltaCenti": 2,
+    "triggeringEventIds": [
+      "evt_4a331b7667449fca"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"HASC Seapower Subcommittee FY2025 NDAA Mark Restores Second Virginia-Class Submarine and Authorizes LPD-33\" (2024-05-13) adjusted Q1 2026 American Public from 80.03 to 80.05 (+0.02 pts)."
+  },
+  {
+    "id": "rev_3485c207662088d8",
+    "timestamp": "2026-11-15T12:00:00Z",
+    "runId": "run_20261109_124221",
+    "periodId": "2026-Q1",
+    "periodLabel": "Q1 2026",
+    "audience": "composite",
+    "oldScoreCenti": 6263,
+    "newScoreCenti": 6319,
+    "deltaCenti": 56,
+    "triggeringEventIds": [
+      "evt_4a331b7667449fca"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"HASC Seapower Subcommittee FY2025 NDAA Mark Restores Second Virginia-Class Submarine and Authorizes LPD-33\" (2024-05-13) adjusted Q1 2026 Composite from 62.63 to 63.19 (+0.56 pts)."
+  },
+  {
+    "id": "rev_6a3ae7b238624f3a",
+    "timestamp": "2026-11-15T12:00:00Z",
+    "runId": "run_20261109_124221",
+    "periodId": "2026-Q2",
+    "periodLabel": "Q2 2026",
+    "audience": "executive",
+    "oldScoreCenti": 7782,
+    "newScoreCenti": 7795,
+    "deltaCenti": 13,
+    "triggeringEventIds": [
+      "evt_4a331b7667449fca"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"HASC Seapower Subcommittee FY2025 NDAA Mark Restores Second Virginia-Class Submarine and Authorizes LPD-33\" (2024-05-13) adjusted Q2 2026 Executive Branch from 77.82 to 77.95 (+0.13 pts)."
+  },
+  {
+    "id": "rev_591d35c52f38466b",
+    "timestamp": "2026-11-15T12:00:00Z",
+    "runId": "run_20261109_124221",
+    "periodId": "2026-Q2",
+    "periodLabel": "Q2 2026",
+    "audience": "congress",
+    "oldScoreCenti": 6509,
+    "newScoreCenti": 6585,
+    "deltaCenti": 76,
+    "triggeringEventIds": [
+      "evt_4a331b7667449fca"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"HASC Seapower Subcommittee FY2025 NDAA Mark Restores Second Virginia-Class Submarine and Authorizes LPD-33\" (2024-05-13) adjusted Q2 2026 Congress from 65.09 to 65.85 (+0.76 pts)."
+  },
+  {
+    "id": "rev_3e46c2e2ec34cd4c",
+    "timestamp": "2026-11-15T12:00:00Z",
+    "runId": "run_20261109_124221",
+    "periodId": "2026-Q2",
+    "periodLabel": "Q2 2026",
+    "audience": "navy",
+    "oldScoreCenti": 6121,
+    "newScoreCenti": 6175,
+    "deltaCenti": 54,
+    "triggeringEventIds": [
+      "evt_4a331b7667449fca"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"HASC Seapower Subcommittee FY2025 NDAA Mark Restores Second Virginia-Class Submarine and Authorizes LPD-33\" (2024-05-13) adjusted Q2 2026 Department of the Navy from 61.21 to 61.75 (+0.54 pts)."
+  },
+  {
+    "id": "rev_2bbc2c29eff9ca72",
+    "timestamp": "2026-11-15T12:00:00Z",
+    "runId": "run_20261109_124221",
+    "periodId": "2026-Q2",
+    "periodLabel": "Q2 2026",
+    "audience": "composite",
+    "oldScoreCenti": 7014,
+    "newScoreCenti": 7053,
+    "deltaCenti": 39,
+    "triggeringEventIds": [
+      "evt_4a331b7667449fca"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"HASC Seapower Subcommittee FY2025 NDAA Mark Restores Second Virginia-Class Submarine and Authorizes LPD-33\" (2024-05-13) adjusted Q2 2026 Composite from 70.14 to 70.53 (+0.39 pts)."
+  },
+  {
+    "id": "rev_d9deb9dc723b78f6",
+    "timestamp": "2026-11-15T12:00:00Z",
+    "runId": "run_20261109_124221",
+    "periodId": "2026-Q3",
+    "periodLabel": "Q3 2026",
+    "audience": "executive",
+    "oldScoreCenti": 7459,
+    "newScoreCenti": 7472,
+    "deltaCenti": 13,
+    "triggeringEventIds": [
+      "evt_4a331b7667449fca"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"HASC Seapower Subcommittee FY2025 NDAA Mark Restores Second Virginia-Class Submarine and Authorizes LPD-33\" (2024-05-13) adjusted Q3 2026 Executive Branch from 74.59 to 74.72 (+0.13 pts)."
+  },
+  {
+    "id": "rev_9579eed7ea8e1aa9",
+    "timestamp": "2026-11-15T12:00:00Z",
+    "runId": "run_20261109_124221",
+    "periodId": "2026-Q3",
+    "periodLabel": "Q3 2026",
+    "audience": "congress",
+    "oldScoreCenti": 6697,
+    "newScoreCenti": 6742,
+    "deltaCenti": 45,
+    "triggeringEventIds": [
+      "evt_4a331b7667449fca"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"HASC Seapower Subcommittee FY2025 NDAA Mark Restores Second Virginia-Class Submarine and Authorizes LPD-33\" (2024-05-13) adjusted Q3 2026 Congress from 66.97 to 67.42 (+0.45 pts)."
+  },
+  {
+    "id": "rev_61ffa159eabcdf5e",
+    "timestamp": "2026-11-15T12:00:00Z",
+    "runId": "run_20261109_124221",
+    "periodId": "2026-Q3",
+    "periodLabel": "Q3 2026",
+    "audience": "navy",
+    "oldScoreCenti": 6065,
+    "newScoreCenti": 6099,
+    "deltaCenti": 34,
+    "triggeringEventIds": [
+      "evt_4a331b7667449fca"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"HASC Seapower Subcommittee FY2025 NDAA Mark Restores Second Virginia-Class Submarine and Authorizes LPD-33\" (2024-05-13) adjusted Q3 2026 Department of the Navy from 60.65 to 60.99 (+0.34 pts)."
+  },
+  {
+    "id": "rev_92bbd32d4cfe4519",
+    "timestamp": "2026-11-15T12:00:00Z",
+    "runId": "run_20261109_124221",
+    "periodId": "2026-Q3",
+    "periodLabel": "Q3 2026",
+    "audience": "composite",
+    "oldScoreCenti": 6915,
+    "newScoreCenti": 6940,
+    "deltaCenti": 25,
+    "triggeringEventIds": [
+      "evt_4a331b7667449fca"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"HASC Seapower Subcommittee FY2025 NDAA Mark Restores Second Virginia-Class Submarine and Authorizes LPD-33\" (2024-05-13) adjusted Q3 2026 Composite from 69.15 to 69.40 (+0.25 pts)."
+  },
+  {
+    "id": "rev_46ca3c1c85f550d5",
+    "timestamp": "2026-11-15T12:00:00Z",
+    "runId": "run_20261109_124221",
+    "periodId": "2026-10",
+    "periodLabel": "Oct 2026",
+    "audience": "executive",
+    "oldScoreCenti": 6076,
+    "newScoreCenti": 6099,
+    "deltaCenti": 23,
+    "triggeringEventIds": [
+      "evt_4a331b7667449fca"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"HASC Seapower Subcommittee FY2025 NDAA Mark Restores Second Virginia-Class Submarine and Authorizes LPD-33\" (2024-05-13) adjusted Oct 2026 Executive Branch from 60.76 to 60.99 (+0.23 pts)."
+  },
+  {
+    "id": "rev_42ea34eb080980fe",
+    "timestamp": "2026-11-15T12:00:00Z",
+    "runId": "run_20261109_124221",
+    "periodId": "2026-10",
+    "periodLabel": "Oct 2026",
+    "audience": "congress",
+    "oldScoreCenti": 5974,
+    "newScoreCenti": 6025,
+    "deltaCenti": 51,
+    "triggeringEventIds": [
+      "evt_4a331b7667449fca"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"HASC Seapower Subcommittee FY2025 NDAA Mark Restores Second Virginia-Class Submarine and Authorizes LPD-33\" (2024-05-13) adjusted Oct 2026 Congress from 59.74 to 60.25 (+0.51 pts)."
+  },
+  {
+    "id": "rev_560cf90e7feb516b",
+    "timestamp": "2026-11-15T12:00:00Z",
+    "runId": "run_20261109_124221",
+    "periodId": "2026-10",
+    "periodLabel": "Oct 2026",
+    "audience": "navy",
+    "oldScoreCenti": 3788,
+    "newScoreCenti": 3817,
+    "deltaCenti": 29,
+    "triggeringEventIds": [
+      "evt_4a331b7667449fca"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"HASC Seapower Subcommittee FY2025 NDAA Mark Restores Second Virginia-Class Submarine and Authorizes LPD-33\" (2024-05-13) adjusted Oct 2026 Department of the Navy from 37.88 to 38.17 (+0.29 pts)."
+  },
+  {
+    "id": "rev_5a694e08240d6043",
+    "timestamp": "2026-11-15T12:00:00Z",
+    "runId": "run_20261109_124221",
+    "periodId": "2026-10",
+    "periodLabel": "Oct 2026",
+    "audience": "public",
+    "oldScoreCenti": 7455,
+    "newScoreCenti": 7456,
+    "deltaCenti": 1,
+    "triggeringEventIds": [
+      "evt_4a331b7667449fca"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"HASC Seapower Subcommittee FY2025 NDAA Mark Restores Second Virginia-Class Submarine and Authorizes LPD-33\" (2024-05-13) adjusted Oct 2026 American Public from 74.55 to 74.56 (+0.01 pts)."
+  },
+  {
+    "id": "rev_7d67cbffab28e3c9",
+    "timestamp": "2026-11-15T12:00:00Z",
+    "runId": "run_20261109_124221",
+    "periodId": "2026-10",
+    "periodLabel": "Oct 2026",
+    "audience": "composite",
+    "oldScoreCenti": 5640,
+    "newScoreCenti": 5667,
+    "deltaCenti": 27,
+    "triggeringEventIds": [
+      "evt_4a331b7667449fca"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"HASC Seapower Subcommittee FY2025 NDAA Mark Restores Second Virginia-Class Submarine and Authorizes LPD-33\" (2024-05-13) adjusted Oct 2026 Composite from 56.40 to 56.67 (+0.27 pts)."
+  },
+  {
+    "id": "rev_384ea5eca38c4c1d",
+    "timestamp": "2026-11-15T12:00:00Z",
+    "runId": "run_20261109_124221",
+    "periodId": "2026-11",
+    "periodLabel": "Nov 2026",
+    "audience": "executive",
+    "oldScoreCenti": 6073,
+    "newScoreCenti": 6096,
+    "deltaCenti": 23,
+    "triggeringEventIds": [
+      "evt_4a331b7667449fca"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"HASC Seapower Subcommittee FY2025 NDAA Mark Restores Second Virginia-Class Submarine and Authorizes LPD-33\" (2024-05-13) adjusted Nov 2026 Executive Branch from 60.73 to 60.96 (+0.23 pts)."
+  },
+  {
+    "id": "rev_aacb18e5e97c95df",
+    "timestamp": "2026-11-15T12:00:00Z",
+    "runId": "run_20261109_124221",
+    "periodId": "2026-11",
+    "periodLabel": "Nov 2026",
+    "audience": "congress",
+    "oldScoreCenti": 5961,
+    "newScoreCenti": 6012,
+    "deltaCenti": 51,
+    "triggeringEventIds": [
+      "evt_4a331b7667449fca"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"HASC Seapower Subcommittee FY2025 NDAA Mark Restores Second Virginia-Class Submarine and Authorizes LPD-33\" (2024-05-13) adjusted Nov 2026 Congress from 59.61 to 60.12 (+0.51 pts)."
+  },
+  {
+    "id": "rev_844773946507d247",
+    "timestamp": "2026-11-15T12:00:00Z",
+    "runId": "run_20261109_124221",
+    "periodId": "2026-11",
+    "periodLabel": "Nov 2026",
+    "audience": "navy",
+    "oldScoreCenti": 4521,
+    "newScoreCenti": 4561,
+    "deltaCenti": 40,
+    "triggeringEventIds": [
+      "evt_4a331b7667449fca"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"HASC Seapower Subcommittee FY2025 NDAA Mark Restores Second Virginia-Class Submarine and Authorizes LPD-33\" (2024-05-13) adjusted Nov 2026 Department of the Navy from 45.21 to 45.61 (+0.40 pts)."
+  },
+  {
+    "id": "rev_3fb12db143abebb4",
+    "timestamp": "2026-11-15T12:00:00Z",
+    "runId": "run_20261109_124221",
+    "periodId": "2026-11",
+    "periodLabel": "Nov 2026",
+    "audience": "composite",
+    "oldScoreCenti": 5790,
+    "newScoreCenti": 5820,
+    "deltaCenti": 30,
+    "triggeringEventIds": [
+      "evt_4a331b7667449fca"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"HASC Seapower Subcommittee FY2025 NDAA Mark Restores Second Virginia-Class Submarine and Authorizes LPD-33\" (2024-05-13) adjusted Nov 2026 Composite from 57.90 to 58.20 (+0.30 pts)."
+  },
+  {
+    "id": "rev_06751dfc368fe60e",
+    "timestamp": "2026-11-15T12:00:00Z",
+    "runId": "run_20261109_124221",
+    "periodId": "2024",
+    "periodLabel": "2024",
+    "audience": "executive",
+    "oldScoreCenti": 4067,
+    "newScoreCenti": 4272,
+    "deltaCenti": 205,
+    "triggeringEventIds": [
+      "evt_079ff9f836e173c9"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"NAVSEA Awards HII Newport News Shipbuilding $3.05 Billion Contract Modification for Submarine Industrial Base Scaling\" (2024-11-15) adjusted 2024 Executive Branch from 40.67 to 42.72 (+2.05 pts)."
+  },
+  {
+    "id": "rev_3e243db4edb7ebed",
+    "timestamp": "2026-11-15T12:00:00Z",
+    "runId": "run_20261109_124221",
+    "periodId": "2024",
+    "periodLabel": "2024",
+    "audience": "congress",
+    "oldScoreCenti": 2818,
+    "newScoreCenti": 2992,
+    "deltaCenti": 174,
+    "triggeringEventIds": [
+      "evt_079ff9f836e173c9"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"NAVSEA Awards HII Newport News Shipbuilding $3.05 Billion Contract Modification for Submarine Industrial Base Scaling\" (2024-11-15) adjusted 2024 Congress from 28.18 to 29.92 (+1.74 pts)."
+  },
+  {
+    "id": "rev_11d1529bd85376de",
+    "timestamp": "2026-11-15T12:00:00Z",
+    "runId": "run_20261109_124221",
+    "periodId": "2024",
+    "periodLabel": "2024",
+    "audience": "navy",
+    "oldScoreCenti": 3111,
+    "newScoreCenti": 3357,
+    "deltaCenti": 246,
+    "triggeringEventIds": [
+      "evt_079ff9f836e173c9"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"NAVSEA Awards HII Newport News Shipbuilding $3.05 Billion Contract Modification for Submarine Industrial Base Scaling\" (2024-11-15) adjusted 2024 Department of the Navy from 31.11 to 33.57 (+2.46 pts)."
+  },
+  {
+    "id": "rev_c6aacaf3f0ac96cf",
+    "timestamp": "2026-11-15T12:00:00Z",
+    "runId": "run_20261109_124221",
+    "periodId": "2024",
+    "periodLabel": "2024",
+    "audience": "composite",
+    "oldScoreCenti": 3131,
+    "newScoreCenti": 3299,
+    "deltaCenti": 168,
+    "triggeringEventIds": [
+      "evt_079ff9f836e173c9"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"NAVSEA Awards HII Newport News Shipbuilding $3.05 Billion Contract Modification for Submarine Industrial Base Scaling\" (2024-11-15) adjusted 2024 Composite from 31.31 to 32.99 (+1.68 pts)."
+  },
+  {
+    "id": "rev_67954cb2bd3237a7",
+    "timestamp": "2026-11-15T12:00:00Z",
+    "runId": "run_20261109_124221",
+    "periodId": "2025",
+    "periodLabel": "2025",
+    "audience": "executive",
+    "oldScoreCenti": 6115,
+    "newScoreCenti": 6643,
+    "deltaCenti": 528,
+    "triggeringEventIds": [
+      "evt_079ff9f836e173c9"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"NAVSEA Awards HII Newport News Shipbuilding $3.05 Billion Contract Modification for Submarine Industrial Base Scaling\" (2024-11-15) adjusted 2025 Executive Branch from 61.15 to 66.43 (+5.28 pts)."
+  },
+  {
+    "id": "rev_fa617c2f7ecc298d",
+    "timestamp": "2026-11-15T12:00:00Z",
+    "runId": "run_20261109_124221",
+    "periodId": "2025",
+    "periodLabel": "2025",
+    "audience": "congress",
+    "oldScoreCenti": 4535,
+    "newScoreCenti": 5391,
+    "deltaCenti": 856,
+    "triggeringEventIds": [
+      "evt_079ff9f836e173c9"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"NAVSEA Awards HII Newport News Shipbuilding $3.05 Billion Contract Modification for Submarine Industrial Base Scaling\" (2024-11-15) adjusted 2025 Congress from 45.35 to 53.91 (+8.56 pts)."
+  },
+  {
+    "id": "rev_5614d7d2a6029b2c",
+    "timestamp": "2026-11-15T12:00:00Z",
+    "runId": "run_20261109_124221",
+    "periodId": "2025",
+    "periodLabel": "2025",
+    "audience": "navy",
+    "oldScoreCenti": 3048,
+    "newScoreCenti": 3943,
+    "deltaCenti": 895,
+    "triggeringEventIds": [
+      "evt_079ff9f836e173c9"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"NAVSEA Awards HII Newport News Shipbuilding $3.05 Billion Contract Modification for Submarine Industrial Base Scaling\" (2024-11-15) adjusted 2025 Department of the Navy from 30.48 to 39.43 (+8.95 pts)."
+  },
+  {
+    "id": "rev_ee1180b9225fb3a6",
+    "timestamp": "2026-11-15T12:00:00Z",
+    "runId": "run_20261109_124221",
+    "periodId": "2025",
+    "periodLabel": "2025",
+    "audience": "composite",
+    "oldScoreCenti": 4256,
+    "newScoreCenti": 4871,
+    "deltaCenti": 615,
+    "triggeringEventIds": [
+      "evt_079ff9f836e173c9"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"NAVSEA Awards HII Newport News Shipbuilding $3.05 Billion Contract Modification for Submarine Industrial Base Scaling\" (2024-11-15) adjusted 2025 Composite from 42.56 to 48.71 (+6.15 pts)."
+  },
+  {
+    "id": "rev_758ceccb270e38d1",
+    "timestamp": "2026-11-15T12:00:00Z",
+    "runId": "run_20261109_124221",
+    "periodId": "2026-Q1",
+    "periodLabel": "Q1 2026",
+    "audience": "executive",
+    "oldScoreCenti": 6972,
+    "newScoreCenti": 7263,
+    "deltaCenti": 291,
+    "triggeringEventIds": [
+      "evt_079ff9f836e173c9"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"NAVSEA Awards HII Newport News Shipbuilding $3.05 Billion Contract Modification for Submarine Industrial Base Scaling\" (2024-11-15) adjusted Q1 2026 Executive Branch from 69.72 to 72.63 (+2.91 pts)."
+  },
+  {
+    "id": "rev_ad164758de3b3253",
+    "timestamp": "2026-11-15T12:00:00Z",
+    "runId": "run_20261109_124221",
+    "periodId": "2026-Q1",
+    "periodLabel": "Q1 2026",
+    "audience": "congress",
+    "oldScoreCenti": 6469,
+    "newScoreCenti": 6850,
+    "deltaCenti": 381,
+    "triggeringEventIds": [
+      "evt_079ff9f836e173c9"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"NAVSEA Awards HII Newport News Shipbuilding $3.05 Billion Contract Modification for Submarine Industrial Base Scaling\" (2024-11-15) adjusted Q1 2026 Congress from 64.69 to 68.50 (+3.81 pts)."
+  },
+  {
+    "id": "rev_470c1134f95c6363",
+    "timestamp": "2026-11-15T12:00:00Z",
+    "runId": "run_20261109_124221",
+    "periodId": "2026-Q1",
+    "periodLabel": "Q1 2026",
+    "audience": "navy",
+    "oldScoreCenti": 4526,
+    "newScoreCenti": 5312,
+    "deltaCenti": 786,
+    "triggeringEventIds": [
+      "evt_079ff9f836e173c9"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"NAVSEA Awards HII Newport News Shipbuilding $3.05 Billion Contract Modification for Submarine Industrial Base Scaling\" (2024-11-15) adjusted Q1 2026 Department of the Navy from 45.26 to 53.12 (+7.86 pts)."
+  },
+  {
+    "id": "rev_098ad3b03598424d",
+    "timestamp": "2026-11-15T12:00:00Z",
+    "runId": "run_20261109_124221",
+    "periodId": "2026-Q1",
+    "periodLabel": "Q1 2026",
+    "audience": "composite",
+    "oldScoreCenti": 6319,
+    "newScoreCenti": 6723,
+    "deltaCenti": 404,
+    "triggeringEventIds": [
+      "evt_079ff9f836e173c9"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"NAVSEA Awards HII Newport News Shipbuilding $3.05 Billion Contract Modification for Submarine Industrial Base Scaling\" (2024-11-15) adjusted Q1 2026 Composite from 63.19 to 67.23 (+4.04 pts)."
+  },
+  {
+    "id": "rev_f21613eaa94cbc5c",
+    "timestamp": "2026-11-15T12:00:00Z",
+    "runId": "run_20261109_124221",
+    "periodId": "2026-Q2",
+    "periodLabel": "Q2 2026",
+    "audience": "executive",
+    "oldScoreCenti": 7795,
+    "newScoreCenti": 7929,
+    "deltaCenti": 134,
+    "triggeringEventIds": [
+      "evt_079ff9f836e173c9"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"NAVSEA Awards HII Newport News Shipbuilding $3.05 Billion Contract Modification for Submarine Industrial Base Scaling\" (2024-11-15) adjusted Q2 2026 Executive Branch from 77.95 to 79.29 (+1.34 pts)."
+  },
+  {
+    "id": "rev_d1ba146991e440ef",
+    "timestamp": "2026-11-15T12:00:00Z",
+    "runId": "run_20261109_124221",
+    "periodId": "2026-Q2",
+    "periodLabel": "Q2 2026",
+    "audience": "congress",
+    "oldScoreCenti": 6585,
+    "newScoreCenti": 6910,
+    "deltaCenti": 325,
+    "triggeringEventIds": [
+      "evt_079ff9f836e173c9"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"NAVSEA Awards HII Newport News Shipbuilding $3.05 Billion Contract Modification for Submarine Industrial Base Scaling\" (2024-11-15) adjusted Q2 2026 Congress from 65.85 to 69.10 (+3.25 pts)."
+  },
+  {
+    "id": "rev_dd2286d3d2acbe87",
+    "timestamp": "2026-11-15T12:00:00Z",
+    "runId": "run_20261109_124221",
+    "periodId": "2026-Q2",
+    "periodLabel": "Q2 2026",
+    "audience": "navy",
+    "oldScoreCenti": 6175,
+    "newScoreCenti": 6798,
+    "deltaCenti": 623,
+    "triggeringEventIds": [
+      "evt_079ff9f836e173c9"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"NAVSEA Awards HII Newport News Shipbuilding $3.05 Billion Contract Modification for Submarine Industrial Base Scaling\" (2024-11-15) adjusted Q2 2026 Department of the Navy from 61.75 to 67.98 (+6.23 pts)."
+  },
+  {
+    "id": "rev_950f1da7e528a2c5",
+    "timestamp": "2026-11-15T12:00:00Z",
+    "runId": "run_20261109_124221",
+    "periodId": "2026-Q2",
+    "periodLabel": "Q2 2026",
+    "audience": "composite",
+    "oldScoreCenti": 7053,
+    "newScoreCenti": 7354,
+    "deltaCenti": 301,
+    "triggeringEventIds": [
+      "evt_079ff9f836e173c9"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"NAVSEA Awards HII Newport News Shipbuilding $3.05 Billion Contract Modification for Submarine Industrial Base Scaling\" (2024-11-15) adjusted Q2 2026 Composite from 70.53 to 73.54 (+3.01 pts)."
+  },
+  {
+    "id": "rev_de5e4b1157ca8001",
+    "timestamp": "2026-11-15T12:00:00Z",
+    "runId": "run_20261109_124221",
+    "periodId": "2026-Q3",
+    "periodLabel": "Q3 2026",
+    "audience": "executive",
+    "oldScoreCenti": 7472,
+    "newScoreCenti": 7626,
+    "deltaCenti": 154,
+    "triggeringEventIds": [
+      "evt_079ff9f836e173c9"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"NAVSEA Awards HII Newport News Shipbuilding $3.05 Billion Contract Modification for Submarine Industrial Base Scaling\" (2024-11-15) adjusted Q3 2026 Executive Branch from 74.72 to 76.26 (+1.54 pts)."
+  },
+  {
+    "id": "rev_c3dd07266658fbc7",
+    "timestamp": "2026-11-15T12:00:00Z",
+    "runId": "run_20261109_124221",
+    "periodId": "2026-Q3",
+    "periodLabel": "Q3 2026",
+    "audience": "congress",
+    "oldScoreCenti": 6742,
+    "newScoreCenti": 6996,
+    "deltaCenti": 254,
+    "triggeringEventIds": [
+      "evt_079ff9f836e173c9"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"NAVSEA Awards HII Newport News Shipbuilding $3.05 Billion Contract Modification for Submarine Industrial Base Scaling\" (2024-11-15) adjusted Q3 2026 Congress from 67.42 to 69.96 (+2.54 pts)."
+  },
+  {
+    "id": "rev_68a4ccc54b66816e",
+    "timestamp": "2026-11-15T12:00:00Z",
+    "runId": "run_20261109_124221",
+    "periodId": "2026-Q3",
+    "periodLabel": "Q3 2026",
+    "audience": "navy",
+    "oldScoreCenti": 6099,
+    "newScoreCenti": 6638,
+    "deltaCenti": 539,
+    "triggeringEventIds": [
+      "evt_079ff9f836e173c9"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"NAVSEA Awards HII Newport News Shipbuilding $3.05 Billion Contract Modification for Submarine Industrial Base Scaling\" (2024-11-15) adjusted Q3 2026 Department of the Navy from 60.99 to 66.38 (+5.39 pts)."
+  },
+  {
+    "id": "rev_72563d6e06bfabe1",
+    "timestamp": "2026-11-15T12:00:00Z",
+    "runId": "run_20261109_124221",
+    "periodId": "2026-Q3",
+    "periodLabel": "Q3 2026",
+    "audience": "composite",
+    "oldScoreCenti": 6940,
+    "newScoreCenti": 7203,
+    "deltaCenti": 263,
+    "triggeringEventIds": [
+      "evt_079ff9f836e173c9"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"NAVSEA Awards HII Newport News Shipbuilding $3.05 Billion Contract Modification for Submarine Industrial Base Scaling\" (2024-11-15) adjusted Q3 2026 Composite from 69.40 to 72.03 (+2.63 pts)."
+  },
+  {
+    "id": "rev_7ec0fa4448dad0d7",
+    "timestamp": "2026-11-15T12:00:00Z",
+    "runId": "run_20261109_124221",
+    "periodId": "2026-10",
+    "periodLabel": "Oct 2026",
+    "audience": "executive",
+    "oldScoreCenti": 6099,
+    "newScoreCenti": 6415,
+    "deltaCenti": 316,
+    "triggeringEventIds": [
+      "evt_079ff9f836e173c9"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"NAVSEA Awards HII Newport News Shipbuilding $3.05 Billion Contract Modification for Submarine Industrial Base Scaling\" (2024-11-15) adjusted Oct 2026 Executive Branch from 60.99 to 64.15 (+3.16 pts)."
+  },
+  {
+    "id": "rev_2b7ebcb8ce6e40c7",
+    "timestamp": "2026-11-15T12:00:00Z",
+    "runId": "run_20261109_124221",
+    "periodId": "2026-10",
+    "periodLabel": "Oct 2026",
+    "audience": "congress",
+    "oldScoreCenti": 6025,
+    "newScoreCenti": 6353,
+    "deltaCenti": 328,
+    "triggeringEventIds": [
+      "evt_079ff9f836e173c9"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"NAVSEA Awards HII Newport News Shipbuilding $3.05 Billion Contract Modification for Submarine Industrial Base Scaling\" (2024-11-15) adjusted Oct 2026 Congress from 60.25 to 63.53 (+3.28 pts)."
+  },
+  {
+    "id": "rev_aa3837d89086de5e",
+    "timestamp": "2026-11-15T12:00:00Z",
+    "runId": "run_20261109_124221",
+    "periodId": "2026-10",
+    "periodLabel": "Oct 2026",
+    "audience": "navy",
+    "oldScoreCenti": 3817,
+    "newScoreCenti": 4440,
+    "deltaCenti": 623,
+    "triggeringEventIds": [
+      "evt_079ff9f836e173c9"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"NAVSEA Awards HII Newport News Shipbuilding $3.05 Billion Contract Modification for Submarine Industrial Base Scaling\" (2024-11-15) adjusted Oct 2026 Department of the Navy from 38.17 to 44.40 (+6.23 pts)."
+  },
+  {
+    "id": "rev_956f791026833c9c",
+    "timestamp": "2026-11-15T12:00:00Z",
+    "runId": "run_20261109_124221",
+    "periodId": "2026-10",
+    "periodLabel": "Oct 2026",
+    "audience": "composite",
+    "oldScoreCenti": 5667,
+    "newScoreCenti": 6015,
+    "deltaCenti": 348,
+    "triggeringEventIds": [
+      "evt_079ff9f836e173c9"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"NAVSEA Awards HII Newport News Shipbuilding $3.05 Billion Contract Modification for Submarine Industrial Base Scaling\" (2024-11-15) adjusted Oct 2026 Composite from 56.67 to 60.15 (+3.48 pts)."
+  },
+  {
+    "id": "rev_146f676390d226ca",
+    "timestamp": "2026-11-15T12:00:00Z",
+    "runId": "run_20261109_124221",
+    "periodId": "2026-11",
+    "periodLabel": "Nov 2026",
+    "audience": "executive",
+    "oldScoreCenti": 6096,
+    "newScoreCenti": 6410,
+    "deltaCenti": 314,
+    "triggeringEventIds": [
+      "evt_079ff9f836e173c9"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"NAVSEA Awards HII Newport News Shipbuilding $3.05 Billion Contract Modification for Submarine Industrial Base Scaling\" (2024-11-15) adjusted Nov 2026 Executive Branch from 60.96 to 64.10 (+3.14 pts)."
+  },
+  {
+    "id": "rev_470e28785ad6fe0e",
+    "timestamp": "2026-11-15T12:00:00Z",
+    "runId": "run_20261109_124221",
+    "periodId": "2026-11",
+    "periodLabel": "Nov 2026",
+    "audience": "congress",
+    "oldScoreCenti": 6012,
+    "newScoreCenti": 6340,
+    "deltaCenti": 328,
+    "triggeringEventIds": [
+      "evt_079ff9f836e173c9"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"NAVSEA Awards HII Newport News Shipbuilding $3.05 Billion Contract Modification for Submarine Industrial Base Scaling\" (2024-11-15) adjusted Nov 2026 Congress from 60.12 to 63.40 (+3.28 pts)."
+  },
+  {
+    "id": "rev_e14ccb7e6450cf6e",
+    "timestamp": "2026-11-15T12:00:00Z",
+    "runId": "run_20261109_124221",
+    "periodId": "2026-11",
+    "periodLabel": "Nov 2026",
+    "audience": "navy",
+    "oldScoreCenti": 4561,
+    "newScoreCenti": 5396,
+    "deltaCenti": 835,
+    "triggeringEventIds": [
+      "evt_079ff9f836e173c9"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"NAVSEA Awards HII Newport News Shipbuilding $3.05 Billion Contract Modification for Submarine Industrial Base Scaling\" (2024-11-15) adjusted Nov 2026 Department of the Navy from 45.61 to 53.96 (+8.35 pts)."
+  },
+  {
+    "id": "rev_7f4957a7e7404e67",
+    "timestamp": "2026-11-15T12:00:00Z",
+    "runId": "run_20261109_124221",
+    "periodId": "2026-11",
+    "periodLabel": "Nov 2026",
+    "audience": "composite",
+    "oldScoreCenti": 5820,
+    "newScoreCenti": 6231,
+    "deltaCenti": 411,
+    "triggeringEventIds": [
+      "evt_079ff9f836e173c9"
+    ],
+    "revisionReason": "NEW_RETROACTIVE_EVIDENCE",
+    "explanation": "Retroactive discovery of \"NAVSEA Awards HII Newport News Shipbuilding $3.05 Billion Contract Modification for Submarine Industrial Base Scaling\" (2024-11-15) adjusted Nov 2026 Composite from 58.20 to 62.31 (+4.11 pts)."
   }
 ]

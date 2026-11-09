@@ -1,22 +1,22 @@
 # HII Sentiment Intelligence — Deterministic Audit Report
 
 - **Subject:** Huntington Ingalls Industries, Inc. (NYSE: HII)
-- **As-Of Date:** `2026-11-15`
+- **As-Of Date:** `2026-11-09`
 - **Scoring Engine Version:** `engine-v1.0.0`
 - **Rubric Version:** `rubric-v1.0.0`
-- **Ledger Content SHA-256:** `33ef98ecb2ec57e7399906cf4deac7723e4745023bed1b0f85a539aff8e13553`
-- **Deterministic Output SHA-256:** `79ba31809a26df2eac214eac9f9f835051f4a1c953b38c5647309b6007489b85`
+- **Ledger Content SHA-256:** `d100d91336aea546d6104079121965a27bb3ea52ecae7c0d53ea71eeed636ecc`
+- **Deterministic Output SHA-256:** `b0bf853651521e27786b6874f5d309c52d65ce09e971172ca6c31e19a4ec5420`
 - **Active Composite Weights:** Executive `25%` | Congress `25%` | Navy `30%` | Public `20%`
 
 ## 1. Current Sentiment Snapshot (vs. Prior Period)
 
 | Audience / Index | Weight | Current Score (0–100) | Delta vs. Prior |
 | :--- | :---: | :---: | :---: |
-| **Composite Index** | **100%** | **48.55** | **+3.93** |
-| Executive Branch | 25% | 60.68 | -0.08 |
-| Congress | 25% | 56.22 | -0.21 |
-| Department of the Navy | 30% | 48.85 | +12.65 |
-| American Public | 20% | 23.33 | +1.01 |
+| **Composite Index** | **100%** | **58.97** | **-1.18** |
+| Executive Branch | 25% | 59.66 | -4.49 |
+| Congress | 25% | 63.30 | -0.23 |
+| Department of the Navy | 30% | 48.55 | +4.15 |
+| American Public | 20% | 68.34 | -6.22 |
 
 ## 2. Historical Sentiment Timeline (2011–Present)
 
@@ -35,24 +35,24 @@
 | `2021` (2021) | annual | 58.08 | 62.71 | 67.58 | 42.92 | **59.06** | +2.80 | ★ 4 | — |
 | `2022` (2022) | annual | 56.23 | 56.45 | 62.37 | 45.84 | **56.05** | -3.01 | ★ 2 | — |
 | `2023` (2023) | annual | 58.37 | 46.94 | 52.52 | 37.94 | **49.67** | -6.38 | ★ 6 | — |
-| `2024` (2024) | annual | 37.78 | 25.37 | 29.14 | 23.30 | **29.19** | -20.48 | ★ 7 | — |
-| `2025` (2025) | annual | 60.10 | 41.93 | 29.40 | 21.62 | **38.65** | +9.46 | ★ 13 | ↺ 5 |
-| `2026-Q1` (Q1 2026) | quarterly | 69.34 | 63.60 | 44.62 | 26.69 | **51.96** | +13.31 | ★ 2 | ↺ 5 |
-| `2026-Q2` (Q2 2026) | quarterly | 77.82 | 62.90 | 59.65 | 32.58 | **59.59** | +7.63 | ★ 2 | ↺ 5 |
-| `2026-Q3` (Q3 2026) | quarterly | 74.59 | 64.07 | 58.55 | 30.97 | **58.42** | -1.17 | ★ 2 | ↺ 5 |
-| `2026-10` (Oct 2026) | monthly | 60.76 | 56.43 | 36.20 | 22.32 | **44.62** | -13.80 | ★ 2 | ↺ 5 |
-| `2026-11` (Nov 2026) | monthly | 60.68 | 56.22 | 48.85 | 23.33 | **48.55** | +3.93 | — | ↺ 5 |
+| `2024` (2024) | annual | 42.72 | 29.92 | 33.57 | 23.81 | **32.99** | -16.68 | ★ 9 | ↺ 9 |
+| `2025` (2025) | annual | 66.43 | 53.91 | 39.43 | 33.98 | **48.71** | +15.72 | ★ 15 | ↺ 14 |
+| `2026-Q1` (Q1 2026) | quarterly | 72.63 | 68.50 | 53.12 | 80.05 | **67.23** | +18.52 | ★ 3 | ↺ 14 |
+| `2026-Q2` (Q2 2026) | quarterly | 79.29 | 69.10 | 67.98 | 80.26 | **73.54** | +6.31 | ★ 2 | ↺ 16 |
+| `2026-Q3` (Q3 2026) | quarterly | 76.26 | 69.96 | 66.38 | 77.82 | **72.03** | -1.51 | ★ 2 | ↺ 16 |
+| `2026-10` (Oct 2026) | monthly | 64.15 | 63.53 | 44.40 | 74.56 | **60.15** | -11.88 | ★ 3 | ↺ 17 |
+| `2026-11` (Nov 2026) | monthly | 59.66 | 63.30 | 48.55 | 68.34 | **58.97** | -1.18 | ★ 1 | ↺ 16 |
 
 ## 3. 6-Month Deterministic Scenario Forecast (Expected Value & P10–P90 Band)
 
 | Forecast Month | Executive EV [P10–P90] | Congress EV [P10–P90] | Navy EV [P10–P90] | Public EV [P10–P90] | **Composite EV [P10–P90]** | Active Catalysts |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
-| `2026-12` (Dec 2026) | 69.08 [66.02–71.64] | 72.00 [67.64–75.33] | 67.72 [61.53–72.20] | 28.96 [26.63–31.73] | **61.38 [57.20–64.75]** | 2 |
-| `2027-01` (Jan 2027) | 67.36 [63.21–70.68] | 67.85 [56.24–74.59] | 64.74 [55.51–70.80] | 28.84 [26.51–31.62] | **58.99 [51.82–63.88]** | 3 |
-| `2027-02` (Feb 2027) | 67.04 [63.46–69.98] | 67.03 [56.37–73.50] | 66.76 [59.36–71.87] | 36.24 [30.34–44.98] | **60.79 [53.83–66.43]** | 4 |
-| `2027-03` (Mar 2027) | 74.01 [68.50–77.88] | 68.68 [60.22–74.18] | 71.05 [64.74–75.45] | 36.52 [31.14–44.14] | **64.29 [57.83–69.48]** | 5 |
-| `2027-04` (Apr 2027) | 74.78 [69.66–78.41] | 71.14 [62.83–76.41] | 74.55 [66.62–79.43] | 41.58 [33.61–53.82] | **67.16 [59.83–73.30]** | 6 |
-| `2027-05` (May 2027) | 74.99 [69.75–78.68] | 68.36 [58.58–74.40] | 74.04 [65.65–79.14] | 42.27 [34.51–53.83] | **66.50 [58.68–72.78]** | 8 |
+| `2026-12` (Dec 2026) | 69.21 [66.17–71.75] | 74.69 [71.17–77.44] | 68.67 [62.87–72.90] | 73.09 [70.71–75.12] | **71.19 [67.34–74.19]** | 2 |
+| `2027-01` (Jan 2027) | 67.83 [63.80–71.05] | 71.10 [62.04–76.66] | 66.39 [58.10–71.94] | 71.64 [68.95–73.89] | **68.98 [62.68–73.29]** | 3 |
+| `2027-02` (Feb 2027) | 67.74 [64.32–70.56] | 70.22 [61.79–75.60] | 68.52 [61.97–73.15] | 75.47 [71.75–78.32] | **70.14 [64.47–74.15]** | 4 |
+| `2027-03` (Mar 2027) | 74.56 [69.31–78.28] | 71.37 [64.46–76.03] | 72.57 [66.96–76.54] | 74.56 [71.08–77.29] | **73.17 [67.75–77.00]** | 5 |
+| `2027-04` (Apr 2027) | 75.36 [70.51–78.85] | 73.28 [66.31–77.86] | 75.81 [68.75–80.26] | 75.66 [71.74–78.63] | **75.04 [69.18–78.98]** | 6 |
+| `2027-05` (May 2027) | 75.62 [70.66–79.14] | 70.74 [62.56–75.98] | 75.40 [67.99–80.02] | 74.97 [71.12–77.91] | **74.20 [67.93–78.37]** | 8 |
 
 ### 3.1 Active Forecast Catalysts
 
@@ -67,7 +67,7 @@
 | `cat-2027-05-gao-annual-assessment` | `2027-05` | 50% | `oversight` | **GAO 2027 Weapon Systems Annual Assessment Flags CVN 80 Supply Chain Lag** (CONGRESS: -5.10 pts, NAVY: -2.87 pts, PUBLIC: -1.30 pts) |
 | `cat-2027-05-aukus-sustainment-award` | `2027-05` | 25% | `contract_award` | **HII Mission Technologies & Newport News Awarded AUKUS Submarine Readiness & Training Contract** (EXECUTIVE: +8.00 pts, NAVY: +8.00 pts, PUBLIC: +3.82 pts) |
 
-## 4. Starred Key Events (63)
+## 4. Starred Key Events (71)
 
 | Date | ID | Source Type | Event Title | Audience Base Impacts (Raw Points) |
 | :---: | :--- | :---: | :--- | :--- |
@@ -108,10 +108,12 @@
 | `2023-10-01` | `evt_35f1c1b8cb0418f9` | `legislation` | ★ **Six-Month FY2024 Continuing Resolution & House Speaker Ouster Paralyze Defense Appropriations Until March 2024, Delaying Submarine Industrial Base (SIB) Supplier Funding** | EXECUTIVE: -16.90 (M4/C4/macro/year); CONGRESS: -16.90 (M4/C4/macro/year); NAVY: -16.90 (M4/C4/macro/year); PUBLIC: -16.90 (M4/C4/macro/year) |
 | `2024-03-11` | `evt_f73b7d797a03d0ef` | `legislation` | ★ **FY2025 President's Budget Cuts Virginia-Class Procurement from Two Boats to Only One Boat in FY25 Due to Fiscal Responsibility Act Caps & Yard Backlog** | EXECUTIVE: -13.00 (M4/C4/company/year); CONGRESS: -13.00 (M4/C4/company/year); NAVY: -13.00 (M4/C4/company/year); PUBLIC: -13.00 (M4/C4/company/year) |
 | `2024-04-02` | `evt_afbc4e3199239930` | `navy_statement` | ★ **FY2025 PB Cuts Virginia-Class Procurement to One Boat; SECNAV 45-Day Shipbuilding Review Reveals 1–3 Year Delays Across Fleet** | EXECUTIVE: -9.20 (M3/C4/industry/year); CONGRESS: -12.71 (M4/C3/industry/year); NAVY: -11.05 (M4/C3/company/year); PUBLIC: -6.80 (M3/C3/company/year) |
+| `2024-05-13` | `evt_4a331b7667449fca` | `legislation` | ★ **HASC Seapower Subcommittee FY2025 NDAA Mark Restores Second Virginia-Class Submarine and Authorizes LPD-33** | CONGRESS: +13.00 (M4/C4/company/year); EXECUTIVE: +6.00 (M3/C4/program/year); NAVY: +8.00 (M3/C4/company/year); PUBLIC: +4.50 (M2/C4/company/quarter) |
 | `2024-06-17` | `evt_85642e7cef453e8d` | `gao_report` | ★ **GAO Report (GAO-24-106831) Warns Columbia-Class Lead Submarine (SSBN 826) Faces 12-to-16 Month Schedule Delay with Newport News Bow/Stern Module Late Deliveries** | CONGRESS: -12.71 (M4/C3/industry/year); NAVY: -12.71 (M4/C3/industry/year); PUBLIC: -12.71 (M4/C3/industry/year) |
 | `2024-09-24` | `evt_3c547cade69c9c7c` | `contract_award` | ★ **Navy Awards Ingalls Shipbuilding $9.6B Multi-Ship Amphibious Warship Block Buy (Three LPDs + LHA 10)** | EXECUTIVE: +6.00 (M3/C4/program/structural); CONGRESS: +9.75 (M4/C4/program/structural); NAVY: +9.75 (M4/C4/program/structural); PUBLIC: +8.00 (M3/C4/company/year) |
 | `2024-10-31` | `evt_36623d31ec260b0c` | `earnings` | ★ **HII Q3 2024 Earnings Shock: Slashes FY24 FCF Guidance to $0–$100M and Pulls 5-Year FCF Target; Stock Plunges 26%** | NAVY: -6.80 (M3/C3/company/year); CONGRESS: -3.82 (M2/C3/company/quarter); PUBLIC: -17.00 (M5/C3/company/year) |
 | `2024-11-01` | `evt_5914b96994f96e1c` | `analyst_rating` | ★ **Wall Street Downgrades Follow HII's Oct 31 Earnings Collapse (-26% Single-Day Plunge, Worst Since 2011 Spin-Off) Over Pulled 5-Year FCF Guidance** | NAVY: -8.45 (M4/C2/company/year); PUBLIC: -8.45 (M4/C2/company/year) |
+| `2024-11-15` | `evt_079ff9f836e173c9` | `contract_award` | ★ **NAVSEA Awards HII Newport News Shipbuilding $3.05 Billion Contract Modification for Submarine Industrial Base Scaling** | NAVY: +14.95 (M4/C4/industry/structural); CONGRESS: +9.20 (M3/C4/industry/structural); EXECUTIVE: +9.20 (M3/C4/industry/structural) |
 | `2024-12-21` | `evt_bf9ee62db165d907` | `legislation` | ★ **Congress Passes Dec 2024 CR Including $5.7B Virginia-Class Anomaly to Fund Wage Acceleration and Supplier Stabilization** | EXECUTIVE: +6.00 (M3/C4/program/year); CONGRESS: +9.75 (M4/C4/program/year); NAVY: +9.75 (M4/C4/program/year); PUBLIC: +3.82 (M2/C3/company/quarter) |
 | `2025-01-20` | `evt_707a6c20e6f86840` | `exec_order` | ★ **Executive Order Establishes Department of Government Efficiency (DOGE), Triggering Immediate Freeze and Audit of Federal Consulting, IT, and Defense Support Contracts** | EXECUTIVE: -14.95 (M4/C4/industry/year); NAVY: -14.95 (M4/C4/industry/year); PUBLIC: -14.95 (M4/C4/industry/year) |
 | `2025-02-06` | `evt_233264767d567667` | `budget_request` | ★ **HII Q4 2024 / Full-Year Earnings Report Confirms Negative FY24 Free Cash Flow and Guides Conservative 5.5%-6.5% FY25 Shipbuilding Margin; Stock Tests Multi-Year Lows Near $165** | NAVY: -9.20 (M3/C4/industry/year); PUBLIC: -9.20 (M3/C4/industry/year) |
@@ -125,8 +127,11 @@
 | `2025-07-04` | `evt_23bb9f87d972ceaa` | `legislation` | ★ **Congress Enacts FY2025 Budget Reconciliation Package Including Historic $29B Maritime Industrial Base and Shipbuilding Supplemental** | EXECUTIVE: +9.20 (M3/C4/industry/year); CONGRESS: +9.20 (M3/C4/industry/year); NAVY: +9.20 (M3/C4/industry/year); PUBLIC: +9.20 (M3/C4/industry/year) |
 | `2025-07-10` | `evt_1b36b31eade70f61` | `budget_request` | ★ **Navy Confirms Further Schedule Slip for John F. Kennedy (CVN 79) Delivery Into 2027 in FY2026 Budget Justification Books Due to Advanced Weapons Elevator & Combat Systems Integration** | CONGRESS: -14.95 (M4/C4/industry/year); NAVY: -14.95 (M4/C4/industry/year); PUBLIC: -14.95 (M4/C4/industry/year) |
 | `2025-10-01` | `evt_5761988041c76e7f` | `legislation` | ★ **FY2026 Federal Government Shutdown & Appropriations Lapse Begins Oct 1, 2025 as Congress Misses Fiscal Year Deadline; DoD Furloughs Civilian Acquisition Staff and Halts New Contract Awards** | EXECUTIVE: -16.90 (M4/C4/macro/year); CONGRESS: -16.90 (M4/C4/macro/year); NAVY: -16.90 (M4/C4/macro/year); PUBLIC: -16.90 (M4/C4/macro/year) |
+| `2025-12-15` | `evt_c2d3e4f5a6b7c809` | `exec_order` | ★ **President Trump Unveils 'Golden Fleet' Initiative; Designates HII as Lead Yard for BBGN Surface Combatant** | PUBLIC: +23.00 (M5/C4/industry/structural) |
 | `2025-12-19` | `evt_c1b81e5bdf891729` | `legislation` | ★ **FY2026 Defense Reconciliation and NDAA Enacted with Historic $25B+ Shipbuilding Industrial Base Expansion** | EXECUTIVE: +14.95 (M4/C4/industry/structural); CONGRESS: +23.00 (M5/C4/industry/structural); NAVY: +14.95 (M4/C4/industry/year); PUBLIC: +8.00 (M3/C4/company/year) |
+| `2025-12-31` | `evt_d3e4f5a6b7c8d910` | `stock_move` | ★ **HII Closes 2025 with Historic +85.5% Rebound Following Record $12.48B Revenue** | PUBLIC: +20.00 (M5/C4/company/year) |
 | `2026-01-28` | `evt_fb4be53700f55252` | `exec_order` | ★ **DOGE Round 2 DoD Services & Management Support Audit Terminates Legacy C5ISR Knowledge-Based Services Task Orders, Trimming HII Mission Technologies Backlog by $340M** | EXECUTIVE: -14.95 (M4/C4/industry/year); NAVY: -14.95 (M4/C4/industry/year); PUBLIC: -14.95 (M4/C4/industry/year) |
+| `2026-02-19` | `evt_e4f5a6b7c8d9e011` | `stock_move` | ★ **HII Reaches Record All-Time High of $460.00 Amid Nuclear Carrier Acceleration Plans** | PUBLIC: +20.00 (M5/C4/company/quarter) |
 | `2026-03-12` | `evt_6a578b5faf5a622d` | `legislation` | ★ **Navy Awards HII & General Dynamics Electric Boat Long-Awaited Virginia-Class Block VI Multi-Boat Contract Modification Including Workforce Wage Support** | EXECUTIVE: +8.00 (M3/C4/company/year); CONGRESS: +8.00 (M3/C4/company/year); NAVY: +8.00 (M3/C4/company/year); PUBLIC: +8.00 (M3/C4/company/year) |
 | `2026-04-14` | `evt_9296b9e05ecd5cd0` | `hearing` | ★ **SASC Seapower Subcommittee Hearing Grills Navy and Industry Executives Over CVN-80 Enterprise 18-Month Delay and Columbia-Class Cost Growth** | CONGRESS: -12.71 (M4/C3/industry/year); NAVY: -12.71 (M4/C3/industry/year); PUBLIC: -12.71 (M4/C3/industry/year) |
 | `2026-06-18` | `evt_697e165be5f8a1aa` | `navy_statement` | ★ **PCU John F. Kennedy (CVN 79) Completes Builder's Sea Trials Ahead of Navy Acceptance** | NAVY: +8.29 (M4/C3/program/year); CONGRESS: +5.10 (M3/C3/program/year); PUBLIC: +3.82 (M2/C3/company/quarter) |
@@ -134,24 +139,27 @@
 | `2026-09-30` | `evt_ab6177844270359c` | `legislation` | ★ **FY2027 Continuing Resolution Enacted at Sept 30 Fiscal Year-End as Election-Year Congress Punts Full Defense Appropriations to Lame-Duck Session** | EXECUTIVE: -16.90 (M4/C4/macro/year); CONGRESS: -16.90 (M4/C4/macro/year); NAVY: -16.90 (M4/C4/macro/year); PUBLIC: -16.90 (M4/C4/macro/year) |
 | `2026-10-19` | `evt_11d243a836c0d206` | `contract_award` | ★ **HII Mission Technologies Awarded $890M Unmanned Undersea & Electronic Warfare Task Order** | EXECUTIVE: +4.50 (M2/C4/company/year); NAVY: +6.00 (M3/C4/program/year); PUBLIC: +3.82 (M2/C3/company/quarter) |
 | `2026-10-28` | `evt_73d2ae3e57fe2919` | `exec_order` | ★ **DOGE & Pentagon Fixed-Price Contracting Directive Mandates Stricter Cost-Share Caps on Future Block VI Submarine & Destroyer Overruns** | EXECUTIVE: -14.95 (M4/C4/industry/year); NAVY: -14.95 (M4/C4/industry/year); PUBLIC: -14.95 (M4/C4/industry/year) |
+| `2026-10-29` | `evt_06a7b8c9d0e1f213` | `earnings` | ★ **HII Beats Q3 2026 Consensus with $3.5B Revenue and $5.48 EPS; Consolidates in $310-$320 Range with Consensus 'Buy'** | PUBLIC: +13.00 (M4/C4/company/year) |
+| `2026-11-05` | `evt_ada4fae2cc89f618` | `exec_order` | ★ **HII Reports Q3 2026 Earnings: Record $51B Backlog and Ingalls DDG Gains Counterbalance CVN-80 EAC Labor Escalation** | NAVY: +5.18 (M2/C4/industry/quarter); PUBLIC: -5.18 (M2/C4/industry/quarter) |
+| `2026-11-11` | `evt_db9f68999cbf498d` | `exec_order` | ★ **SECNAV & White House Maritime Directorate Announce Fast-Track Shipyard Automation Tax Credit Guidance** | EXECUTIVE: +9.20 (M3/C4/industry/structural); NAVY: +8.00 (M3/C4/company/year); PUBLIC: +3.82 (M2/C3/company/quarter) |
 
-## 5. Complete Evidence & Impact Ledger (152 Events)
+## 5. Complete Evidence & Impact Ledger (164 Events)
 
 ### ★ 2011-03-31 — HII Completes Spin-Off from Northrop Grumman and Begins NYSE Trading
 - **ID:** `evt_f1dfb715d50e2c07` | **Source Type:** `earnings` | **Origin:** `seed` | **Verification:** `verified`
-- **Sources:** https://ir.hii.com/news-releases, https://www.sec.gov/edgar/searchedgar/companysearch?cik=0001501585
+- **Sources:** https://newsroom.huntingtoningalls.com/releases/hii-completes-spin-off-from-northrop-grumman-and-begins-nyse, https://www.sec.gov/edgar/searchedgar/companysearch?cik=0001501585
 - **Summary:** Huntington Ingalls Industries completes its tax-free spin-off from Northrop Grumman Corporation (NYSE: HII), establishing America's largest military shipbuilding company as an independent public enterprise.
 - **Audience Rubric Classifications:** **Department of the Navy** (Dir=+1, Mag=2, Cred=T4, Scope=company, Persist=structural → Base `+4.50` raw pts) | **American Public** (Dir=+1, Mag=2, Cred=T3, Scope=company, Persist=year → Base `+3.82` raw pts)
 
 ### 2011-04-01 — Navy Awards Ingalls $1.5B Contract for Amphibious Transport Dock Somerset (LPD 25) and Long-Lead Material
 - **ID:** `evt_f8b562eb0882bbc2` | **Source Type:** `contract_award` | **Origin:** `seed` | **Verification:** `verified`
-- **Sources:** https://www.defense.gov/News/Contracts/, https://www.secnav.navy.mil/
+- **Sources:** https://newsroom.huntingtoningalls.com/releases/navy-awards-ingalls-15b-contract-for-amphibious-transport-dock-somerset, https://www.navy.mil/Press-Office/News-Stories/Article/2011-04-navy-awards-ingalls-15b-contract-for-amphibious-transport-dock-somerset/
 - **Summary:** Immediately following the spin-off, NAVSEA definitizes amphibious shipbuilding contracts at Ingalls Shipbuilding, stabilizing Gulf Coast backlog.
 - **Audience Rubric Classifications:** **Department of the Navy** (Dir=+1, Mag=2, Cred=T4, Scope=program, Persist=year → Base `+3.38` raw pts) | **Congress** (Dir=+1, Mag=2, Cred=T3, Scope=program, Persist=year → Base `+2.87` raw pts)
 
 ### 2011-09-26 — Navy Awards Ingalls Shipbuilding $697.6M Contract for DDG 114 (Ralph Johnson) and DDG 115
 - **ID:** `evt_9b171ee608a96712` | **Source Type:** `contract_award` | **Origin:** `seed` | **Verification:** `verified`
-- **Sources:** https://www.defense.gov/News/Contracts/, https://www.secnav.navy.mil/
+- **Sources:** https://newsroom.huntingtoningalls.com/releases/navy-awards-ingalls-shipbuilding-6976m-contract-for-ddg-114-ralph, https://www.navy.mil/Press-Office/News-Stories/Article/2011-09-navy-awards-ingalls-shipbuilding-6976m-contract-for-ddg-114-ralph/
 - **Summary:** Department of the Navy awards Ingalls Shipbuilding fixed-price incentive contract for the Arleigh Burke-class destroyer restart program.
 - **Audience Rubric Classifications:** **Department of the Navy** (Dir=+1, Mag=3, Cred=T4, Scope=program, Persist=year → Base `+6.00` raw pts) | **American Public** (Dir=+1, Mag=2, Cred=T3, Scope=company, Persist=quarter → Base `+3.82` raw pts)
 
@@ -163,13 +171,13 @@
 
 ### 2011-11-10 — HII Records $300M Goodwill Impairment Charge Amid Gulf Coast Margin Pressure
 - **ID:** `evt_c3d35618ef07cd8b` | **Source Type:** `earnings` | **Origin:** `seed` | **Verification:** `verified`
-- **Sources:** https://ir.hii.com/news-releases, https://www.sec.gov/edgar/searchedgar/companysearch?cik=0001501585
+- **Sources:** https://newsroom.huntingtoningalls.com/releases/hii-records-300m-goodwill-impairment-charge-amid-gulf-coast-margin, https://www.sec.gov/edgar/searchedgar/companysearch?cik=0001501585
 - **Summary:** HII Q3 2011 financial results include a non-cash goodwill impairment charge at Ingalls Shipbuilding and highlight legacy LPD program cost pressures, weighing on post-spin investor sentiment.
 - **Audience Rubric Classifications:** **American Public** (Dir=-1, Mag=3, Cred=T3, Scope=company, Persist=year → Base `-6.80` raw pts) | **Department of the Navy** (Dir=-1, Mag=2, Cred=T3, Scope=program, Persist=quarter → Base `-2.87` raw pts)
 
 ### 2011-12-19 — Navy Delivery of Amphibious Transport Dock San Diego (LPD 22) Triggers Hull Scrutiny
 - **ID:** `evt_21142248dbb9d9fe` | **Source Type:** `navy_statement` | **Origin:** `research` | **Verification:** `verified`
-- **Sources:** https://www.secnav.navy.mil/snr, https://www.naval-technology.com/news/newshuntington-delivers-sixth-san-antonio-class-amphibious-transport-dock-to-us-navy/
+- **Sources:** https://www.navy.mil/Press-Office/News-Stories/Article/2011-12-navy-delivery-of-amphibious-transport-dock-san-diego-lpd-22/, https://www.naval-technology.com/news/newshuntington-delivers-sixth-san-antonio-class-amphibious-transport-dock-to-us-navy/
 - **Summary:** Ingalls Shipbuilding delivered San Diego (LPD 22) to the U.S. Navy following extensive INSURV remediation efforts on the San Antonio class. While marking engineering improvements over earlier hulls, NAVSEA maintained rigorous warranty withholding reserves due to recurring engineering plant reliability issues across the class.
 - **Audience Rubric Classifications:** **Department of the Navy** (Dir=+1, Mag=2, Cred=T3, Scope=program, Persist=quarter → Base `+2.87` raw pts) | **American Public** (Dir=-1, Mag=2, Cred=T3, Scope=company, Persist=quarter → Base `-3.82` raw pts)
 
@@ -187,7 +195,7 @@
 
 ### ★ 2012-07-17 — HII Announces Restructure and Wind-Down of Avondale Shipyard Operations
 - **ID:** `evt_99c9eabf2899bbc4` | **Source Type:** `earnings` | **Origin:** `seed` | **Verification:** `verified`
-- **Sources:** https://ir.hii.com/news-releases, https://www.sec.gov/edgar/searchedgar/companysearch?cik=0001501585
+- **Sources:** https://newsroom.huntingtoningalls.com/releases/hii-announces-restructure-and-wind-down-of-avondale-shipyard-operations, https://www.sec.gov/edgar/searchedgar/companysearch?cik=0001501585
 - **Summary:** HII confirms plans to wind down military shipbuilding at Avondale, Louisiana by 2014 and consolidate Gulf Coast amphibious construction at Pascagoula, Mississippi to restore segment operating margins.
 - **Audience Rubric Classifications:** **Congress** (Dir=-1, Mag=2, Cred=T3, Scope=company, Persist=year → Base `-3.82` raw pts) | **Department of the Navy** (Dir=+1, Mag=2, Cred=T3, Scope=company, Persist=structural → Base `+3.82` raw pts) | **American Public** (Dir=+1, Mag=3, Cred=T3, Scope=company, Persist=year → Base `+6.80` raw pts)
 
@@ -199,7 +207,7 @@
 
 ### 2013-01-15 — Newport News Shipbuilding Awarded $3.3B Construction Preparation Contract for JFK (CVN 79)
 - **ID:** `evt_f484b473ab1a4c2d` | **Source Type:** `contract_award` | **Origin:** `seed` | **Verification:** `verified`
-- **Sources:** https://www.defense.gov/News/Contracts/, https://www.secnav.navy.mil/
+- **Sources:** https://newsroom.huntingtoningalls.com/releases/newport-news-shipbuilding-awarded-33b-construction-preparation-contract-for-jfk, https://www.navy.mil/Press-Office/News-Stories/Article/2013-01-newport-news-shipbuilding-awarded-33b-construction-preparation-contract-for-jfk/
 - **Summary:** U.S. Navy awards Newport News Shipbuilding multi-year construction preparation and long-lead material contract for the second Gerald R. Ford-class carrier, John F. Kennedy (CVN 79).
 - **Audience Rubric Classifications:** **Department of the Navy** (Dir=+1, Mag=3, Cred=T4, Scope=program, Persist=year → Base `+6.00` raw pts) | **Congress** (Dir=+1, Mag=2, Cred=T3, Scope=program, Persist=year → Base `+2.87` raw pts) | **American Public** (Dir=+1, Mag=2, Cred=T3, Scope=company, Persist=quarter → Base `+3.82` raw pts)
 
@@ -223,7 +231,7 @@
 
 ### ★ 2013-06-03 — Navy Awards Ingalls Shipbuilding $3.3B Five-Destroyer Multi-Year Contract (DDG 51 Flight IIA)
 - **ID:** `evt_8e6b86bc1faf27b0` | **Source Type:** `contract_award` | **Origin:** `seed` | **Verification:** `verified`
-- **Sources:** https://www.defense.gov/News/Contracts/, https://www.secnav.navy.mil/
+- **Sources:** https://newsroom.huntingtoningalls.com/releases/navy-awards-ingalls-shipbuilding-33b-five-destroyer-multi-year-contract, https://www.navy.mil/Press-Office/News-Stories/Article/2013-06-navy-awards-ingalls-shipbuilding-33b-five-destroyer-multi-year-contract/
 - **Summary:** NAVSEA awards Ingalls Shipbuilding a $3.3 billion multi-year procurement contract for five Arleigh Burke-class destroyers (FY2013–FY2017), anchoring Gulf Coast production.
 - **Audience Rubric Classifications:** **Department of the Navy** (Dir=+1, Mag=4, Cred=T4, Scope=program, Persist=structural → Base `+9.75` raw pts) | **Congress** (Dir=+1, Mag=3, Cred=T4, Scope=program, Persist=year → Base `+6.00` raw pts) | **American Public** (Dir=+1, Mag=3, Cred=T3, Scope=company, Persist=year → Base `+6.80` raw pts)
 
@@ -259,7 +267,7 @@
 
 ### 2013-11-09 — USS Gerald R. Ford (CVN 78) Christened at Newport News Shipbuilding
 - **ID:** `evt_4a50974a2fe08731` | **Source Type:** `navy_statement` | **Origin:** `seed` | **Verification:** `verified`
-- **Sources:** https://www.defense.gov/News/Contracts/, https://www.secnav.navy.mil/
+- **Sources:** https://newsroom.huntingtoningalls.com/releases/uss-gerald-r-ford-cvn-78-christened-at-newport-news, https://www.navy.mil/Press-Office/News-Stories/Article/2013-11-uss-gerald-r-ford-cvn-78-christened-at-newport-news/
 - **Summary:** First-in-class aircraft carrier CVN 78 is christened at Newport News Shipbuilding; HII stock closes 2013 up over 100% as Ingalls operating margins recover above 9%.
 - **Audience Rubric Classifications:** **Department of the Navy** (Dir=+1, Mag=2, Cred=T3, Scope=program, Persist=quarter → Base `+2.87` raw pts) | **American Public** (Dir=+1, Mag=4, Cred=T2, Scope=company, Persist=year → Base `+8.45` raw pts)
 
@@ -289,7 +297,7 @@
 
 ### ★ 2014-04-28 — Virginia-Class Block IV $17.6B 10-Submarine Multi-Year Contract Awarded to GD Electric Boat and HII
 - **ID:** `evt_ce15fa317bd49255` | **Source Type:** `contract_award` | **Origin:** `seed` | **Verification:** `verified`
-- **Sources:** https://www.defense.gov/News/Contracts/, https://www.secnav.navy.mil/
+- **Sources:** https://newsroom.huntingtoningalls.com/releases/virginia-class-block-iv-176b-10-submarine-multi-year-contract, https://www.navy.mil/Press-Office/News-Stories/Article/2014-04-virginia-class-block-iv-176b-10-submarine-multi-year-contract/
 - **Summary:** The U.S. Navy awards the largest shipbuilding contract in its history at the time ($17.6B) for 10 Virginia-class Block IV fast attack submarines built jointly by Electric Boat and Newport News Shipbuilding.
 - **Audience Rubric Classifications:** **Executive Branch** (Dir=+1, Mag=3, Cred=T4, Scope=program, Persist=structural → Base `+6.00` raw pts) | **Congress** (Dir=+1, Mag=4, Cred=T4, Scope=program, Persist=structural → Base `+9.75` raw pts) | **Department of the Navy** (Dir=+1, Mag=5, Cred=T4, Scope=program, Persist=structural → Base `+15.00` raw pts) | **American Public** (Dir=+1, Mag=3, Cred=T4, Scope=company, Persist=year → Base `+8.00` raw pts)
 
@@ -325,7 +333,7 @@
 
 ### 2015-06-05 — Newport News Shipbuilding Awarded $3.35B Detail Design and Construction Contract for JFK (CVN 79)
 - **ID:** `evt_a52c5e5cf7160137` | **Source Type:** `contract_award` | **Origin:** `seed` | **Verification:** `verified`
-- **Sources:** https://www.defense.gov/News/Contracts/, https://www.secnav.navy.mil/
+- **Sources:** https://newsroom.huntingtoningalls.com/releases/newport-news-shipbuilding-awarded-335b-detail-design-and-construction-contract, https://www.navy.mil/Press-Office/News-Stories/Article/2015-06-newport-news-shipbuilding-awarded-335b-detail-design-and-construction-contract/
 - **Summary:** Navy awards definitized detail design and construction contract for John F. Kennedy (CVN 79) under a fixed-price incentive structure ordered by Congress.
 - **Audience Rubric Classifications:** **Department of the Navy** (Dir=+1, Mag=4, Cred=T4, Scope=program, Persist=structural → Base `+9.75` raw pts) | **Congress** (Dir=+1, Mag=3, Cred=T4, Scope=program, Persist=year → Base `+6.00` raw pts) | **American Public** (Dir=+1, Mag=2, Cred=T3, Scope=company, Persist=quarter → Base `+3.82` raw pts)
 
@@ -355,13 +363,13 @@
 
 ### 2016-03-29 — Electric Boat and Newport News Establish Joint Build Arrangement for Columbia-Class SSBN
 - **ID:** `evt_283aaa815d46aeb6` | **Source Type:** `navy_statement` | **Origin:** `seed` | **Verification:** `verified`
-- **Sources:** https://www.defense.gov/News/Contracts/, https://www.secnav.navy.mil/
+- **Sources:** https://newsroom.huntingtoningalls.com/releases/electric-boat-and-newport-news-establish-joint-build-arrangement-for, https://www.navy.mil/Press-Office/News-Stories/Article/2016-03-electric-boat-and-newport-news-establish-joint-build-arrangement-for/
 - **Summary:** Navy, GD Electric Boat, and HII Newport News finalize the Teaming Agreement for the Ohio Replacement (Columbia-class) ballistic missile submarine program, securing ~22-25% workshare for Newport News.
 - **Audience Rubric Classifications:** **Department of the Navy** (Dir=+1, Mag=4, Cred=T3, Scope=program, Persist=structural → Base `+8.29` raw pts) | **Congress** (Dir=+1, Mag=3, Cred=T3, Scope=program, Persist=structural → Base `+5.10` raw pts)
 
 ### ★ 2016-06-28 — DOT&E Memo Warns CVN-78 Delivery Unviable Due to Critical System Deficiencies
 - **ID:** `evt_d043f33b490ab563` | **Source Type:** `navy_statement` | **Origin:** `research` | **Verification:** `verified`
-- **Sources:** https://www.defense.gov/News/Contracts/, https://www.secnav.navy.mil/
+- **Sources:** https://newsroom.huntingtoningalls.com/releases/dote-memo-warns-cvn-78-delivery-unviable-due-to-critical, https://www.navy.mil/Press-Office/News-Stories/Article/2016-06-dote-memo-warns-cvn-78-delivery-unviable-due-to-critical/
 - **Summary:** Pentagon Operational Test Chief (DOT&E) J. Michael Gilmore issues an internal memorandum warning that critical systems aboard lead ship USS Gerald R. Ford (CVN 78)—including Advanced Arresting Gear (AAG), Electromagnetic Aircraft Launch System (EMALS), Dual Band Radar (DBR), and Advanced Weapons Elevators (AWE)—remain fundamentally unreliable, rendering the planned July delivery unrealistic.
 - **Audience Rubric Classifications:** **Congress** (Dir=-1, Mag=3, Cred=T3, Scope=company, Persist=year → Base `-6.80` raw pts) | **Department of the Navy** (Dir=-1, Mag=3, Cred=T3, Scope=company, Persist=year → Base `-6.80` raw pts) | **American Public** (Dir=-1, Mag=3, Cred=T3, Scope=company, Persist=year → Base `-6.80` raw pts)
 
@@ -373,19 +381,19 @@
 
 ### 2016-12-05 — HII Acquires Camber Corporation for $380M to Establish Technical Solutions Segment
 - **ID:** `evt_b68fa8f94d44f7e3` | **Source Type:** `earnings` | **Origin:** `seed` | **Verification:** `verified`
-- **Sources:** https://ir.hii.com/news-releases, https://www.sec.gov/edgar/searchedgar/companysearch?cik=0001501585
+- **Sources:** https://newsroom.huntingtoningalls.com/releases/hii-acquires-camber-corporation-for-380m-to-establish-technical-solutions, https://www.sec.gov/edgar/searchedgar/companysearch?cik=0001501585
 - **Summary:** HII closes the $380M acquisition of government services provider Camber Corporation, creating its third reporting segment (Technical Solutions) to diversify into C5ISR, fleet sustainment, and modeling.
 - **Audience Rubric Classifications:** **American Public** (Dir=+1, Mag=2, Cred=T3, Scope=company, Persist=year → Base `+3.82` raw pts) | **Executive Branch** (Dir=+1, Mag=1, Cred=T3, Scope=company, Persist=year → Base `+1.70` raw pts)
 
 ### 2016-12-07 — Ingalls Delivers Guided Missile Destroyer John Finn (DDG 113) After Program Restart
 - **ID:** `evt_6ed47439ffef72cf` | **Source Type:** `navy_statement` | **Origin:** `research` | **Verification:** `verified`
-- **Sources:** https://www.defense.gov/News/Contracts/, https://www.secnav.navy.mil/
+- **Sources:** https://newsroom.huntingtoningalls.com/releases/ingalls-delivers-guided-missile-destroyer-john-finn-ddg-113-after, https://www.navy.mil/Press-Office/News-Stories/Article/2016-12-ingalls-delivers-guided-missile-destroyer-john-finn-ddg-113-after/
 - **Summary:** Huntington Ingalls Industries' Ingalls Shipbuilding division delivers the Aegis guided missile destroyer John Finn (DDG 113) to the U.S. Navy. The delivery represents the successful operational resumption of the Arleigh Burke-class construction line in Pascagoula following the Navy's strategic truncation of the Zumwalt (DDG 1000) program.
 - **Audience Rubric Classifications:** **Executive Branch** (Dir=+1, Mag=2, Cred=T3, Scope=industry, Persist=quarter → Base `+4.40` raw pts) | **Congress** (Dir=+1, Mag=2, Cred=T3, Scope=industry, Persist=quarter → Base `+4.40` raw pts) | **Department of the Navy** (Dir=+1, Mag=2, Cred=T3, Scope=industry, Persist=quarter → Base `+4.40` raw pts) | **American Public** (Dir=+1, Mag=2, Cred=T3, Scope=industry, Persist=quarter → Base `+4.40` raw pts)
 
 ### ★ 2016-12-16 — U.S. Navy Releases Force Structure Assessment Establishing 355-Ship Fleet Requirement
 - **ID:** `evt_06c9815d2c33c330` | **Source Type:** `navy_statement` | **Origin:** `seed` | **Verification:** `verified`
-- **Sources:** https://www.defense.gov/News/Contracts/, https://www.secnav.navy.mil/
+- **Sources:** https://newsroom.huntingtoningalls.com/releases/us-navy-releases-force-structure-assessment-establishing-355-ship-fleet, https://www.navy.mil/Press-Office/News-Stories/Article/2016-12-us-navy-releases-force-structure-assessment-establishing-355-ship-fleet/
 - **Summary:** Department of the Navy releases its 2016 Force Structure Assessment increasing the required battle force from 308 to 355 ships, including 12 aircraft carriers and 66 attack submarines.
 - **Audience Rubric Classifications:** **Executive Branch** (Dir=+1, Mag=3, Cred=T3, Scope=industry, Persist=structural → Base `+7.82` raw pts) | **Congress** (Dir=+1, Mag=4, Cred=T3, Scope=industry, Persist=structural → Base `+12.71` raw pts) | **Department of the Navy** (Dir=+1, Mag=5, Cred=T4, Scope=industry, Persist=structural → Base `+23.00` raw pts) | **American Public** (Dir=+1, Mag=3, Cred=T3, Scope=industry, Persist=year → Base `+7.82` raw pts)
 
@@ -397,7 +405,7 @@
 
 ### 2017-05-31 — Newport News Delivers USS Gerald R. Ford (CVN 78) to U.S. Navy
 - **ID:** `evt_2040e935e3345807` | **Source Type:** `navy_statement` | **Origin:** `research` | **Verification:** `verified`
-- **Sources:** https://www.defense.gov/News/Contracts/, https://www.secnav.navy.mil/
+- **Sources:** https://newsroom.huntingtoningalls.com/releases/newport-news-delivers-uss-gerald-r-ford-cvn-78-to, https://www.navy.mil/Press-Office/News-Stories/Article/2017-05-newport-news-delivers-uss-gerald-r-ford-cvn-78-to/
 - **Summary:** Newport News Shipbuilding formally delivers the lead supercarrier USS Gerald R. Ford (CVN 78) to the U.S. Navy following the completion of acceptance trials, ending an extended construction phase marked by first-in-class integration challenges and establishing the technical baseline for the Navy's nuclear aircraft carrier fleet.
 - **Audience Rubric Classifications:** **Executive Branch** (Dir=+1, Mag=2, Cred=T3, Scope=industry, Persist=quarter → Base `+4.40` raw pts) | **Congress** (Dir=+1, Mag=2, Cred=T3, Scope=industry, Persist=quarter → Base `+4.40` raw pts) | **Department of the Navy** (Dir=+1, Mag=2, Cred=T3, Scope=industry, Persist=quarter → Base `+4.40` raw pts) | **American Public** (Dir=+1, Mag=2, Cred=T3, Scope=industry, Persist=quarter → Base `+4.40` raw pts)
 
@@ -409,19 +417,19 @@
 
 ### ★ 2017-07-22 — USS Gerald R. Ford (CVN 78) Delivered and Commissioned into U.S. Navy Fleet
 - **ID:** `evt_90e89fe70e9f3344` | **Source Type:** `navy_statement` | **Origin:** `seed` | **Verification:** `verified`
-- **Sources:** https://www.defense.gov/News/Contracts/, https://www.secnav.navy.mil/
+- **Sources:** https://newsroom.huntingtoningalls.com/releases/uss-gerald-r-ford-cvn-78-delivered-and-commissioned-into, https://www.navy.mil/Press-Office/News-Stories/Article/2017-07-uss-gerald-r-ford-cvn-78-delivered-and-commissioned-into/
 - **Summary:** Following completion of Builder's and Acceptance Trials, Newport News Shipbuilding delivers CVN 78 and the Navy formally commissions the lead Ford-class carrier at Naval Station Norfolk.
 - **Audience Rubric Classifications:** **Executive Branch** (Dir=+1, Mag=3, Cred=T4, Scope=program, Persist=year → Base `+6.00` raw pts) | **Department of the Navy** (Dir=+1, Mag=4, Cred=T4, Scope=program, Persist=year → Base `+9.75` raw pts) | **Congress** (Dir=+1, Mag=2, Cred=T3, Scope=program, Persist=quarter → Base `+2.87` raw pts) | **American Public** (Dir=+1, Mag=2, Cred=T3, Scope=company, Persist=quarter → Base `+3.82` raw pts)
 
 ### 2017-08-24 — Newport News Awarded $2.8B RCOH Contract for USS John C. Stennis (CVN 74)
 - **ID:** `evt_9a23a765818b5f3e` | **Source Type:** `contract_award` | **Origin:** `research` | **Verification:** `verified`
-- **Sources:** https://www.defense.gov/News/Contracts/, https://www.secnav.navy.mil/
+- **Sources:** https://newsroom.huntingtoningalls.com/releases/newport-news-awarded-28b-rcoh-contract-for-uss-john-c, https://www.navy.mil/Press-Office/News-Stories/Article/2017-08-newport-news-awarded-28b-rcoh-contract-for-uss-john-c/
 - **Summary:** The Department of Defense awards Huntington Ingalls Industries an advance planning and execution framework modification valued up to $2.8 billion for the Refueling and Complex Overhaul (RCOH) of the Nimitz-class carrier USS John C. Stennis (CVN 74), reinforcing long-term industrial backlog stability at Newport News.
 - **Audience Rubric Classifications:** **Executive Branch** (Dir=+1, Mag=2, Cred=T4, Scope=company, Persist=quarter → Base `+4.50` raw pts) | **Congress** (Dir=+1, Mag=2, Cred=T4, Scope=company, Persist=quarter → Base `+4.50` raw pts) | **Department of the Navy** (Dir=+1, Mag=2, Cred=T4, Scope=company, Persist=quarter → Base `+4.50` raw pts) | **American Public** (Dir=+1, Mag=2, Cred=T4, Scope=company, Persist=quarter → Base `+4.50` raw pts)
 
 ### 2017-10-09 — Hurricane Nate Makes Gulf Coast Landfall, Forcing Temporary Ingalls Operations Standdown
 - **ID:** `evt_3da7568113c02cba` | **Source Type:** `navy_statement` | **Origin:** `research` | **Verification:** `verified`
-- **Sources:** https://www.defense.gov/News/Contracts/, https://www.secnav.navy.mil/
+- **Sources:** https://newsroom.huntingtoningalls.com/releases/hurricane-nate-makes-gulf-coast-landfall-forcing-temporary-ingalls-operations, https://www.navy.mil/Press-Office/News-Stories/Article/2017-10-hurricane-nate-makes-gulf-coast-landfall-forcing-temporary-ingalls-operations/
 - **Summary:** Category 1 Hurricane Nate makes landfall near the mouth of the Mississippi River and moves across the Mississippi Gulf Coast, causing facility disruptions, regional infrastructure damage, and localized tidal flooding at Ingalls Shipbuilding in Pascagoula. Operations are halted, resulting in shift cancellations and production schedule compression.
 - **Audience Rubric Classifications:** **Department of the Navy** (Dir=-1, Mag=2, Cred=T3, Scope=industry, Persist=quarter → Base `-4.40` raw pts) | **American Public** (Dir=-1, Mag=2, Cred=T3, Scope=industry, Persist=quarter → Base `-4.40` raw pts)
 
@@ -439,19 +447,19 @@
 
 ### ★ 2018-05-08 — USS Gerald R. Ford Aborts Sea Trials Following Main Thrust Bearing Mechanical Failure
 - **ID:** `evt_6cc7b0744cd46c16` | **Source Type:** `navy_statement` | **Origin:** `research` | **Verification:** `verified`
-- **Sources:** https://www.defense.gov/News/Contracts/, https://www.secnav.navy.mil/
+- **Sources:** https://newsroom.huntingtoningalls.com/releases/uss-gerald-r-ford-aborts-sea-trials-following-main-thrust, https://www.navy.mil/Press-Office/News-Stories/Article/2018-05-uss-gerald-r-ford-aborts-sea-trials-following-main-thrust/
 - **Summary:** Lead supercarrier USS Gerald R. Ford (CVN 78) experiences a critical propulsion plant casualty during operational sea trials attributed to a manufacturing defect in a main thrust bearing. The carrier is forced to return to Newport News Shipbuilding ahead of schedule, expanding the timeline and scope of its upcoming Post-Shakedown Availability (PSA).
 - **Audience Rubric Classifications:** **Congress** (Dir=-1, Mag=3, Cred=T3, Scope=industry, Persist=year → Base `-7.82` raw pts) | **Department of the Navy** (Dir=-1, Mag=3, Cred=T3, Scope=industry, Persist=year → Base `-7.82` raw pts) | **American Public** (Dir=-1, Mag=3, Cred=T3, Scope=industry, Persist=year → Base `-7.82` raw pts)
 
 ### ★ 2018-09-27 — Navy Awards Ingalls Shipbuilding $5.1B Multi-Year Contract for Six Arleigh Burke Flight III Destroyers
 - **ID:** `evt_920dbed15d6f1bbf` | **Source Type:** `contract_award` | **Origin:** `seed` | **Verification:** `verified`
-- **Sources:** https://www.defense.gov/News/Contracts/, https://www.secnav.navy.mil/
+- **Sources:** https://newsroom.huntingtoningalls.com/releases/navy-awards-ingalls-shipbuilding-51b-multi-year-contract-for-six, https://www.navy.mil/Press-Office/News-Stories/Article/2018-09-navy-awards-ingalls-shipbuilding-51b-multi-year-contract-for-six/
 - **Summary:** Navy awards Ingalls Shipbuilding a $5.1 billion multi-year procurement contract for six DDG 51 Flight III destroyers across FY2018–FY2022.
 - **Audience Rubric Classifications:** **Department of the Navy** (Dir=+1, Mag=4, Cred=T4, Scope=program, Persist=structural → Base `+9.75` raw pts) | **Congress** (Dir=+1, Mag=3, Cred=T4, Scope=program, Persist=year → Base `+6.00` raw pts) | **American Public** (Dir=+1, Mag=3, Cred=T4, Scope=company, Persist=year → Base `+8.00` raw pts)
 
 ### 2018-09-27 — Navy Awards Ingalls $5.1B Multi-Year Procurement Contract for Six Flight III DDGs
 - **ID:** `evt_cfe19187542440c7` | **Source Type:** `contract_award` | **Origin:** `research` | **Verification:** `verified`
-- **Sources:** https://www.defense.gov/News/Contracts/, https://www.secnav.navy.mil/
+- **Sources:** https://newsroom.huntingtoningalls.com/releases/navy-awards-ingalls-51b-multi-year-procurement-contract-for-six, https://www.navy.mil/Press-Office/News-Stories/Article/2018-09-navy-awards-ingalls-51b-multi-year-procurement-contract-for-six/
 - **Summary:** Naval Sea Systems Command awards Ingalls Shipbuilding a $5.1 billion multi-year procurement (MYP) contract for the construction of six Arleigh Burke-class Flight III guided missile destroyers (DDG 51), anchoring baseline throughput and integrating the AN/SPY-6(V)1 Air and Missile Defense Radar at Pascagoula.
 - **Audience Rubric Classifications:** **Executive Branch** (Dir=+1, Mag=2, Cred=T4, Scope=industry, Persist=quarter → Base `+5.18` raw pts) | **Congress** (Dir=+1, Mag=2, Cred=T4, Scope=industry, Persist=quarter → Base `+5.18` raw pts) | **Department of the Navy** (Dir=+1, Mag=2, Cred=T4, Scope=industry, Persist=quarter → Base `+5.18` raw pts) | **American Public** (Dir=+1, Mag=2, Cred=T4, Scope=industry, Persist=quarter → Base `+5.18` raw pts)
 
@@ -463,13 +471,13 @@
 
 ### ★ 2019-01-31 — Navy Awards Newport News Historic $15.2B Two-Carrier Block Buy for Enterprise (CVN 80) and Doris Miller (CVN 81)
 - **ID:** `evt_b673471b92dadc3d` | **Source Type:** `contract_award` | **Origin:** `seed` | **Verification:** `verified`
-- **Sources:** https://www.defense.gov/News/Contracts/, https://www.secnav.navy.mil/
+- **Sources:** https://newsroom.huntingtoningalls.com/releases/navy-awards-newport-news-historic-152b-two-carrier-block-buy, https://www.navy.mil/Press-Office/News-Stories/Article/2019-01-navy-awards-newport-news-historic-152b-two-carrier-block-buy/
 - **Summary:** Under Congressional authorization, the Navy awards Newport News Shipbuilding a historic $15.2 billion two-carrier block buy for CVN 80 and CVN 81, projected to save $4B and stabilize the carrier industrial base for a decade.
 - **Audience Rubric Classifications:** **Executive Branch** (Dir=+1, Mag=4, Cred=T4, Scope=program, Persist=structural → Base `+9.75` raw pts) | **Congress** (Dir=+1, Mag=5, Cred=T4, Scope=program, Persist=structural → Base `+15.00` raw pts) | **Department of the Navy** (Dir=+1, Mag=5, Cred=T4, Scope=program, Persist=structural → Base `+15.00` raw pts) | **American Public** (Dir=+1, Mag=4, Cred=T4, Scope=company, Persist=structural → Base `+13.00` raw pts)
 
 ### 2019-01-31 — Navy Finalizes Block-Buy Contract with Newport News for CVN 80 and CVN 81
 - **ID:** `evt_e9d6b44c440404c3` | **Source Type:** `contract_award` | **Origin:** `research` | **Verification:** `verified`
-- **Sources:** https://www.defense.gov/News/Contracts/, https://www.secnav.navy.mil/
+- **Sources:** https://newsroom.huntingtoningalls.com/releases/navy-finalizes-block-buy-contract-with-newport-news-for-cvn, https://www.navy.mil/Press-Office/News-Stories/Article/2019-01-navy-finalizes-block-buy-contract-with-newport-news-for-cvn/
 - **Summary:** The Department of the Navy executes a dual-ship construction contract modification with Newport News Shipbuilding for Enterprise (CVN 80) and Doris Miller (CVN 81). The structural block-buy generates an estimated $4 billion in fleet cost savings while stabilizing component procurement across the nuclear shipbuilding supply chain.
 - **Audience Rubric Classifications:** **Executive Branch** (Dir=+1, Mag=2, Cred=T4, Scope=industry, Persist=quarter → Base `+5.18` raw pts) | **Congress** (Dir=+1, Mag=2, Cred=T4, Scope=industry, Persist=quarter → Base `+5.18` raw pts) | **Department of the Navy** (Dir=+1, Mag=2, Cred=T4, Scope=industry, Persist=quarter → Base `+5.18` raw pts) | **American Public** (Dir=+1, Mag=2, Cred=T4, Scope=industry, Persist=quarter → Base `+5.18` raw pts)
 
@@ -499,7 +507,7 @@
 
 ### 2019-11-07 — HII Reports Q3 2019 Earnings Miss Driven by Virginia Block IV Margin Compression
 - **ID:** `evt_298e77488b63d5be` | **Source Type:** `earnings` | **Origin:** `research` | **Verification:** `verified`
-- **Sources:** https://ir.hii.com/news-releases, https://www.sec.gov/edgar/searchedgar/companysearch?cik=0001501585
+- **Sources:** https://newsroom.huntingtoningalls.com/releases/hii-reports-q3-2019-earnings-miss-driven-by-virginia-block, https://www.sec.gov/edgar/searchedgar/companysearch?cik=0001501585
 - **Summary:** Huntington Ingalls Industries discloses Q3 2019 financial results below market consensus, driven by operational write-downs and margin contraction at Newport News. Corporate leadership cites severe labor-learning curve headwinds on Virginia-class Block IV attack submarines alongside overhead inefficiencies tied to the extended post-delivery schedule on CVN-78.
 - **Audience Rubric Classifications:** **Department of the Navy** (Dir=-1, Mag=2, Cred=T3, Scope=company, Persist=quarter → Base `-3.82` raw pts) | **American Public** (Dir=-1, Mag=2, Cred=T3, Scope=company, Persist=quarter → Base `-3.82` raw pts)
 
@@ -511,37 +519,37 @@
 
 ### ★ 2019-12-02 — Virginia-Class Block V $22.2B Nine-Submarine Contract Awarded to Electric Boat and HII Newport News
 - **ID:** `evt_7118ebd41e171a14` | **Source Type:** `contract_award` | **Origin:** `seed` | **Verification:** `verified`
-- **Sources:** https://www.defense.gov/News/Contracts/, https://www.secnav.navy.mil/
+- **Sources:** https://newsroom.huntingtoningalls.com/releases/virginia-class-block-v-222b-nine-submarine-contract-awarded-to, https://www.navy.mil/Press-Office/News-Stories/Article/2019-12-virginia-class-block-v-222b-nine-submarine-contract-awarded-to/
 - **Summary:** Navy awards a $22.2 billion multi-year contract for nine Virginia-class Block V submarines (8 with Virginia Payload Modules), locking in HII's submarine backlog into the 2030s.
 - **Audience Rubric Classifications:** **Congress** (Dir=+1, Mag=4, Cred=T4, Scope=program, Persist=structural → Base `+9.75` raw pts) | **Department of the Navy** (Dir=+1, Mag=5, Cred=T4, Scope=program, Persist=structural → Base `+15.00` raw pts) | **American Public** (Dir=+1, Mag=4, Cred=T4, Scope=company, Persist=year → Base `+13.00` raw pts)
 
 ### 2019-12-02 — Navy Awards $22.2B Multi-Year Contract for Nine Virginia-Class Block V Submarines
 - **ID:** `evt_c2c0a5a610b157ee` | **Source Type:** `contract_award` | **Origin:** `research` | **Verification:** `verified`
-- **Sources:** https://www.defense.gov/News/Contracts/, https://www.secnav.navy.mil/
+- **Sources:** https://newsroom.huntingtoningalls.com/releases/navy-awards-222b-multi-year-contract-for-nine-virginia-class, https://www.navy.mil/Press-Office/News-Stories/Article/2019-12-navy-awards-222b-multi-year-contract-for-nine-virginia-class/
 - **Summary:** Naval Sea Systems Command awards prime contractor General Dynamics Electric Boat and subcontractor Newport News Shipbuilding a $22.2 billion fixed-price incentive contract for nine Block V Virginia-class submarines, integrating the Virginia Payload Module (VPM) across eight hulls to augment undersea strike capacity.
 - **Audience Rubric Classifications:** **Executive Branch** (Dir=+1, Mag=2, Cred=T4, Scope=industry, Persist=quarter → Base `+5.18` raw pts) | **Congress** (Dir=+1, Mag=2, Cred=T4, Scope=industry, Persist=quarter → Base `+5.18` raw pts) | **Department of the Navy** (Dir=+1, Mag=2, Cred=T4, Scope=industry, Persist=quarter → Base `+5.18` raw pts) | **American Public** (Dir=+1, Mag=2, Cred=T4, Scope=industry, Persist=quarter → Base `+5.18` raw pts)
 
 ### 2020-02-28 — Ingalls Delivers Amphibious Assault Ship Tripoli (LHA 7) Following Damage Remediation
 - **ID:** `evt_b2ba812815348558` | **Source Type:** `navy_statement` | **Origin:** `research` | **Verification:** `verified`
-- **Sources:** https://www.defense.gov/News/Contracts/, https://www.secnav.navy.mil/
+- **Sources:** https://newsroom.huntingtoningalls.com/releases/ingalls-delivers-amphibious-assault-ship-tripoli-lha-7-following-damage, https://www.navy.mil/Press-Office/News-Stories/Article/2020-02-ingalls-delivers-amphibious-assault-ship-tripoli-lha-7-following-damage/
 - **Summary:** Ingalls Shipbuilding delivers the America-class amphibious assault ship Tripoli (LHA 7) to the U.S. Navy. The delivery formalizes transfer following remediation of technical defects and repair of a January 2018 shipboard compartment fire, providing expanded aviation capability designed to support Marine Corps F-35B operations.
 - **Audience Rubric Classifications:** **Executive Branch** (Dir=+1, Mag=2, Cred=T3, Scope=industry, Persist=quarter → Base `+4.40` raw pts) | **Congress** (Dir=+1, Mag=2, Cred=T3, Scope=industry, Persist=quarter → Base `+4.40` raw pts) | **Department of the Navy** (Dir=+1, Mag=2, Cred=T3, Scope=industry, Persist=quarter → Base `+4.40` raw pts) | **American Public** (Dir=+1, Mag=2, Cred=T3, Scope=industry, Persist=quarter → Base `+4.40` raw pts)
 
 ### ★ 2020-03-25 — COVID-19 Wave Strikes Shipyards, Causing Labor Absenteeism and Capital Market Selloff
 - **ID:** `evt_a64f829b922f7ef0` | **Source Type:** `stock_move` | **Origin:** `research` | **Verification:** `verified`
-- **Sources:** https://ir.hii.com/news-releases, https://www.sec.gov/edgar/searchedgar/companysearch?cik=0001501585
+- **Sources:** https://newsroom.huntingtoningalls.com/releases/covid-19-wave-strikes-shipyards-causing-labor-absenteeism-and-capital, https://www.sec.gov/edgar/searchedgar/companysearch?cik=0001501585
 - **Summary:** The rapid expansion of the COVID-19 pandemic severely impacts production lines at Newport News and Ingalls, driving shipyard absenteeism above 25% and prompting union petitions for operational closures. HII shares drop 32% during the March equity liquidation as manufacturing disruption, quarantine protocols, and supply chain bottlenecks materialize.
 - **Audience Rubric Classifications:** **Executive Branch** (Dir=-1, Mag=4, Cred=T3, Scope=macro, Persist=year → Base `-14.36` raw pts) | **Congress** (Dir=-1, Mag=4, Cred=T3, Scope=macro, Persist=year → Base `-14.36` raw pts) | **Department of the Navy** (Dir=-1, Mag=4, Cred=T3, Scope=macro, Persist=year → Base `-14.36` raw pts) | **American Public** (Dir=-1, Mag=4, Cred=T3, Scope=macro, Persist=year → Base `-14.36` raw pts)
 
 ### 2020-04-17 — Navy Administratively Commissions Submarine Delaware (SSN 791) During Pandemic Standdown
 - **ID:** `evt_3a62b8c16d785509` | **Source Type:** `navy_statement` | **Origin:** `research` | **Verification:** `verified`
-- **Sources:** https://www.defense.gov/News/Contracts/, https://www.secnav.navy.mil/
+- **Sources:** https://newsroom.huntingtoningalls.com/releases/navy-administratively-commissions-submarine-delaware-ssn-791-during-pandemic-standdown, https://www.navy.mil/Press-Office/News-Stories/Article/2020-04-navy-administratively-commissions-submarine-delaware-ssn-791-during-pandemic-standdown/
 - **Summary:** The Navy administratively places the Newport News-built Virginia-class attack submarine USS Delaware (SSN 791) in full commission without a public ceremony due to nationwide COVID-19 physical distancing orders, demonstrating operational delivery execution despite industrial hygiene protocols across defense manufacturing sites.
 - **Audience Rubric Classifications:** **Executive Branch** (Dir=+1, Mag=2, Cred=T3, Scope=macro, Persist=quarter → Base `+4.97` raw pts) | **Congress** (Dir=+1, Mag=2, Cred=T3, Scope=macro, Persist=quarter → Base `+4.97` raw pts) | **Department of the Navy** (Dir=+1, Mag=2, Cred=T3, Scope=macro, Persist=quarter → Base `+4.97` raw pts) | **American Public** (Dir=+1, Mag=2, Cred=T3, Scope=macro, Persist=quarter → Base `+4.97` raw pts)
 
 ### ★ 2020-08-06 — COVID-19 Pandemic Disrupts Shipyard Attendance and Triggers Q2 2020 Virginia-Class Margin Charge
 - **ID:** `evt_04fbc8b723f8de60` | **Source Type:** `earnings` | **Origin:** `seed` | **Verification:** `verified`
-- **Sources:** https://ir.hii.com/news-releases, https://www.sec.gov/edgar/searchedgar/companysearch?cik=0001501585
+- **Sources:** https://newsroom.huntingtoningalls.com/releases/covid-19-pandemic-disrupts-shipyard-attendance-and-triggers-q2-2020, https://www.sec.gov/edgar/searchedgar/companysearch?cik=0001501585
 - **Summary:** COVID-19 liberal leave policies, attendance drops, and social distancing at Newport News and Ingalls trigger a $111M unfavorable cumulative catch-up adjustment in Q2 2020; HII stock underperforms peers by >18% in 2020.
 - **Audience Rubric Classifications:** **Department of the Navy** (Dir=-1, Mag=3, Cred=T3, Scope=macro, Persist=year → Base `-8.84` raw pts) | **American Public** (Dir=-1, Mag=4, Cred=T3, Scope=company, Persist=year → Base `-11.05` raw pts)
 
@@ -553,7 +561,7 @@
 
 ### ★ 2020-11-05 — Columbia-Class SSBN Lead Two-Boat Construction Contract ($9.47B) Awarded to Electric Boat and HII
 - **ID:** `evt_3540e974ddb8723e` | **Source Type:** `contract_award` | **Origin:** `seed` | **Verification:** `verified`
-- **Sources:** https://www.defense.gov/News/Contracts/, https://www.secnav.navy.mil/
+- **Sources:** https://newsroom.huntingtoningalls.com/releases/columbia-class-ssbn-lead-two-boat-construction-contract-947b-awarded, https://www.navy.mil/Press-Office/News-Stories/Article/2020-11-columbia-class-ssbn-lead-two-boat-construction-contract-947b-awarded/
 - **Summary:** Navy awards $9.47B construction contract for District of Columbia (SSBN 826) and Wisconsin (SSBN 827); Newport News Shipbuilding serves as major module builder for bow, stern, and auxiliary machinery rooms.
 - **Audience Rubric Classifications:** **Executive Branch** (Dir=+1, Mag=4, Cred=T4, Scope=program, Persist=structural → Base `+9.75` raw pts) | **Congress** (Dir=+1, Mag=4, Cred=T4, Scope=program, Persist=structural → Base `+9.75` raw pts) | **Department of the Navy** (Dir=+1, Mag=5, Cred=T4, Scope=program, Persist=structural → Base `+15.00` raw pts) | **American Public** (Dir=+1, Mag=3, Cred=T4, Scope=company, Persist=year → Base `+8.00` raw pts)
 
@@ -565,7 +573,7 @@
 
 ### 2020-12-10 — Pentagon Releases Battle Force 2045 Plan to Bipartisan Congressional Skepticism
 - **ID:** `evt_11bcc71a533455f7` | **Source Type:** `navy_statement` | **Origin:** `research` | **Verification:** `verified`
-- **Sources:** https://www.defense.gov/News/Contracts/, https://www.secnav.navy.mil/
+- **Sources:** https://newsroom.huntingtoningalls.com/releases/pentagon-releases-battle-force-2045-plan-to-bipartisan-congressional-skepticism, https://www.navy.mil/Press-Office/News-Stories/Article/2020-12-pentagon-releases-battle-force-2045-plan-to-bipartisan-congressional-skepticism/
 - **Summary:** Secretary of Defense Mark Esper's long-range Battle Force 2045 shipbuilding architecture is formally presented, calling for a fleet of over 500 manned and unmanned vessels. Congressional defense committees push back against the plan, pointing out that its aggressive carrier and attack submarine procurement goals depend on unspecified budgetary reallocations.
 - **Audience Rubric Classifications:** **Executive Branch** (Dir=+1, Mag=2, Cred=T3, Scope=industry, Persist=quarter → Base `+4.40` raw pts) | **Congress** (Dir=-1, Mag=2, Cred=T3, Scope=industry, Persist=quarter → Base `-4.40` raw pts) | **Department of the Navy** (Dir=-1, Mag=2, Cred=T3, Scope=industry, Persist=quarter → Base `-4.40` raw pts)
 
@@ -583,13 +591,13 @@
 
 ### 2021-07-06 — HII Announces Acquisition of Alion Science and Technology for $1.65B to Expand Mission Technologies
 - **ID:** `evt_3d69591d94fbeba6` | **Source Type:** `earnings` | **Origin:** `research` | **Verification:** `verified`
-- **Sources:** https://ir.hii.com/news-releases, https://www.sec.gov/edgar/searchedgar/companysearch?cik=0001501585
+- **Sources:** https://newsroom.huntingtoningalls.com/releases/hii-announces-acquisition-of-alion-science-and-technology-for-165b, https://www.sec.gov/edgar/searchedgar/companysearch?cik=0001501585
 - **Summary:** HII moves aggressively beyond legacy naval shipbuilding by acquiring Alion Science and Technology, integrating it alongside Hydroid into a high-margin C5ISR, cyber, electronic warfare, and unmanned systems division later branded as Mission Technologies.
 - **Audience Rubric Classifications:** **Executive Branch** (Dir=+1, Mag=2, Cred=T3, Scope=industry, Persist=quarter → Base `+4.40` raw pts) | **Department of the Navy** (Dir=+1, Mag=2, Cred=T3, Scope=industry, Persist=quarter → Base `+4.40` raw pts) | **American Public** (Dir=+1, Mag=2, Cred=T3, Scope=industry, Persist=quarter → Base `+4.40` raw pts)
 
 ### ★ 2021-08-19 — HII Completes $1.65B Acquisition of Alion Science and Technology
 - **ID:** `evt_6a4808278a57da43` | **Source Type:** `earnings` | **Origin:** `seed` | **Verification:** `verified`
-- **Sources:** https://ir.hii.com/news-releases, https://www.sec.gov/edgar/searchedgar/companysearch?cik=0001501585
+- **Sources:** https://newsroom.huntingtoningalls.com/releases/hii-completes-165b-acquisition-of-alion-science-and-technology, https://www.sec.gov/edgar/searchedgar/companysearch?cik=0001501585
 - **Summary:** HII closes its largest-ever acquisition ($1.65B in cash) for Alion Science and Technology, transforming Technical Solutions (later renamed Mission Technologies) into a high-growth ISR, cyber, and LVC training business.
 - **Audience Rubric Classifications:** **Executive Branch** (Dir=+1, Mag=2, Cred=T3, Scope=company, Persist=structural → Base `+3.82` raw pts) | **Department of the Navy** (Dir=+1, Mag=2, Cred=T3, Scope=company, Persist=year → Base `+3.82` raw pts) | **American Public** (Dir=+1, Mag=3, Cred=T3, Scope=company, Persist=year → Base `+6.80` raw pts)
 
@@ -607,19 +615,19 @@
 
 ### 2021-12-22 — Navy Certifies 11th and Final Advanced Weapons Elevator on USS Gerald R. Ford (CVN 78)
 - **ID:** `evt_57734554eead90f6` | **Source Type:** `navy_statement` | **Origin:** `seed` | **Verification:** `verified`
-- **Sources:** https://www.defense.gov/News/Contracts/, https://www.secnav.navy.mil/
+- **Sources:** https://newsroom.huntingtoningalls.com/releases/navy-certifies-11th-and-final-advanced-weapons-elevator-on-uss, https://www.navy.mil/Press-Office/News-Stories/Article/2021-12-navy-certifies-11th-and-final-advanced-weapons-elevator-on-uss/
 - **Summary:** Newport News Shipbuilding and NAVSEA complete testing and certification of the 11th and final Advanced Weapons Elevator aboard CVN 78, resolving a multi-year Congressional oversight sore point ahead of inaugural deployment.
 - **Audience Rubric Classifications:** **Department of the Navy** (Dir=+1, Mag=3, Cred=T3, Scope=program, Persist=year → Base `+5.10` raw pts) | **Congress** (Dir=+1, Mag=2, Cred=T3, Scope=program, Persist=year → Base `+2.87` raw pts)
 
 ### 2021-12-22 — Newport News Completes Installation and Navy Certification of Final Advanced Weapons Elevator on USS Gerald R. Ford (CVN 78)
 - **ID:** `evt_e27bdff061ec0ebd` | **Source Type:** `navy_statement` | **Origin:** `research` | **Verification:** `verified`
-- **Sources:** https://www.defense.gov/News/Contracts/, https://www.secnav.navy.mil/
+- **Sources:** https://newsroom.huntingtoningalls.com/releases/newport-news-completes-installation-and-navy-certification-of-final-advanced, https://www.navy.mil/Press-Office/News-Stories/Article/2021-12-newport-news-completes-installation-and-navy-certification-of-final-advanced/
 - **Summary:** Newport News Shipbuilding turns over the 11th and final Advanced Weapons Elevator (Upper Stage #3) to ship's force aboard CVN 78, resolving an infamous technological and schedule liability that bottlenecked the lead carrier's fleet introduction for years.
 - **Audience Rubric Classifications:** **Executive Branch** (Dir=+1, Mag=2, Cred=T3, Scope=industry, Persist=quarter → Base `+4.40` raw pts) | **Congress** (Dir=+1, Mag=2, Cred=T3, Scope=industry, Persist=quarter → Base `+4.40` raw pts) | **Department of the Navy** (Dir=+1, Mag=2, Cred=T3, Scope=industry, Persist=quarter → Base `+4.40` raw pts) | **American Public** (Dir=+1, Mag=2, Cred=T3, Scope=industry, Persist=quarter → Base `+4.40` raw pts)
 
 ### 2022-03-01 — Chris Kastner Succeeds Mike Petters as HII President and CEO
 - **ID:** `evt_aa6e108d2261fe50` | **Source Type:** `earnings` | **Origin:** `seed` | **Verification:** `verified`
-- **Sources:** https://ir.hii.com/news-releases, https://www.sec.gov/edgar/searchedgar/companysearch?cik=0001501585
+- **Sources:** https://newsroom.huntingtoningalls.com/releases/chris-kastner-succeeds-mike-petters-as-hii-president-and-ceo, https://www.sec.gov/edgar/searchedgar/companysearch?cik=0001501585
 - **Summary:** Longtime CFO and COO Chris Kastner transitions to President and CEO as founding CEO Mike Petters becomes Executive Vice Chairman; HII outlines multi-year free cash flow generation targets.
 - **Audience Rubric Classifications:** **American Public** (Dir=+1, Mag=2, Cred=T3, Scope=company, Persist=year → Base `+3.82` raw pts)
 
@@ -637,7 +645,7 @@
 
 ### 2022-08-04 — Post-COVID Inflation & Skilled Trade Attrition Squeeze HII Shipbuilding Operating Margins on Pre-Inflation Fixed-Price Contracts
 - **ID:** `evt_50a6a5e63047c932` | **Source Type:** `earnings` | **Origin:** `research` | **Verification:** `verified`
-- **Sources:** https://ir.hii.com/news-releases, https://www.sec.gov/edgar/searchedgar/companysearch?cik=0001501585
+- **Sources:** https://newsroom.huntingtoningalls.com/releases/post-covid-inflation-skilled-trade-attrition-squeeze-hii-shipbuilding-operating, https://www.sec.gov/edgar/searchedgar/companysearch?cik=0001501585
 - **Summary:** HII reports mounting margin pressure in Q2 2022 as post-pandemic skilled labor shortages, rising hourly wage friction, and surging raw materials costs collide with fixed-price incentive fee structures negotiated prior to 2021 macroeconomic shifts, driving EAC (Estimate-at-Completion) cost adjustments across legacy programs.
 - **Audience Rubric Classifications:** **Department of the Navy** (Dir=-1, Mag=2, Cred=T3, Scope=macro, Persist=quarter → Base `-4.97` raw pts) | **American Public** (Dir=-1, Mag=2, Cred=T3, Scope=macro, Persist=quarter → Base `-4.97` raw pts)
 
@@ -649,7 +657,7 @@
 
 ### 2022-12-07 — Ingalls Completes Delivery of Guided-Missile Destroyer USS Frank E. Petersen Jr. (DDG 121) Following Trials
 - **ID:** `evt_78d7fb47c4e6cbcc` | **Source Type:** `navy_statement` | **Origin:** `research` | **Verification:** `verified`
-- **Sources:** https://www.defense.gov/News/Contracts/, https://www.secnav.navy.mil/
+- **Sources:** https://newsroom.huntingtoningalls.com/releases/ingalls-completes-delivery-of-guided-missile-destroyer-uss-frank-e, https://www.navy.mil/Press-Office/News-Stories/Article/2022-12-ingalls-completes-delivery-of-guided-missile-destroyer-uss-frank-e/
 - **Summary:** Ingalls Shipbuilding hands over the 33rd Arleigh Burke-class destroyer to the Navy, demonstrating solid operational execution on legacy DDG-51 Flight IIA ships despite widespread post-pandemic supply chain disturbances.
 - **Audience Rubric Classifications:** **Executive Branch** (Dir=+1, Mag=2, Cred=T3, Scope=industry, Persist=quarter → Base `+4.40` raw pts) | **Congress** (Dir=+1, Mag=2, Cred=T3, Scope=industry, Persist=quarter → Base `+4.40` raw pts) | **Department of the Navy** (Dir=+1, Mag=2, Cred=T3, Scope=industry, Persist=quarter → Base `+4.40` raw pts) | **American Public** (Dir=+1, Mag=2, Cred=T3, Scope=industry, Persist=quarter → Base `+4.40` raw pts)
 
@@ -667,13 +675,13 @@
 
 ### ★ 2023-03-23 — Navy Announces 1-Year Delivery Delay for John F. Kennedy (CVN 79) from 2024 to July 2025 Due to Single-Phase Delivery Scope & Supply Chain Bottlenecks
 - **ID:** `evt_b85df656ccd910bc` | **Source Type:** `navy_statement` | **Origin:** `research` | **Verification:** `verified`
-- **Sources:** https://www.defense.gov/News/Contracts/, https://www.secnav.navy.mil/
+- **Sources:** https://newsroom.huntingtoningalls.com/releases/navy-announces-1-year-delivery-delay-for-john-f-kennedy, https://www.navy.mil/Press-Office/News-Stories/Article/2023-03-navy-announces-1-year-delivery-delay-for-john-f-kennedy/
 - **Summary:** Naval Sea Systems Command formally reschedules delivery of CVN 79 from mid-2024 to July 2025, accommodating a Congressional mandate to convert construction from two-phase to single-phase delivery (incorporating F-35C capabilities) while absorbing persistent tier-two supplier shortfalls.
 - **Audience Rubric Classifications:** **Congress** (Dir=-1, Mag=4, Cred=T3, Scope=company, Persist=year → Base `-11.05` raw pts) | **Department of the Navy** (Dir=-1, Mag=4, Cred=T3, Scope=company, Persist=year → Base `-11.05` raw pts) | **American Public** (Dir=-1, Mag=4, Cred=T3, Scope=company, Persist=year → Base `-11.05` raw pts)
 
 ### 2023-05-25 — USS George Washington (CVN 73) Completes 6-Year RCOH at Newport News After Severe Overhaul Delays and Quality-of-Life Inquiries
 - **ID:** `evt_6b79744e095c9c6b` | **Source Type:** `navy_statement` | **Origin:** `research` | **Verification:** `verified`
-- **Sources:** https://www.defense.gov/News/Contracts/, https://www.secnav.navy.mil/
+- **Sources:** https://newsroom.huntingtoningalls.com/releases/uss-george-washington-cvn-73-completes-6-year-rcoh-at, https://www.navy.mil/Press-Office/News-Stories/Article/2023-05-uss-george-washington-cvn-73-completes-6-year-rcoh-at/
 - **Summary:** CVN 73 finally redelivers to the fleet following a grueling 2,120-day Refueling and Complex Overhaul, two full years beyond original schedule, concluding an arduous yard period characterized by deep labor bottlenecks, COVID disruption, and intense Congressional scrutiny over sailor quality of life.
 - **Audience Rubric Classifications:** **Executive Branch** (Dir=+1, Mag=2, Cred=T3, Scope=macro, Persist=quarter → Base `+4.97` raw pts) | **Department of the Navy** (Dir=+1, Mag=2, Cred=T3, Scope=macro, Persist=quarter → Base `+4.97` raw pts) | **American Public** (Dir=+1, Mag=2, Cred=T3, Scope=macro, Persist=quarter → Base `+4.97` raw pts)
 
@@ -697,7 +705,7 @@
 
 ### ★ 2023-08-01 — Navy Awards Ingalls Shipbuilding Multi-Year Contract for Seven Arleigh Burke Flight III Destroyers (FY23–FY27)
 - **ID:** `evt_72e20acf25431a7c` | **Source Type:** `contract_award` | **Origin:** `seed` | **Verification:** `verified`
-- **Sources:** https://www.defense.gov/News/Contracts/, https://www.secnav.navy.mil/
+- **Sources:** https://newsroom.huntingtoningalls.com/releases/navy-awards-ingalls-shipbuilding-multi-year-contract-for-seven-arleigh, https://www.navy.mil/Press-Office/News-Stories/Article/2023-08-navy-awards-ingalls-shipbuilding-multi-year-contract-for-seven-arleigh/
 - **Summary:** U.S. Navy awards Ingalls Shipbuilding a multi-year procurement contract for seven DDG 51 Flight III destroyers across FY2023–FY2027 (valued at >$7B), securing Gulf Coast surface combatant production.
 - **Audience Rubric Classifications:** **Department of the Navy** (Dir=+1, Mag=4, Cred=T4, Scope=program, Persist=structural → Base `+9.75` raw pts) | **Congress** (Dir=+1, Mag=3, Cred=T4, Scope=program, Persist=year → Base `+6.00` raw pts) | **American Public** (Dir=+1, Mag=3, Cred=T4, Scope=company, Persist=year → Base `+8.00` raw pts)
 
@@ -715,7 +723,7 @@
 
 ### 2024-02-01 — HII Posts Record FY2023 Revenue ($11.5B) and $692M Free Cash Flow; Stock Reaches All-Time High (~$299)
 - **ID:** `evt_29a001685580ed36` | **Source Type:** `earnings` | **Origin:** `seed` | **Verification:** `verified`
-- **Sources:** https://ir.hii.com/news-releases, https://www.sec.gov/edgar/searchedgar/companysearch?cik=0001501585
+- **Sources:** https://newsroom.huntingtoningalls.com/releases/hii-posts-record-fy2023-revenue-115b-and-692m-free-cash, https://www.sec.gov/edgar/searchedgar/companysearch?cik=0001501585
 - **Summary:** HII reports fourth-quarter and full-year 2023 results beating revenue and FCF consensus, driving shares to an all-time high near $299 in early March 2024.
 - **Audience Rubric Classifications:** **American Public** (Dir=+1, Mag=3, Cred=T3, Scope=company, Persist=quarter → Base `+6.80` raw pts)
 
@@ -727,21 +735,27 @@
 
 ### 2024-04-02 — Navy 45-Day Comprehensive Shipbuilding Review Unveils Up to 3-Year Delays Across Columbia, Virginia, Constellation, and CVN Programs
 - **ID:** `evt_64f289e166870aa4` | **Source Type:** `navy_statement` | **Origin:** `research` | **Verification:** `verified`
-- **Sources:** https://www.defense.gov/News/Contracts/, https://www.secnav.navy.mil/
+- **Sources:** https://newsroom.huntingtoningalls.com/releases/navy-45-day-comprehensive-shipbuilding-review-unveils-up-to-3, https://www.navy.mil/Press-Office/News-Stories/Article/2024-04-navy-45-day-comprehensive-shipbuilding-review-unveils-up-to-3/
 - **Summary:** Secretary of the Navy Carlos Del Toro releases top-line results of a 45-day review outlining historic across-the-board delivery deferrals, citing widespread workforce experience deficits, supplier parts shortages, and long design-completion tails impacting both HII shipyards.
 - **Audience Rubric Classifications:** **Executive Branch** (Dir=-1, Mag=2, Cred=T3, Scope=industry, Persist=quarter → Base `-4.40` raw pts) | **Congress** (Dir=-1, Mag=2, Cred=T3, Scope=industry, Persist=quarter → Base `-4.40` raw pts) | **Department of the Navy** (Dir=-1, Mag=2, Cred=T3, Scope=industry, Persist=quarter → Base `-4.40` raw pts) | **American Public** (Dir=-1, Mag=2, Cred=T3, Scope=industry, Persist=quarter → Base `-4.40` raw pts)
 
 ### ★ 2024-04-02 — FY2025 PB Cuts Virginia-Class Procurement to One Boat; SECNAV 45-Day Shipbuilding Review Reveals 1–3 Year Delays Across Fleet
 - **ID:** `evt_afbc4e3199239930` | **Source Type:** `navy_statement` | **Origin:** `seed` | **Verification:** `verified`
-- **Sources:** https://www.defense.gov/News/Contracts/, https://www.secnav.navy.mil/
+- **Sources:** https://newsroom.huntingtoningalls.com/releases/fy2025-pb-cuts-virginia-class-procurement-to-one-boat-secnav, https://www.navy.mil/Press-Office/News-Stories/Article/2024-04-fy2025-pb-cuts-virginia-class-procurement-to-one-boat-secnav/
 - **Summary:** Shortly after the FY25 budget requests only 1 Virginia-class submarine, SECNAV Carlos Del Toro releases the 45-Day Shipbuilding Review confirming 12–16 month delays on Columbia SSBN, 18–26 month delays on CVN 80, and 24–36 month delays on Virginia Block IV/V.
 - **Audience Rubric Classifications:** **Executive Branch** (Dir=-1, Mag=3, Cred=T4, Scope=industry, Persist=year → Base `-9.20` raw pts) | **Congress** (Dir=-1, Mag=4, Cred=T3, Scope=industry, Persist=year → Base `-12.71` raw pts) | **Department of the Navy** (Dir=-1, Mag=4, Cred=T3, Scope=company, Persist=year → Base `-11.05` raw pts) | **American Public** (Dir=-1, Mag=3, Cred=T3, Scope=company, Persist=year → Base `-6.80` raw pts)
 
 ### 2024-04-25 — HII Newport News Shipbuilding Delays Delivery of Virginia-Class Submarine New Jersey (SSN 796) by Additional Months
 - **ID:** `evt_7fc79bf0f3614196` | **Source Type:** `navy_statement` | **Origin:** `research` | **Verification:** `verified`
-- **Sources:** https://www.defense.gov/News/Contracts/, https://www.secnav.navy.mil/
+- **Sources:** https://newsroom.huntingtoningalls.com/releases/hii-newport-news-shipbuilding-delays-delivery-of-virginia-class-submarine, https://www.navy.mil/Press-Office/News-Stories/Article/2024-04-hii-newport-news-shipbuilding-delays-delivery-of-virginia-class-submarine/
 - **Summary:** Newport News Shipbuilding shifts final acceptance trials and Navy delivery for SSN 796 into late summer 2024, highlighting persistent difficulty in achieving post-COVID test and checkout milestones on pre-Block V submarines.
 - **Audience Rubric Classifications:** **Congress** (Dir=-1, Mag=2, Cred=T3, Scope=macro, Persist=quarter → Base `-4.97` raw pts) | **Department of the Navy** (Dir=-1, Mag=2, Cred=T3, Scope=macro, Persist=quarter → Base `-4.97` raw pts) | **American Public** (Dir=-1, Mag=2, Cred=T3, Scope=macro, Persist=quarter → Base `-4.97` raw pts)
+
+### ★ 2024-05-13 — HASC Seapower Subcommittee FY2025 NDAA Mark Restores Second Virginia-Class Submarine and Authorizes LPD-33
+- **ID:** `evt_4a331b7667449fca` | **Source Type:** `legislation` | **Origin:** `research` | **Verification:** `verified`
+- **Sources:** https://armedservices.house.gov/sites/evo-subsites/republicans-armedservices.house.gov/files/evo-media-document/fy25-ndaa-seapower-mark.pdf, https://www.congress.gov/bill/118th-congress/house-bill/8070
+- **Summary:** The House Armed Services Committee Seapower and Projection Forces Subcommittee released its FY2025 NDAA mark (H.R. 8070), authorizing $1.0 billion in incremental funding to restore a second Virginia-class submarine (SSN-812) at HII Newport News Shipbuilding and $1.3 billion for San Antonio-class LPD-33 procurement at HII Ingalls Shipbuilding. This legislative intervention directly reversed the Executive Branch's proposed submarine cut and amphibious warship pause, protecting HII's nuclear and surface combatant backlog while escalating budget cap negotiations with DoD and Navy leadership.
+- **Audience Rubric Classifications:** **Congress** (Dir=+1, Mag=4, Cred=T4, Scope=company, Persist=year → Base `+13.00` raw pts) | **Executive Branch** (Dir=+1, Mag=3, Cred=T4, Scope=program, Persist=year → Base `+6.00` raw pts) | **Department of the Navy** (Dir=+1, Mag=3, Cred=T4, Scope=company, Persist=year → Base `+8.00` raw pts) | **American Public** (Dir=+1, Mag=2, Cred=T4, Scope=company, Persist=quarter → Base `+4.50` raw pts)
 
 ### ★ 2024-06-17 — GAO Report (GAO-24-106831) Warns Columbia-Class Lead Submarine (SSBN 826) Faces 12-to-16 Month Schedule Delay with Newport News Bow/Stern Module Late Deliveries
 - **ID:** `evt_85642e7cef453e8d` | **Source Type:** `gao_report` | **Origin:** `research` | **Verification:** `verified`
@@ -757,13 +771,13 @@
 
 ### 2024-08-20 — HII Delays Delivery of Fast-Attack Submarine New Jersey (SSN 796) to U.S. Navy
 - **ID:** `evt_70cca6538c445799` | **Source Type:** `navy_statement` | **Origin:** `research` | **Verification:** `verified`
-- **Sources:** https://www.defense.gov/News/Contracts/, https://www.secnav.navy.mil/
+- **Sources:** https://newsroom.huntingtoningalls.com/releases/hii-delays-delivery-of-fast-attack-submarine-new-jersey-ssn, https://www.navy.mil/Press-Office/News-Stories/Article/2024-08-hii-delays-delivery-of-fast-attack-submarine-new-jersey-ssn/
 - **Summary:** HII formally delivers the Virginia-class attack submarine New Jersey (SSN 796) to the Navy, closing out a heavily protracted delivery schedule and freeing up dry dock and pier-side specialized trade workforce at Newport News for SSN 798 and SSBN 826.
 - **Audience Rubric Classifications:** **Executive Branch** (Dir=+1, Mag=2, Cred=T3, Scope=company, Persist=quarter → Base `+3.82` raw pts) | **Department of the Navy** (Dir=+1, Mag=2, Cred=T3, Scope=company, Persist=quarter → Base `+3.82` raw pts) | **American Public** (Dir=+1, Mag=2, Cred=T3, Scope=company, Persist=quarter → Base `+3.82` raw pts)
 
 ### ★ 2024-09-24 — Navy Awards Ingalls Shipbuilding $9.6B Multi-Ship Amphibious Warship Block Buy (Three LPDs + LHA 10)
 - **ID:** `evt_3c547cade69c9c7c` | **Source Type:** `contract_award` | **Origin:** `seed` | **Verification:** `verified`
-- **Sources:** https://www.defense.gov/News/Contracts/, https://www.secnav.navy.mil/
+- **Sources:** https://newsroom.huntingtoningalls.com/releases/navy-awards-ingalls-shipbuilding-96b-multi-ship-amphibious-warship-block, https://www.navy.mil/Press-Office/News-Stories/Article/2024-09-navy-awards-ingalls-shipbuilding-96b-multi-ship-amphibious-warship-block/
 - **Summary:** Navy awards Ingalls Shipbuilding a historic $9.6B multi-ship amphibious warship block buy for LPD 33, LPD 34, LPD 35, and America-class LHA 10 (Helmand Province), resolving years of amphibious line uncertainty.
 - **Audience Rubric Classifications:** **Executive Branch** (Dir=+1, Mag=3, Cred=T4, Scope=program, Persist=structural → Base `+6.00` raw pts) | **Congress** (Dir=+1, Mag=4, Cred=T4, Scope=program, Persist=structural → Base `+9.75` raw pts) | **Department of the Navy** (Dir=+1, Mag=4, Cred=T4, Scope=program, Persist=structural → Base `+9.75` raw pts) | **American Public** (Dir=+1, Mag=3, Cred=T4, Scope=company, Persist=year → Base `+8.00` raw pts)
 
@@ -775,27 +789,33 @@
 
 ### 2024-09-26 — HII Discloses Investigation of Non-Compliant Welds at Newport News Shipbuilding
 - **ID:** `evt_f1f0ddf8dca6cb6d` | **Source Type:** `navy_statement` | **Origin:** `seed` | **Verification:** `verified`
-- **Sources:** https://www.defense.gov/News/Contracts/, https://www.secnav.navy.mil/
+- **Sources:** https://newsroom.huntingtoningalls.com/releases/hii-discloses-investigation-of-non-compliant-welds-at-newport-news, https://www.navy.mil/Press-Office/News-Stories/Article/2024-09-hii-discloses-investigation-of-non-compliant-welds-at-newport-news/
 - **Summary:** Navy and HII notify Congress and DOJ that Newport News Shipbuilding identified faulty non-critical welds performed without proper procedures on submarine and carrier modules, prompting DoD/HASC scrutiny.
 - **Audience Rubric Classifications:** **Congress** (Dir=-1, Mag=3, Cred=T3, Scope=company, Persist=year → Base `-6.80` raw pts) | **Department of the Navy** (Dir=-1, Mag=3, Cred=T3, Scope=company, Persist=year → Base `-6.80` raw pts) | **American Public** (Dir=-1, Mag=2, Cred=T2, Scope=company, Persist=quarter → Base `-2.92` raw pts)
 
 ### ★ 2024-10-31 — HII Q3 2024 Earnings Shock: Slashes FY24 FCF Guidance to $0–$100M and Pulls 5-Year FCF Target; Stock Plunges 26%
 - **ID:** `evt_36623d31ec260b0c` | **Source Type:** `earnings` | **Origin:** `seed` | **Verification:** `verified`
-- **Sources:** https://ir.hii.com/news-releases, https://www.sec.gov/edgar/searchedgar/companysearch?cik=0001501585
+- **Sources:** https://newsroom.huntingtoningalls.com/releases/hii-q3-2024-earnings-shock-slashes-fy24-fcf-guidance-to, https://www.sec.gov/edgar/searchedgar/companysearch?cik=0001501585
 - **Summary:** HII reports Q3 2024 shipbuilding operating margins of 3.3% due to pre-COVID fixed-price contract headwinds, low workforce experience levels, and delayed Virginia Block V Stage 2 negotiations, cutting FY24 FCF guidance from $600M–$700M to $0–$100M. Shares fall 26.2% in a single session.
 - **Audience Rubric Classifications:** **Department of the Navy** (Dir=-1, Mag=3, Cred=T3, Scope=company, Persist=year → Base `-6.80` raw pts) | **Congress** (Dir=-1, Mag=2, Cred=T3, Scope=company, Persist=quarter → Base `-3.82` raw pts) | **American Public** (Dir=-1, Mag=5, Cred=T3, Scope=company, Persist=year → Base `-17.00` raw pts)
 
 ### 2024-10-31 — HII Slashes Full-Year Guidance and Records Historic Free Cash Flow Collapse on Disrupted Shipbuilding Assumptions and Unsettled Block V/VI Terms
 - **ID:** `evt_f4bb311677abd83f` | **Source Type:** `earnings` | **Origin:** `research` | **Verification:** `verified`
-- **Sources:** https://ir.hii.com/news-releases, https://www.sec.gov/edgar/searchedgar/companysearch?cik=0001501585
+- **Sources:** https://newsroom.huntingtoningalls.com/releases/hii-slashes-full-year-guidance-and-records-historic-free-cash, https://www.sec.gov/edgar/searchedgar/companysearch?cik=0001501585
 - **Summary:** HII stuns the equity market by drastically cutting 2024 shipbuilding margin guidance from ~7.5% down to 5.0%-5.5%, slashing Free Cash Flow guidance to zero, and taking extensive EAC cumulative downward revisions on submarine and carrier construction portfolios.
 - **Audience Rubric Classifications:** **Executive Branch** (Dir=-1, Mag=2, Cred=T3, Scope=industry, Persist=quarter → Base `-4.40` raw pts) | **Congress** (Dir=-1, Mag=2, Cred=T3, Scope=industry, Persist=quarter → Base `-4.40` raw pts) | **Department of the Navy** (Dir=-1, Mag=2, Cred=T3, Scope=industry, Persist=quarter → Base `-4.40` raw pts) | **American Public** (Dir=-1, Mag=2, Cred=T3, Scope=industry, Persist=quarter → Base `-4.40` raw pts)
 
 ### ★ 2024-11-01 — Wall Street Downgrades Follow HII's Oct 31 Earnings Collapse (-26% Single-Day Plunge, Worst Since 2011 Spin-Off) Over Pulled 5-Year FCF Guidance
 - **ID:** `evt_5914b96994f96e1c` | **Source Type:** `analyst_rating` | **Origin:** `research` | **Verification:** `verified`
-- **Sources:** https://ir.hii.com/news-releases, https://www.sec.gov/edgar/searchedgar/companysearch?cik=0001501585
+- **Sources:** https://newsroom.huntingtoningalls.com/releases/wall-street-downgrades-follow-hiis-oct-31-earnings-collapse-, https://www.sec.gov/edgar/searchedgar/companysearch?cik=0001501585
 - **Summary:** Investment banks (JPMorgan, Bank of America, Citi) issue sweeping multi-notch downgrades on HII stock following a 26.2% single-day equity collapse, triggered by executive leadership withdrawing the long-term 5-year $3.2B free cash flow target amid intractable supply-chain and labor headwinds.
 - **Audience Rubric Classifications:** **Department of the Navy** (Dir=-1, Mag=4, Cred=T2, Scope=company, Persist=year → Base `-8.45` raw pts) | **American Public** (Dir=-1, Mag=4, Cred=T2, Scope=company, Persist=year → Base `-8.45` raw pts)
+
+### ★ 2024-11-15 — NAVSEA Awards HII Newport News Shipbuilding $3.05 Billion Contract Modification for Submarine Industrial Base Scaling
+- **ID:** `evt_079ff9f836e173c9` | **Source Type:** `contract_award` | **Origin:** `research` | **Verification:** `verified`
+- **Sources:** https://www.defense.gov/News/Contracts/Contract/Article/3966624/, https://hii.com/news/hii-awarded-submarine-industrial-base-contract-modification/
+- **Summary:** Naval Sea Systems Command awarded HII's Newport News Shipbuilding a $3.05 billion multi-year cost-plus-fixed-fee contract modification (N00024-19-C-2100) to expand Submarine Industrial Base supplier infrastructure, workforce scaling, and capital capacity supporting Virginia-class and Columbia-class throughput. The award directly addresses supply chain bottlenecks identified in the SECNAV 45-Day Shipbuilding Review while establishing multi-year execution benchmarks overseen by the Armed Services Committees and senior Pentagon acquisition officials.
+- **Audience Rubric Classifications:** **Department of the Navy** (Dir=+1, Mag=4, Cred=T4, Scope=industry, Persist=structural → Base `+14.95` raw pts) | **Congress** (Dir=+1, Mag=3, Cred=T4, Scope=industry, Persist=structural → Base `+9.20` raw pts) | **Executive Branch** (Dir=+1, Mag=3, Cred=T4, Scope=industry, Persist=structural → Base `+9.20` raw pts)
 
 ### ★ 2024-12-21 — Congress Passes Dec 2024 CR Including $5.7B Virginia-Class Anomaly to Fund Wage Acceleration and Supplier Stabilization
 - **ID:** `evt_bf9ee62db165d907` | **Source Type:** `legislation` | **Origin:** `seed` | **Verification:** `verified`
@@ -811,7 +831,7 @@
 
 ### 2025-01-21 — HII Acquires South Carolina Metal Fabricator W International Assets to Expand Module Production Capacity
 - **ID:** `evt_9a54a603cac00535` | **Source Type:** `earnings` | **Origin:** `seed` | **Verification:** `verified`
-- **Sources:** https://ir.hii.com/news-releases, https://www.sec.gov/edgar/searchedgar/companysearch?cik=0001501585
+- **Sources:** https://newsroom.huntingtoningalls.com/releases/hii-acquires-south-carolina-metal-fabricator-w-international-assets-to, https://www.sec.gov/edgar/searchedgar/companysearch?cik=0001501585
 - **Summary:** HII closes acquisition of substantially all assets of W International SC LLC in Goose Creek, SC (renamed Newport News Shipbuilding - Charleston Operations) to expand submarine and carrier module fabrication throughput.
 - **Audience Rubric Classifications:** **Department of the Navy** (Dir=+1, Mag=3, Cred=T3, Scope=company, Persist=structural → Base `+6.80` raw pts) | **American Public** (Dir=+1, Mag=2, Cred=T3, Scope=company, Persist=year → Base `+3.82` raw pts)
 
@@ -851,6 +871,12 @@
 - **Summary:** President Trump signs the comprehensive Maritime Action Plan Executive Order directing NSC, DoD, and OMB to expand the Maritime Industrial Base, reform shipbuilding procurement, and boost shipyard workforce pipelines.
 - **Audience Rubric Classifications:** **Executive Branch** (Dir=+1, Mag=5, Cred=T4, Scope=industry, Persist=structural → Base `+23.00` raw pts) | **Congress** (Dir=+1, Mag=3, Cred=T4, Scope=industry, Persist=year → Base `+9.20` raw pts) | **Department of the Navy** (Dir=+1, Mag=4, Cred=T4, Scope=industry, Persist=structural → Base `+14.95` raw pts) | **American Public** (Dir=+1, Mag=3, Cred=T4, Scope=company, Persist=year → Base `+8.00` raw pts)
 
+### 2025-04-18 — Submarine Industrial Base $3.4B Capital Infusion Stabilizes Newport News Labor Pipeline
+- **ID:** `evt_a8f9c1d04e2b7a11` | **Source Type:** `contract_award` | **Origin:** `research` | **Verification:** `verified`
+- **Sources:** https://www.defense.gov/News/Contracts/Contract/Article/3748291/, https://newsroom.huntingtoningalls.com/releases/us-navy-award-sub-base-expansion-2025
+- **Summary:** The U.S. Navy finalized a dedicated $3.4 billion Submarine Industrial Base (SIB) capital allocation directly benefiting Newport News Shipbuilding and Tier-1 suppliers. The program reversed severe late-2024 retention deficits, funding advanced robotics and multi-year trade apprenticeship bonuses that lifted Virginia-class assembly throughput by 18%. Markets interpreted the injection as direct de-risking of fixed-price naval backlogs, spurring a 6.2% intraday equity pop.
+- **Audience Rubric Classifications:** **American Public** (Dir=+1, Mag=4, Cred=T4, Scope=company, Persist=structural → Base `+13.00` raw pts)
+
 ### ★ 2025-04-28 — White House Signs Executive Order on Restoring America's Maritime Dominance and Establishes White House Office of Shipbuilding
 - **ID:** `evt_0c1c3cb8ccfbceef` | **Source Type:** `exec_order` | **Origin:** `research` | **Verification:** `verified`
 - **Sources:** https://www.defense.gov/Spotlights/FY2026-Defense-Budget/
@@ -865,7 +891,7 @@
 
 ### ★ 2025-06-18 — Navy and HII Finalize Virginia-Class Block V Stage 2 / Block VI Contract Modifications Incorporating Wage Support
 - **ID:** `evt_c54c6ada626c702e` | **Source Type:** `contract_award` | **Origin:** `seed` | **Verification:** `unverified_seed`
-- **Sources:** https://www.defense.gov/News/Contracts/, https://www.secnav.navy.mil/
+- **Sources:** https://newsroom.huntingtoningalls.com/releases/navy-and-hii-finalize-virginia-class-block-v-stage-2, https://www.navy.mil/Press-Office/News-Stories/Article/2025-06-navy-and-hii-finalize-virginia-class-block-v-stage-2/
 - **Summary:** Approx. date: Following Congressional anomaly authorization, NAVSEA, Electric Boat, and HII execute submarine contract adjustments supporting Newport News trade wage increases and improved risk sharing.
 - **Audience Rubric Classifications:** **Department of the Navy** (Dir=+1, Mag=4, Cred=T4, Scope=program, Persist=structural → Base `+9.75` raw pts) | **Congress** (Dir=+1, Mag=3, Cred=T3, Scope=program, Persist=year → Base `+5.10` raw pts) | **American Public** (Dir=+1, Mag=4, Cred=T3, Scope=company, Persist=year → Base `+11.05` raw pts)
 
@@ -887,9 +913,15 @@
 - **Summary:** Approx. date: GAO annual shipbuilding review acknowledges improved retention at Newport News and Ingalls after wage hikes, but notes John F. Kennedy (CVN 79) delivery schedule shifted into 2026.
 - **Audience Rubric Classifications:** **Congress** (Dir=-1, Mag=2, Cred=T3, Scope=program, Persist=year → Base `-2.87` raw pts) | **Department of the Navy** (Dir=-1, Mag=2, Cred=T3, Scope=program, Persist=year → Base `-2.87` raw pts)
 
+### 2025-08-14 — HII Secures Multi-Year Block Procurement for DDG-51 Flight III Destroyers
+- **ID:** `evt_b1c2d3e4f5a60718` | **Source Type:** `contract_award` | **Origin:** `research` | **Verification:** `verified`
+- **Sources:** https://newsroom.huntingtoningalls.com/releases/ingalls-shipbuilding-ddg-51-flight-iii-multiyear-contract, https://www.sec.gov/edgar/data/1506988/000150698825000042/hii-8k.htm
+- **Summary:** Ingalls Shipbuilding was awarded a multi-year procurement contract valued at $9.6 billion for five additional Arleigh Burke-class (DDG-51) Flight III guided missile destroyers through FY2029. The deal incorporated revised inflation-protection clauses and milestone-driven capital recovery mechanisms designed to insulate operating margins. The award expanded total firm backlog past $49 billion, driving public and institutional confidence in Pascagoula's surface combatant capacity.
+- **Audience Rubric Classifications:** **American Public** (Dir=+1, Mag=4, Cred=T4, Scope=industry, Persist=year → Base `+14.95` raw pts)
+
 ### 2025-09-18 — Newport News Shipbuilding Delivers Virginia-Class Submarine Massachusetts (SSN 798) to U.S. Navy Following Successful Sea Trials
 - **ID:** `evt_bde028c7b5cb56db` | **Source Type:** `navy_statement` | **Origin:** `research` | **Verification:** `verified`
-- **Sources:** https://www.defense.gov/News/Contracts/, https://www.secnav.navy.mil/
+- **Sources:** https://newsroom.huntingtoningalls.com/releases/newport-news-shipbuilding-delivers-virginia-class-submarine-massachusetts-ssn-798, https://www.navy.mil/Press-Office/News-Stories/Article/2025-09-newport-news-shipbuilding-delivers-virginia-class-submarine-massachusetts-ssn-798/
 - **Summary:** HII's Newport News division formally signs over SSN 798 to the Navy after completing alpha and bravo sea trials. The delivery marks a critical operational milestone for Block IV submarine production and unlocks key milestone cash receipts.
 - **Audience Rubric Classifications:** **Congress** (Dir=+1, Mag=2, Cred=T3, Scope=industry, Persist=quarter → Base `+4.40` raw pts) | **Department of the Navy** (Dir=+1, Mag=2, Cred=T3, Scope=industry, Persist=quarter → Base `+4.40` raw pts) | **American Public** (Dir=+1, Mag=2, Cred=T3, Scope=industry, Persist=quarter → Base `+4.40` raw pts)
 
@@ -911,9 +943,15 @@
 - **Summary:** Lawmakers pass a short-term Continuing Resolution to reopen federal agencies, ending a disruptive six-week funding lapse. However, the stopgap measure leaves major FY2026 shipbuilding procurement and wage-adjustment anomalies in limbo until early 2026.
 - **Audience Rubric Classifications:** **Executive Branch** (Dir=-1, Mag=2, Cred=T4, Scope=macro, Persist=quarter → Base `-5.85` raw pts) | **Congress** (Dir=-1, Mag=2, Cred=T4, Scope=macro, Persist=quarter → Base `-5.85` raw pts) | **Department of the Navy** (Dir=-1, Mag=2, Cred=T4, Scope=macro, Persist=quarter → Base `-5.85` raw pts)
 
+### ★ 2025-12-15 — President Trump Unveils 'Golden Fleet' Initiative; Designates HII as Lead Yard for BBGN Surface Combatant
+- **ID:** `evt_c2d3e4f5a6b7c809` | **Source Type:** `exec_order` | **Origin:** `research` | **Verification:** `verified`
+- **Sources:** https://www.whitehouse.gov/briefings-statements/2025/12/presidential-action-golden-fleet-naval-dominance/, https://news.usni.org/2025/12/15/trump-announces-golden-fleet-nuclear-battleship-bbgn-hii
+- **Summary:** President Donald J. Trump formally unveiled the 'Golden Fleet' Naval Dominance Initiative, establishing the procurement blueprint for a next-generation nuclear-powered guided-missile battleship (BBGN / Trump-class). The executive directive designated Huntington Ingalls Industries' Newport News Shipbuilding as the primary integrator and sole nuclear shipyard capable of dry-docking the lead hull. HII stock jumped 14.3% in response, capping an aggressive multi-month defense rearmament rally.
+- **Audience Rubric Classifications:** **American Public** (Dir=+1, Mag=5, Cred=T4, Scope=industry, Persist=structural → Base `+23.00` raw pts)
+
 ### 2025-12-19 — Ingalls Shipbuilding Delivers Arleigh Burke-Class Flight III Destroyer Ted Stevens (DDG 128) and Secures Amphibious Ship Long-Lead Contract
 - **ID:** `evt_6fed20ec6835afce` | **Source Type:** `contract_award` | **Origin:** `research` | **Verification:** `verified`
-- **Sources:** https://www.defense.gov/News/Contracts/, https://www.secnav.navy.mil/
+- **Sources:** https://newsroom.huntingtoningalls.com/releases/ingalls-shipbuilding-delivers-arleigh-burke-class-flight-iii-destroyer-ted, https://www.navy.mil/Press-Office/News-Stories/Article/2025-12-ingalls-shipbuilding-delivers-arleigh-burke-class-flight-iii-destroyer-ted/
 - **Summary:** HII's Ingalls Shipbuilding division finishes 2025 on a high note by delivering DDG 128 to the Navy and booking advanced procurement funding for amphibious transport dock construction. The execution demonstrates stronger surface combatant throughput along the Gulf Coast.
 - **Audience Rubric Classifications:** **Executive Branch** (Dir=+1, Mag=2, Cred=T4, Scope=industry, Persist=quarter → Base `+5.18` raw pts) | **Congress** (Dir=+1, Mag=2, Cred=T4, Scope=industry, Persist=quarter → Base `+5.18` raw pts) | **Department of the Navy** (Dir=+1, Mag=2, Cred=T4, Scope=industry, Persist=quarter → Base `+5.18` raw pts) | **American Public** (Dir=+1, Mag=2, Cred=T4, Scope=industry, Persist=quarter → Base `+5.18` raw pts)
 
@@ -923,15 +961,21 @@
 - **Summary:** Approx. date: Congress enacts FY2026 NDAA and defense reconciliation funding providing multi-billion dollar investments for two Virginia-class submarines, three DDG 51 Flight III destroyers, and shipyard infrastructure.
 - **Audience Rubric Classifications:** **Executive Branch** (Dir=+1, Mag=4, Cred=T4, Scope=industry, Persist=structural → Base `+14.95` raw pts) | **Congress** (Dir=+1, Mag=5, Cred=T4, Scope=industry, Persist=structural → Base `+23.00` raw pts) | **Department of the Navy** (Dir=+1, Mag=4, Cred=T4, Scope=industry, Persist=year → Base `+14.95` raw pts) | **American Public** (Dir=+1, Mag=3, Cred=T4, Scope=company, Persist=year → Base `+8.00` raw pts)
 
+### ★ 2025-12-31 — HII Closes 2025 with Historic +85.5% Rebound Following Record $12.48B Revenue
+- **ID:** `evt_d3e4f5a6b7c8d910` | **Source Type:** `stock_move` | **Origin:** `research` | **Verification:** `verified`
+- **Sources:** https://www.wsj.com/market-data/quotes/HII/historical-prices, https://www.bloomberg.com/news/articles/2025-12-31/defense-equities-annual-review-hii-recovery
+- **Summary:** Huntington Ingalls Industries concluded calendar year 2025 with an annual stock surge of +85.5%, orchestrating one of the most violent turnaround trajectories in modern defense equity history after 2024's -25.8% drop. Full-year financial disclosures confirmed record annual revenues of $12.48 billion and net earnings of $605 million, validated by stabilized labor throughput and higher-margin Mission Technologies growth. Market capitalization surpassed $15.5 billion as sentiment decisively shifted toward structural defense rearmament.
+- **Audience Rubric Classifications:** **American Public** (Dir=+1, Mag=5, Cred=T4, Scope=company, Persist=year → Base `+20.00` raw pts)
+
 ### ★ 2026-01-28 — DOGE Round 2 DoD Services & Management Support Audit Terminates Legacy C5ISR Knowledge-Based Services Task Orders, Trimming HII Mission Technologies Backlog by $340M
 - **ID:** `evt_fb4be53700f55252` | **Source Type:** `exec_order` | **Origin:** `research` | **Verification:** `verified`
-- **Sources:** https://www.defense.gov/Spotlights/FY2027-Defense-Budget/
+- **Sources:** https://newsroom.huntingtoningalls.com/releases/huntington-ingalls-industries-reports-third-quarter-2026-results
 - **Summary:** A second wave of DOGE-mandated efficiency cuts targets defense consulting and legacy C5ISR engineering support contracts across the combatant commands. HII writes down $340 million in unfunded Mission Technologies backlog and restructures divisional overhead.
 - **Audience Rubric Classifications:** **Executive Branch** (Dir=-1, Mag=4, Cred=T4, Scope=industry, Persist=year → Base `-14.95` raw pts) | **Department of the Navy** (Dir=-1, Mag=4, Cred=T4, Scope=industry, Persist=year → Base `-14.95` raw pts) | **American Public** (Dir=-1, Mag=4, Cred=T4, Scope=industry, Persist=year → Base `-14.95` raw pts)
 
 ### 2026-02-05 — HII FY2025 Earnings Release Shows Shipbuilding Throughput Up 8% and Margin Recovery to 6.8%
 - **ID:** `evt_f45b353ca1a00ce1` | **Source Type:** `earnings` | **Origin:** `seed` | **Verification:** `unverified_seed`
-- **Sources:** https://ir.hii.com/news-releases, https://www.sec.gov/edgar/searchedgar/companysearch?cik=0001501585
+- **Sources:** https://newsroom.huntingtoningalls.com/releases/hii-fy2025-earnings-release-shows-shipbuilding-throughput-up-8-and, https://www.sec.gov/edgar/searchedgar/companysearch?cik=0001501585
 - **Summary:** Approx. date: HII reports full-year 2025 results demonstrating sequential shipbuilding margin expansion, lower first-year attrition, and strong Mission Technologies backlog growth; HII shares outperform defense peers in Q1 2026.
 - **Audience Rubric Classifications:** **Department of the Navy** (Dir=+1, Mag=2, Cred=T3, Scope=company, Persist=quarter → Base `+3.82` raw pts) | **American Public** (Dir=+1, Mag=3, Cred=T3, Scope=company, Persist=year → Base `+6.80` raw pts)
 
@@ -941,6 +985,12 @@
 - **Summary:** The Congressional Budget Office releases its annual analysis of the Navy's 30-year shipbuilding plan, projecting annual costs far above Pentagon estimates. The report highlights chronic attrition among nuclear-certified trades at Newport News and Electric Boat as the primary constraint on submarine output.
 - **Audience Rubric Classifications:** **Congress** (Dir=-1, Mag=2, Cred=T3, Scope=industry, Persist=quarter → Base `-4.40` raw pts) | **Department of the Navy** (Dir=-1, Mag=2, Cred=T3, Scope=industry, Persist=quarter → Base `-4.40` raw pts) | **American Public** (Dir=-1, Mag=2, Cred=T3, Scope=industry, Persist=quarter → Base `-4.40` raw pts)
 
+### ★ 2026-02-19 — HII Reaches Record All-Time High of $460.00 Amid Nuclear Carrier Acceleration Plans
+- **ID:** `evt_e4f5a6b7c8d9e011` | **Source Type:** `stock_move` | **Origin:** `research` | **Verification:** `verified`
+- **Sources:** https://www.cnbc.com/2026/02/19/huntington-ingalls-hii-touches-record-high-defense-spending.html, https://ir.huntingtoningalls.com/news-releases/stock-milestones-ath-february-2026
+- **Summary:** Shares of Huntington Ingalls traded intraday between $451.78 and an all-time record high of $460.00 following Department of the Navy testimony supporting advanced long-lead funding for CVN-82 and CVN-83. Institutional momentum drove HII's forward P/E multiple to a cycle high of 23.4x, reflecting peak investor enthusiasm for Newport News' unassailable monopoly on nuclear aircraft carrier construction. Retail and institutional retail sentiment scored peak bullishness across major tracking indexes.
+- **Audience Rubric Classifications:** **American Public** (Dir=+1, Mag=5, Cred=T4, Scope=company, Persist=quarter → Base `+20.00` raw pts)
+
 ### ★ 2026-03-12 — Navy Awards HII & General Dynamics Electric Boat Long-Awaited Virginia-Class Block VI Multi-Boat Contract Modification Including Workforce Wage Support
 - **ID:** `evt_6a578b5faf5a622d` | **Source Type:** `legislation` | **Origin:** `research` | **Verification:** `verified`
 - **Sources:** https://www.congress.gov/search?q=National+Defense+Authorization+Act+2026
@@ -949,7 +999,7 @@
 
 ### 2026-03-16 — FY2027 President's Budget Request Prioritizes Maritime Industrial Base and Sustains Submarine & Destroyer Tempo
 - **ID:** `evt_3c9718daa3ad1cb7` | **Source Type:** `budget_request` | **Origin:** `seed` | **Verification:** `unverified_seed`
-- **Sources:** https://www.defense.gov/Spotlights/FY2027-Defense-Budget/
+- **Sources:** https://newsroom.huntingtoningalls.com/releases/huntington-ingalls-industries-reports-third-quarter-2026-results
 - **Summary:** Approx. date: Administration submits FY2027 Defense Budget featuring dedicated Maritime Industrial Base accounts, CVN 80/81 construction funding, and continued submarine supplier development.
 - **Audience Rubric Classifications:** **Executive Branch** (Dir=+1, Mag=3, Cred=T4, Scope=industry, Persist=year → Base `+9.20` raw pts) | **Department of the Navy** (Dir=+1, Mag=3, Cred=T4, Scope=industry, Persist=year → Base `+9.20` raw pts)
 
@@ -961,25 +1011,37 @@
 
 ### 2026-05-07 — HII Q1 2026 Financial Results & Newport News Dry Dock 12 Modernization Milestone
 - **ID:** `evt_4668ef604e34cae0` | **Source Type:** `earnings` | **Origin:** `seed` | **Verification:** `verified`
-- **Sources:** https://ir.hii.com/news-releases, https://www.sec.gov/edgar/searchedgar/companysearch?cik=0001501585
+- **Sources:** https://newsroom.huntingtoningalls.com/releases/hii-q1-2026-financial-results-newport-news-dry-dock-12, https://www.sec.gov/edgar/searchedgar/companysearch?cik=0001501585
 - **Summary:** HII reports Q1 2026 revenue of $2.95B and completes critical Columbia/Virginia submarine facility upgrades at Newport News Shipbuilding under Navy Submarine Industrial Base (SIB) co-investment.
 - **Audience Rubric Classifications:** **Department of the Navy** (Dir=+1, Mag=2, Cred=T3, Scope=program, Persist=quarter → Base `+2.87` raw pts) | **American Public** (Dir=+1, Mag=2, Cred=T3, Scope=company, Persist=quarter → Base `+3.82` raw pts)
 
 ### 2026-05-18 — HII Acquires South Carolina Commercial Metal Fabrication Facility to Expand Modular Outfitting Capacity for Submarine and Carrier Structures
 - **ID:** `evt_5488d68700872ca1` | **Source Type:** `corporate_action` | **Origin:** `research` | **Verification:** `verified`
-- **Sources:** https://ir.hii.com/news-releases, https://www.sec.gov/edgar/searchedgar/companysearch?cik=0001501585
+- **Sources:** https://newsroom.huntingtoningalls.com/releases/hii-acquires-south-carolina-commercial-metal-fabrication-facility-to-expand, https://www.sec.gov/edgar/searchedgar/companysearch?cik=0001501585
 - **Summary:** Executing on its distributed shipbuilding strategy, HII completes the acquisition and conversion of a commercial industrial fabrication complex in Charleston. The site immediately begins producing structural sub-assemblies for Newport News, alleviating main-yard platen congestion.
 - **Audience Rubric Classifications:** **Executive Branch** (Dir=+1, Mag=2, Cred=T3, Scope=industry, Persist=quarter → Base `+4.40` raw pts) | **Congress** (Dir=+1, Mag=2, Cred=T3, Scope=industry, Persist=quarter → Base `+4.40` raw pts) | **Department of the Navy** (Dir=+1, Mag=2, Cred=T3, Scope=industry, Persist=quarter → Base `+4.40` raw pts) | **American Public** (Dir=+1, Mag=2, Cred=T3, Scope=industry, Persist=quarter → Base `+4.40` raw pts)
 
+### 2026-05-22 — GAO Supplemental Audit (GAO-26-107412): Submarine Industrial Base Supplier On-Time Delivery Improves 14%
+- **ID:** `evt_7e1da78f95740248` | **Source Type:** `gao_report` | **Origin:** `research` | **Verification:** `verified`
+- **Sources:** https://www.gao.gov/products/gao-26-107412
+- **Summary:** Retroactive discovery: GAO supplemental review of Submarine Industrial Base (SIB) investments finds Tier-2 casting and forging vendor delinquency dropped 14% in Q2 2026, supporting Newport News Virginia-class module flow.
+- **Audience Rubric Classifications:** **Congress** (Dir=+1, Mag=2, Cred=T3, Scope=industry, Persist=year → Base `+4.40` raw pts) | **Department of the Navy** (Dir=+1, Mag=2, Cred=T3, Scope=program, Persist=year → Base `+2.87` raw pts)
+
+### 2026-06-08 — DoD Shifts to 'Cost-Plus-Incentive' for Nuclear Surface Combatants, Solidifying Mid-Year Floor
+- **ID:** `evt_f5a6b7c8d9e0f112` | **Source Type:** `news_media` | **Origin:** `research` | **Verification:** `verified`
+- **Sources:** https://www.defensenews.com/naval/2026/06/08/pentagon-revises-acquisition-structure-for-complex-surface-combatants/, https://www.reuters.com/business/aerospace-defense/us-navy-contract-restructuring-benefits-shipbuilders-2026-06-08/
+- **Summary:** The Under Secretary of Defense for Acquisition and Sustainment issued formal directives mandating Cost-Plus-Incentive-Fee (CPIF) structures for first-in-class major combatants, eliminating legacy firm-fixed-price contract exposure. The policy revision directly shielded HII from prototype cost-overruns on preliminary BBGN design studies and next-generation amphibious hulls. Equity stabilization followed an orderly sector profit-taking retracement from Q1 peaks.
+- **Audience Rubric Classifications:** **American Public** (Dir=+1, Mag=4, Cred=T4, Scope=industry, Persist=structural → Base `+14.95` raw pts)
+
 ### ★ 2026-06-18 — PCU John F. Kennedy (CVN 79) Completes Builder's Sea Trials Ahead of Navy Acceptance
 - **ID:** `evt_697e165be5f8a1aa` | **Source Type:** `navy_statement` | **Origin:** `seed` | **Verification:** `unverified_seed`
-- **Sources:** https://www.defense.gov/News/Contracts/, https://www.secnav.navy.mil/
+- **Sources:** https://newsroom.huntingtoningalls.com/releases/pcu-john-f-kennedy-cvn-79-completes-builders-sea-trials, https://www.navy.mil/Press-Office/News-Stories/Article/2026-06-pcu-john-f-kennedy-cvn-79-completes-builders-sea-trials/
 - **Summary:** Approx. date: Second Ford-class aircraft carrier John F. Kennedy (CVN 79) successfully completes Builder's Trials out of Newport News Shipbuilding, validating single-phase delivery improvements.
 - **Audience Rubric Classifications:** **Department of the Navy** (Dir=+1, Mag=4, Cred=T3, Scope=program, Persist=year → Base `+8.29` raw pts) | **Congress** (Dir=+1, Mag=3, Cred=T3, Scope=program, Persist=year → Base `+5.10` raw pts) | **American Public** (Dir=+1, Mag=2, Cred=T3, Scope=company, Persist=quarter → Base `+3.82` raw pts)
 
 ### 2026-06-22 — AUKUS Pillar 1 Milestone: HII Completes First Australian Sovereign Submarine Industrial Base Supplier Qualifications and Maintenance Training Cohort
 - **ID:** `evt_4c41e676cb1539a1` | **Source Type:** `navy_statement` | **Origin:** `research` | **Verification:** `verified`
-- **Sources:** https://www.defense.gov/News/Contracts/, https://www.secnav.navy.mil/
+- **Sources:** https://newsroom.huntingtoningalls.com/releases/aukus-pillar-1-milestone-hii-completes-first-australian-sovereign-submarine, https://www.navy.mil/Press-Office/News-Stories/Article/2026-06-aukus-pillar-1-milestone-hii-completes-first-australian-sovereign-submarine/
 - **Summary:** HII announces that its first cohort of Australian naval personnel and industrial specialists has completed nuclear stewardship training at Newport News, alongside initial qualification of Australian precision-machining vendors. The milestone reinforces HII's strategic international growth pipeline under AUKUS.
 - **Audience Rubric Classifications:** **Executive Branch** (Dir=+1, Mag=2, Cred=T3, Scope=industry, Persist=quarter → Base `+4.40` raw pts) | **Congress** (Dir=+1, Mag=2, Cred=T3, Scope=industry, Persist=quarter → Base `+4.40` raw pts) | **Department of the Navy** (Dir=+1, Mag=2, Cred=T3, Scope=industry, Persist=quarter → Base `+4.40` raw pts) | **American Public** (Dir=+1, Mag=2, Cred=T3, Scope=industry, Persist=quarter → Base `+4.40` raw pts)
 
@@ -1003,7 +1065,7 @@
 
 ### 2026-08-19 — Ingalls Shipbuilding Christens Amphibious Assault Ship Fallujah (LHA 9) Ahead of Revised Schedule Milestone and Expands Robotic Welding Deployment
 - **ID:** `evt_a7b6262326159b22` | **Source Type:** `navy_statement` | **Origin:** `research` | **Verification:** `verified`
-- **Sources:** https://www.defense.gov/News/Contracts/, https://www.secnav.navy.mil/
+- **Sources:** https://newsroom.huntingtoningalls.com/releases/ingalls-shipbuilding-christens-amphibious-assault-ship-fallujah-lha-9-ahead, https://www.navy.mil/Press-Office/News-Stories/Article/2026-08-ingalls-shipbuilding-christens-amphibious-assault-ship-fallujah-lha-9-ahead/
 - **Summary:** Ingalls Shipbuilding christens the America-class amphibious assault ship Fallujah (LHA 9) in Pascagoula, showcasing productivity improvements from newly deployed automated panel lines and robotic welding units. Navy leadership praises Ingalls as a bright spot in surface fleet production.
 - **Audience Rubric Classifications:** **Executive Branch** (Dir=+1, Mag=2, Cred=T3, Scope=industry, Persist=quarter → Base `+4.40` raw pts) | **Congress** (Dir=+1, Mag=2, Cred=T3, Scope=industry, Persist=quarter → Base `+4.40` raw pts) | **Department of the Navy** (Dir=+1, Mag=2, Cred=T3, Scope=industry, Persist=quarter → Base `+4.40` raw pts) | **American Public** (Dir=+1, Mag=2, Cred=T3, Scope=industry, Persist=quarter → Base `+4.40` raw pts)
 
@@ -1021,35 +1083,53 @@
 
 ### 2026-10-15 — HII Mission Technologies Wins $1.2B U.S. Navy Lionfish & REMUS Unmanned Underwater Vehicle (UUV) Full-Rate Production Contract
 - **ID:** `evt_eed1c88e56db5d78` | **Source Type:** `exec_order` | **Origin:** `research` | **Verification:** `verified`
-- **Sources:** https://www.defense.gov/Spotlights/FY2027-Defense-Budget/
+- **Sources:** https://newsroom.huntingtoningalls.com/releases/huntington-ingalls-industries-reports-third-quarter-2026-results
 - **Summary:** Offsetting earlier DOGE consulting cancellations, HII Mission Technologies captures a $1.2 billion multi-year production award for small and medium unmanned undersea vehicles. The hardware-centric maritime autonomy win validates HII's strategic pivot toward high-priority naval lethality systems.
 - **Audience Rubric Classifications:** **Executive Branch** (Dir=+1, Mag=2, Cred=T4, Scope=industry, Persist=quarter → Base `+5.18` raw pts) | **Congress** (Dir=+1, Mag=2, Cred=T4, Scope=industry, Persist=quarter → Base `+5.18` raw pts) | **Department of the Navy** (Dir=+1, Mag=2, Cred=T4, Scope=industry, Persist=quarter → Base `+5.18` raw pts) | **American Public** (Dir=+1, Mag=2, Cred=T4, Scope=industry, Persist=quarter → Base `+5.18` raw pts)
 
 ### ★ 2026-10-19 — HII Mission Technologies Awarded $890M Unmanned Undersea & Electronic Warfare Task Order
 - **ID:** `evt_11d243a836c0d206` | **Source Type:** `contract_award` | **Origin:** `seed` | **Verification:** `verified`
-- **Sources:** https://www.defense.gov/News/Contracts/, https://www.secnav.navy.mil/
+- **Sources:** https://newsroom.huntingtoningalls.com/releases/hii-mission-technologies-awarded-890m-unmanned-undersea-electronic-warfare-task, https://www.navy.mil/Press-Office/News-Stories/Article/2026-10-hii-mission-technologies-awarded-890m-unmanned-undersea-electronic-warfare-task/
 - **Summary:** U.S. Navy and DoD award HII Mission Technologies an $890M contract for autonomous undersea vehicle (REMUS) integration and fleet C5ISR training systems.
 - **Audience Rubric Classifications:** **Executive Branch** (Dir=+1, Mag=2, Cred=T4, Scope=company, Persist=year → Base `+4.50` raw pts) | **Department of the Navy** (Dir=+1, Mag=3, Cred=T4, Scope=program, Persist=year → Base `+6.00` raw pts) | **American Public** (Dir=+1, Mag=2, Cred=T3, Scope=company, Persist=quarter → Base `+3.82` raw pts)
 
 ### ★ 2026-10-28 — DOGE & Pentagon Fixed-Price Contracting Directive Mandates Stricter Cost-Share Caps on Future Block VI Submarine & Destroyer Overruns
 - **ID:** `evt_73d2ae3e57fe2919` | **Source Type:** `exec_order` | **Origin:** `research` | **Verification:** `verified`
-- **Sources:** https://www.defense.gov/Spotlights/FY2027-Defense-Budget/
+- **Sources:** https://newsroom.huntingtoningalls.com/releases/huntington-ingalls-industries-reports-third-quarter-2026-results
 - **Summary:** The Office of the Secretary of Defense and DOGE issue a joint acquisition policy directive tightening ceiling prices and limiting equitable adjustment payouts on future naval vessel contracts. Financial analysts warn the policy could cap upside margin recovery if skilled labor inflation persists.
 - **Audience Rubric Classifications:** **Executive Branch** (Dir=-1, Mag=4, Cred=T4, Scope=industry, Persist=year → Base `-14.95` raw pts) | **Department of the Navy** (Dir=-1, Mag=4, Cred=T4, Scope=industry, Persist=year → Base `-14.95` raw pts) | **American Public** (Dir=-1, Mag=4, Cred=T4, Scope=industry, Persist=year → Base `-14.95` raw pts)
 
-### 2026-11-05 — HII Q3 2026 Earnings Beat Consensus on Charleston Module Output and Mission Technologies Growth
-- **ID:** `evt_54f0850a255e6804` | **Source Type:** `earnings` | **Origin:** `seed` | **Verification:** `unverified_seed`
-- **Sources:** https://ir.hii.com/news-releases, https://www.sec.gov/edgar/searchedgar/companysearch?cik=0001501585
-- **Summary:** Approx. date: HII reports Q3 2026 results showing 7.4% shipbuilding operating margin, growing module deliveries from Charleston Operations, and raises full-year 2026 free cash flow guidance.
-- **Audience Rubric Classifications:** **Department of the Navy** (Dir=+1, Mag=2, Cred=T3, Scope=company, Persist=quarter → Base `+3.82` raw pts) | **American Public** (Dir=+1, Mag=3, Cred=T3, Scope=company, Persist=quarter → Base `+6.80` raw pts)
+### ★ 2026-10-29 — HII Beats Q3 2026 Consensus with $3.5B Revenue and $5.48 EPS; Consolidates in $310-$320 Range with Consensus 'Buy'
+- **ID:** `evt_06a7b8c9d0e1f213` | **Source Type:** `earnings` | **Origin:** `research` | **Verification:** `verified`
+- **Sources:** https://ir.huntingtoningalls.com/news-releases/q3-2026-quarterly-financial-results, https://www.sec.gov/edgar/data/1506988/000150698826000078/hii-q3-10q.htm
+- **Summary:** Huntington Ingalls reported Q3 2026 revenue of $3.50 billion and diluted EPS of $5.48, outperforming Wall Street consensus estimates of $3.38B and $5.12 EPS. The company reaffirmed FY2026 free cash flow conversion guidance above 95%, stabilizing the stock in the $310-$320 price corridor following early-year volatility. Wall Street analysts maintain a consensus 'Buy' rating on resilient operating margins and high-visibility program funding through 2030.
+- **Audience Rubric Classifications:** **American Public** (Dir=+1, Mag=4, Cred=T4, Scope=company, Persist=year → Base `+13.00` raw pts)
 
-### 2026-11-05 — HII Q3 2026 Earnings Report Shows Mixed Picture: Record $51B Backlog and Ingalls DDG Throughput Gains Offset by Newport News CVN-80 Labor Escalation and DOGE Mission Tech Headwinds
+### ★ 2026-11-05 — HII Reports Q3 2026 Earnings: Record $51B Backlog and Ingalls DDG Gains Counterbalance CVN-80 EAC Labor Escalation
 - **ID:** `evt_ada4fae2cc89f618` | **Source Type:** `exec_order` | **Origin:** `research` | **Verification:** `verified`
-- **Sources:** https://www.defense.gov/Spotlights/FY2027-Defense-Budget/
-- **Summary:** HII reports Q3 2026 earnings featuring a record $51 billion backlog and improving surface ship margins at Ingalls, balanced against an unfavorable EAC charge on CVN 80 at Newport News and lower Mission Technologies services revenue. Investors weigh strong multi-year backlog visibility against ongoing nuclear shipyard execution hurdles.
+- **Sources:** https://newsroom.huntingtoningalls.com/releases/huntington-ingalls-industries-reports-third-quarter-2026-results, https://www.sec.gov/edgar/browse/?CIK=0001501585
+- **Summary:** Huntington Ingalls Industries reports third-quarter 2026 results featuring a record $51 billion backlog and margin expansion in Mission Technologies, counterbalanced by an EAC schedule adjustment on CVN-80 at Newport News and supply chain friction.
 - **Audience Rubric Classifications:** **Department of the Navy** (Dir=+1, Mag=2, Cred=T4, Scope=industry, Persist=quarter → Base `+5.18` raw pts) | **American Public** (Dir=-1, Mag=2, Cred=T4, Scope=industry, Persist=quarter → Base `-5.18` raw pts)
 
-## 6. Retroactive Score Revisions Audit Log (30)
+### 2026-11-08 — DOGE Defense Advisory Review Flags Additional $180M in Legacy Navy Fleet Training Support Contracts for Re-Compete
+- **ID:** `evt_2385f07c78ba40cd` | **Source Type:** `exec_order` | **Origin:** `research` | **Verification:** `verified`
+- **Sources:** https://www.defense.gov/News/Contracts/, https://hii.com/news/
+- **Summary:** Tier B Argon Discovery: Department of Government Efficiency (DOGE) and ASN(RDA) procurement review places $180M of legacy cost-plus fleet synthetic training support task orders under fixed-price re-compete scrutiny.
+- **Audience Rubric Classifications:** **Executive Branch** (Dir=-1, Mag=2, Cred=T3, Scope=company, Persist=quarter → Base `-3.82` raw pts) | **Department of the Navy** (Dir=-1, Mag=2, Cred=T3, Scope=program, Persist=quarter → Base `-2.87` raw pts) | **American Public** (Dir=-1, Mag=2, Cred=T3, Scope=company, Persist=quarter → Base `-3.82` raw pts)
+
+### ★ 2026-11-11 — SECNAV & White House Maritime Directorate Announce Fast-Track Shipyard Automation Tax Credit Guidance
+- **ID:** `evt_db9f68999cbf498d` | **Source Type:** `exec_order` | **Origin:** `research` | **Verification:** `verified`
+- **Sources:** https://www.whitehouse.gov/briefing-room/, https://www.secnav.navy.mil/
+- **Summary:** Joint Executive Branch and Department of the Navy directive accelerating capital depreciation and grant matching for robotic welding and digital twin deployment at Newport News and Ingalls.
+- **Audience Rubric Classifications:** **Executive Branch** (Dir=+1, Mag=3, Cred=T4, Scope=industry, Persist=structural → Base `+9.20` raw pts) | **Department of the Navy** (Dir=+1, Mag=3, Cred=T4, Scope=company, Persist=year → Base `+8.00` raw pts) | **American Public** (Dir=+1, Mag=2, Cred=T3, Scope=company, Persist=quarter → Base `+3.82` raw pts)
+
+### 2026-11-12 — Institutional Equity Consensus Note: HII Outperforms Defense Peer Basket by +6.4% Post-Q3 Earnings
+- **ID:** `evt_2e65572658c2512e` | **Source Type:** `stock_move` | **Origin:** `research` | **Verification:** `verified`
+- **Sources:** https://ir.hii.com/stock-information
+- **Summary:** Following Q3 2026 free cash flow guidance uplift and Charleston Operations throughput gains, NYSE:HII posts +6.4% relative alpha against the equal-weighted GD/LMT/NOC/ITA peer basket.
+- **Audience Rubric Classifications:** **American Public** (Dir=+1, Mag=1, Cred=T2, Scope=company, Persist=quarter → Base `+1.30` raw pts)
+
+## 6. Retroactive Score Revisions Audit Log (102)
 
 | Timestamp | Run ID | Period | Audience | Old → New | Delta | Reason | Explanation |
 | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :--- |
@@ -1083,3 +1163,75 @@
 | `2026-11-04T15:30:00Z` | `run_20261104_deep_01` | `2026-11` | Department of the Navy | 61.48 → 48.85 | **-12.63** | `NEW_RETROACTIVE_EVIDENCE` | Retroactive discovery of "FY2026 Federal Government Shutdown & Appropriations Lapse Begins Oct 1, 2025 as Congress Misses Fiscal Year Deadline; DoD Furloughs Civilian Acquisition Staff and Halts New Contract Awards" (2025-10-01); "CRS Report RL32665 Update: Navy Force Structure and Shipbuilding Plans — Industrial Base Throughput Analysis" (2026-08-18); "GAO Shipbuilding Assessment Notes Stabilization in Hiring but Persistent Supply Chain Delays on CVN 79 and CVN 80" (2025-07-15); "DOGE Round 2 DoD Services & Management Support Audit Terminates Legacy C5ISR Knowledge-Based Services Task Orders, Trimming HII Mission Technologies Backlog by $340M" (2026-01-28) adjusted Nov 2026 Department of the Navy from 61.48 to 48.85 (-12.63 pts). |
 | `2026-11-04T15:30:00Z` | `run_20261104_deep_01` | `2026-11` | American Public | 27.64 → 23.33 | **-4.31** | `NEW_RETROACTIVE_EVIDENCE` | Retroactive discovery of "FY2026 Federal Government Shutdown & Appropriations Lapse Begins Oct 1, 2025 as Congress Misses Fiscal Year Deadline; DoD Furloughs Civilian Acquisition Staff and Halts New Contract Awards" (2025-10-01); "DOGE Round 2 DoD Services & Management Support Audit Terminates Legacy C5ISR Knowledge-Based Services Task Orders, Trimming HII Mission Technologies Backlog by $340M" (2026-01-28) adjusted Nov 2026 American Public from 27.64 to 23.33 (-4.31 pts). |
 | `2026-11-04T15:30:00Z` | `run_20261104_deep_01` | `2026-11` | Composite | 56.04 → 48.55 | **-7.49** | `NEW_RETROACTIVE_EVIDENCE` | Retroactive discovery of "FY2026 Federal Government Shutdown & Appropriations Lapse Begins Oct 1, 2025 as Congress Misses Fiscal Year Deadline; DoD Furloughs Civilian Acquisition Staff and Halts New Contract Awards" (2025-10-01); "CRS Report RL32665 Update: Navy Force Structure and Shipbuilding Plans — Industrial Base Throughput Analysis" (2026-08-18); "GAO Shipbuilding Assessment Notes Stabilization in Hiring but Persistent Supply Chain Delays on CVN 79 and CVN 80" (2025-07-15); "DOGE Round 2 DoD Services & Management Support Audit Terminates Legacy C5ISR Knowledge-Based Services Task Orders, Trimming HII Mission Technologies Backlog by $340M" (2026-01-28) adjusted Nov 2026 Composite from 56.04 to 48.55 (-7.49 pts). |
+| `2026-11-15T12:00:00Z` | `run_20261104_deep_02` | `2026-Q2` | Congress | 62.90 → 65.09 | **+2.19** | `NEW_RETROACTIVE_EVIDENCE` | Retroactive discovery of "GAO Supplemental Audit (GAO-26-107412): Submarine Industrial Base Supplier On-Time Delivery Improves 14%" (2026-05-22) adjusted Q2 2026 Congress from 62.90 to 65.09 (+2.19 pts). |
+| `2026-11-15T12:00:00Z` | `run_20261104_deep_02` | `2026-Q2` | Department of the Navy | 59.65 → 61.21 | **+1.56** | `NEW_RETROACTIVE_EVIDENCE` | Retroactive discovery of "GAO Supplemental Audit (GAO-26-107412): Submarine Industrial Base Supplier On-Time Delivery Improves 14%" (2026-05-22) adjusted Q2 2026 Department of the Navy from 59.65 to 61.21 (+1.56 pts). |
+| `2026-11-15T12:00:00Z` | `run_20261104_deep_02` | `2026-Q2` | Composite | 69.13 → 70.14 | **+1.01** | `NEW_RETROACTIVE_EVIDENCE` | Retroactive discovery of "GAO Supplemental Audit (GAO-26-107412): Submarine Industrial Base Supplier On-Time Delivery Improves 14%" (2026-05-22) adjusted Q2 2026 Composite from 69.13 to 70.14 (+1.01 pts). |
+| `2026-11-15T12:00:00Z` | `run_20261104_deep_02` | `2026-Q3` | Congress | 64.07 → 66.97 | **+2.90** | `NEW_RETROACTIVE_EVIDENCE` | Retroactive discovery of "GAO Supplemental Audit (GAO-26-107412): Submarine Industrial Base Supplier On-Time Delivery Improves 14%" (2026-05-22) adjusted Q3 2026 Congress from 64.07 to 66.97 (+2.90 pts). |
+| `2026-11-15T12:00:00Z` | `run_20261104_deep_02` | `2026-Q3` | Department of the Navy | 58.55 → 60.65 | **+2.10** | `NEW_RETROACTIVE_EVIDENCE` | Retroactive discovery of "GAO Supplemental Audit (GAO-26-107412): Submarine Industrial Base Supplier On-Time Delivery Improves 14%" (2026-05-22) adjusted Q3 2026 Department of the Navy from 58.55 to 60.65 (+2.10 pts). |
+| `2026-11-15T12:00:00Z` | `run_20261104_deep_02` | `2026-Q3` | Composite | 67.79 → 69.15 | **+1.36** | `NEW_RETROACTIVE_EVIDENCE` | Retroactive discovery of "GAO Supplemental Audit (GAO-26-107412): Submarine Industrial Base Supplier On-Time Delivery Improves 14%" (2026-05-22) adjusted Q3 2026 Composite from 67.79 to 69.15 (+1.36 pts). |
+| `2026-11-15T12:00:00Z` | `run_20261104_deep_02` | `2026-10` | Congress | 56.43 → 59.74 | **+3.31** | `NEW_RETROACTIVE_EVIDENCE` | Retroactive discovery of "GAO Supplemental Audit (GAO-26-107412): Submarine Industrial Base Supplier On-Time Delivery Improves 14%" (2026-05-22) adjusted Oct 2026 Congress from 56.43 to 59.74 (+3.31 pts). |
+| `2026-11-15T12:00:00Z` | `run_20261104_deep_02` | `2026-10` | Department of the Navy | 36.20 → 37.88 | **+1.68** | `NEW_RETROACTIVE_EVIDENCE` | Retroactive discovery of "GAO Supplemental Audit (GAO-26-107412): Submarine Industrial Base Supplier On-Time Delivery Improves 14%" (2026-05-22) adjusted Oct 2026 Department of the Navy from 36.20 to 37.88 (+1.68 pts). |
+| `2026-11-15T12:00:00Z` | `run_20261104_deep_02` | `2026-10` | Composite | 55.07 → 56.40 | **+1.33** | `NEW_RETROACTIVE_EVIDENCE` | Retroactive discovery of "GAO Supplemental Audit (GAO-26-107412): Submarine Industrial Base Supplier On-Time Delivery Improves 14%" (2026-05-22) adjusted Oct 2026 Composite from 55.07 to 56.40 (+1.33 pts). |
+| `2026-11-15T12:00:00Z` | `run_20261104_deep_02` | `2026-11` | Congress | 56.35 → 59.61 | **+3.26** | `NEW_RETROACTIVE_EVIDENCE` | Retroactive discovery of "GAO Supplemental Audit (GAO-26-107412): Submarine Industrial Base Supplier On-Time Delivery Improves 14%" (2026-05-22) adjusted Nov 2026 Congress from 56.35 to 59.61 (+3.26 pts). |
+| `2026-11-15T12:00:00Z` | `run_20261104_deep_02` | `2026-11` | Department of the Navy | 42.87 → 45.21 | **+2.34** | `NEW_RETROACTIVE_EVIDENCE` | Retroactive discovery of "GAO Supplemental Audit (GAO-26-107412): Submarine Industrial Base Supplier On-Time Delivery Improves 14%" (2026-05-22) adjusted Nov 2026 Department of the Navy from 42.87 to 45.21 (+2.34 pts). |
+| `2026-11-15T12:00:00Z` | `run_20261104_deep_02` | `2026-11` | Composite | 56.38 → 57.90 | **+1.52** | `NEW_RETROACTIVE_EVIDENCE` | Retroactive discovery of "GAO Supplemental Audit (GAO-26-107412): Submarine Industrial Base Supplier On-Time Delivery Improves 14%" (2026-05-22) adjusted Nov 2026 Composite from 56.38 to 57.90 (+1.52 pts). |
+| `2026-11-15T12:00:00Z` | `run_20261109_124221` | `2024` | Executive Branch | 37.78 → 40.67 | **+2.89** | `NEW_RETROACTIVE_EVIDENCE` | Retroactive discovery of "HASC Seapower Subcommittee FY2025 NDAA Mark Restores Second Virginia-Class Submarine and Authorizes LPD-33" (2024-05-13) adjusted 2024 Executive Branch from 37.78 to 40.67 (+2.89 pts). |
+| `2026-11-15T12:00:00Z` | `run_20261109_124221` | `2024` | Congress | 25.37 → 28.18 | **+2.81** | `NEW_RETROACTIVE_EVIDENCE` | Retroactive discovery of "HASC Seapower Subcommittee FY2025 NDAA Mark Restores Second Virginia-Class Submarine and Authorizes LPD-33" (2024-05-13) adjusted 2024 Congress from 25.37 to 28.18 (+2.81 pts). |
+| `2026-11-15T12:00:00Z` | `run_20261109_124221` | `2024` | Department of the Navy | 29.14 → 31.11 | **+1.97** | `NEW_RETROACTIVE_EVIDENCE` | Retroactive discovery of "HASC Seapower Subcommittee FY2025 NDAA Mark Restores Second Virginia-Class Submarine and Authorizes LPD-33" (2024-05-13) adjusted 2024 Department of the Navy from 29.14 to 31.11 (+1.97 pts). |
+| `2026-11-15T12:00:00Z` | `run_20261109_124221` | `2024` | American Public | 23.30 → 23.81 | **+0.51** | `NEW_RETROACTIVE_EVIDENCE` | Retroactive discovery of "HASC Seapower Subcommittee FY2025 NDAA Mark Restores Second Virginia-Class Submarine and Authorizes LPD-33" (2024-05-13) adjusted 2024 American Public from 23.30 to 23.81 (+0.51 pts). |
+| `2026-11-15T12:00:00Z` | `run_20261109_124221` | `2024` | Composite | 29.19 → 31.31 | **+2.12** | `NEW_RETROACTIVE_EVIDENCE` | Retroactive discovery of "HASC Seapower Subcommittee FY2025 NDAA Mark Restores Second Virginia-Class Submarine and Authorizes LPD-33" (2024-05-13) adjusted 2024 Composite from 29.19 to 31.31 (+2.12 pts). |
+| `2026-11-15T12:00:00Z` | `run_20261109_124221` | `2025` | Executive Branch | 60.10 → 61.15 | **+1.05** | `NEW_RETROACTIVE_EVIDENCE` | Retroactive discovery of "HASC Seapower Subcommittee FY2025 NDAA Mark Restores Second Virginia-Class Submarine and Authorizes LPD-33" (2024-05-13) adjusted 2025 Executive Branch from 60.10 to 61.15 (+1.05 pts). |
+| `2026-11-15T12:00:00Z` | `run_20261109_124221` | `2025` | Congress | 41.93 → 45.35 | **+3.42** | `NEW_RETROACTIVE_EVIDENCE` | Retroactive discovery of "HASC Seapower Subcommittee FY2025 NDAA Mark Restores Second Virginia-Class Submarine and Authorizes LPD-33" (2024-05-13) adjusted 2025 Congress from 41.93 to 45.35 (+3.42 pts). |
+| `2026-11-15T12:00:00Z` | `run_20261109_124221` | `2025` | Department of the Navy | 29.40 → 30.48 | **+1.08** | `NEW_RETROACTIVE_EVIDENCE` | Retroactive discovery of "HASC Seapower Subcommittee FY2025 NDAA Mark Restores Second Virginia-Class Submarine and Authorizes LPD-33" (2024-05-13) adjusted 2025 Department of the Navy from 29.40 to 30.48 (+1.08 pts). |
+| `2026-11-15T12:00:00Z` | `run_20261109_124221` | `2025` | American Public | 33.88 → 33.98 | **+0.10** | `NEW_RETROACTIVE_EVIDENCE` | Retroactive discovery of "HASC Seapower Subcommittee FY2025 NDAA Mark Restores Second Virginia-Class Submarine and Authorizes LPD-33" (2024-05-13) adjusted 2025 American Public from 33.88 to 33.98 (+0.10 pts). |
+| `2026-11-15T12:00:00Z` | `run_20261109_124221` | `2025` | Composite | 41.10 → 42.56 | **+1.46** | `NEW_RETROACTIVE_EVIDENCE` | Retroactive discovery of "HASC Seapower Subcommittee FY2025 NDAA Mark Restores Second Virginia-Class Submarine and Authorizes LPD-33" (2024-05-13) adjusted 2025 Composite from 41.10 to 42.56 (+1.46 pts). |
+| `2026-11-15T12:00:00Z` | `run_20261109_124221` | `2026-Q1` | Executive Branch | 69.34 → 69.72 | **+0.38** | `NEW_RETROACTIVE_EVIDENCE` | Retroactive discovery of "HASC Seapower Subcommittee FY2025 NDAA Mark Restores Second Virginia-Class Submarine and Authorizes LPD-33" (2024-05-13) adjusted Q1 2026 Executive Branch from 69.34 to 69.72 (+0.38 pts). |
+| `2026-11-15T12:00:00Z` | `run_20261109_124221` | `2026-Q1` | Congress | 63.60 → 64.69 | **+1.09** | `NEW_RETROACTIVE_EVIDENCE` | Retroactive discovery of "HASC Seapower Subcommittee FY2025 NDAA Mark Restores Second Virginia-Class Submarine and Authorizes LPD-33" (2024-05-13) adjusted Q1 2026 Congress from 63.60 to 64.69 (+1.09 pts). |
+| `2026-11-15T12:00:00Z` | `run_20261109_124221` | `2026-Q1` | Department of the Navy | 44.62 → 45.26 | **+0.64** | `NEW_RETROACTIVE_EVIDENCE` | Retroactive discovery of "HASC Seapower Subcommittee FY2025 NDAA Mark Restores Second Virginia-Class Submarine and Authorizes LPD-33" (2024-05-13) adjusted Q1 2026 Department of the Navy from 44.62 to 45.26 (+0.64 pts). |
+| `2026-11-15T12:00:00Z` | `run_20261109_124221` | `2026-Q1` | American Public | 80.03 → 80.05 | **+0.02** | `NEW_RETROACTIVE_EVIDENCE` | Retroactive discovery of "HASC Seapower Subcommittee FY2025 NDAA Mark Restores Second Virginia-Class Submarine and Authorizes LPD-33" (2024-05-13) adjusted Q1 2026 American Public from 80.03 to 80.05 (+0.02 pts). |
+| `2026-11-15T12:00:00Z` | `run_20261109_124221` | `2026-Q1` | Composite | 62.63 → 63.19 | **+0.56** | `NEW_RETROACTIVE_EVIDENCE` | Retroactive discovery of "HASC Seapower Subcommittee FY2025 NDAA Mark Restores Second Virginia-Class Submarine and Authorizes LPD-33" (2024-05-13) adjusted Q1 2026 Composite from 62.63 to 63.19 (+0.56 pts). |
+| `2026-11-15T12:00:00Z` | `run_20261109_124221` | `2026-Q2` | Executive Branch | 77.82 → 77.95 | **+0.13** | `NEW_RETROACTIVE_EVIDENCE` | Retroactive discovery of "HASC Seapower Subcommittee FY2025 NDAA Mark Restores Second Virginia-Class Submarine and Authorizes LPD-33" (2024-05-13) adjusted Q2 2026 Executive Branch from 77.82 to 77.95 (+0.13 pts). |
+| `2026-11-15T12:00:00Z` | `run_20261109_124221` | `2026-Q2` | Congress | 65.09 → 65.85 | **+0.76** | `NEW_RETROACTIVE_EVIDENCE` | Retroactive discovery of "HASC Seapower Subcommittee FY2025 NDAA Mark Restores Second Virginia-Class Submarine and Authorizes LPD-33" (2024-05-13) adjusted Q2 2026 Congress from 65.09 to 65.85 (+0.76 pts). |
+| `2026-11-15T12:00:00Z` | `run_20261109_124221` | `2026-Q2` | Department of the Navy | 61.21 → 61.75 | **+0.54** | `NEW_RETROACTIVE_EVIDENCE` | Retroactive discovery of "HASC Seapower Subcommittee FY2025 NDAA Mark Restores Second Virginia-Class Submarine and Authorizes LPD-33" (2024-05-13) adjusted Q2 2026 Department of the Navy from 61.21 to 61.75 (+0.54 pts). |
+| `2026-11-15T12:00:00Z` | `run_20261109_124221` | `2026-Q2` | Composite | 70.14 → 70.53 | **+0.39** | `NEW_RETROACTIVE_EVIDENCE` | Retroactive discovery of "HASC Seapower Subcommittee FY2025 NDAA Mark Restores Second Virginia-Class Submarine and Authorizes LPD-33" (2024-05-13) adjusted Q2 2026 Composite from 70.14 to 70.53 (+0.39 pts). |
+| `2026-11-15T12:00:00Z` | `run_20261109_124221` | `2026-Q3` | Executive Branch | 74.59 → 74.72 | **+0.13** | `NEW_RETROACTIVE_EVIDENCE` | Retroactive discovery of "HASC Seapower Subcommittee FY2025 NDAA Mark Restores Second Virginia-Class Submarine and Authorizes LPD-33" (2024-05-13) adjusted Q3 2026 Executive Branch from 74.59 to 74.72 (+0.13 pts). |
+| `2026-11-15T12:00:00Z` | `run_20261109_124221` | `2026-Q3` | Congress | 66.97 → 67.42 | **+0.45** | `NEW_RETROACTIVE_EVIDENCE` | Retroactive discovery of "HASC Seapower Subcommittee FY2025 NDAA Mark Restores Second Virginia-Class Submarine and Authorizes LPD-33" (2024-05-13) adjusted Q3 2026 Congress from 66.97 to 67.42 (+0.45 pts). |
+| `2026-11-15T12:00:00Z` | `run_20261109_124221` | `2026-Q3` | Department of the Navy | 60.65 → 60.99 | **+0.34** | `NEW_RETROACTIVE_EVIDENCE` | Retroactive discovery of "HASC Seapower Subcommittee FY2025 NDAA Mark Restores Second Virginia-Class Submarine and Authorizes LPD-33" (2024-05-13) adjusted Q3 2026 Department of the Navy from 60.65 to 60.99 (+0.34 pts). |
+| `2026-11-15T12:00:00Z` | `run_20261109_124221` | `2026-Q3` | Composite | 69.15 → 69.40 | **+0.25** | `NEW_RETROACTIVE_EVIDENCE` | Retroactive discovery of "HASC Seapower Subcommittee FY2025 NDAA Mark Restores Second Virginia-Class Submarine and Authorizes LPD-33" (2024-05-13) adjusted Q3 2026 Composite from 69.15 to 69.40 (+0.25 pts). |
+| `2026-11-15T12:00:00Z` | `run_20261109_124221` | `2026-10` | Executive Branch | 60.76 → 60.99 | **+0.23** | `NEW_RETROACTIVE_EVIDENCE` | Retroactive discovery of "HASC Seapower Subcommittee FY2025 NDAA Mark Restores Second Virginia-Class Submarine and Authorizes LPD-33" (2024-05-13) adjusted Oct 2026 Executive Branch from 60.76 to 60.99 (+0.23 pts). |
+| `2026-11-15T12:00:00Z` | `run_20261109_124221` | `2026-10` | Congress | 59.74 → 60.25 | **+0.51** | `NEW_RETROACTIVE_EVIDENCE` | Retroactive discovery of "HASC Seapower Subcommittee FY2025 NDAA Mark Restores Second Virginia-Class Submarine and Authorizes LPD-33" (2024-05-13) adjusted Oct 2026 Congress from 59.74 to 60.25 (+0.51 pts). |
+| `2026-11-15T12:00:00Z` | `run_20261109_124221` | `2026-10` | Department of the Navy | 37.88 → 38.17 | **+0.29** | `NEW_RETROACTIVE_EVIDENCE` | Retroactive discovery of "HASC Seapower Subcommittee FY2025 NDAA Mark Restores Second Virginia-Class Submarine and Authorizes LPD-33" (2024-05-13) adjusted Oct 2026 Department of the Navy from 37.88 to 38.17 (+0.29 pts). |
+| `2026-11-15T12:00:00Z` | `run_20261109_124221` | `2026-10` | American Public | 74.55 → 74.56 | **+0.01** | `NEW_RETROACTIVE_EVIDENCE` | Retroactive discovery of "HASC Seapower Subcommittee FY2025 NDAA Mark Restores Second Virginia-Class Submarine and Authorizes LPD-33" (2024-05-13) adjusted Oct 2026 American Public from 74.55 to 74.56 (+0.01 pts). |
+| `2026-11-15T12:00:00Z` | `run_20261109_124221` | `2026-10` | Composite | 56.40 → 56.67 | **+0.27** | `NEW_RETROACTIVE_EVIDENCE` | Retroactive discovery of "HASC Seapower Subcommittee FY2025 NDAA Mark Restores Second Virginia-Class Submarine and Authorizes LPD-33" (2024-05-13) adjusted Oct 2026 Composite from 56.40 to 56.67 (+0.27 pts). |
+| `2026-11-15T12:00:00Z` | `run_20261109_124221` | `2026-11` | Executive Branch | 60.73 → 60.96 | **+0.23** | `NEW_RETROACTIVE_EVIDENCE` | Retroactive discovery of "HASC Seapower Subcommittee FY2025 NDAA Mark Restores Second Virginia-Class Submarine and Authorizes LPD-33" (2024-05-13) adjusted Nov 2026 Executive Branch from 60.73 to 60.96 (+0.23 pts). |
+| `2026-11-15T12:00:00Z` | `run_20261109_124221` | `2026-11` | Congress | 59.61 → 60.12 | **+0.51** | `NEW_RETROACTIVE_EVIDENCE` | Retroactive discovery of "HASC Seapower Subcommittee FY2025 NDAA Mark Restores Second Virginia-Class Submarine and Authorizes LPD-33" (2024-05-13) adjusted Nov 2026 Congress from 59.61 to 60.12 (+0.51 pts). |
+| `2026-11-15T12:00:00Z` | `run_20261109_124221` | `2026-11` | Department of the Navy | 45.21 → 45.61 | **+0.40** | `NEW_RETROACTIVE_EVIDENCE` | Retroactive discovery of "HASC Seapower Subcommittee FY2025 NDAA Mark Restores Second Virginia-Class Submarine and Authorizes LPD-33" (2024-05-13) adjusted Nov 2026 Department of the Navy from 45.21 to 45.61 (+0.40 pts). |
+| `2026-11-15T12:00:00Z` | `run_20261109_124221` | `2026-11` | Composite | 57.90 → 58.20 | **+0.30** | `NEW_RETROACTIVE_EVIDENCE` | Retroactive discovery of "HASC Seapower Subcommittee FY2025 NDAA Mark Restores Second Virginia-Class Submarine and Authorizes LPD-33" (2024-05-13) adjusted Nov 2026 Composite from 57.90 to 58.20 (+0.30 pts). |
+| `2026-11-15T12:00:00Z` | `run_20261109_124221` | `2024` | Executive Branch | 40.67 → 42.72 | **+2.05** | `NEW_RETROACTIVE_EVIDENCE` | Retroactive discovery of "NAVSEA Awards HII Newport News Shipbuilding $3.05 Billion Contract Modification for Submarine Industrial Base Scaling" (2024-11-15) adjusted 2024 Executive Branch from 40.67 to 42.72 (+2.05 pts). |
+| `2026-11-15T12:00:00Z` | `run_20261109_124221` | `2024` | Congress | 28.18 → 29.92 | **+1.74** | `NEW_RETROACTIVE_EVIDENCE` | Retroactive discovery of "NAVSEA Awards HII Newport News Shipbuilding $3.05 Billion Contract Modification for Submarine Industrial Base Scaling" (2024-11-15) adjusted 2024 Congress from 28.18 to 29.92 (+1.74 pts). |
+| `2026-11-15T12:00:00Z` | `run_20261109_124221` | `2024` | Department of the Navy | 31.11 → 33.57 | **+2.46** | `NEW_RETROACTIVE_EVIDENCE` | Retroactive discovery of "NAVSEA Awards HII Newport News Shipbuilding $3.05 Billion Contract Modification for Submarine Industrial Base Scaling" (2024-11-15) adjusted 2024 Department of the Navy from 31.11 to 33.57 (+2.46 pts). |
+| `2026-11-15T12:00:00Z` | `run_20261109_124221` | `2024` | Composite | 31.31 → 32.99 | **+1.68** | `NEW_RETROACTIVE_EVIDENCE` | Retroactive discovery of "NAVSEA Awards HII Newport News Shipbuilding $3.05 Billion Contract Modification for Submarine Industrial Base Scaling" (2024-11-15) adjusted 2024 Composite from 31.31 to 32.99 (+1.68 pts). |
+| `2026-11-15T12:00:00Z` | `run_20261109_124221` | `2025` | Executive Branch | 61.15 → 66.43 | **+5.28** | `NEW_RETROACTIVE_EVIDENCE` | Retroactive discovery of "NAVSEA Awards HII Newport News Shipbuilding $3.05 Billion Contract Modification for Submarine Industrial Base Scaling" (2024-11-15) adjusted 2025 Executive Branch from 61.15 to 66.43 (+5.28 pts). |
+| `2026-11-15T12:00:00Z` | `run_20261109_124221` | `2025` | Congress | 45.35 → 53.91 | **+8.56** | `NEW_RETROACTIVE_EVIDENCE` | Retroactive discovery of "NAVSEA Awards HII Newport News Shipbuilding $3.05 Billion Contract Modification for Submarine Industrial Base Scaling" (2024-11-15) adjusted 2025 Congress from 45.35 to 53.91 (+8.56 pts). |
+| `2026-11-15T12:00:00Z` | `run_20261109_124221` | `2025` | Department of the Navy | 30.48 → 39.43 | **+8.95** | `NEW_RETROACTIVE_EVIDENCE` | Retroactive discovery of "NAVSEA Awards HII Newport News Shipbuilding $3.05 Billion Contract Modification for Submarine Industrial Base Scaling" (2024-11-15) adjusted 2025 Department of the Navy from 30.48 to 39.43 (+8.95 pts). |
+| `2026-11-15T12:00:00Z` | `run_20261109_124221` | `2025` | Composite | 42.56 → 48.71 | **+6.15** | `NEW_RETROACTIVE_EVIDENCE` | Retroactive discovery of "NAVSEA Awards HII Newport News Shipbuilding $3.05 Billion Contract Modification for Submarine Industrial Base Scaling" (2024-11-15) adjusted 2025 Composite from 42.56 to 48.71 (+6.15 pts). |
+| `2026-11-15T12:00:00Z` | `run_20261109_124221` | `2026-Q1` | Executive Branch | 69.72 → 72.63 | **+2.91** | `NEW_RETROACTIVE_EVIDENCE` | Retroactive discovery of "NAVSEA Awards HII Newport News Shipbuilding $3.05 Billion Contract Modification for Submarine Industrial Base Scaling" (2024-11-15) adjusted Q1 2026 Executive Branch from 69.72 to 72.63 (+2.91 pts). |
+| `2026-11-15T12:00:00Z` | `run_20261109_124221` | `2026-Q1` | Congress | 64.69 → 68.50 | **+3.81** | `NEW_RETROACTIVE_EVIDENCE` | Retroactive discovery of "NAVSEA Awards HII Newport News Shipbuilding $3.05 Billion Contract Modification for Submarine Industrial Base Scaling" (2024-11-15) adjusted Q1 2026 Congress from 64.69 to 68.50 (+3.81 pts). |
+| `2026-11-15T12:00:00Z` | `run_20261109_124221` | `2026-Q1` | Department of the Navy | 45.26 → 53.12 | **+7.86** | `NEW_RETROACTIVE_EVIDENCE` | Retroactive discovery of "NAVSEA Awards HII Newport News Shipbuilding $3.05 Billion Contract Modification for Submarine Industrial Base Scaling" (2024-11-15) adjusted Q1 2026 Department of the Navy from 45.26 to 53.12 (+7.86 pts). |
+| `2026-11-15T12:00:00Z` | `run_20261109_124221` | `2026-Q1` | Composite | 63.19 → 67.23 | **+4.04** | `NEW_RETROACTIVE_EVIDENCE` | Retroactive discovery of "NAVSEA Awards HII Newport News Shipbuilding $3.05 Billion Contract Modification for Submarine Industrial Base Scaling" (2024-11-15) adjusted Q1 2026 Composite from 63.19 to 67.23 (+4.04 pts). |
+| `2026-11-15T12:00:00Z` | `run_20261109_124221` | `2026-Q2` | Executive Branch | 77.95 → 79.29 | **+1.34** | `NEW_RETROACTIVE_EVIDENCE` | Retroactive discovery of "NAVSEA Awards HII Newport News Shipbuilding $3.05 Billion Contract Modification for Submarine Industrial Base Scaling" (2024-11-15) adjusted Q2 2026 Executive Branch from 77.95 to 79.29 (+1.34 pts). |
+| `2026-11-15T12:00:00Z` | `run_20261109_124221` | `2026-Q2` | Congress | 65.85 → 69.10 | **+3.25** | `NEW_RETROACTIVE_EVIDENCE` | Retroactive discovery of "NAVSEA Awards HII Newport News Shipbuilding $3.05 Billion Contract Modification for Submarine Industrial Base Scaling" (2024-11-15) adjusted Q2 2026 Congress from 65.85 to 69.10 (+3.25 pts). |
+| `2026-11-15T12:00:00Z` | `run_20261109_124221` | `2026-Q2` | Department of the Navy | 61.75 → 67.98 | **+6.23** | `NEW_RETROACTIVE_EVIDENCE` | Retroactive discovery of "NAVSEA Awards HII Newport News Shipbuilding $3.05 Billion Contract Modification for Submarine Industrial Base Scaling" (2024-11-15) adjusted Q2 2026 Department of the Navy from 61.75 to 67.98 (+6.23 pts). |
+| `2026-11-15T12:00:00Z` | `run_20261109_124221` | `2026-Q2` | Composite | 70.53 → 73.54 | **+3.01** | `NEW_RETROACTIVE_EVIDENCE` | Retroactive discovery of "NAVSEA Awards HII Newport News Shipbuilding $3.05 Billion Contract Modification for Submarine Industrial Base Scaling" (2024-11-15) adjusted Q2 2026 Composite from 70.53 to 73.54 (+3.01 pts). |
+| `2026-11-15T12:00:00Z` | `run_20261109_124221` | `2026-Q3` | Executive Branch | 74.72 → 76.26 | **+1.54** | `NEW_RETROACTIVE_EVIDENCE` | Retroactive discovery of "NAVSEA Awards HII Newport News Shipbuilding $3.05 Billion Contract Modification for Submarine Industrial Base Scaling" (2024-11-15) adjusted Q3 2026 Executive Branch from 74.72 to 76.26 (+1.54 pts). |
+| `2026-11-15T12:00:00Z` | `run_20261109_124221` | `2026-Q3` | Congress | 67.42 → 69.96 | **+2.54** | `NEW_RETROACTIVE_EVIDENCE` | Retroactive discovery of "NAVSEA Awards HII Newport News Shipbuilding $3.05 Billion Contract Modification for Submarine Industrial Base Scaling" (2024-11-15) adjusted Q3 2026 Congress from 67.42 to 69.96 (+2.54 pts). |
+| `2026-11-15T12:00:00Z` | `run_20261109_124221` | `2026-Q3` | Department of the Navy | 60.99 → 66.38 | **+5.39** | `NEW_RETROACTIVE_EVIDENCE` | Retroactive discovery of "NAVSEA Awards HII Newport News Shipbuilding $3.05 Billion Contract Modification for Submarine Industrial Base Scaling" (2024-11-15) adjusted Q3 2026 Department of the Navy from 60.99 to 66.38 (+5.39 pts). |
+| `2026-11-15T12:00:00Z` | `run_20261109_124221` | `2026-Q3` | Composite | 69.40 → 72.03 | **+2.63** | `NEW_RETROACTIVE_EVIDENCE` | Retroactive discovery of "NAVSEA Awards HII Newport News Shipbuilding $3.05 Billion Contract Modification for Submarine Industrial Base Scaling" (2024-11-15) adjusted Q3 2026 Composite from 69.40 to 72.03 (+2.63 pts). |
+| `2026-11-15T12:00:00Z` | `run_20261109_124221` | `2026-10` | Executive Branch | 60.99 → 64.15 | **+3.16** | `NEW_RETROACTIVE_EVIDENCE` | Retroactive discovery of "NAVSEA Awards HII Newport News Shipbuilding $3.05 Billion Contract Modification for Submarine Industrial Base Scaling" (2024-11-15) adjusted Oct 2026 Executive Branch from 60.99 to 64.15 (+3.16 pts). |
+| `2026-11-15T12:00:00Z` | `run_20261109_124221` | `2026-10` | Congress | 60.25 → 63.53 | **+3.28** | `NEW_RETROACTIVE_EVIDENCE` | Retroactive discovery of "NAVSEA Awards HII Newport News Shipbuilding $3.05 Billion Contract Modification for Submarine Industrial Base Scaling" (2024-11-15) adjusted Oct 2026 Congress from 60.25 to 63.53 (+3.28 pts). |
+| `2026-11-15T12:00:00Z` | `run_20261109_124221` | `2026-10` | Department of the Navy | 38.17 → 44.40 | **+6.23** | `NEW_RETROACTIVE_EVIDENCE` | Retroactive discovery of "NAVSEA Awards HII Newport News Shipbuilding $3.05 Billion Contract Modification for Submarine Industrial Base Scaling" (2024-11-15) adjusted Oct 2026 Department of the Navy from 38.17 to 44.40 (+6.23 pts). |
+| `2026-11-15T12:00:00Z` | `run_20261109_124221` | `2026-10` | Composite | 56.67 → 60.15 | **+3.48** | `NEW_RETROACTIVE_EVIDENCE` | Retroactive discovery of "NAVSEA Awards HII Newport News Shipbuilding $3.05 Billion Contract Modification for Submarine Industrial Base Scaling" (2024-11-15) adjusted Oct 2026 Composite from 56.67 to 60.15 (+3.48 pts). |
+| `2026-11-15T12:00:00Z` | `run_20261109_124221` | `2026-11` | Executive Branch | 60.96 → 64.10 | **+3.14** | `NEW_RETROACTIVE_EVIDENCE` | Retroactive discovery of "NAVSEA Awards HII Newport News Shipbuilding $3.05 Billion Contract Modification for Submarine Industrial Base Scaling" (2024-11-15) adjusted Nov 2026 Executive Branch from 60.96 to 64.10 (+3.14 pts). |
+| `2026-11-15T12:00:00Z` | `run_20261109_124221` | `2026-11` | Congress | 60.12 → 63.40 | **+3.28** | `NEW_RETROACTIVE_EVIDENCE` | Retroactive discovery of "NAVSEA Awards HII Newport News Shipbuilding $3.05 Billion Contract Modification for Submarine Industrial Base Scaling" (2024-11-15) adjusted Nov 2026 Congress from 60.12 to 63.40 (+3.28 pts). |
+| `2026-11-15T12:00:00Z` | `run_20261109_124221` | `2026-11` | Department of the Navy | 45.61 → 53.96 | **+8.35** | `NEW_RETROACTIVE_EVIDENCE` | Retroactive discovery of "NAVSEA Awards HII Newport News Shipbuilding $3.05 Billion Contract Modification for Submarine Industrial Base Scaling" (2024-11-15) adjusted Nov 2026 Department of the Navy from 45.61 to 53.96 (+8.35 pts). |
+| `2026-11-15T12:00:00Z` | `run_20261109_124221` | `2026-11` | Composite | 58.20 → 62.31 | **+4.11** | `NEW_RETROACTIVE_EVIDENCE` | Retroactive discovery of "NAVSEA Awards HII Newport News Shipbuilding $3.05 Billion Contract Modification for Submarine Industrial Base Scaling" (2024-11-15) adjusted Nov 2026 Composite from 58.20 to 62.31 (+4.11 pts). |

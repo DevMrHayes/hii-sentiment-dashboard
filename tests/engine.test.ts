@@ -89,12 +89,47 @@ describe('HII Deterministic Sentiment Engine (engine-v1.0.0)', () => {
   });
 
   it('detects retroactive score revisions when a past-dated event is added or approved from pending', () => {
-    const pendingRetro = SEED_LEDGER_STATE.pending.find((p) => p.eventDate.startsWith('2026-05'));
-    expect(pendingRetro).toBeDefined();
+    const testPendingState = {
+      ...SEED_LEDGER_STATE,
+      pending: [
+        {
+          id: 'evt_unique_test_pending_retro',
+          title: 'HASC Seapower Subcommittee Q2 2026 Supplemental Markup on Submarine Base Expansion',
+          eventDate: '2026-05-18',
+          discoveredAt: '2026-11-09T12:00:00Z',
+          sourceType: 'legislation' as const,
+          sourceUrls: ['https://armedservices.house.gov/hearings/unique-subcommittee-markup-2026-05-18'],
+          summary: 'Retroactive legislative action affecting closed period Q2 2026',
+          impacts: [
+            {
+              audience: 'congress' as const,
+              direction: 1 as const,
+              magnitude: 4 as const,
+              credibility: 4 as const,
+              scope: 'company' as const,
+              persistence: 'year' as const,
+            },
+            {
+              audience: 'navy' as const,
+              direction: 1 as const,
+              magnitude: 3 as const,
+              credibility: 4 as const,
+              scope: 'program' as const,
+              persistence: 'year' as const,
+            },
+          ],
+          starred: false,
+          origin: 'research' as const,
+          verification: 'verified' as const,
+          editHistory: [],
+          pendingReason: 'Test retroactive discovery',
+        },
+      ],
+    };
 
     const { state: nextState, revisions } = approvePending(
-      SEED_LEDGER_STATE,
-      pendingRetro!.id,
+      testPendingState,
+      'evt_unique_test_pending_retro',
       '2026-11-15T18:00:00Z',
     );
 
@@ -105,7 +140,7 @@ describe('HII Deterministic Sentiment Engine (engine-v1.0.0)', () => {
     expect(q2CongRev).toBeDefined();
     expect(q2CongRev!.deltaCenti).toBeGreaterThan(0);
     expect(q2CongRev!.explanation).toContain('Q2 2026');
-    expect(nextState.pending.some((p) => p.id === pendingRetro!.id)).toBe(false);
+    expect(nextState.pending.some((p) => p.id === 'evt_unique_test_pending_retro')).toBe(false);
   });
 
   it('records versioned editHistory when an existing event rubric is modified', () => {

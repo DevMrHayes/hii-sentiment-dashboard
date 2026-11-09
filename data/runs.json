@@ -1,5 +1,31 @@
 [
   {
+    "runId": "run_20261109_124221",
+    "startedAt": "2026-11-09T12:42:21Z",
+    "completedAt": "2026-11-09T12:42:59Z",
+    "audiences": [
+      "executive",
+      "congress",
+      "navy",
+      "public"
+    ],
+    "status": "completed",
+    "mode": "deep_research",
+    "discoveredCount": 2,
+    "pendingFile": "data/pending/pending_seed.json",
+    "costUsd": 0.025758,
+    "log": [
+      "[Tier B: Balanced Deep Research + Argon] Started run run_20261109_124221 for audiences: executive, congress, navy, public",
+      "Tier B Budget Guard: $0.1873 / $5.00 used (3.7%) -> 4 Parallel Flash Collectors + Gemini 4 Argon Verifier",
+      "Dispatching 4 parallel Audience Collectors on Vertex AI (gemini-3.8-flash)...",
+      "Invoking Tier B Verifier & Rubric Extractor (gemini-4-argon) at temperature=0.0...",
+      "Tier B Swarm completed: 4 Flash Collectors + 1 gemini-4-argon Verifier extracted 4 multi-audience events (actual Vertex cost: $0.02576)",
+      "Skipped duplicate/near-duplicate candidate 'President Biden Submits FY 2025 Defense Budget Request ...' (matched evt_f73b7d797a03d0ef on 2024-03-11)",
+      "Skipped duplicate/near-duplicate candidate 'HII Reports Q3 2024 Earnings Miss and Cuts Full-Year Sh...' (matched evt_36623d31ec260b0c on 2024-10-31)",
+      "Staged 2 new unique candidate events into Pending Quarantine Queue (Tier B Month-to-Date Spend: $0.2130 / $5.00)."
+    ]
+  },
+  {
     "runId": "run_20261105_historical_swarm",
     "startedAt": "2026-11-05T02:47:00Z",
     "completedAt": "2026-11-05T02:49:25Z",
