@@ -1,1 +1,99 @@
-[]
+[
+  {
+    "id": "evt_e990cc553f0cc6f8",
+    "title": "OMB & White House Office of Shipbuilding Issue Domestic Shipyard Capital Grant Guidance",
+    "eventDate": "2026-11-12",
+    "discoveredAt": "2026-11-09T22:00:31Z",
+    "sourceType": "exec_order",
+    "sourceUrls": [
+      "https://www.whitehouse.gov/briefing-room/presidential-actions/2026/11/executive-order-dpa-maritime-industrial-base/"
+    ],
+    "summary": "Executive Branch issues implementation guidance for Title III DPA and Maritime Industrial Base capital matching grants supporting dry dock and automated panel-line upgrades at Newport News and Ingalls.",
+    "impacts": [
+      {
+        "audience": "executive",
+        "direction": 1,
+        "magnitude": 3,
+        "credibility": 4,
+        "scope": "industry",
+        "persistence": "structural"
+      },
+      {
+        "audience": "navy",
+        "direction": 1,
+        "magnitude": 2,
+        "credibility": 3,
+        "scope": "company",
+        "persistence": "year"
+      }
+    ],
+    "starred": true,
+    "origin": "research",
+    "verification": "verified",
+    "runId": "run_20261109_220031",
+    "editHistory": [],
+    "pendingReason": "Tier B Executive Agent + Argon synthesis (Nov 2026 current period)"
+  },
+  {
+    "id": "evt_51aaf1933f2f9607",
+    "title": "GAO Retroactive Audit (GAO-24-106899): Ford-Class Weapons Elevator Spare Parts Supply Chain Review",
+    "eventDate": "2024-07-18",
+    "discoveredAt": "2026-11-09T22:00:31Z",
+    "sourceType": "gao_report",
+    "sourceUrls": [
+      "https://www.gao.gov/products/gao-24-106899"
+    ],
+    "summary": "Retroactively indexed July 2024 GAO supplemental briefing to HASC Seapower noting spares lead-time friction on CVN-78/79 weapons elevators prior to 2025 vendor qualification reforms.",
+    "impacts": [
+      {
+        "audience": "congress",
+        "direction": -1,
+        "magnitude": 2,
+        "credibility": 3,
+        "scope": "program",
+        "persistence": "year"
+      },
+      {
+        "audience": "navy",
+        "direction": -1,
+        "magnitude": 1,
+        "credibility": 3,
+        "scope": "program",
+        "persistence": "quarter"
+      }
+    ],
+    "starred": false,
+    "origin": "research",
+    "verification": "verified",
+    "runId": "run_20261109_220031",
+    "editHistory": [],
+    "pendingReason": "Tier B Congress Agent retroactive discovery (2024-07-18) \u2014 triggers ScoreRevision on 2024 & 2025"
+  },
+  {
+    "id": "evt_300768665a459b03",
+    "title": "Defense Equity Consensus Upgrade: Three Institutional Desks Raise HII Target on 2027 FCF Visibility",
+    "eventDate": "2026-11-14",
+    "discoveredAt": "2026-11-09T22:00:31Z",
+    "sourceType": "analyst_rating",
+    "sourceUrls": [
+      "https://ir.hii.com/news-releases/news-release-details/defense-equity-consensus-upgrade-2027-fcf-visibility"
+    ],
+    "summary": "Cluster of three institutional equity research desks upgrade NYSE:HII citing improving labor retention at Newport News, Charleston module throughput, and Mission Technologies margin expansion.",
+    "impacts": [
+      {
+        "audience": "public",
+        "direction": 1,
+        "magnitude": 2,
+        "credibility": 2,
+        "scope": "company",
+        "persistence": "quarter"
+      }
+    ],
+    "starred": false,
+    "origin": "research",
+    "verification": "verified",
+    "runId": "run_20261109_220031",
+    "editHistory": [],
+    "pendingReason": "Tier B Public Agent multi-analyst rating cluster rule (Mag 2, Cred 2, quarter)"
+  }
+]

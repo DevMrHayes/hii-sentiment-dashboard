@@ -1,5 +1,27 @@
 [
   {
+    "runId": "run_20261109_220031",
+    "startedAt": "2026-11-09T22:00:31Z",
+    "completedAt": "2026-11-09T22:00:31Z",
+    "audiences": [
+      "executive",
+      "congress",
+      "navy",
+      "public"
+    ],
+    "status": "completed",
+    "mode": "offline_simulation",
+    "discoveredCount": 3,
+    "pendingFile": "data/pending/pending_seed.json",
+    "costUsd": 0.0,
+    "log": [
+      "[Tier B: Balanced Deep Research + Argon] Started run run_20261109_220031 for audiences: executive, congress, navy, public",
+      "Vertex live call fallback (No module named 'cloud_agent_mesh'); using deterministic Tier B curated discovery pool.",
+      "Skipped duplicate/near-duplicate candidate 'NAVSEA Definitizes $1.18B Long-Lead Material Contract f...' (matched evt_f8b562eb0882bbc2 on 2011-04-01)",
+      "Staged 3 new unique candidate events into Pending Quarantine Queue (Tier B Month-to-Date Spend: $0.2130 / $5.00)."
+    ]
+  },
+  {
     "runId": "run_20261109_124221",
     "startedAt": "2026-11-09T12:42:21Z",
     "completedAt": "2026-11-09T12:42:59Z",
