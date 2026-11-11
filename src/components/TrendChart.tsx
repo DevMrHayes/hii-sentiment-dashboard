@@ -27,6 +27,7 @@ import {
 } from 'lucide-react';
 import { useDashboard } from '../context/DashboardContext';
 import { ALL_AUDIENCES, AUDIENCE_LABELS, baseBps, bpsToDisplay, type AudienceId, type ImpactEvent } from '../engine';
+import { SentimentHoverTooltip, buildSourceMixFromEvents, type SourceSlice } from './SentimentHoverTooltip';
 
 interface ChartDatum {
   id: string;
@@ -50,12 +51,15 @@ interface ChartDatum {
   forecastBand?: [number, number];
   forecastP10?: number;
   forecastP90?: number;
-  // Markers
+  // Markers & Source Mix Breakdown
   keyEventCount: number;
   keyEventTitles: string[];
   keyMarkerY?: number;
   revisionCount: number;
   revisionMarkerY?: number;
+  sourceMix: SourceSlice[];
+  totalImpactingEvents: number;
+  tooltipSubtitle?: string;
 }
 
 const AUDIENCE_COLORS: Record<AudienceId, string> = {
@@ -106,6 +110,7 @@ export const TrendChart: React.FC = () => {
   }, [result.timeline.length, isChartExpanded]);
 
   const eventMap = useMemo(() => new Map(state.events.map((e) => [e.id, e])), [state.events]);
+  const catalystMap = useMemo(() => new Map(state.catalysts.map((c) => [c.id, c])), [state.catalysts]);
 
   const revisionsByPeriod = useMemo(() => {
     const m = new Map<string, number>();
@@ -125,6 +130,17 @@ export const TrendChart: React.FC = () => {
       const keyCount = pt.keyEventIds.length;
       const keyTitles = pt.keyEventIds.map((id) => eventMap.get(id)?.title ?? id);
 
+      const contributingIds = new Set<string>();
+      for (const a of ALL_AUDIENCES) {
+        for (const c of pt.audiences[a].contributions) {
+          contributingIds.add(c.eventId);
+        }
+      }
+      const contributingEvents = Array.from(contributingIds)
+        .map((id) => eventMap.get(id))
+        .filter((ev): ev is ImpactEvent => ev !== undefined);
+      const sourceMix = buildSourceMixFromEvents(contributingEvents);
+
       list.push({
         id: pt.period.id,
         label: pt.period.label,
@@ -142,6 +158,9 @@ export const TrendChart: React.FC = () => {
         keyMarkerY: keyCount > 0 ? 95 : undefined,
         revisionCount: revCount,
         revisionMarkerY: revCount > 0 ? 98 : undefined,
+        sourceMix,
+        totalImpactingEvents: contributingEvents.length,
+        tooltipSubtitle: `${pt.inPeriodEventIds.length} new in period · ${contributingEvents.length} active decayed driver(s)`,
       });
     }
 
@@ -149,6 +168,11 @@ export const TrendChart: React.FC = () => {
     const lastHist = list[list.length - 1];
 
     for (const fc of result.forecast) {
+      const activeCats = fc.activeCatalystIds
+        .map((id) => catalystMap.get(id))
+        .filter((c): c is NonNullable<typeof c> => c !== undefined);
+      const fcMix = buildSourceMixFromEvents(activeCats);
+
       list.push({
         id: fc.period.id,
         label: fc.period.label,
@@ -165,8 +189,11 @@ export const TrendChart: React.FC = () => {
         forecastP10: fc.composite.p10Centi / 100,
         forecastP90: fc.composite.p90Centi / 100,
         keyEventCount: 0,
-        keyEventTitles: [],
+        keyEventTitles: activeCats.map((c) => c.title),
         revisionCount: 0,
+        sourceMix: fcMix,
+        totalImpactingEvents: activeCats.length,
+        tooltipSubtitle: `${activeCats.length} active scenario catalyst(s)`,
       });
     }
 
@@ -544,66 +571,23 @@ export const TrendChart: React.FC = () => {
                 if (!active || !payload || !payload.length) return null;
                 const d = payload[0]?.payload as ChartDatum;
                 return (
-                  <div className="bg-[#1e2227] border border-sky rounded-lg p-3 shadow-2xl text-xs max-w-sm">
-                    <div className="flex items-center justify-between gap-3 border-b border-steel/60 pb-1.5 mb-2">
-                      <span className="font-bold text-white font-mono">
-                        {d.label} {d.isForecast && <span className="text-passion">(Forecast)</span>}
-                      </span>
-                      {d.composite !== undefined && (
-                        <span className="font-mono font-bold text-white text-sm">
-                          {d.composite.toFixed(2)}
-                        </span>
-                      )}
-                      {d.forecastEv !== undefined && d.isForecast && (
-                        <span className="font-mono font-bold text-passion text-sm">
-                          EV {d.forecastEv.toFixed(2)}
-                        </span>
-                      )}
-                    </div>
-
-                    {!d.isForecast && (
-                      <div className="space-y-1 font-mono text-[11px]">
-                        <div className="flex justify-between">
-                          <span className="text-[#75abd1]">Executive:</span>
-                          <span className="text-white">{d.executive?.toFixed(2)}</span>
-                        </div>
-                        <div className="flex justify-between">
-                          <span className="text-[#509ca2]">Congress:</span>
-                          <span className="text-white">{d.congress?.toFixed(2)}</span>
-                        </div>
-                        <div className="flex justify-between">
-                          <span className="text-[#38bdf8]">Navy:</span>
-                          <span className="text-white">{d.navy?.toFixed(2)}</span>
-                        </div>
-                        <div className="flex justify-between">
-                          <span className="text-[#9ca3af]">Public:</span>
-                          <span className="text-white">{d.public?.toFixed(2)}</span>
-                        </div>
-                      </div>
-                    )}
-
-                    {d.isForecast && d.forecastP10 !== undefined && d.forecastP90 !== undefined && (
-                      <div className="font-mono text-[11px] text-sky space-y-1">
-                        <div className="flex justify-between">
-                          <span>Confidence Band (80%):</span>
-                          <span>
-                            [{d.forecastP10.toFixed(2)} – {d.forecastP90.toFixed(2)}]
-                          </span>
-                        </div>
-                      </div>
-                    )}
-
-                    {d.keyEventCount > 0 && (
-                      <div className="mt-2 pt-2 border-t border-steel/50 text-[10px] text-sky">
-                        <span className="font-bold text-white">⭐ {d.keyEventCount} Starred Event(s)</span>
-                        <ul className="list-disc list-inside mt-0.5 space-y-0.5">
-                          {d.keyEventTitles.slice(0, 3).map((t, idx) => (
-                            <li key={idx} className="truncate">{t}</li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
-                  </div>
+                  <SentimentHoverTooltip
+                    label={d.label}
+                    isForecast={d.isForecast}
+                    composite={d.isForecast ? d.forecastEv : d.composite}
+                    scores={{
+                      executive: d.isForecast ? d.forecastExecEv : d.executive,
+                      congress: d.isForecast ? d.forecastCongEv : d.congress,
+                      navy: d.isForecast ? d.forecastNavyEv : d.navy,
+                      public: d.isForecast ? d.forecastPublicEv : d.public,
+                    }}
+                    p10={d.forecastP10}
+                    p90={d.forecastP90}
+                    sourceMix={d.sourceMix}
+                    totalImpactingEvents={d.totalImpactingEvents}
+                    keyEventTitles={d.keyEventTitles}
+                    subtitle={d.tooltipSubtitle}
+                  />
                 );
               }}
             />

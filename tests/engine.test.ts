@@ -12,6 +12,7 @@ import {
   validateWeights,
 } from '../src/engine';
 import { SEED_LEDGER_STATE } from '../src/data/seedBundle';
+import { buildSourceMixFromEvents } from '../src/components/SentimentHoverTooltip';
 
 describe('HII Deterministic Sentiment Engine (engine-v1.0.0)', () => {
   it('produces bit-identical ledgerHash and outputHash across repeated runs and shuffled event orderings', () => {
@@ -266,5 +267,20 @@ describe('HII Deterministic Sentiment Engine (engine-v1.0.0)', () => {
       SEED_LEDGER_STATE.events,
     );
     expect(distinct).toBeUndefined();
+  });
+
+  it('computes accurate 100%-normalized source-mix slices for period hover pie charts', () => {
+    const mostlyCongress = [
+      { sourceType: 'legislation' as const },
+      { sourceType: 'hearing' as const },
+      { sourceType: 'gao_report' as const },
+      { sourceType: 'crs_report' as const },
+      { sourceType: 'news_media' as const },
+    ];
+    const mix = buildSourceMixFromEvents(mostlyCongress);
+    expect(mix[0]?.bucket).toBe('congress');
+    expect(mix[0]?.count).toBe(4);
+    expect(mix[0]?.pct).toBe(80);
+    expect(mix.reduce((s, x) => s + x.pct, 0)).toBe(100);
   });
 });

@@ -41,7 +41,8 @@ import {
   type DivisionId,
   type ProgramId,
 } from '../engine/division';
-import { centiToDisplay } from '../engine';
+import { ALL_AUDIENCES, centiToDisplay, type ImpactEvent } from '../engine';
+import { SentimentHoverTooltip, buildSourceMixFromEvents, type SourceSlice } from './SentimentHoverTooltip';
 
 // Division operating weights by approximate shipyard revenue & headcount footprint
 // Newport News (~55%), Ingalls (~35%), Mission Technologies (~10%)
@@ -96,19 +97,37 @@ export const DivisionSentimentView: React.FC = () => {
   const hiiCorporateScore = Number((result.latest.composite.scoreCenti / 100).toFixed(2));
   const diversificationDelta = Number((hiiCorporateScore - operatingRollupScore).toFixed(2));
 
-  // Prepare division timeline chart data
+  const eventMap = useMemo(() => new Map(state.events.map((e) => [e.id, e])), [state.events]);
+
+  // Prepare division timeline chart data with active event source mix per period
   const chartData = useMemo(() => {
-    return divisionResult.timeline.map((r) => ({
-      periodId: r.period.id,
-      label: r.period.label,
-      granularity: r.period.granularity,
-      composite: Number((r.compositeCenti / 100).toFixed(2)),
-      executive: Number((r.audiences.executive.scoreCenti / 100).toFixed(2)),
-      congress: Number((r.audiences.congress.scoreCenti / 100).toFixed(2)),
-      navy: Number((r.audiences.navy.scoreCenti / 100).toFixed(2)),
-      public: Number((r.audiences.public.scoreCenti / 100).toFixed(2)),
-    }));
-  }, [divisionResult.timeline]);
+    return divisionResult.timeline.map((r) => {
+      const contributingIds = new Set<string>();
+      for (const a of ALL_AUDIENCES) {
+        for (const c of r.audiences[a].contributions) {
+          contributingIds.add(c.eventId);
+        }
+      }
+      const contributingEvents = Array.from(contributingIds)
+        .map((id) => eventMap.get(id))
+        .filter((ev): ev is ImpactEvent => ev !== undefined);
+      const sourceMix: SourceSlice[] = buildSourceMixFromEvents(contributingEvents);
+
+      return {
+        periodId: r.period.id,
+        label: r.period.label,
+        granularity: r.period.granularity,
+        composite: Number((r.compositeCenti / 100).toFixed(2)),
+        executive: Number((r.audiences.executive.scoreCenti / 100).toFixed(2)),
+        congress: Number((r.audiences.congress.scoreCenti / 100).toFixed(2)),
+        navy: Number((r.audiences.navy.scoreCenti / 100).toFixed(2)),
+        public: Number((r.audiences.public.scoreCenti / 100).toFixed(2)),
+        sourceMix,
+        totalImpactingEvents: contributingEvents.length,
+        keyEventTitles: r.keyEventIds.map((id) => eventMap.get(id)?.title ?? id),
+      };
+    });
+  }, [divisionResult.timeline, eventMap]);
 
   const filteredWaterfall = useMemo(() => {
     if (selectedProgramFilter === 'all') return divisionResult.programWaterfall;
@@ -442,12 +461,25 @@ export const DivisionSentimentView: React.FC = () => {
                 <YAxis domain={[0, 100]} stroke="#8b98a5" tick={{ fill: '#8b98a5', fontSize: 11 }} />
                 <ReferenceLine y={50} stroke="#5b6670" strokeDasharray="3 3" label={{ value: '50 Neutral', fill: '#5b6670', fontSize: 10 }} />
                 <Tooltip
-                  contentStyle={{
-                    backgroundColor: '#24272a',
-                    borderColor: '#5b6670',
-                    borderRadius: '0.5rem',
-                    fontSize: '12px',
-                    color: '#ffffff',
+                  content={({ active, payload }) => {
+                    if (!active || !payload || !payload.length) return null;
+                    const d = payload[0]?.payload as (typeof chartData)[number];
+                    return (
+                      <SentimentHoverTooltip
+                        label={`${meta.name} · ${d.label}`}
+                        composite={d.composite}
+                        scores={{
+                          executive: d.executive,
+                          congress: d.congress,
+                          navy: d.navy,
+                          public: d.public,
+                        }}
+                        sourceMix={d.sourceMix}
+                        totalImpactingEvents={d.totalImpactingEvents}
+                        keyEventTitles={d.keyEventTitles}
+                        subtitle={`${d.totalImpactingEvents} ${meta.name} active ledger driver(s)`}
+                      />
+                    );
                   }}
                 />
                 <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
