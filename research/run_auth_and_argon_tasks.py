@@ -24,15 +24,14 @@ We need:
 1. Firebase App, Auth, and Firestore initialization with offline persistence:
    - projectId: 'gen-lang-client-0353543048'
    - authDomain: 'gen-lang-client-0353543048.firebaseapp.com'
-   - apiKey: 'AIzaSyCKQ3QI5LI9e7bGqqO4zR289EfAUiEMVrE'
+   - apiKey: import.meta.env.VITE_FIREBASE_API_KEY (loaded from .env.local; never hardcode literals)
    - storageBucket: 'gen-lang-client-0353543048.firebasestorage.app'
    - messagingSenderId: '791977684035'
    - appId: '1:791977684035:web:9af5af6622f51aaea678f6'
 
 2. Admin Accounts:
    - Primary: 'hayesorhaze@gmail.com'
-   - Secondary / dev: 'hayesrhayes@gmail.com'
-   export const ADMIN_EMAILS = ['hayesorhaze@gmail.com', 'hayesrhayes@gmail.com'];
+   export const ADMIN_EMAILS = ['hayesorhaze@gmail.com'];
    export function isAdmin(email?: string | null): boolean;
 
 3. User Roles:

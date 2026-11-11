@@ -40,10 +40,13 @@ jobs:
         run: npm ci
 
       - name: Execute Multi-Agent Sentiment Research Sweep
+        env:
+          INPUT_AUDIENCES: ${{ github.event.inputs.audiences || 'executive,congress,navy,public' }}
+          INPUT_MODE: ${{ github.event.inputs.mode || 'auto' }}
         run: |
           python3 research/run_research.py \
-            --audiences "${{ github.event.inputs.audiences || 'executive,congress,navy,public' }}" \
-            --mode "${{ github.event.inputs.mode || 'auto' }}"
+            --audiences "$INPUT_AUDIENCES" \
+            --mode "$INPUT_MODE"
 
       - name: Recompute Deterministic Ledger & Verify SHA-256 Output Invariance
         run: |

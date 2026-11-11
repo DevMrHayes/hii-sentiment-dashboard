@@ -408,7 +408,7 @@ export const DashboardProvider: React.FC<{ children: React.ReactNode }> = ({ chi
 
   const updateWeights = useCallback(
     async (weights: AudienceWeights, author: string, reason: string) => {
-      if (userRole === 'viewer') {
+      if (userRole !== 'admin') {
         alert('Weight adjustments are restricted to System Administrator.');
         return;
       }
@@ -435,7 +435,7 @@ export const DashboardProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   );
 
   const updateSchedule = useCallback(async (schedule: ScheduleConfig) => {
-    if (userRole === 'viewer') {
+    if (userRole !== 'admin') {
       alert('Schedule configuration is restricted to System Administrator.');
       return;
     }
@@ -460,7 +460,7 @@ export const DashboardProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   }, []);
 
   const updateBudgetConfig = useCallback(async (cfg: BudgetConfig) => {
-    if (userRole === 'viewer') {
+    if (userRole !== 'admin') {
       alert('Budget configuration is restricted to System Administrator.');
       return;
     }
@@ -485,6 +485,7 @@ export const DashboardProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   }, []);
 
   const toggleStar = useCallback(async (eventId: string, starred: boolean) => {
+    if (userRole !== 'admin') return;
     try {
       const res = await fetch('/api/events/star', {
         method: 'POST',
@@ -504,6 +505,10 @@ export const DashboardProvider: React.FC<{ children: React.ReactNode }> = ({ chi
 
   const upsertEvent = useCallback(
     async (event: EventInput, author: string, reason: string): Promise<ScoreRevision[]> => {
+      if (userRole !== 'admin') {
+        alert('Ledger edits are restricted to System Administrator.');
+        return [];
+      }
       try {
         const res = await fetch('/api/events/upsert', {
           method: 'POST',
@@ -529,6 +534,10 @@ export const DashboardProvider: React.FC<{ children: React.ReactNode }> = ({ chi
 
   const deleteEvent = useCallback(
     async (eventId: string, author: string, reason: string): Promise<ScoreRevision[]> => {
+      if (userRole !== 'admin') {
+        alert('Deleting ledger events is restricted to System Administrator.');
+        return [];
+      }
       try {
         const res = await fetch('/api/events/delete', {
           method: 'POST',
@@ -553,6 +562,10 @@ export const DashboardProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   );
 
   const saveCatalysts = useCallback(async (catalysts: ForecastCatalyst[]) => {
+    if (userRole !== 'admin') {
+      alert('Forecast catalyst edits are restricted to System Administrator.');
+      return;
+    }
     try {
       const res = await fetch('/api/catalysts', {
         method: 'POST',
@@ -572,6 +585,10 @@ export const DashboardProvider: React.FC<{ children: React.ReactNode }> = ({ chi
 
   const approvePending = useCallback(
     async (pendingId: string, overrides?: Partial<EventInput>): Promise<ScoreRevision[]> => {
+      if (userRole !== 'admin') {
+        alert('Promoting pending discoveries is restricted to System Administrator.');
+        return [];
+      }
       try {
         const res = await fetch('/api/pending/approve', {
           method: 'POST',
@@ -596,6 +613,7 @@ export const DashboardProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   );
 
   const rejectPending = useCallback(async (pendingId: string) => {
+    if (userRole !== 'admin') return;
     try {
       const res = await fetch('/api/pending/reject', {
         method: 'POST',
@@ -615,7 +633,7 @@ export const DashboardProvider: React.FC<{ children: React.ReactNode }> = ({ chi
 
   const triggerResearchRun = useCallback(
     async (audiences: AudienceId[], mode = 'auto', isMondayScheduledSweep = false) => {
-      if (userRole === 'viewer') {
+      if (userRole !== 'admin') {
         alert('Initiating agent deep research runs is restricted to System Administrator.');
         return;
       }

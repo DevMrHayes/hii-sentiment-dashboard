@@ -1,16 +1,19 @@
 import React, { useMemo, useState } from 'react';
 import { ExternalLink, FilePlus2, FileText, Filter, Search, Star } from 'lucide-react';
 import { useDashboard } from '../context/DashboardContext';
-import {
-  ALL_AUDIENCES,
-  ALL_SOURCE_TYPES,
-  AUDIENCE_LABELS,
-  baseBps,
-  bpsToDisplay,
-  sortEvents,
-  type AudienceId,
-  type SourceType,
-} from '../engine';
+import { ALL_AUDIENCES, ALL_SOURCE_TYPES, AUDIENCE_LABELS, baseBps, bpsToDisplay, sortEvents, type AudienceId, type SourceType } from '../engine';
+
+function safeExternalHref(url: string): string | null {
+  try {
+    const parsed = new URL(url.trim());
+    if (parsed.protocol === 'https:' || parsed.protocol === 'http:') {
+      return parsed.toString();
+    }
+    return null;
+  } catch {
+    return null;
+  }
+}
 
 export const EventTimeline: React.FC<{ compact?: boolean }> = ({ compact = false }) => {
   const {
@@ -188,27 +191,33 @@ export const EventTimeline: React.FC<{ compact?: boolean }> = ({ compact = false
                 </div>
               </div>
 
-              {ev.sourceUrls.length > 0 && (
-                ev.sourceUrls[0]!.startsWith('doc://') ? (
-                  <span
-                    className="inline-flex items-center gap-1 text-[11px] font-mono text-changingsea bg-changingsea/15 border border-changingsea/40 px-2 py-0.5 rounded"
-                    title="Uploaded local reference document"
-                  >
-                    <FileText className="w-3 h-3" />
-                    <span>{decodeURIComponent(ev.sourceUrls[0]!.replace('doc://', ''))}</span>
-                  </span>
-                ) : (
+              {ev.sourceUrls.length > 0 && (() => {
+                const rawUrl = ev.sourceUrls[0]!;
+                if (rawUrl.startsWith('doc://')) {
+                  return (
+                    <span
+                      className="inline-flex items-center gap-1 text-[11px] font-mono text-changingsea bg-changingsea/15 border border-changingsea/40 px-2 py-0.5 rounded"
+                      title="Uploaded local reference document"
+                    >
+                      <FileText className="w-3 h-3" />
+                      <span>{decodeURIComponent(rawUrl.replace('doc://', ''))}</span>
+                    </span>
+                  );
+                }
+                const safeHref = safeExternalHref(rawUrl);
+                if (!safeHref) return null;
+                return (
                   <a
-                    href={ev.sourceUrls[0]}
+                    href={safeHref}
                     target="_blank"
-                    rel="noreferrer"
+                    rel="noopener noreferrer"
                     className="inline-flex items-center gap-1 text-[11px] font-mono text-sky hover:text-passion"
                   >
                     <span>Source</span>
                     <ExternalLink className="w-3 h-3" />
                   </a>
-                )
-              )}
+                );
+              })()}
             </div>
 
             <p className="text-xs text-sky/90 mt-1.5 pl-7">{ev.summary}</p>
