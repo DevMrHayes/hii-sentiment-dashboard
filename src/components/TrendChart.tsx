@@ -12,6 +12,7 @@ import {
   YAxis,
 } from 'recharts';
 import {
+  BarChart3,
   Calendar,
   Check,
   ChevronDown,
@@ -19,6 +20,7 @@ import {
   Layers,
   Maximize2,
   Minimize2,
+  PieChart,
   Pin,
   Sparkles,
   TrendingDown,
@@ -27,7 +29,14 @@ import {
 } from 'lucide-react';
 import { useDashboard } from '../context/DashboardContext';
 import { ALL_AUDIENCES, AUDIENCE_LABELS, baseBps, bpsToDisplay, type AudienceId, type ImpactEvent } from '../engine';
-import { SentimentHoverTooltip, buildSourceMixFromEvents, type SourceSlice } from './SentimentHoverTooltip';
+import {
+  SentimentHoverTooltip,
+  PeriodBreakdownModal,
+  buildSourceMixFromEvents,
+  type HoverChartMode,
+  type PeriodBreakdownEvent,
+  type SourceSlice,
+} from './SentimentHoverTooltip';
 
 interface ChartDatum {
   id: string;
@@ -59,6 +68,7 @@ interface ChartDatum {
   revisionMarkerY?: number;
   sourceMix: SourceSlice[];
   totalImpactingEvents: number;
+  periodEvents: PeriodBreakdownEvent[];
   tooltipSubtitle?: string;
 }
 
@@ -100,7 +110,11 @@ export const TrendChart: React.FC = () => {
 
   const [showPinDrawer, setShowPinDrawer] = useState(false);
   const [pinSearch, setPinSearch] = useState('');
+  const [hoverMode, setHoverMode] = useState<HoverChartMode>('scores');
+  const [inspectedPeriodId, setInspectedPeriodId] = useState<string | null>(null);
   const chartScrollRef = useRef<HTMLDivElement>(null);
+  const hoveredIdRef = useRef<string | null>(null);
+  const lastClickRef = useRef<{ id: string; time: number } | null>(null);
 
   useEffect(() => {
     const el = chartScrollRef.current;
@@ -138,7 +152,8 @@ export const TrendChart: React.FC = () => {
       }
       const contributingEvents = Array.from(contributingIds)
         .map((id) => eventMap.get(id))
-        .filter((ev): ev is ImpactEvent => ev !== undefined);
+        .filter((ev): ev is ImpactEvent => ev !== undefined)
+        .sort((a, b) => (b.eventDate > a.eventDate ? 1 : -1));
       const sourceMix = buildSourceMixFromEvents(contributingEvents);
 
       list.push({
@@ -160,7 +175,14 @@ export const TrendChart: React.FC = () => {
         revisionMarkerY: revCount > 0 ? 98 : undefined,
         sourceMix,
         totalImpactingEvents: contributingEvents.length,
-        tooltipSubtitle: `${pt.inPeriodEventIds.length} new in period · ${contributingEvents.length} active decayed driver(s)`,
+        periodEvents: contributingEvents.map((e) => ({
+          id: e.id,
+          title: e.title,
+          eventDate: e.eventDate,
+          sourceType: e.sourceType,
+          starred: e.starred,
+        })),
+        tooltipSubtitle: `${pt.inPeriodEventIds.length} new in period · ${contributingEvents.length} active drivers`,
       });
     }
 
@@ -193,6 +215,13 @@ export const TrendChart: React.FC = () => {
         revisionCount: 0,
         sourceMix: fcMix,
         totalImpactingEvents: activeCats.length,
+        periodEvents: activeCats.map((c) => ({
+          id: c.id,
+          title: `${c.title} (${c.probability}% prob)`,
+          eventDate: c.expectedMonth,
+          sourceType: c.sourceType,
+          starred: true,
+        })),
         tooltipSubtitle: `${activeCats.length} active scenario catalyst(s)`,
       });
     }
@@ -300,8 +329,38 @@ export const TrendChart: React.FC = () => {
           </p>
         </div>
 
-        {/* Action Controls: Presentation Pins & Full Width Toggle */}
-        <div className="flex items-center gap-2 self-start sm:self-auto shrink-0">
+        {/* Action Controls: Compact Hover Mode Toggle, Presentation Pins & Full Width Toggle */}
+        <div className="flex flex-wrap items-center gap-2 self-start sm:self-auto shrink-0">
+          <div
+            className="inline-flex items-center rounded-lg bg-[#16191d] border border-steel/60 p-0.5 text-[11px] font-mono"
+            title="Switch compact hover chart between Audience Scores Bar Chart and Source Mix Pie Chart (Double-click any point for full pane)"
+          >
+            <button
+              type="button"
+              onClick={() => setHoverMode('scores')}
+              className={`flex items-center gap-1 px-2.5 py-1 rounded-md transition ${
+                hoverMode === 'scores'
+                  ? 'bg-passion text-white font-bold shadow-sm'
+                  : 'text-sky/80 hover:text-white'
+              }`}
+            >
+              <BarChart3 className="w-3.5 h-3.5" />
+              <span>Scores</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => setHoverMode('sources')}
+              className={`flex items-center gap-1 px-2.5 py-1 rounded-md transition ${
+                hoverMode === 'sources'
+                  ? 'bg-passion text-white font-bold shadow-sm'
+                  : 'text-sky/80 hover:text-white'
+              }`}
+            >
+              <PieChart className="w-3.5 h-3.5" />
+              <span>Sources</span>
+            </button>
+          </div>
+
           <button
             type="button"
             onClick={() => setShowPinDrawer(!showPinDrawer)}
@@ -477,6 +536,9 @@ export const TrendChart: React.FC = () => {
 
       <div
         ref={chartScrollRef}
+        onDoubleClick={() => {
+          if (hoveredIdRef.current) setInspectedPeriodId(hoveredIdRef.current);
+        }}
         className="w-full bg-[#16191d] rounded-lg border border-[#2d333b] p-2 overflow-x-auto sm:overflow-x-visible transition-all duration-300"
       >
         <div className="min-w-[980px] sm:min-w-0 w-full h-[360px] sm:h-[430px]">
@@ -487,8 +549,15 @@ export const TrendChart: React.FC = () => {
             onClick={(stateObj) => {
               if (stateObj && stateObj.activeLabel) {
                 const match = data.find((d) => d.id === stateObj.activeLabel);
-                if (match && !match.isForecast) {
-                  setSelectedPeriodId(match.id);
+                if (match) {
+                  if (!match.isForecast) setSelectedPeriodId(match.id);
+                  const now = Date.now();
+                  if (lastClickRef.current && lastClickRef.current.id === match.id && now - lastClickRef.current.time < 400) {
+                    setInspectedPeriodId(match.id);
+                    lastClickRef.current = null;
+                  } else {
+                    lastClickRef.current = { id: match.id, time: now };
+                  }
                 }
               }
             }}
@@ -570,8 +639,10 @@ export const TrendChart: React.FC = () => {
               content={({ active, payload }) => {
                 if (!active || !payload || !payload.length) return null;
                 const d = payload[0]?.payload as ChartDatum;
+                hoveredIdRef.current = d.id;
                 return (
                   <SentimentHoverTooltip
+                    mode={hoverMode}
                     label={d.label}
                     isForecast={d.isForecast}
                     composite={d.isForecast ? d.forecastEv : d.composite}
@@ -585,7 +656,6 @@ export const TrendChart: React.FC = () => {
                     p90={d.forecastP90}
                     sourceMix={d.sourceMix}
                     totalImpactingEvents={d.totalImpactingEvents}
-                    keyEventTitles={d.keyEventTitles}
                     subtitle={d.tooltipSubtitle}
                   />
                 );
@@ -779,6 +849,34 @@ export const TrendChart: React.FC = () => {
           </div>
         </div>
       )}
+
+      {/* Full Visual Breakdown Inspector Modal (Opened on double-click) */}
+      {(() => {
+        const inspected = inspectedPeriodId ? data.find((d) => d.id === inspectedPeriodId) : null;
+        if (!inspected) return null;
+        return (
+          <PeriodBreakdownModal
+            isOpen={true}
+            onClose={() => setInspectedPeriodId(null)}
+            label={inspected.label}
+            isForecast={inspected.isForecast}
+            composite={inspected.isForecast ? inspected.forecastEv : inspected.composite}
+            scores={{
+              executive: inspected.isForecast ? inspected.forecastExecEv : inspected.executive,
+              congress: inspected.isForecast ? inspected.forecastCongEv : inspected.congress,
+              navy: inspected.isForecast ? inspected.forecastNavyEv : inspected.navy,
+              public: inspected.isForecast ? inspected.forecastPublicEv : inspected.public,
+            }}
+            p10={inspected.forecastP10}
+            p90={inspected.forecastP90}
+            sourceMix={inspected.sourceMix}
+            totalImpactingEvents={inspected.totalImpactingEvents}
+            keyEventTitles={inspected.keyEventTitles}
+            periodEvents={inspected.periodEvents}
+            subtitle={inspected.tooltipSubtitle}
+          />
+        );
+      })()}
     </div>
   );
 };

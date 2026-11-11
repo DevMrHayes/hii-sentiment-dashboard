@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import {
   AlertTriangle,
+  BarChart3,
   BookOpen,
   Building2,
   CheckCircle2,
@@ -12,6 +13,7 @@ import {
   Layers,
   MapPin,
   Newspaper,
+  PieChart,
   Radio,
   Scale,
   Ship,
@@ -42,7 +44,14 @@ import {
   type ProgramId,
 } from '../engine/division';
 import { ALL_AUDIENCES, centiToDisplay, type ImpactEvent } from '../engine';
-import { SentimentHoverTooltip, buildSourceMixFromEvents, type SourceSlice } from './SentimentHoverTooltip';
+import {
+  SentimentHoverTooltip,
+  PeriodBreakdownModal,
+  buildSourceMixFromEvents,
+  type HoverChartMode,
+  type PeriodBreakdownEvent,
+  type SourceSlice,
+} from './SentimentHoverTooltip';
 
 // Division operating weights by approximate shipyard revenue & headcount footprint
 // Newport News (~55%), Ingalls (~35%), Mission Technologies (~10%)
@@ -58,7 +67,11 @@ export const DivisionSentimentView: React.FC = () => {
   const [selectedProgramFilter, setSelectedProgramFilter] = useState<ProgramId | 'all'>('all');
   const [showMathExplainer, setShowMathExplainer] = useState(false);
   const [showSourceGuide, setShowSourceGuide] = useState(false);
+  const [hoverMode, setHoverMode] = useState<HoverChartMode>('scores');
+  const [inspectedPeriodId, setInspectedPeriodId] = useState<string | null>(null);
   const divChartScrollRef = useRef<HTMLDivElement>(null);
+  const hoveredDivIdRef = useRef<string | null>(null);
+  const lastDivClickRef = useRef<{ id: string; time: number } | null>(null);
 
   useEffect(() => {
     const el = divChartScrollRef.current;
@@ -110,7 +123,8 @@ export const DivisionSentimentView: React.FC = () => {
       }
       const contributingEvents = Array.from(contributingIds)
         .map((id) => eventMap.get(id))
-        .filter((ev): ev is ImpactEvent => ev !== undefined);
+        .filter((ev): ev is ImpactEvent => ev !== undefined)
+        .sort((a, b) => (b.eventDate > a.eventDate ? 1 : -1));
       const sourceMix: SourceSlice[] = buildSourceMixFromEvents(contributingEvents);
 
       return {
@@ -124,6 +138,13 @@ export const DivisionSentimentView: React.FC = () => {
         public: Number((r.audiences.public.scoreCenti / 100).toFixed(2)),
         sourceMix,
         totalImpactingEvents: contributingEvents.length,
+        periodEvents: contributingEvents.map((e): PeriodBreakdownEvent => ({
+          id: e.id,
+          title: e.title,
+          eventDate: e.eventDate,
+          sourceType: e.sourceType,
+          starred: e.starred,
+        })),
         keyEventTitles: r.keyEventIds.map((id) => eventMap.get(id)?.title ?? id),
       };
     });
@@ -423,9 +444,41 @@ export const DivisionSentimentView: React.FC = () => {
               Deterministic timeline across Annual (2011–2025), Quarterly (2026), and Monthly periods showing how program execution impacts {meta.name}.
             </p>
           </div>
-          <span className="px-2.5 py-1 text-xs font-mono font-semibold rounded bg-charcoal border border-steel text-sky self-start sm:self-auto">
-            {divisionResult.eventCount} Attached Events
-          </span>
+          <div className="flex flex-wrap items-center gap-2 self-start sm:self-auto">
+            <div
+              className="inline-flex items-center rounded-lg bg-[#16191d] border border-steel/60 p-0.5 text-[11px] font-mono"
+              title="Toggle hover tooltip view between Scores and Sources (Double-click any point for full pane)"
+            >
+              <button
+                type="button"
+                onClick={() => setHoverMode('scores')}
+                className={`flex items-center gap-1 px-2.5 py-1 rounded-md transition ${
+                  hoverMode === 'scores'
+                    ? 'bg-passion text-white font-bold shadow-sm'
+                    : 'text-sky/80 hover:text-white'
+                }`}
+              >
+                <BarChart3 className="w-3.5 h-3.5" />
+                <span>Scores</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => setHoverMode('sources')}
+                className={`flex items-center gap-1 px-2.5 py-1 rounded-md transition ${
+                  hoverMode === 'sources'
+                    ? 'bg-passion text-white font-bold shadow-sm'
+                    : 'text-sky/80 hover:text-white'
+                }`}
+              >
+                <PieChart className="w-3.5 h-3.5" />
+                <span>Sources</span>
+              </button>
+            </div>
+
+            <span className="px-2.5 py-1 text-xs font-mono font-semibold rounded bg-charcoal border border-steel text-sky">
+              {divisionResult.eventCount} Attached Events
+            </span>
+          </div>
         </div>
 
         {/* Mobile swipe strip */}
@@ -452,10 +505,33 @@ export const DivisionSentimentView: React.FC = () => {
           </div>
         </div>
 
-        <div ref={divChartScrollRef} className="w-full overflow-x-auto sm:overflow-x-visible">
+        <div
+          ref={divChartScrollRef}
+          onDoubleClick={() => {
+            if (hoveredDivIdRef.current) setInspectedPeriodId(hoveredDivIdRef.current);
+          }}
+          className="w-full overflow-x-auto sm:overflow-x-visible"
+        >
           <div className="min-w-[820px] sm:min-w-0 w-full h-72 sm:h-80">
             <ResponsiveContainer width="100%" height="100%">
-              <LineChart data={chartData} margin={{ top: 10, right: 20, left: -10, bottom: 0 }}>
+              <LineChart
+                data={chartData}
+                margin={{ top: 10, right: 20, left: -10, bottom: 0 }}
+                onClick={(stateObj) => {
+                  if (stateObj && stateObj.activeLabel) {
+                    const match = chartData.find((d) => d.label === stateObj.activeLabel);
+                    if (match) {
+                      const now = Date.now();
+                      if (lastDivClickRef.current && lastDivClickRef.current.id === match.periodId && now - lastDivClickRef.current.time < 400) {
+                        setInspectedPeriodId(match.periodId);
+                        lastDivClickRef.current = null;
+                      } else {
+                        lastDivClickRef.current = { id: match.periodId, time: now };
+                      }
+                    }
+                  }
+                }}
+              >
                 <CartesianGrid strokeDasharray="3 3" stroke="#363c44" />
                 <XAxis dataKey="label" stroke="#8b98a5" tick={{ fill: '#8b98a5', fontSize: 11 }} interval={0} angle={-25} textAnchor="end" height={46} />
                 <YAxis domain={[0, 100]} stroke="#8b98a5" tick={{ fill: '#8b98a5', fontSize: 11 }} />
@@ -464,8 +540,10 @@ export const DivisionSentimentView: React.FC = () => {
                   content={({ active, payload }) => {
                     if (!active || !payload || !payload.length) return null;
                     const d = payload[0]?.payload as (typeof chartData)[number];
+                    hoveredDivIdRef.current = d.periodId;
                     return (
                       <SentimentHoverTooltip
+                        mode={hoverMode}
                         label={`${meta.name} · ${d.label}`}
                         composite={d.composite}
                         scores={{
@@ -476,8 +554,7 @@ export const DivisionSentimentView: React.FC = () => {
                         }}
                         sourceMix={d.sourceMix}
                         totalImpactingEvents={d.totalImpactingEvents}
-                        keyEventTitles={d.keyEventTitles}
-                        subtitle={`${d.totalImpactingEvents} ${meta.name} active ledger driver(s)`}
+                        subtitle={`${d.totalImpactingEvents} ${meta.name} drivers`}
                       />
                     );
                   }}
@@ -595,6 +672,30 @@ export const DivisionSentimentView: React.FC = () => {
           })}
         </div>
       </div>
+
+      {(() => {
+        const inspected = inspectedPeriodId ? chartData.find((d) => d.periodId === inspectedPeriodId) : null;
+        if (!inspected) return null;
+        return (
+          <PeriodBreakdownModal
+            isOpen={true}
+            onClose={() => setInspectedPeriodId(null)}
+            label={`${meta.name} · ${inspected.label}`}
+            composite={inspected.composite}
+            scores={{
+              executive: inspected.executive,
+              congress: inspected.congress,
+              navy: inspected.navy,
+              public: inspected.public,
+            }}
+            sourceMix={inspected.sourceMix}
+            totalImpactingEvents={inspected.totalImpactingEvents}
+            keyEventTitles={inspected.keyEventTitles}
+            periodEvents={inspected.periodEvents}
+            subtitle={`${inspected.totalImpactingEvents} ${meta.name} active ledger driver(s)`}
+          />
+        );
+      })()}
     </div>
   );
 };
