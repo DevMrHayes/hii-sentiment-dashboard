@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { ExternalLink, Filter, Search, Star } from 'lucide-react';
+import { ExternalLink, FilePlus2, FileText, Filter, Search, Star } from 'lucide-react';
 import { useDashboard } from '../context/DashboardContext';
 import {
   ALL_AUDIENCES,
@@ -20,6 +20,7 @@ export const EventTimeline: React.FC<{ compact?: boolean }> = ({ compact = false
     starredOnly,
     setStarredOnly,
     toggleStar,
+    setActiveTab,
   } = useDashboard();
 
   const [search, setSearch] = useState('');
@@ -129,6 +130,16 @@ export const EventTimeline: React.FC<{ compact?: boolean }> = ({ compact = false
               </option>
             ))}
           </select>
+
+          <button
+            type="button"
+            onClick={() => setActiveTab('control')}
+            className="flex items-center gap-1.5 px-2.5 py-1.5 rounded bg-passion/20 border border-passion/70 hover:bg-passion text-white font-semibold transition"
+            title="Submit a new article link or upload a supporting document"
+          >
+            <FilePlus2 className="w-3.5 h-3.5" />
+            <span>+ Add Article / Doc</span>
+          </button>
         </div>
       </div>
 
@@ -178,15 +189,25 @@ export const EventTimeline: React.FC<{ compact?: boolean }> = ({ compact = false
               </div>
 
               {ev.sourceUrls.length > 0 && (
-                <a
-                  href={ev.sourceUrls[0]}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-1 text-[11px] font-mono text-sky hover:text-passion"
-                >
-                  <span>Source</span>
-                  <ExternalLink className="w-3 h-3" />
-                </a>
+                ev.sourceUrls[0]!.startsWith('doc://') ? (
+                  <span
+                    className="inline-flex items-center gap-1 text-[11px] font-mono text-changingsea bg-changingsea/15 border border-changingsea/40 px-2 py-0.5 rounded"
+                    title="Uploaded local reference document"
+                  >
+                    <FileText className="w-3 h-3" />
+                    <span>{decodeURIComponent(ev.sourceUrls[0]!.replace('doc://', ''))}</span>
+                  </span>
+                ) : (
+                  <a
+                    href={ev.sourceUrls[0]}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-1 text-[11px] font-mono text-sky hover:text-passion"
+                  >
+                    <span>Source</span>
+                    <ExternalLink className="w-3 h-3" />
+                  </a>
+                )
               )}
             </div>
 

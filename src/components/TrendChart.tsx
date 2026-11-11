@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import {
   Area,
   CartesianGrid,
@@ -96,6 +96,14 @@ export const TrendChart: React.FC = () => {
 
   const [showPinDrawer, setShowPinDrawer] = useState(false);
   const [pinSearch, setPinSearch] = useState('');
+  const chartScrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = chartScrollRef.current;
+    if (el && el.scrollWidth > el.clientWidth) {
+      el.scrollLeft = el.scrollWidth - el.clientWidth;
+    }
+  }, [result.timeline.length, isChartExpanded]);
 
   const eventMap = useMemo(() => new Map(state.events.map((e) => [e.id, e])), [state.events]);
 
@@ -416,9 +424,36 @@ export const TrendChart: React.FC = () => {
         </div>
       </div>
 
-      {/* Main Chart Canvas (Balanced aspect ratio) */}
-      <div className="w-full bg-[#16191d] rounded-lg border border-[#2d333b] p-2 transition-all duration-300 h-[430px]">
-        <ResponsiveContainer width="100%" height="100%">
+      {/* Main Chart Canvas: Horizontally scrollable on mobile (auto-focused on recent months & forecast) */}
+      <div className="sm:hidden flex items-center justify-between text-[11px] font-mono text-sky/90 bg-[#14171a] border border-[#2d333b] rounded px-2.5 py-1.5 mb-1.5">
+        <span>← Swipe timeline for 2011–2025 history</span>
+        <div className="flex items-center gap-1.5">
+          <button
+            type="button"
+            onClick={() => chartScrollRef.current?.scrollTo({ left: 0, behavior: 'smooth' })}
+            className="px-1.5 py-0.5 rounded bg-charcoal border border-steel/60 text-[10px] text-steel hover:text-white"
+          >
+            2011
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              const el = chartScrollRef.current;
+              if (el) el.scrollTo({ left: el.scrollWidth - el.clientWidth, behavior: 'smooth' });
+            }}
+            className="px-1.5 py-0.5 rounded bg-passion/20 border border-passion/60 text-[10px] text-passion font-bold"
+          >
+            Recent →
+          </button>
+        </div>
+      </div>
+
+      <div
+        ref={chartScrollRef}
+        className="w-full bg-[#16191d] rounded-lg border border-[#2d333b] p-2 overflow-x-auto sm:overflow-x-visible transition-all duration-300"
+      >
+        <div className="min-w-[980px] sm:min-w-0 w-full h-[360px] sm:h-[430px]">
+          <ResponsiveContainer width="100%" height="100%">
           <ComposedChart
             data={data}
             margin={{ top: 24, right: 24, left: 4, bottom: 12 }}
@@ -685,6 +720,7 @@ export const TrendChart: React.FC = () => {
               ))}
           </ComposedChart>
         </ResponsiveContainer>
+        </div>
       </div>
 
       {/* Executive Pinned Milestones Deck (Clean, structured presentation rack) */}

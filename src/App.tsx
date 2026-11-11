@@ -5,6 +5,7 @@ import { AuthWall } from './components/AuthWall';
 import { UserManagementModal } from './components/UserManagementModal';
 import { DashboardProvider, useDashboard } from './context/DashboardContext';
 import { HeaderBar } from './components/HeaderBar';
+import { LiveResearchBanner } from './components/LiveResearchBanner';
 import { TrendChart } from './components/TrendChart';
 import { ScoreRail } from './components/ScoreRail';
 import { EventTimeline } from './components/EventTimeline';
@@ -27,6 +28,7 @@ const DashboardContent: React.FC = () => {
   return (
     <div className="min-h-screen bg-charcoal text-white flex flex-col">
       <HeaderBar />
+      <LiveResearchBanner />
 
       {/* Retroactive Revision Alert Banner */}
       {recentRevisionsBanner.length > 0 && (

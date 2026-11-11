@@ -1,5 +1,15 @@
-import React, { useState } from 'react';
-import { CheckCircle2, PlusCircle, RotateCcw, Sliders } from 'lucide-react';
+import React, { useRef, useState } from 'react';
+import {
+  CheckCircle2,
+  FileText,
+  Link2,
+  PlusCircle,
+  RotateCcw,
+  Sliders,
+  Sparkles,
+  Upload,
+  X,
+} from 'lucide-react';
 import { useDashboard } from '../context/DashboardContext';
 import {
   ALL_AUDIENCES,
@@ -55,7 +65,7 @@ export const ControlPane: React.FC = () => {
 
   // Manual Event Builder state
   const [title, setTitle] = useState('');
-  const [eventDate, setEventDate] = useState('2026-11-14');
+  const [eventDate, setEventDate] = useState('2026-11-11');
   const [sourceType, setSourceType] = useState<SourceType>('contract_award');
   const [sourceUrl, setSourceUrl] = useState('https://www.defense.gov/News/Contracts/');
   const [summary, setSummary] = useState('');
@@ -63,6 +73,122 @@ export const ControlPane: React.FC = () => {
   const [author, setAuthor] = useState('Lead Analyst');
   const [reason, setReason] = useState('Manual entry of verified primary source event');
   const [eventSavedMsg, setEventSavedMsg] = useState('');
+  const [importNotice, setImportNotice] = useState('');
+  const [attachedDoc, setAttachedDoc] = useState<{ name: string; sizeKb: number } | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const classifyTextToDraft = (rawText: string, fallbackTitle: string) => {
+    const lower = rawText.toLowerCase();
+    const isNeg = /\b(delay|overrun|shortfall|strike|deficit|audit|criticism|cut|cancel|problem|slip|late|fine|loss)\b/.test(lower);
+    const dir: DirectionCode = isNeg ? -1 : 1;
+
+    const audFlags: Record<AudienceId, boolean> = {
+      executive: /\b(white house|executive order|omb|pentagon|osd|administration|tariff|dpa|golden fleet)\b/.test(lower),
+      congress: /\b(congress|ndaa|hasc|sasc|senate|house|gao|crs|appropriations|committee|markup)\b/.test(lower),
+      navy: /\b(navy|navsea|secnav|cvn|virginia|columbia|ddg|lha|lpd|submarine|carrier|destroyer|sea trials|fleet|unmanned)\b/.test(lower),
+      public: /\b(stock|nyse|earnings|dividend|fcf|revenue|eps|analyst|upgrade|downgrade|union|usw|workforce|shareholder)\b/.test(lower),
+    };
+    if (!Object.values(audFlags).some(Boolean)) {
+      audFlags.navy = true;
+      audFlags.public = true;
+    }
+    setEnabledAudiences(audFlags);
+    setImpactConfig((prev) => ({
+      executive: { ...prev.executive, direction: dir },
+      congress: { ...prev.congress, direction: dir },
+      navy: { ...prev.navy, direction: dir },
+      public: { ...prev.public, direction: dir },
+    }));
+    if (!title.trim() && fallbackTitle) {
+      setTitle(fallbackTitle);
+    }
+  };
+
+  const handleParseArticleUrl = () => {
+    const trimmed = sourceUrl.trim();
+    if (!trimmed) return;
+    try {
+      const parsed = new URL(trimmed);
+      const host = parsed.hostname.toLowerCase();
+      let detectedType: SourceType = 'news_media';
+      if (host.includes('congress.gov') && parsed.pathname.includes('/bill/')) detectedType = 'legislation';
+      else if (host.includes('armedservices') || host.includes('senate.gov')) detectedType = 'hearing';
+      else if (host.includes('gao.gov')) detectedType = 'gao_report';
+      else if (host.includes('crsreports')) detectedType = 'crs_report';
+      else if (host.includes('sec.gov') || host.includes('ir.hii.com')) detectedType = 'earnings';
+      else if (host.includes('defense.gov')) detectedType = 'contract_award';
+      else if (host.includes('whitehouse.gov')) detectedType = 'exec_order';
+      else if (host.includes('hii.com')) detectedType = 'corporate_action';
+
+      setSourceType(detectedType);
+      const defCred = DEFAULT_CREDIBILITY[detectedType];
+      setImpactConfig((prev) => ({
+        executive: { ...prev.executive, credibility: defCred },
+        congress: { ...prev.congress, credibility: defCred },
+        navy: { ...prev.navy, credibility: defCred },
+        public: { ...prev.public, credibility: defCred },
+      }));
+
+      const lastSeg = parsed.pathname.split('/').filter(Boolean).pop() ?? '';
+      const cleanSlugTitle = lastSeg
+        .replace(/\.aspx$|\.html$|\.pdf$/i, '')
+        .replace(/[-_]+/g, ' ')
+        .replace(/\b\w/g, (c) => c.toUpperCase());
+
+      const draftTitle =
+        cleanSlugTitle && cleanSlugTitle.length > 6 && !/^(default|contracts|newsroom)$/i.test(cleanSlugTitle)
+          ? cleanSlugTitle
+          : `External Reference (${host.replace(/^www\./, '')})`;
+
+      classifyTextToDraft(`${host} ${cleanSlugTitle}`, draftTitle);
+      if (!summary.trim()) {
+        setSummary(`Verified external reference ingested from ${host}: ${trimmed}`);
+      }
+      setImportNotice(`Parsed article link (${host}) — auto-assigned Source Type "${detectedType}" & audience rubric.`);
+      setTimeout(() => setImportNotice(''), 5000);
+    } catch {
+      setImportNotice('Please enter a valid https:// article URL.');
+      setTimeout(() => setImportNotice(''), 3500);
+    }
+  };
+
+  const handleDocumentUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const sizeKb = Math.max(1, Math.round(file.size / 1024));
+    setAttachedDoc({ name: file.name, sizeKb });
+
+    const baseTitle = file.name
+      .replace(/\.[^.]+$/, '')
+      .replace(/[-_]+/g, ' ')
+      .replace(/\b\w/g, (c) => c.toUpperCase());
+
+    const isTextLike = /\.(txt|md|csv|json|log|html)$/i.test(file.name) || file.type.startsWith('text/');
+    let excerpt = '';
+    if (isTextLike) {
+      try {
+        const rawContent = await file.text();
+        const plain = rawContent.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+        excerpt = plain.slice(0, 320);
+        classifyTextToDraft(`${baseTitle} ${plain.slice(0, 2000)}`, baseTitle);
+      } catch {
+        classifyTextToDraft(baseTitle, baseTitle);
+      }
+    } else {
+      classifyTextToDraft(baseTitle, baseTitle);
+    }
+
+    setSourceUrl(`doc://${encodeURIComponent(file.name)}`);
+    setSummary((prev) =>
+      excerpt
+        ? `[Uploaded Document: ${file.name} (${sizeKb} KB)] ${excerpt}${excerpt.length >= 320 ? '…' : ''}`
+        : `[Uploaded Document: ${file.name} (${sizeKb} KB)] Attached for stakeholder sentiment impact review.`,
+    );
+    setReason(`Manual document upload (${file.name})`);
+    setImportNotice(`Uploaded "${file.name}" (${sizeKb} KB) and drafted rubric fields — review and click Commit.`);
+    setTimeout(() => setImportNotice(''), 5500);
+    if (fileInputRef.current) fileInputRef.current.value = '';
+  };
 
   const [enabledAudiences, setEnabledAudiences] = useState<Record<AudienceId, boolean>>({
     executive: false,
@@ -127,6 +253,7 @@ export const ControlPane: React.FC = () => {
 
     setTitle('');
     setSummary('');
+    setAttachedDoc(null);
     setEventSavedMsg(
       `Event committed to ledger (${revs.length} period/audience score revision(s) recorded).`,
     );
@@ -280,7 +407,7 @@ export const ControlPane: React.FC = () => {
             className="px-3 py-1.5 rounded bg-charcoal border border-steel hover:border-sky text-sky hover:text-white flex items-center gap-1.5 text-xs font-mono transition"
           >
             <RotateCcw className="w-3.5 h-3.5 text-changingsea" />
-            <span>Reset Cache to Seed (152 Events)</span>
+            <span>Reset Cache to Seed ({state.events.length} Events)</span>
           </button>
         </div>
       </div>
@@ -293,11 +420,77 @@ export const ControlPane: React.FC = () => {
         <div className="border-b border-steel/50 pb-3">
           <h2 className="text-base font-bold text-white flex items-center gap-2">
             <PlusCircle className="w-4 h-4 text-passion" />
-            <span>ADD MANUAL EVIDENCE / RETROACTIVE IMPACT EVENT</span>
+            <span>ADD MANUAL EVIDENCE · ARTICLE URL OR DOCUMENT UPLOAD</span>
           </h2>
           <p className="text-xs text-sky/80 mt-0.5">
-            Add a new or historical event with discrete rubric classifications. Entering a past `eventDate` automatically triggers retroactive score revision tracking.
+            Paste an article link or upload a briefing/report (.pdf, .txt, .md, .docx, .csv) to classify its stakeholder impact and commit it deterministically to the ledger.
           </p>
+        </div>
+
+        {/* Quick Import: Article Link Parser + Document Upload */}
+        <div className="bg-charcoal/90 border border-sky/40 rounded-lg p-3 space-y-2.5 text-xs">
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <span className="font-mono font-bold text-sky uppercase text-[11px] flex items-center gap-1.5">
+              <Sparkles className="w-3.5 h-3.5 text-passion" />
+              <span>Quick Source Ingest (Article Link or Document)</span>
+            </span>
+
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept=".txt,.md,.csv,.json,.pdf,.doc,.docx"
+              onChange={(e) => void handleDocumentUpload(e)}
+              className="hidden"
+            />
+            <button
+              type="button"
+              onClick={() => fileInputRef.current?.click()}
+              className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#1e2227] border border-passion/70 hover:bg-passion hover:text-white text-white font-semibold transition"
+            >
+              <Upload className="w-3.5 h-3.5 text-passion group-hover:text-white" />
+              <span>Upload Document</span>
+            </button>
+          </div>
+
+          <div className="flex flex-col sm:flex-row gap-2">
+            <div className="relative flex-1">
+              <Link2 className="w-3.5 h-3.5 text-sky absolute left-2.5 top-2" />
+              <input
+                type="text"
+                value={sourceUrl}
+                onChange={(e) => setSourceUrl(e.target.value)}
+                placeholder="Paste article URL (https://...) or doc:// reference"
+                className="w-full pl-8 pr-2.5 py-1.5 bg-[#16191d] border border-steel rounded text-white font-mono text-xs focus:outline-none focus:border-passion"
+              />
+            </div>
+            <button
+              type="button"
+              onClick={handleParseArticleUrl}
+              className="px-3 py-1.5 rounded bg-deepsea border border-sky/60 hover:border-passion text-white font-semibold whitespace-nowrap transition"
+            >
+              Parse Link
+            </button>
+          </div>
+
+          {attachedDoc && (
+            <div className="flex items-center justify-between px-2.5 py-1.5 rounded bg-changingsea/20 border border-changingsea/60 text-white">
+              <span className="flex items-center gap-1.5 font-mono text-[11px] truncate">
+                <FileText className="w-3.5 h-3.5 text-sky shrink-0" />
+                <span>Attached Document: <strong>{attachedDoc.name}</strong> ({attachedDoc.sizeKb} KB)</span>
+              </span>
+              <button
+                type="button"
+                onClick={() => setAttachedDoc(null)}
+                className="p-0.5 text-steel hover:text-white"
+              >
+                <X className="w-3.5 h-3.5" />
+              </button>
+            </div>
+          )}
+
+          {importNotice && (
+            <p className="text-[11px] text-changingsea font-mono">{importNotice}</p>
+          )}
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
@@ -350,9 +543,9 @@ export const ControlPane: React.FC = () => {
             </select>
           </div>
           <div>
-            <label className="text-sky block mb-1">Primary Source URL</label>
+            <label className="text-sky block mb-1">Primary Source Reference</label>
             <input
-              type="url"
+              type="text"
               value={sourceUrl}
               onChange={(e) => setSourceUrl(e.target.value)}
               className="w-full bg-charcoal border border-steel rounded px-2.5 py-1.5 text-white font-mono"

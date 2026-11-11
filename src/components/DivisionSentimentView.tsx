@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import {
   AlertTriangle,
   BookOpen,
@@ -57,6 +57,14 @@ export const DivisionSentimentView: React.FC = () => {
   const [selectedProgramFilter, setSelectedProgramFilter] = useState<ProgramId | 'all'>('all');
   const [showMathExplainer, setShowMathExplainer] = useState(false);
   const [showSourceGuide, setShowSourceGuide] = useState(false);
+  const divChartScrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = divChartScrollRef.current;
+    if (el && el.scrollWidth > el.clientWidth) {
+      el.scrollLeft = el.scrollWidth - el.clientWidth;
+    }
+  }, [selectedDivision, selectedProgramFilter]);
 
   const divisionResult = useMemo(
     () => computeDivisionScores(state.events, selectedDivision, state.settings),
@@ -401,30 +409,56 @@ export const DivisionSentimentView: React.FC = () => {
           </span>
         </div>
 
-        <div className="h-80 w-full">
-          <ResponsiveContainer width="100%" height="100%">
-            <LineChart data={chartData} margin={{ top: 10, right: 20, left: -10, bottom: 0 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#363c44" />
-              <XAxis dataKey="label" stroke="#8b98a5" tick={{ fill: '#8b98a5', fontSize: 11 }} />
-              <YAxis domain={[0, 100]} stroke="#8b98a5" tick={{ fill: '#8b98a5', fontSize: 11 }} />
-              <ReferenceLine y={50} stroke="#5b6670" strokeDasharray="3 3" label={{ value: '50 Neutral', fill: '#5b6670', fontSize: 10 }} />
-              <Tooltip
-                contentStyle={{
-                  backgroundColor: '#24272a',
-                  borderColor: '#5b6670',
-                  borderRadius: '0.5rem',
-                  fontSize: '12px',
-                  color: '#ffffff',
-                }}
-              />
-              <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
-              <Line type="monotone" dataKey="composite" name={`${meta.name} Composite`} stroke="#ffffff" strokeWidth={3} dot={{ r: 3, fill: '#ffffff' }} />
-              <Line type="monotone" dataKey="navy" name="Navy Customer" stroke="#75abd1" strokeWidth={2} dot={false} strokeDasharray="5 5" />
-              <Line type="monotone" dataKey="congress" name="Congress" stroke="#509ca2" strokeWidth={1.5} dot={false} />
-              <Line type="monotone" dataKey="executive" name="Executive" stroke="#ea7722" strokeWidth={1.5} dot={false} />
-              <Line type="monotone" dataKey="public" name="Public Markets" stroke="#5b6670" strokeWidth={1.5} dot={false} />
-            </LineChart>
-          </ResponsiveContainer>
+        {/* Mobile swipe strip */}
+        <div className="sm:hidden flex items-center justify-between text-[11px] font-mono text-sky/90 bg-[#14171a] border border-[#2d333b] rounded px-2.5 py-1.5">
+          <span>← Swipe for 2011–2025 history</span>
+          <div className="flex items-center gap-1.5">
+            <button
+              type="button"
+              onClick={() => divChartScrollRef.current?.scrollTo({ left: 0, behavior: 'smooth' })}
+              className="px-1.5 py-0.5 rounded bg-charcoal border border-steel/60 text-[10px] text-steel hover:text-white"
+            >
+              2011
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                const el = divChartScrollRef.current;
+                if (el) el.scrollTo({ left: el.scrollWidth - el.clientWidth, behavior: 'smooth' });
+              }}
+              className="px-1.5 py-0.5 rounded bg-passion/20 border border-passion/60 text-[10px] text-passion font-bold"
+            >
+              Recent →
+            </button>
+          </div>
+        </div>
+
+        <div ref={divChartScrollRef} className="w-full overflow-x-auto sm:overflow-x-visible">
+          <div className="min-w-[820px] sm:min-w-0 w-full h-72 sm:h-80">
+            <ResponsiveContainer width="100%" height="100%">
+              <LineChart data={chartData} margin={{ top: 10, right: 20, left: -10, bottom: 0 }}>
+                <CartesianGrid strokeDasharray="3 3" stroke="#363c44" />
+                <XAxis dataKey="label" stroke="#8b98a5" tick={{ fill: '#8b98a5', fontSize: 11 }} interval={0} angle={-25} textAnchor="end" height={46} />
+                <YAxis domain={[0, 100]} stroke="#8b98a5" tick={{ fill: '#8b98a5', fontSize: 11 }} />
+                <ReferenceLine y={50} stroke="#5b6670" strokeDasharray="3 3" label={{ value: '50 Neutral', fill: '#5b6670', fontSize: 10 }} />
+                <Tooltip
+                  contentStyle={{
+                    backgroundColor: '#24272a',
+                    borderColor: '#5b6670',
+                    borderRadius: '0.5rem',
+                    fontSize: '12px',
+                    color: '#ffffff',
+                  }}
+                />
+                <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
+                <Line type="monotone" dataKey="composite" name={`${meta.name} Composite`} stroke="#ffffff" strokeWidth={3} dot={{ r: 3, fill: '#ffffff' }} />
+                <Line type="monotone" dataKey="navy" name="Navy Customer" stroke="#75abd1" strokeWidth={2} dot={false} strokeDasharray="5 5" />
+                <Line type="monotone" dataKey="congress" name="Congress" stroke="#509ca2" strokeWidth={1.5} dot={false} />
+                <Line type="monotone" dataKey="executive" name="Executive" stroke="#ea7722" strokeWidth={1.5} dot={false} />
+                <Line type="monotone" dataKey="public" name="Public Markets" stroke="#5b6670" strokeWidth={1.5} dot={false} />
+              </LineChart>
+            </ResponsiveContainer>
+          </div>
         </div>
       </div>
 
