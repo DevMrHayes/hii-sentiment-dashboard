@@ -1,5 +1,30 @@
 [
   {
+    "runId": "run_20261116_214416",
+    "startedAt": "2026-11-16T21:44:16Z",
+    "completedAt": "2026-11-16T21:44:16Z",
+    "audiences": [
+      "executive",
+      "congress",
+      "navy",
+      "public"
+    ],
+    "status": "completed",
+    "mode": "offline_simulation",
+    "discoveredCount": 0,
+    "pendingFile": "data/pending/pending_seed.json",
+    "costUsd": 0.0,
+    "log": [
+      "[Tier B: Balanced Deep Research + Argon] Started run run_20261116_214416 for audiences: executive, congress, navy, public",
+      "Vertex live call fallback (No module named 'cloud_agent_mesh'); using deterministic Tier B curated discovery pool.",
+      "Skipped duplicate/near-duplicate candidate 'OMB & White House Office of Shipbuilding Issue Domestic...' (matched evt_e990cc553f0cc6f8 on 2026-11-12)",
+      "Skipped duplicate/near-duplicate candidate 'GAO Retroactive Audit (GAO-24-106899): Ford-Class Weapo...' (matched evt_51aaf1933f2f9607 on 2024-07-18)",
+      "Skipped duplicate/near-duplicate candidate 'NAVSEA Definitizes $1.18B Long-Lead Material Contract f...' (matched evt_f8b562eb0882bbc2 on 2011-04-01)",
+      "Skipped duplicate/near-duplicate candidate 'Defense Equity Consensus Upgrade: Three Institutional D...' (matched evt_300768665a459b03 on 2026-11-14)",
+      "Staged 0 new unique candidate events into Pending Quarantine Queue (Tier B Month-to-Date Spend: $0.2130 / $5.00)."
+    ]
+  },
+  {
     "runId": "run_20261109_220031",
     "startedAt": "2026-11-09T22:00:31Z",
     "completedAt": "2026-11-09T22:00:31Z",
