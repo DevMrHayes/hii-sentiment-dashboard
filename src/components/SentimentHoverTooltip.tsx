@@ -300,30 +300,30 @@ export const SentimentHoverTooltip: React.FC<SentimentHoverTooltipProps> = ({
     public: scores.public,
   };
 
-  const widthClass = mode === 'scores' ? 'w-[195px]' : 'w-[225px]';
+  const widthClass = mode === 'scores' ? 'w-[210px]' : 'w-[240px]';
 
   return (
     <div
-      className={`bg-[#1a1e23]/95 backdrop-blur-md border border-sky/60 rounded-lg p-2.5 shadow-xl text-white pointer-events-none select-none ${widthClass}`}
+      className={`bg-surface1/95 backdrop-blur-md border border-hairline rounded-lg p-2.5 shadow-xl text-white pointer-events-none select-none ${widthClass}`}
     >
       {/* Compact Header */}
-      <div className="flex items-center justify-between gap-1.5 border-b border-sky/30 pb-1.5 mb-2">
+      <div className="flex items-center justify-between gap-1.5 border-b border-hairline pb-1.5 mb-2">
         <div className="min-w-0">
           <div className="flex items-center gap-1">
-            <span className="text-[11px] font-bold text-white truncate">{label}</span>
+            <span className="text-xs font-bold text-white truncate">{label}</span>
             {isForecast && (
-              <span className="text-[8px] uppercase font-bold tracking-wider px-1 py-0.2 rounded bg-passion/25 border border-passion/50 text-passion shrink-0">
+              <span className="text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-passion/20 border border-passion/50 text-passion shrink-0">
                 Fcst
               </span>
             )}
           </div>
           {subtitle && (
-            <div className="text-[9px] text-sky/75 truncate leading-tight">{subtitle}</div>
+            <div className="text-[11px] text-muted truncate leading-tight">{subtitle}</div>
           )}
         </div>
         {composite !== undefined && (
-          <div className="text-right shrink-0 bg-[#22262b] px-1.5 py-0.5 rounded border border-sky/30">
-            <span className="text-[11px] font-mono font-bold text-white">
+          <div className="text-right shrink-0 bg-surface0 px-1.5 py-0.5 rounded border border-hairline">
+            <span className="text-xs font-mono font-bold tabular-nums text-white">
               {composite.toFixed(1)}
             </span>
           </div>
@@ -332,7 +332,7 @@ export const SentimentHoverTooltip: React.FC<SentimentHoverTooltipProps> = ({
 
       {/* Mode 1: Compact Score Bar Chart ONLY */}
       {mode === 'scores' && (
-        <div className="space-y-1">
+        <div className="space-y-1.5">
           {AUDIENCE_BARS.map(({ key, shortLabel, color }) => {
             const val = allValues[key];
             if (val === undefined || Number.isNaN(val)) return null;
@@ -340,11 +340,11 @@ export const SentimentHoverTooltip: React.FC<SentimentHoverTooltipProps> = ({
             const isComp = key === 'composite';
 
             return (
-              <div key={key} className="flex items-center gap-1.5 text-[10px]">
-                <span className={`w-8 truncate ${isComp ? 'font-bold text-white' : 'text-sky/90'}`}>
+              <div key={key} className="flex items-center gap-1.5 text-[11px]">
+                <span className={`w-9 truncate ${isComp ? 'font-bold text-white' : 'text-muted'}`}>
                   {shortLabel}
                 </span>
-                <div className="flex-1 h-2 bg-[#14171a] rounded-sm overflow-hidden relative border border-steel/40">
+                <div className="flex-1 h-2 bg-surface0 rounded-sm overflow-hidden relative border border-hairline">
                   <div
                     className="absolute top-0 bottom-0 left-1/2 w-[1px] bg-white/30 z-10"
                     title="Neutral 50"
@@ -358,8 +358,8 @@ export const SentimentHoverTooltip: React.FC<SentimentHoverTooltipProps> = ({
                   />
                 </div>
                 <span
-                  className={`w-7 text-right font-mono text-[10px] ${
-                    isComp ? 'font-bold text-white' : 'text-white/85'
+                  className={`w-8 text-right font-mono tabular-nums text-[11px] ${
+                    isComp ? 'font-bold text-white' : 'text-gray-100'
                   }`}
                 >
                   {val.toFixed(1)}
@@ -369,7 +369,7 @@ export const SentimentHoverTooltip: React.FC<SentimentHoverTooltipProps> = ({
           })}
 
           {p10 !== undefined && p90 !== undefined && (
-            <div className="pt-1 mt-1 border-t border-sky/20 flex items-center justify-between text-[9px] text-passion font-mono">
+            <div className="pt-1 mt-1 border-t border-hairline flex items-center justify-between text-[11px] text-passion font-mono tabular-nums">
               <span>80% Band</span>
               <span>
                 [{p10.toFixed(1)}–{p90.toFixed(1)}]
@@ -386,28 +386,28 @@ export const SentimentHoverTooltip: React.FC<SentimentHoverTooltipProps> = ({
             sourceMix={sourceMix}
             totalCount={totalImpactingEvents}
             sizeClass="w-14 h-14"
-            centerLabelSizeClass="text-[11px]"
+            centerLabelSizeClass="text-[11px] tabular-nums"
           />
 
           <div className="flex-1 min-w-0 space-y-1">
             {sourceMix.length === 0 ? (
-              <div className="text-[9px] text-steel italic leading-tight">
+              <div className="text-[11px] text-muted italic leading-tight">
                 Baseline decay window (0 active events)
               </div>
             ) : (
               sourceMix.slice(0, 4).map((slice) => (
                 <div
                   key={slice.bucket}
-                  className="flex items-center justify-between gap-1 text-[9px]"
+                  className="flex items-center justify-between gap-1 text-[11px]"
                 >
-                  <div className="flex items-center gap-1 min-w-0">
+                  <div className="flex items-center gap-1.5 min-w-0">
                     <span
-                      className="w-1.5 h-1.5 rounded-full shrink-0"
+                      className="w-2 h-2 rounded-full shrink-0"
                       style={{ backgroundColor: slice.color }}
                     />
-                    <span className="text-white/90 truncate">{slice.label}</span>
+                    <span className="text-gray-100 truncate">{slice.label}</span>
                   </div>
-                  <span className="font-mono text-sky shrink-0">
+                  <span className="font-mono tabular-nums text-sky shrink-0">
                     {Math.round(slice.pct)}%
                   </span>
                 </div>
@@ -418,8 +418,8 @@ export const SentimentHoverTooltip: React.FC<SentimentHoverTooltipProps> = ({
       )}
 
       {/* Micro Footer Hint */}
-      <div className="mt-2 pt-1 border-t border-sky/20 text-[9px] text-passion font-semibold text-center">
-        Double-click point for full pane
+      <div className="mt-2 pt-1 border-t border-hairline text-[11px] text-sky font-medium text-center">
+        Double-click or press Inspect Period
       </div>
     </div>
   );
@@ -471,34 +471,34 @@ export const PeriodBreakdownModal: React.FC<PeriodBreakdownModalProps> = ({
       aria-label={`Detailed Sentiment Breakdown for ${label}`}
     >
       <div
-        className="max-w-3xl w-full max-h-[90vh] overflow-y-auto bg-[#1a1e23] border border-sky/60 rounded-2xl shadow-2xl text-white"
+        className="max-w-3xl w-full max-h-[90vh] overflow-y-auto bg-surface1 border border-hairline rounded-2xl shadow-2xl text-white"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Modal Header */}
-        <div className="flex items-center justify-between gap-4 px-5 py-4 bg-[#22262b] border-b border-steel/50 sticky top-0 z-10">
+        <div className="flex items-center justify-between gap-4 px-5 py-4 bg-surface0 border-b border-hairline sticky top-0 z-10">
           <div>
             <div className="flex items-center gap-2.5 flex-wrap">
               <h3 className="text-lg font-bold text-white tracking-tight">{label}</h3>
               {isForecast ? (
-                <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-passion/20 border border-passion/50 text-passion">
+                <span className="text-[11px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-passion/20 border border-passion/50 text-passion">
                   Projected Forecast Window
                 </span>
               ) : (
-                <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-sky/20 border border-sky/40 text-sky">
+                <span className="text-[11px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-sky/15 border border-sky/40 text-sky">
                   Historical Period Breakdown
                 </span>
               )}
             </div>
-            {subtitle && <p className="text-xs text-sky/80 mt-0.5">{subtitle}</p>}
+            {subtitle && <p className="text-xs text-muted mt-0.5">{subtitle}</p>}
           </div>
 
           <div className="flex items-center gap-3 shrink-0">
             {composite !== undefined && (
-              <div className="text-right bg-[#1a1e23] px-3 py-1.5 rounded-xl border border-sky/40">
-                <div className="text-[10px] uppercase tracking-wider text-steel font-semibold">
+              <div className="text-right bg-surface1 px-3 py-1.5 rounded-xl border border-hairline">
+                <div className="text-[11px] uppercase tracking-wider text-muted font-semibold">
                   {isForecast ? 'Forecast EV' : 'Composite Score'}
                 </div>
-                <div className="text-lg font-mono font-bold text-white">
+                <div className="text-lg font-mono tabular-nums font-bold text-white">
                   {composite.toFixed(2)}
                 </div>
               </div>
@@ -506,7 +506,8 @@ export const PeriodBreakdownModal: React.FC<PeriodBreakdownModalProps> = ({
             <button
               type="button"
               onClick={onClose}
-              className="p-2 rounded-lg bg-[#1a1e23] hover:bg-passion/20 text-steel hover:text-white border border-steel/60 transition-colors"
+              aria-label="Close period breakdown"
+              className="p-2 rounded-lg bg-surface1 hover:bg-surface2 text-muted hover:text-white border border-hairline transition-colors"
               title="Close pane (Esc)"
             >
               <X className="w-5 h-5" />
@@ -518,14 +519,14 @@ export const PeriodBreakdownModal: React.FC<PeriodBreakdownModalProps> = ({
         <div className="p-5 space-y-5">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {/* Left Card: Audience Sentiment Bar Chart */}
-            <div className="bg-[#22262b] border border-steel/50 rounded-xl p-4 flex flex-col justify-between">
+            <div className="bg-surface0 border border-hairline rounded-xl p-4 flex flex-col justify-between">
               <div>
                 <div className="flex items-center justify-between mb-3">
                   <span className="text-xs font-bold uppercase tracking-wider text-sky flex items-center gap-1.5">
                     <BarChart3 className="w-4 h-4 text-passion" />
                     <span>Audience Sentiment · Bar Chart</span>
                   </span>
-                  <span className="text-[10px] font-mono text-steel">50 = Neutral</span>
+                  <span className="text-[11px] font-mono text-muted">50 = Neutral</span>
                 </div>
 
                 <div className="space-y-2.5">
@@ -539,13 +540,13 @@ export const PeriodBreakdownModal: React.FC<PeriodBreakdownModalProps> = ({
                     return (
                       <div key={key} className="space-y-1">
                         <div className="flex items-center justify-between text-xs">
-                          <span className={isComp ? 'font-bold text-white' : 'font-medium text-sky/90'}>
+                          <span className={isComp ? 'font-bold text-white' : 'font-medium text-gray-100'}>
                             {fullLabel}
                           </span>
-                          <div className="flex items-center gap-2 font-mono">
+                          <div className="flex items-center gap-2 font-mono tabular-nums">
                             <span
-                              className={`text-[10px] ${
-                                deltaFromNeutral >= 0 ? 'text-changingsea' : 'text-passion'
+                              className={`text-[11px] ${
+                                deltaFromNeutral >= 0 ? 'text-lift' : 'text-drag'
                               }`}
                             >
                               {deltaFromNeutral >= 0 ? '+' : ''}
@@ -557,7 +558,7 @@ export const PeriodBreakdownModal: React.FC<PeriodBreakdownModalProps> = ({
                           </div>
                         </div>
 
-                        <div className="h-3 bg-[#14171a] rounded overflow-hidden relative border border-steel/40">
+                        <div className="h-3 bg-surface1 rounded overflow-hidden relative border border-hairline">
                           <div
                             className="absolute top-0 bottom-0 left-1/2 w-[1.5px] bg-white/35 z-10"
                             title="Neutral 50"
@@ -577,14 +578,14 @@ export const PeriodBreakdownModal: React.FC<PeriodBreakdownModalProps> = ({
               </div>
 
               {p10 !== undefined && p90 !== undefined && (
-                <div className="mt-4 pt-3 border-t border-steel/40">
-                  <div className="flex items-center justify-between text-xs text-passion font-mono mb-1">
+                <div className="mt-4 pt-3 border-t border-hairline">
+                  <div className="flex items-center justify-between text-xs text-passion font-mono tabular-nums mb-1">
                     <span>80% Scenario Confidence (P10 – P90)</span>
                     <span className="font-bold">
                       [{p10.toFixed(2)} – {p90.toFixed(2)}]
                     </span>
                   </div>
-                  <div className="h-2.5 bg-[#14171a] rounded overflow-hidden relative border border-passion/40">
+                  <div className="h-2.5 bg-surface1 rounded overflow-hidden relative border border-passion/40">
                     <div
                       className="absolute top-0 bottom-0 bg-passion/45 border-x border-passion"
                       style={{
@@ -598,14 +599,14 @@ export const PeriodBreakdownModal: React.FC<PeriodBreakdownModalProps> = ({
             </div>
 
             {/* Right Card: Ledger Source Distribution Pie Chart */}
-            <div className="bg-[#22262b] border border-steel/50 rounded-xl p-4 flex flex-col justify-between">
+            <div className="bg-surface0 border border-hairline rounded-xl p-4 flex flex-col justify-between">
               <div>
                 <div className="flex items-center justify-between mb-3">
                   <span className="text-xs font-bold uppercase tracking-wider text-sky flex items-center gap-1.5">
                     <PieChart className="w-4 h-4 text-passion" />
                     <span>Ledger Source Mix · Pie Chart</span>
                   </span>
-                  <span className="text-[11px] font-mono text-white font-semibold">
+                  <span className="text-xs font-mono tabular-nums text-white font-semibold">
                     {totalImpactingEvents} Driver{totalImpactingEvents === 1 ? '' : 's'}
                   </span>
                 </div>
@@ -615,12 +616,12 @@ export const PeriodBreakdownModal: React.FC<PeriodBreakdownModalProps> = ({
                     sourceMix={sourceMix}
                     totalCount={totalImpactingEvents}
                     sizeClass="w-28 h-28"
-                    centerLabelSizeClass="text-[12px]"
+                    centerLabelSizeClass="text-[12px] tabular-nums"
                   />
 
                   <div className="flex-1 w-full min-w-0 space-y-2">
                     {sourceMix.length === 0 ? (
-                      <div className="text-xs text-steel italic">
+                      <div className="text-xs text-muted italic">
                         No direct ledger events in this period; scores reflect exponential time-decay toward neutral baseline (50.0).
                       </div>
                     ) : (
@@ -636,11 +637,11 @@ export const PeriodBreakdownModal: React.FC<PeriodBreakdownModalProps> = ({
                                 {slice.label}
                               </span>
                             </div>
-                            <span className="font-mono text-[11px] text-sky shrink-0">
+                            <span className="font-mono tabular-nums text-xs text-sky shrink-0">
                               {Math.round(slice.pct)}% ({slice.count})
                             </span>
                           </div>
-                          <div className="h-1.5 bg-[#14171a] rounded-full overflow-hidden">
+                          <div className="h-1.5 bg-surface1 rounded-full overflow-hidden">
                             <div
                               className="h-full rounded-full"
                               style={{
@@ -656,9 +657,9 @@ export const PeriodBreakdownModal: React.FC<PeriodBreakdownModalProps> = ({
                 </div>
               </div>
 
-              <div className="mt-3 pt-2.5 border-t border-steel/40 text-[11px] text-steel flex items-center justify-between">
+              <div className="mt-3 pt-2.5 border-t border-hairline text-xs text-muted flex items-center justify-between">
                 <span>Source Attribution Mix</span>
-                <span className="font-mono text-white/80">
+                <span className="font-mono tabular-nums text-white/90">
                   {sourceMix.length} active source bucket{sourceMix.length === 1 ? '' : 's'}
                 </span>
               </div>
@@ -666,12 +667,12 @@ export const PeriodBreakdownModal: React.FC<PeriodBreakdownModalProps> = ({
           </div>
 
           {/* Bottom Section: Impacting Ledger Events & Milestones */}
-          <div className="bg-[#22262b] border border-steel/50 rounded-xl p-4">
+          <div className="bg-surface0 border border-hairline rounded-xl p-4">
             <div className="flex items-center justify-between mb-2.5">
               <span className="text-xs font-bold uppercase tracking-wider text-sky">
                 Impacting Ledger Events & Milestones ({totalImpactingEvents})
               </span>
-              <span className="text-[11px] text-steel hidden sm:inline">
+              <span className="text-xs text-muted hidden sm:inline">
                 Contributing active & decayed drivers in period
               </span>
             </div>
@@ -683,13 +684,13 @@ export const PeriodBreakdownModal: React.FC<PeriodBreakdownModalProps> = ({
                   return (
                     <div
                       key={ev.id}
-                      className="flex items-center justify-between gap-3 px-3 py-2 rounded-lg bg-[#1a1e23] border border-steel/40 text-xs"
+                      className="flex items-center justify-between gap-3 px-3 py-2 rounded-lg bg-surface1 border border-hairline text-xs"
                     >
                       <div className="flex items-center gap-2 min-w-0">
                         {ev.starred && (
                           <Star className="w-3.5 h-3.5 text-passion fill-passion shrink-0" />
                         )}
-                        <span className="font-mono text-[11px] text-passion shrink-0">
+                        <span className="font-mono tabular-nums text-xs text-sky shrink-0">
                           {ev.eventDate}
                         </span>
                         <span className="text-white font-medium truncate">
@@ -697,7 +698,7 @@ export const PeriodBreakdownModal: React.FC<PeriodBreakdownModalProps> = ({
                         </span>
                       </div>
                       <span
-                        className="text-[10px] font-semibold px-2 py-0.5 rounded-full shrink-0 border"
+                        className="text-[11px] font-semibold px-2 py-0.5 rounded-full shrink-0 border"
                         style={{
                           backgroundColor: `${b.color}20`,
                           borderColor: `${b.color}70`,
@@ -715,7 +716,7 @@ export const PeriodBreakdownModal: React.FC<PeriodBreakdownModalProps> = ({
                 {keyEventTitles.map((title, i) => (
                   <li
                     key={i}
-                    className="flex items-start gap-2 px-3 py-1.5 rounded bg-[#1a1e23] border border-steel/40"
+                    className="flex items-start gap-2 px-3 py-1.5 rounded bg-surface1 border border-hairline"
                   >
                     <Star className="w-3.5 h-3.5 text-passion fill-passion shrink-0 mt-0.5" />
                     <span>{title}</span>
@@ -723,7 +724,7 @@ export const PeriodBreakdownModal: React.FC<PeriodBreakdownModalProps> = ({
                 ))}
               </ul>
             ) : (
-              <div className="text-xs text-steel italic py-3 text-center">
+              <div className="text-xs text-muted italic py-3 text-center">
                 No discrete events logged inside this slice.
               </div>
             )}

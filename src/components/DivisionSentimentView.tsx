@@ -1,27 +1,18 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import {
-  AlertTriangle,
   BarChart3,
-  BookOpen,
   Building2,
-  CheckCircle2,
   ChevronDown,
-  ExternalLink,
+  Eye,
   Flame,
-  HelpCircle,
-  Info,
   Layers,
   MapPin,
   Newspaper,
   PieChart,
   Radio,
-  Scale,
-  Ship,
   Sparkles,
   TrendingDown,
   TrendingUp,
-  Users,
-  Zap,
 } from 'lucide-react';
 import {
   CartesianGrid,
@@ -43,7 +34,7 @@ import {
   type DivisionId,
   type ProgramId,
 } from '../engine/division';
-import { ALL_AUDIENCES, centiToDisplay, type ImpactEvent } from '../engine';
+import { ALL_AUDIENCES, type AudienceId, type ImpactEvent } from '../engine';
 import {
   SentimentHoverTooltip,
   PeriodBreakdownModal,
@@ -52,6 +43,14 @@ import {
   type PeriodBreakdownEvent,
   type SourceSlice,
 } from './SentimentHoverTooltip';
+
+// Unified across TrendChart, ScoreRail, SentimentHoverTooltip & DivisionSentimentView
+const AUDIENCE_COLORS: Record<AudienceId, string> = {
+  navy: '#38bdf8',
+  executive: '#75abd1',
+  congress: '#509ca2',
+  public: '#9ca3af',
+};
 
 // Division operating weights by approximate shipyard revenue & headcount footprint
 // Newport News (~55%), Ingalls (~35%), Mission Technologies (~10%)
@@ -87,7 +86,7 @@ export const DivisionSentimentView: React.FC = () => {
 
   const meta = DIVISION_META[selectedDivision];
 
-  // Compute all 3 division latest scores for rollup comparison
+  // Compute all 3 division latest scores + deltas for segmented switcher bar
   const allDivisionScores = useMemo(() => {
     return ALL_DIVISIONS.map((divId) => {
       const res = computeDivisionScores(state.events, divId, state.settings);
@@ -95,6 +94,7 @@ export const DivisionSentimentView: React.FC = () => {
         id: divId,
         meta: DIVISION_META[divId],
         score: res.latest.compositeScore,
+        delta: res.latest.deltaCenti / 100,
         weight: DIVISION_OPERATING_WEIGHTS[divId].weight,
         pctLabel: DIVISION_OPERATING_WEIGHTS[divId].pctLabel,
       };
@@ -156,125 +156,151 @@ export const DivisionSentimentView: React.FC = () => {
   }, [divisionResult.programWaterfall, selectedProgramFilter]);
 
   return (
-    <div className="space-y-6">
-      {/* Division Selector Tabs */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-        {ALL_DIVISIONS.map((divId) => {
-          const dMeta = DIVISION_META[divId];
-          const isSelected = selectedDivision === divId;
-          const divScores = computeDivisionScores(state.events, divId, state.settings);
-          const score = divScores.latest.compositeScore;
-          const delta = divScores.latest.deltaCenti / 100;
-
+    <div className="space-y-5">
+      {/* Top 4-Column Segmented Yard Switcher Bar & Enterprise Rollup */}
+      <div
+        role="tablist"
+        aria-label="HII Operating Divisions"
+        className="bg-surface1 border border-hairline rounded-xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-hairline overflow-hidden shadow-lg"
+      >
+        {allDivisionScores.map((div) => {
+          const isSelected = selectedDivision === div.id;
           return (
             <button
-              key={divId}
+              key={div.id}
               type="button"
+              role="tab"
+              aria-selected={isSelected}
               onClick={() => {
-                setSelectedDivision(divId);
+                setSelectedDivision(div.id);
                 setSelectedProgramFilter('all');
               }}
-              className={`p-4 rounded-xl border text-left transition relative overflow-hidden shadow-md ${
+              className={`px-4 py-3.5 text-left transition relative flex flex-col justify-between gap-2 ${
                 isSelected
-                  ? 'bg-charcoal border-passion ring-1 ring-passion'
-                  : 'bg-[#1e2227] border-steel/50 hover:border-sky/70 hover:bg-[#252a30]'
+                  ? 'bg-surface2 border-b-2 border-[#2dd4bf]'
+                  : 'bg-surface1 hover:bg-surface2/60 border-b-2 border-transparent'
               }`}
             >
-              <div className="flex items-start justify-between gap-2">
-                <div>
-                  <div className="flex items-center gap-1.5 text-xs text-sky font-mono font-medium">
-                    <Building2 className="w-3.5 h-3.5" />
-                    <span>{dMeta.name}</span>
-                    <span className="text-[10px] text-steel">({DIVISION_OPERATING_WEIGHTS[divId].pctLabel} footprint)</span>
-                  </div>
-                  <h3 className="text-sm font-bold text-white mt-1">{dMeta.fullName}</h3>
-                </div>
-                <div className="text-right">
-                  <div className="text-xl font-bold font-mono text-white">{score.toFixed(1)}</div>
-                  <div
-                    className={`text-xs font-mono font-semibold flex items-center justify-end gap-0.5 ${
-                      delta > 0 ? 'text-green-400' : delta < 0 ? 'text-passion' : 'text-steel'
-                    }`}
-                  >
-                    {delta > 0 ? (
-                      <TrendingUp className="w-3 h-3" />
-                    ) : delta < 0 ? (
-                      <TrendingDown className="w-3 h-3" />
-                    ) : null}
-                    <span>{delta >= 0 ? `+${delta.toFixed(2)}` : delta.toFixed(2)}</span>
-                  </div>
-                </div>
+              <div className="flex items-center justify-between gap-2 text-xs text-muted">
+                <span className="inline-flex items-center gap-1.5 font-medium text-gray-100 truncate">
+                  <Building2 className="w-3.5 h-3.5 text-sky shrink-0" />
+                  <span className="truncate">{div.meta.fullName}</span>
+                </span>
+                <span className="text-[11px] font-mono tabular-nums text-sky shrink-0">
+                  {div.pctLabel}
+                </span>
               </div>
 
-              <div className="mt-3 flex flex-wrap gap-1 text-[11px] font-mono text-steel">
-                {dMeta.corePrograms.slice(0, 3).map((prog) => (
-                  <span key={prog} className="px-2 py-0.5 rounded bg-charcoal/80 border border-steel/40 text-sky/90">
-                    {prog}
-                  </span>
-                ))}
+              <div className="flex items-baseline gap-2.5">
+                <span className="text-2xl font-bold font-mono tabular-nums text-white leading-none">
+                  {div.score.toFixed(1)}
+                </span>
+                <span
+                  className={`text-xs font-mono tabular-nums font-semibold inline-flex items-center gap-0.5 ${
+                    div.delta > 0 ? 'text-lift' : div.delta < 0 ? 'text-drag' : 'text-muted'
+                  }`}
+                >
+                  {div.delta > 0 ? (
+                    <TrendingUp className="w-3 h-3" />
+                  ) : div.delta < 0 ? (
+                    <TrendingDown className="w-3 h-3" />
+                  ) : null}
+                  <span>{div.delta >= 0 ? `+${div.delta.toFixed(2)}` : div.delta.toFixed(2)}</span>
+                </span>
               </div>
             </button>
           );
         })}
+
+        {/* Cell 4: Enterprise Rollup Bridge */}
+        <div className="px-4 py-3.5 bg-surface0/80 flex flex-col justify-between gap-2">
+          <div className="flex items-center justify-between gap-2 text-xs">
+            <span className="text-muted">Operating Rollup</span>
+            <span className="font-mono tabular-nums font-semibold text-white">
+              {operatingRollupScore.toFixed(1)}
+            </span>
+          </div>
+          <div className="flex items-center justify-between gap-2 text-xs">
+            <span className="text-muted">Enterprise Composite</span>
+            <span className="font-mono tabular-nums font-bold text-passion">
+              {hiiCorporateScore.toFixed(1)}
+            </span>
+          </div>
+          <div className="flex items-center justify-between gap-2 pt-1.5 border-t border-hairline text-[11px]">
+            <span
+              className={`font-mono tabular-nums font-semibold ${
+                diversificationDelta >= 0 ? 'text-lift' : 'text-drag'
+              }`}
+            >
+              {diversificationDelta >= 0 ? `+${diversificationDelta.toFixed(2)}` : diversificationDelta.toFixed(2)} pts Corporate Lift
+            </span>
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => setShowMathExplainer(!showMathExplainer)}
+                className="text-sky hover:text-white underline underline-offset-2 transition"
+              >
+                Methodology
+              </button>
+              <button
+                type="button"
+                onClick={() => setShowSourceGuide(!showSourceGuide)}
+                className="text-muted hover:text-white underline underline-offset-2 transition"
+              >
+                Sources
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
 
-      {/* Active Division Executive Banner with Filter Dropdown at Top */}
-      <div className="bg-[#1e2227] border border-steel/60 rounded-xl p-5 shadow-lg">
-        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-steel/40 pb-4">
+      {/* Active Division Executive Summary & Stakeholder Strip */}
+      <div className="bg-surface1 border border-hairline rounded-xl p-5 shadow-lg">
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
           <div>
-            <div className="flex items-center gap-2">
-              <span className="px-2.5 py-0.5 text-xs font-mono font-bold rounded bg-passion text-white">
-                {meta.name.toUpperCase()} INTELLIGENCE
-              </span>
-              <div className="flex items-center gap-1 text-xs text-sky font-mono">
-                <MapPin className="w-3.5 h-3.5" />
+            <div className="flex flex-wrap items-center gap-2.5">
+              <h2 className="text-xl font-bold text-white tracking-tight">{meta.fullName}</h2>
+              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-surface0 border border-hairline text-xs font-mono text-sky">
+                <MapPin className="w-3 h-3" />
                 <span>{meta.location}</span>
-              </div>
+              </span>
             </div>
-            <h2 className="text-xl font-bold text-white tracking-tight mt-1">{meta.fullName}</h2>
-            <p className="text-xs text-sky/90 mt-1 max-w-3xl leading-relaxed">{meta.description}</p>
+            <p className="text-xs text-muted mt-1.5 max-w-3xl leading-relaxed">{meta.description}</p>
           </div>
 
-          {/* Right Top KPI Rail: Division Composite + Program Filter Dropdown */}
-          <div className="flex flex-wrap items-center gap-3 bg-charcoal/90 border border-steel/70 rounded-xl p-3 shrink-0">
-            <div>
-              <span className="text-[10px] font-mono uppercase text-steel block">{meta.name} Composite</span>
-              <div className="text-2xl font-bold font-mono text-white">
-                {divisionResult.latest.compositeScore.toFixed(2)}
-              </div>
+          {/* Flat 4-Audience Hairline Strip + Program Filter */}
+          <div className="flex flex-wrap items-center gap-3 bg-surface0 border border-hairline rounded-lg px-3.5 py-2.5 shrink-0">
+            <div className="grid grid-cols-4 gap-3 text-xs font-mono tabular-nums">
+              {([
+                { key: 'navy', label: 'Navy', val: divisionResult.latest.audiences.navy.score },
+                { key: 'executive', label: 'Exec', val: divisionResult.latest.audiences.executive.score },
+                { key: 'congress', label: 'Cong', val: divisionResult.latest.audiences.congress.score },
+                { key: 'public', label: 'Public', val: divisionResult.latest.audiences.public.score },
+              ] as const).map((item) => (
+                <div key={item.key} className="text-center">
+                  <span className="inline-flex items-center gap-1 text-[11px] text-muted">
+                    <span
+                      className="w-2 h-2 rounded-full"
+                      style={{ backgroundColor: AUDIENCE_COLORS[item.key] }}
+                    />
+                    {item.label}
+                  </span>
+                  <span className="block text-white font-bold mt-0.5">{item.val.toFixed(1)}</span>
+                </div>
+              ))}
             </div>
 
-            <div className="h-8 w-px bg-steel/40 mx-1 hidden sm:block" />
+            <div className="h-8 w-px bg-hairline hidden sm:block" />
 
-            {/* Audience 4-way breakdown pills */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5 text-xs font-mono">
-              <div className="p-1.5 rounded bg-[#1e2227] border border-steel/40 text-center">
-                <span className="text-[10px] text-steel block">EXEC</span>
-                <span className="text-white font-bold">{divisionResult.latest.audiences.executive.score.toFixed(1)}</span>
-              </div>
-              <div className="p-1.5 rounded bg-[#1e2227] border border-steel/40 text-center">
-                <span className="text-[10px] text-steel block">CONG</span>
-                <span className="text-white font-bold">{divisionResult.latest.audiences.congress.score.toFixed(1)}</span>
-              </div>
-              <div className="p-1.5 rounded bg-[#1e2227] border border-steel/40 text-center">
-                <span className="text-[10px] text-steel block">NAVY</span>
-                <span className="text-white font-bold">{divisionResult.latest.audiences.navy.score.toFixed(1)}</span>
-              </div>
-              <div className="p-1.5 rounded bg-[#1e2227] border border-steel/40 text-center">
-                <span className="text-[10px] text-steel block">PUBLIC</span>
-                <span className="text-white font-bold">{divisionResult.latest.audiences.public.score.toFixed(1)}</span>
-              </div>
-            </div>
-
-            <div className="h-8 w-px bg-steel/40 mx-1 hidden sm:block" />
-
-            {/* Top Program Filter Dropdown directly beside composite score */}
             <div className="flex flex-col">
-              <span className="text-[10px] font-mono text-steel uppercase">Filter Program</span>
+              <label htmlFor="div-program-filter" className="text-[11px] font-mono text-muted">
+                Program Filter
+              </label>
               <select
+                id="div-program-filter"
                 value={selectedProgramFilter}
                 onChange={(e) => setSelectedProgramFilter(e.target.value as ProgramId | 'all')}
-                className="bg-[#1e2227] border border-passion/70 rounded px-2.5 py-1 text-white text-xs focus:outline-none focus:ring-1 focus:ring-passion font-mono mt-0.5"
+                className="bg-surface1 border border-hairline focus:border-sky rounded px-2.5 py-1 text-white text-xs font-mono mt-0.5"
               >
                 <option value="all">All Programs ({divisionResult.programWaterfall.length})</option>
                 {divisionResult.programWaterfall.map((p) => (
@@ -287,144 +313,99 @@ export const DivisionSentimentView: React.FC = () => {
           </div>
         </div>
 
-        {/* Quick Action Badges: Math Explainer & Source Type Methodology */}
-        <div className="mt-3 flex flex-wrap items-center justify-between gap-2 text-xs">
-          <div className="flex items-center gap-2">
-            <button
-              type="button"
-              onClick={() => setShowMathExplainer(!showMathExplainer)}
-              className={`flex items-center gap-1.5 px-3 py-1 rounded font-mono text-xs border transition ${
-                showMathExplainer
-                  ? 'bg-passion/20 border-passion text-white font-bold'
-                  : 'bg-charcoal border-steel/60 text-sky hover:text-white hover:border-steel'
-              }`}
-            >
-              <Scale className="w-3.5 h-3.5 text-passion" />
-              <span>Division vs HII Composite Relationship</span>
-              <ChevronDown className={`w-3 h-3 transition-transform ${showMathExplainer ? 'rotate-180' : ''}`} />
-            </button>
-
-            <button
-              type="button"
-              onClick={() => setShowSourceGuide(!showSourceGuide)}
-              className={`flex items-center gap-1.5 px-3 py-1 rounded font-mono text-xs border transition ${
-                showSourceGuide
-                  ? 'bg-sky/20 border-sky text-white font-bold'
-                  : 'bg-charcoal border-steel/60 text-sky hover:text-white hover:border-steel'
-              }`}
-            >
-              <Newspaper className="w-3.5 h-3.5 text-sky" />
-              <span>News Releases, Media & Labor Relations Guide</span>
-              <ChevronDown className={`w-3 h-3 transition-transform ${showSourceGuide ? 'rotate-180' : ''}`} />
-            </button>
-          </div>
-
-          <div className="flex items-center gap-2 text-[11px] font-mono text-steel">
-            <span>Operating Footprint Rollup: <strong className="text-white">{operatingRollupScore.toFixed(2)}</strong></span>
-            <span>·</span>
-            <span>HII Enterprise Composite: <strong className="text-passion">{hiiCorporateScore.toFixed(2)}</strong></span>
-            <span>·</span>
-            <span className="text-emerald-400">+{diversificationDelta.toFixed(2)} Corporate Premium</span>
-          </div>
-        </div>
-
         {/* Expandable Relationship Explainer */}
         {showMathExplainer && (
-          <div className="mt-4 p-4 rounded-lg bg-[#14171a] border border-passion/50 space-y-3 text-xs leading-relaxed text-sky/90">
-            <div className="flex items-center gap-2 text-sm font-bold text-white border-b border-steel/40 pb-2">
+          <div className="mt-4 p-4 rounded-lg bg-surface0 border border-hairline space-y-3 text-xs leading-relaxed text-gray-200">
+            <div className="flex items-center gap-2 text-sm font-bold text-white border-b border-hairline pb-2">
               <Sparkles className="w-4 h-4 text-passion" />
-              <span>MATHEMATICAL RELATIONSHIP: DIVISION SENTIMENT VS. HII CONGLOMERATE COMPOSITE</span>
+              <span>Division Sentiment vs. Enterprise Composite Methodology</span>
             </div>
 
             <p>
-              Why is <strong>HII Enterprise Composite ({hiiCorporateScore.toFixed(2)})</strong> currently higher than Newport News ({divisionResult.latest.compositeScore.toFixed(2)}), Ingalls ({allDivisionScores[1]?.score.toFixed(2)}), or Mission Technologies ({allDivisionScores[2]?.score.toFixed(2)})?
+              Why is <strong>HII Enterprise Composite ({hiiCorporateScore.toFixed(2)})</strong> currently differing from Newport News ({allDivisionScores[0]?.score.toFixed(2)}), Ingalls ({allDivisionScores[1]?.score.toFixed(2)}), or Mission Technologies ({allDivisionScores[2]?.score.toFixed(2)})?
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3 pt-1">
-              <div className="p-3 rounded bg-charcoal/80 border border-steel/40">
+              <div className="p-3 rounded bg-surface1 border border-hairline">
                 <h4 className="font-bold text-white mb-1 flex items-center gap-1.5">
                   <Layers className="w-3.5 h-3.5 text-sky" />
                   <span>1. Conglomerate Backlog Stacking</span>
                 </h4>
-                <p className="text-[11px] text-sky/80">
-                  HII corporate captures contract wins from <strong>all three divisions simultaneously</strong> ($15.2B two-carrier contract at NNS + $5.1B DDG multi-year at Ingalls + $1.2B UUV contracts at Mission Tech = $49B+ backlog). In the enterprise ledger, these positive impulses accumulate together.
+                <p className="text-xs text-muted">
+                  HII corporate captures contract wins from <strong>all three divisions simultaneously</strong> ($15.2B two-carrier contract at NNS + $5.1B DDG multi-year at Ingalls + $1.2B UUV contracts at Mission Tech). Positive impulses accumulate across the enterprise ledger.
                 </p>
               </div>
 
-              <div className="p-3 rounded bg-charcoal/80 border border-steel/40">
+              <div className="p-3 rounded bg-surface1 border border-hairline">
                 <h4 className="font-bold text-white mb-1 flex items-center gap-1.5">
-                  <Flame className="w-3.5 h-3.5 text-passion" />
-                  <span>2. Isolated Program Drags at Shipyards</span>
+                  <Flame className="w-3.5 h-3.5 text-drag" />
+                  <span>2. Isolated Yard Execution Drags</span>
                 </h4>
-                <p className="text-[11px] text-sky/80">
-                  When viewing <strong>Newport News in isolation</strong>, it absorbs the full concentrated friction of CVN-78 elevator certifications, CVN-80 schedule slips, and Virginia submarine welding audits <em>without</em> the dilutive benefit of Ingalls destroyers or Mission Tech software margins.
+                <p className="text-xs text-muted">
+                  Viewing <strong>Newport News in isolation</strong> concentrates carrier certification, schedule slips, and submarine welding audits <em>without</em> the balancing weight of Ingalls destroyers or Mission Tech autonomy margins.
                 </p>
               </div>
 
-              <div className="p-3 rounded bg-charcoal/80 border border-steel/40">
+              <div className="p-3 rounded bg-surface1 border border-hairline">
                 <h4 className="font-bold text-white mb-1 flex items-center gap-1.5">
-                  <TrendingUp className="w-3.5 h-3.5 text-green-400" />
-                  <span>3. Corporate Macro & Public Equity</span>
+                  <TrendingUp className="w-3.5 h-3.5 text-lift" />
+                  <span>3. Corporate Macro &amp; Equity</span>
                 </h4>
-                <p className="text-[11px] text-sky/80">
-                  The American Public & Investor score (<strong>{(result.latest.public.scoreCenti / 100).toFixed(2)}</strong>) is heavily lifted by NYSE:HII equity performance (+85.5% surge to $460 ATH), corporate share buybacks, and Trump Golden Fleet executive mandates, which reside at the corporate ticker level.
+                <p className="text-xs text-muted">
+                  Public &amp; Investor sentiment (<strong>{(result.latest.public.scoreCenti / 100).toFixed(2)}</strong>) reflects enterprise-level NYSE:HII market valuation, capital returns, and defense budget directives.
                 </p>
               </div>
             </div>
 
-            <div className="mt-2 pt-2 border-t border-steel/30 flex flex-wrap items-center justify-between text-[11px] font-mono">
+            <div className="mt-2 pt-2 border-t border-hairline flex flex-wrap items-center justify-between text-xs font-mono tabular-nums">
               <span className="text-white">
-                Division Operating Footprint Rollup (55% NNS + 35% Ingalls + 10% MT): <strong>{operatingRollupScore.toFixed(2)}</strong>
+                Operating Footprint Rollup (55% NNS + 35% Ingalls + 10% MT): <strong>{operatingRollupScore.toFixed(2)}</strong>
               </span>
-              <span className="text-sky">
-                Conglomerate Diversification & Corporate Equity Lift: <strong className="text-emerald-400">+{diversificationDelta.toFixed(2)} pts</strong>
+              <span className={diversificationDelta >= 0 ? 'text-lift' : 'text-drag'}>
+                Enterprise Variance: <strong>{diversificationDelta >= 0 ? `+${diversificationDelta.toFixed(2)}` : diversificationDelta.toFixed(2)} pts</strong>
               </span>
             </div>
           </div>
         )}
 
-        {/* Expandable News Releases, Media & Labor Relations Guide */}
+        {/* Expandable Source Mapping Guide */}
         {showSourceGuide && (
-          <div className="mt-4 p-4 rounded-lg bg-[#14171a] border border-sky/50 space-y-3 text-xs leading-relaxed text-sky/90">
-            <div className="flex items-center gap-2 text-sm font-bold text-white border-b border-steel/40 pb-2">
+          <div className="mt-4 p-4 rounded-lg bg-surface0 border border-hairline space-y-3 text-xs leading-relaxed text-gray-200">
+            <div className="flex items-center gap-2 text-sm font-bold text-white border-b border-hairline pb-2">
               <Radio className="w-4 h-4 text-sky" />
-              <span>SOURCE TYPE INGESTION & AUDIENCE MAPPING GUIDE</span>
+              <span>Source Type Ingestion &amp; Audience Mapping Guide</span>
             </div>
 
-            <p>
-              How HII news releases, press releases, defense journalism, and shipyard labor relations feed into the 4 audience rubrics:
-            </p>
-
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2.5 pt-1">
-              <div className="p-3 rounded bg-charcoal/80 border border-steel/40">
+              <div className="p-3 rounded bg-surface1 border border-hairline">
                 <span className="text-xs font-bold text-white block mb-1">Corporate Press Releases</span>
-                <span className="text-[10px] font-mono text-passion block mb-1">corporate_action · Tier 4</span>
-                <p className="text-[11px] text-sky/80">
-                  Official HII announcements: quarterly earnings releases, share repurchases, executive appointments, M&A (Alion acquisition), and yard capex investments. Feeds directly to <strong>Executive</strong> and <strong>Public/Investor</strong> audiences.
+                <span className="text-[11px] font-mono text-sky block mb-1">corporate_action · Tier 4</span>
+                <p className="text-xs text-muted">
+                  Earnings releases, capital allocation, M&amp;A, and yard capex feeding <strong>Executive</strong> and <strong>Public/Investor</strong> audiences.
                 </p>
               </div>
 
-              <div className="p-3 rounded bg-charcoal/80 border border-steel/40">
-                <span className="text-xs font-bold text-white block mb-1">Contract Awards & Navy Releases</span>
-                <span className="text-[10px] font-mono text-sky block mb-1">contract_award · Tier 4</span>
-                <p className="text-[11px] text-sky/80">
-                  Definitive DoD / NAVSEA procurement releases ($15.2B CVN 80/81, $5.1B DDG multi-year, REMUS UUV contracts). Primary driver of <strong>Navy Customer</strong> and <strong>Congress</strong> sentiment.
+              <div className="p-3 rounded bg-surface1 border border-hairline">
+                <span className="text-xs font-bold text-white block mb-1">Contract Awards &amp; Navy</span>
+                <span className="text-[11px] font-mono text-sky block mb-1">contract_award · Tier 4</span>
+                <p className="text-xs text-muted">
+                  DoD / NAVSEA procurement awards driving <strong>Navy Customer</strong> and <strong>Congress</strong> sentiment.
                 </p>
               </div>
 
-              <div className="p-3 rounded bg-charcoal/80 border border-steel/40">
-                <span className="text-xs font-bold text-white block mb-1">Defense & Business Journalism</span>
-                <span className="text-[10px] font-mono text-changingsea block mb-1">news_media · Tier 2/3</span>
-                <p className="text-[11px] text-sky/80">
-                  Articles from USNI News, Defense News, Bloomberg, Wall Street Journal, Reuters, and Breaking Defense. Evaluates carrier elevator progress, delivery milestones, and supply chain health. Feeds <strong>American Public</strong> and <strong>Executive</strong>.
+              <div className="p-3 rounded bg-surface1 border border-hairline">
+                <span className="text-xs font-bold text-white block mb-1">Defense &amp; Business Press</span>
+                <span className="text-[11px] font-mono text-lift block mb-1">news_media · Tier 2/3</span>
+                <p className="text-xs text-muted">
+                  USNI News, Defense News, Bloomberg, WSJ, and Reuters coverage of delivery milestones and supply-chain health.
                 </p>
               </div>
 
-              <div className="p-3 rounded bg-charcoal/80 border border-steel/40">
+              <div className="p-3 rounded bg-surface1 border border-hairline">
                 <span className="text-xs font-bold text-white block mb-1">Shipyard Labor Relations</span>
-                <span className="text-[10px] font-mono text-passion block mb-1">corporate_action / news_media</span>
-                <p className="text-[11px] text-sky/80">
-                  USW Local 8888 (Newport News) & Pascagoula Metal Trades Council (Ingalls) collective bargaining agreements, wage ratifications, strikes, and apprentice school graduations. Affects <strong>Public</strong> (labor relations) and <strong>Navy</strong> (throughput).
+                <span className="text-[11px] font-mono text-sky block mb-1">corporate_action / news_media</span>
+                <p className="text-xs text-muted">
+                  USW Local 8888 (Newport News) and Pascagoula Metal Trades Council (Ingalls) agreements impacting workforce &amp; throughput.
                 </p>
               </div>
             </div>
@@ -432,30 +413,32 @@ export const DivisionSentimentView: React.FC = () => {
         )}
       </div>
 
-      {/* BUMPED UP: Historical Line Chart directly beneath top executive banner */}
-      <div className="bg-[#1e2227] border border-steel/60 rounded-xl p-5 shadow-lg space-y-4">
+      {/* Historical Line Chart */}
+      <div className="bg-surface1 border border-hairline rounded-xl p-5 shadow-lg space-y-4">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
           <div>
             <h3 className="text-base font-bold text-white flex items-center gap-2">
               <TrendingUp className="w-4 h-4 text-sky" />
-              <span>{meta.name.toUpperCase()} HISTORICAL SENTIMENT TRAJECTORY</span>
+              <span>{meta.name} Historical Sentiment Trajectory</span>
             </h3>
-            <p className="text-xs text-sky/80">
-              Deterministic timeline across Annual (2011–2025), Quarterly (2026), and Monthly periods showing how program execution impacts {meta.name}.
+            <p className="text-xs text-muted">
+              Unified stakeholder series across Annual (2011–2025), Quarterly (2026), and Monthly periods.
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-2 self-start sm:self-auto">
             <div
-              className="inline-flex items-center rounded-lg bg-[#16191d] border border-steel/60 p-0.5 text-[11px] font-mono"
-              title="Toggle hover tooltip view between Scores and Sources (Double-click any point for full pane)"
+              role="group"
+              aria-label="Division tooltip display mode"
+              className="inline-flex items-center rounded-lg bg-surface0 border border-hairline p-0.5 text-xs font-mono"
             >
               <button
                 type="button"
                 onClick={() => setHoverMode('scores')}
+                aria-pressed={hoverMode === 'scores'}
                 className={`flex items-center gap-1 px-2.5 py-1 rounded-md transition ${
                   hoverMode === 'scores'
-                    ? 'bg-passion text-white font-bold shadow-sm'
-                    : 'text-sky/80 hover:text-white'
+                    ? 'bg-passion-solid text-white font-bold shadow-sm'
+                    : 'text-muted hover:text-white'
                 }`}
               >
                 <BarChart3 className="w-3.5 h-3.5" />
@@ -464,10 +447,11 @@ export const DivisionSentimentView: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setHoverMode('sources')}
+                aria-pressed={hoverMode === 'sources'}
                 className={`flex items-center gap-1 px-2.5 py-1 rounded-md transition ${
                   hoverMode === 'sources'
-                    ? 'bg-passion text-white font-bold shadow-sm'
-                    : 'text-sky/80 hover:text-white'
+                    ? 'bg-passion-solid text-white font-bold shadow-sm'
+                    : 'text-muted hover:text-white'
                 }`}
               >
                 <PieChart className="w-3.5 h-3.5" />
@@ -475,20 +459,33 @@ export const DivisionSentimentView: React.FC = () => {
               </button>
             </div>
 
-            <span className="px-2.5 py-1 text-xs font-mono font-semibold rounded bg-charcoal border border-steel text-sky">
-              {divisionResult.eventCount} Attached Events
+            <button
+              type="button"
+              onClick={() => {
+                const targetId = chartData[chartData.length - 1]?.periodId;
+                if (targetId) setInspectedPeriodId(targetId);
+              }}
+              aria-label={`Inspect latest period breakdown for ${meta.name}`}
+              className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-surface0 border border-hairline hover:border-sky text-xs font-medium text-white transition"
+            >
+              <Eye className="w-3.5 h-3.5 text-sky" />
+              <span>Inspect Latest</span>
+            </button>
+
+            <span className="px-2.5 py-1 text-xs font-mono tabular-nums font-semibold rounded bg-surface0 border border-hairline text-sky">
+              {divisionResult.eventCount} Events
             </span>
           </div>
         </div>
 
         {/* Mobile swipe strip */}
-        <div className="sm:hidden flex items-center justify-between text-[11px] font-mono text-sky/90 bg-[#14171a] border border-[#2d333b] rounded px-2.5 py-1.5">
+        <div className="sm:hidden flex items-center justify-between text-xs font-mono text-sky bg-surface0 border border-hairline rounded px-2.5 py-1.5">
           <span>← Swipe for 2011–2025 history</span>
           <div className="flex items-center gap-1.5">
             <button
               type="button"
               onClick={() => divChartScrollRef.current?.scrollTo({ left: 0, behavior: 'smooth' })}
-              className="px-1.5 py-0.5 rounded bg-charcoal border border-steel/60 text-[10px] text-steel hover:text-white"
+              className="px-2 py-0.5 rounded bg-surface1 border border-hairline text-xs text-muted hover:text-white"
             >
               2011
             </button>
@@ -498,7 +495,7 @@ export const DivisionSentimentView: React.FC = () => {
                 const el = divChartScrollRef.current;
                 if (el) el.scrollTo({ left: el.scrollWidth - el.clientWidth, behavior: 'smooth' });
               }}
-              className="px-1.5 py-0.5 rounded bg-passion/20 border border-passion/60 text-[10px] text-passion font-bold"
+              className="px-2 py-0.5 rounded bg-passion-solid text-xs text-white font-bold"
             >
               Recent →
             </button>
@@ -532,10 +529,10 @@ export const DivisionSentimentView: React.FC = () => {
                   }
                 }}
               >
-                <CartesianGrid strokeDasharray="3 3" stroke="#363c44" />
-                <XAxis dataKey="label" stroke="#8b98a5" tick={{ fill: '#8b98a5', fontSize: 11 }} interval={0} angle={-25} textAnchor="end" height={46} />
-                <YAxis domain={[0, 100]} stroke="#8b98a5" tick={{ fill: '#8b98a5', fontSize: 11 }} />
-                <ReferenceLine y={50} stroke="#5b6670" strokeDasharray="3 3" label={{ value: '50 Neutral', fill: '#5b6670', fontSize: 10 }} />
+                <CartesianGrid strokeDasharray="3 3" stroke="#2e353d" vertical={false} />
+                <XAxis dataKey="label" stroke="#98a6b3" tick={{ fill: '#98a6b3', fontSize: 11, fontFamily: 'IBM Plex Mono' }} interval={0} angle={-25} textAnchor="end" height={46} />
+                <YAxis domain={[0, 100]} stroke="#98a6b3" tick={{ fill: '#98a6b3', fontSize: 11, fontFamily: 'IBM Plex Mono' }} />
+                <ReferenceLine y={50} stroke="#5b6670" strokeDasharray="3 3" label={{ value: '50 Neutral', fill: '#98a6b3', fontSize: 11 }} />
                 <Tooltip
                   content={({ active, payload }) => {
                     if (!active || !payload || !payload.length) return null;
@@ -559,119 +556,160 @@ export const DivisionSentimentView: React.FC = () => {
                     );
                   }}
                 />
-                <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
+                <Legend wrapperStyle={{ fontSize: '12px', paddingTop: '10px' }} />
                 <Line type="monotone" dataKey="composite" name={`${meta.name} Composite`} stroke="#ffffff" strokeWidth={3} dot={{ r: 3, fill: '#ffffff' }} />
-                <Line type="monotone" dataKey="navy" name="Navy Customer" stroke="#75abd1" strokeWidth={2} dot={false} strokeDasharray="5 5" />
-                <Line type="monotone" dataKey="congress" name="Congress" stroke="#509ca2" strokeWidth={1.5} dot={false} />
-                <Line type="monotone" dataKey="executive" name="Executive" stroke="#ea7722" strokeWidth={1.5} dot={false} />
-                <Line type="monotone" dataKey="public" name="Public Markets" stroke="#5b6670" strokeWidth={1.5} dot={false} />
+                <Line type="monotone" dataKey="navy" name="Navy Customer" stroke={AUDIENCE_COLORS.navy} strokeWidth={2} dot={false} />
+                <Line type="monotone" dataKey="executive" name="Executive" stroke={AUDIENCE_COLORS.executive} strokeWidth={2} dot={false} />
+                <Line type="monotone" dataKey="congress" name="Congress" stroke={AUDIENCE_COLORS.congress} strokeWidth={2} dot={false} />
+                <Line type="monotone" dataKey="public" name="Public Markets" stroke={AUDIENCE_COLORS.public} strokeWidth={1.75} dot={false} />
               </LineChart>
             </ResponsiveContainer>
           </div>
         </div>
       </div>
 
-      {/* Program Impact Waterfall Section: Positioned below the line chart */}
-      <div className="bg-[#1e2227] border border-steel/60 rounded-xl p-5 shadow-lg space-y-4">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-steel/40 pb-3">
-          <div>
-            <h3 className="text-sm font-bold text-white flex items-center gap-2">
-              <Layers className="w-4 h-4 text-passion" />
-              <span>PROGRAM IMPACT WATERFALL & ATTRIBUTION</span>
-            </h3>
-            <p className="text-xs text-sky/80">
-              Quantifies each defense program's net lift or drag on {meta.name}'s sentiment score based on primary contract awards, GAO audits, and operational milestones.
-            </p>
-          </div>
+      {/* Program Impact Horizontal Diverging Waterfall Table */}
+      {(() => {
+        const maxAbsPts = Math.max(1, ...filteredWaterfall.map((p) => Math.abs(p.netImpactPoints)));
+        const maxLabel = maxAbsPts.toFixed(1);
 
-          <div className="flex items-center gap-2 text-xs">
-            <span className="text-steel font-mono text-[11px]">Filtered:</span>
-            <span className="px-2 py-0.5 rounded bg-charcoal border border-steel font-mono text-white text-xs">
-              {selectedProgramFilter === 'all'
-                ? `All Programs (${divisionResult.programWaterfall.length})`
-                : PROGRAM_META[selectedProgramFilter]?.name}
-            </span>
-          </div>
-        </div>
+        return (
+          <div className="bg-surface1 border border-hairline rounded-xl shadow-lg overflow-hidden">
+            <div className="px-5 py-4 border-b border-hairline flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+              <div>
+                <h3 className="text-sm font-bold text-white flex items-center gap-2">
+                  <Layers className="w-4 h-4 text-sky" />
+                  <span>{meta.name} Program Impact Diverging Waterfall</span>
+                </h3>
+                <p className="text-xs text-muted mt-0.5">
+                  Quantifies net lift (<span className="text-lift font-medium">Sea-Teal</span>) vs. schedule or oversight drag (<span className="text-drag font-medium">Coral-Red</span>) centered on <span className="font-mono tabular-nums text-white">0.00</span>. Click any row to filter.
+                </p>
+              </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-1">
-          {filteredWaterfall.map((prog) => {
-            const isDrag = prog.direction === -1;
-            const isLift = prog.direction === 1;
-
-            return (
-              <div
-                key={prog.programId}
-                className={`p-3.5 rounded-lg border transition ${
-                  isDrag
-                    ? 'bg-charcoal border-passion/60 hover:border-passion'
-                    : isLift
-                    ? 'bg-charcoal border-sky/60 hover:border-sky'
-                    : 'bg-charcoal/70 border-steel/40'
-                }`}
-              >
-                <div className="flex items-start justify-between gap-2">
-                  <div className="flex items-center gap-2">
-                    <div
-                      className={`w-7 h-7 rounded flex items-center justify-center shrink-0 ${
-                        isDrag
-                          ? 'bg-passion/20 text-passion'
-                          : isLift
-                          ? 'bg-sky/20 text-sky'
-                          : 'bg-steel/20 text-steel'
-                      }`}
-                    >
-                      {isDrag ? (
-                        <TrendingDown className="w-4 h-4" />
-                      ) : isLift ? (
-                        <TrendingUp className="w-4 h-4" />
-                      ) : (
-                        <Ship className="w-4 h-4" />
-                      )}
-                    </div>
-                    <div>
-                      <h4 className="text-xs font-bold text-white">{prog.name}</h4>
-                      <span className="text-[11px] font-mono text-sky/80">{prog.shipClass}</span>
-                    </div>
-                  </div>
-
-                  <div className="text-right shrink-0">
-                    <span
-                      className={`text-sm font-bold font-mono px-2 py-0.5 rounded ${
-                        isDrag
-                          ? 'bg-passion/25 text-passion border border-passion/40'
-                          : isLift
-                          ? 'bg-sky/25 text-sky border border-sky/40'
-                          : 'bg-steel/20 text-steel'
-                      }`}
-                    >
-                      {prog.netImpactPoints > 0
-                        ? `+${prog.netImpactPoints.toFixed(2)} pts`
-                        : prog.netImpactPoints < 0
-                        ? `${prog.netImpactPoints.toFixed(2)} pts`
-                        : 'Neutral'}
-                    </span>
-                    <span className="block text-[10px] text-steel font-mono mt-0.5">
-                      {prog.eventCount} attached events
-                    </span>
-                  </div>
-                </div>
-
-                <p className="text-[11px] text-sky/70 mt-2 line-clamp-2">{prog.summary}</p>
-
-                {prog.topEventTitle && (
-                  <div className="mt-2.5 pt-2 border-t border-steel/30 flex items-center gap-1.5 text-[11px]">
-                    <span className="text-steel font-mono shrink-0">Primary Driver:</span>
-                    <span className="text-white truncate font-medium" title={prog.topEventTitle}>
-                      {prog.topEventTitle}
-                    </span>
-                  </div>
+              <div className="flex items-center gap-2 text-xs">
+                {selectedProgramFilter !== 'all' ? (
+                  <button
+                    type="button"
+                    onClick={() => setSelectedProgramFilter('all')}
+                    className="px-2.5 py-1 rounded bg-surface0 border border-hairline hover:border-sky font-mono text-sky hover:text-white transition"
+                  >
+                    Clear Filter ({PROGRAM_META[selectedProgramFilter]?.name})
+                  </button>
+                ) : (
+                  <span className="px-2.5 py-1 rounded bg-surface0 border border-hairline font-mono tabular-nums text-muted">
+                    {filteredWaterfall.length} Programs
+                  </span>
                 )}
               </div>
-            );
-          })}
-        </div>
-      </div>
+            </div>
+
+            <div className="overflow-x-auto">
+              <table className="w-full text-left border-collapse min-w-[760px]">
+                <thead>
+                  <tr className="border-b border-hairline bg-surface0 text-[11px] font-mono uppercase tracking-wider text-muted">
+                    <th scope="col" className="py-2.5 px-4 w-[24%]">Defense Program</th>
+                    <th scope="col" className="py-2.5 px-3 w-[16%]">Ship Class</th>
+                    <th scope="col" className="py-2.5 px-3 w-[24%]">Primary Attribution Driver</th>
+                    <th scope="col" className="py-2.5 px-4 w-[28%]">
+                      <div className="flex items-center justify-between tabular-nums">
+                        <span className="text-drag">-{maxLabel}</span>
+                        <span className="text-white">0.00</span>
+                        <span className="text-lift">+{maxLabel}</span>
+                      </div>
+                    </th>
+                    <th scope="col" className="py-2.5 px-4 text-right w-[8%]">Events</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-hairline text-xs">
+                  {filteredWaterfall.map((prog) => {
+                    const isPos = prog.netImpactPoints > 0;
+                    const isNeg = prog.netImpactPoints < 0;
+                    const barPct = Math.min(100, (Math.abs(prog.netImpactPoints) / maxAbsPts) * 100);
+                    const isRowSelected = selectedProgramFilter === prog.programId;
+
+                    return (
+                      <tr
+                        key={prog.programId}
+                        onClick={() =>
+                          setSelectedProgramFilter(isRowSelected ? 'all' : prog.programId)
+                        }
+                        className={`cursor-pointer transition ${
+                          isRowSelected ? 'bg-surface2' : 'hover:bg-surface2/50'
+                        }`}
+                      >
+                        <td className="py-3 px-4 align-middle">
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setSelectedProgramFilter(isRowSelected ? 'all' : prog.programId);
+                            }}
+                            className="text-left font-semibold text-white hover:text-sky transition block"
+                          >
+                            {prog.name}
+                          </button>
+                          <p className="text-[11px] text-muted line-clamp-1 mt-0.5">{prog.summary}</p>
+                        </td>
+
+                        <td className="py-3 px-3 align-middle font-mono text-[11px] text-sky">
+                          {prog.shipClass}
+                        </td>
+
+                        <td className="py-3 px-3 align-middle text-gray-200">
+                          <span className="line-clamp-2" title={prog.topEventTitle}>
+                            {prog.topEventTitle || '—'}
+                          </span>
+                        </td>
+
+                        <td className="py-3 px-4 align-middle">
+                          <div className="flex items-center gap-3">
+                            <div
+                              className="relative flex-1 h-4 flex items-center bg-surface0 rounded border border-hairline overflow-hidden"
+                              aria-label={`${prog.name} net sentiment impact ${prog.netImpactPoints.toFixed(2)} points`}
+                            >
+                              <div className="w-1/2 h-full flex justify-end items-center pr-px">
+                                {isNeg && (
+                                  <div
+                                    className="h-2.5 rounded-l-sm"
+                                    style={{ width: `${barPct}%`, backgroundColor: '#f43f5e' }}
+                                  />
+                                )}
+                              </div>
+                              <div className="w-px h-full bg-muted/60 shrink-0 z-10" />
+                              <div className="w-1/2 h-full flex justify-start items-center pl-px">
+                                {isPos && (
+                                  <div
+                                    className="h-2.5 rounded-r-sm"
+                                    style={{ width: `${barPct}%`, backgroundColor: '#2dd4bf' }}
+                                  />
+                                )}
+                              </div>
+                            </div>
+                            <span
+                              className={`w-20 text-right font-mono tabular-nums font-bold shrink-0 ${
+                                isPos ? 'text-lift' : isNeg ? 'text-drag' : 'text-muted'
+                              }`}
+                            >
+                              {prog.netImpactPoints > 0
+                                ? `+${prog.netImpactPoints.toFixed(2)}`
+                                : prog.netImpactPoints.toFixed(2)}{' '}
+                              pts
+                            </span>
+                          </div>
+                        </td>
+
+                        <td className="py-3 px-4 align-middle text-right font-mono tabular-nums text-white font-semibold">
+                          {prog.eventCount}
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        );
+      })()}
 
       {(() => {
         const inspected = inspectedPeriodId ? chartData.find((d) => d.periodId === inspectedPeriodId) : null;

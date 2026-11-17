@@ -1,5 +1,13 @@
-import React from 'react';
-import { ArrowDownRight, ArrowUpRight, Minus, Star, TrendingUp } from 'lucide-react';
+import React, { useMemo, useState } from 'react';
+import {
+  ArrowDownRight,
+  ArrowUpRight,
+  ChevronRight,
+  Eye,
+  Minus,
+  Star,
+  TrendingUp,
+} from 'lucide-react';
 import { useDashboard } from '../context/DashboardContext';
 import {
   ALL_AUDIENCES,
@@ -8,17 +16,26 @@ import {
   centiToDisplay,
   signedCenti,
   type AudienceId,
+  type ImpactEvent,
 } from '../engine';
+import {
+  PeriodBreakdownModal,
+  buildSourceMixFromEvents,
+  type PeriodBreakdownEvent,
+} from './SentimentHoverTooltip';
 
-const AUDIENCE_BORDER: Record<AudienceId, string> = {
-  executive: 'border-sky/60',
-  congress: 'border-changingsea/60',
-  navy: 'border-[#38bdf8]/60',
-  public: 'border-steel',
+const AUDIENCE_COLORS: Record<AudienceId, string> = {
+  navy: '#38bdf8',
+  executive: '#75abd1',
+  congress: '#509ca2',
+  public: '#9ca3af',
 };
 
+const STAKEHOLDER_ORDER: AudienceId[] = ['navy', 'executive', 'congress', 'public'];
+
 export const ScoreRail: React.FC = () => {
-  const { result, selectedPeriodId, setSelectedPeriodId, setActiveTab } = useDashboard();
+  const { state, result, selectedPeriodId, setSelectedPeriodId, setActiveTab } = useDashboard();
+  const [inspectModalOpen, setInspectModalOpen] = useState(false);
 
   const latestPeriod = result.timeline[result.timeline.length - 1]!;
   const priorPeriod = result.timeline[result.timeline.length - 2];
@@ -26,199 +43,332 @@ export const ScoreRail: React.FC = () => {
     result.timeline.find((r) => r.period.id === selectedPeriodId) ?? latestPeriod;
   const lastForecast = result.forecast[result.forecast.length - 1];
 
+  const eventMap = useMemo(
+    () => new Map(state.events.map((e) => [e.id, e])),
+    [state.events],
+  );
+
+  // Deduplicated top drivers across all 4 audiences for the selected period
+  const selectedDrivers = useMemo(() => {
+    const byEvent = new Map<
+      string,
+      {
+        eventId: string;
+        title: string;
+        eventDate: string;
+        starred: boolean;
+        dominantBps: number;
+      }
+    >();
+
+    for (const aud of ALL_AUDIENCES) {
+      for (const c of selectedRecord.audiences[aud].contributions) {
+        const ev = eventMap.get(c.eventId);
+        const existing = byEvent.get(c.eventId);
+        if (!existing) {
+          byEvent.set(c.eventId, {
+            eventId: c.eventId,
+            title: c.title,
+            eventDate: ev?.eventDate ?? selectedRecord.period.endDate,
+            starred: Boolean(c.starred || ev?.starred),
+            dominantBps: c.effectiveBps,
+          });
+        } else if (Math.abs(c.effectiveBps) > Math.abs(existing.dominantBps)) {
+          existing.dominantBps = c.effectiveBps;
+        }
+      }
+    }
+
+    return Array.from(byEvent.values())
+      .sort((a, b) => Math.abs(b.dominantBps) - Math.abs(a.dominantBps))
+      .slice(0, 6);
+  }, [selectedRecord, eventMap]);
+
+  // Precompute modal payload if user clicks Inspect Full Breakdown
+  const selectedModalData = useMemo(() => {
+    const contributingIds = new Set<string>();
+    for (const aud of ALL_AUDIENCES) {
+      for (const c of selectedRecord.audiences[aud].contributions) {
+        contributingIds.add(c.eventId);
+      }
+    }
+    const events: ImpactEvent[] = Array.from(contributingIds)
+      .map((id) => eventMap.get(id))
+      .filter((e): e is ImpactEvent => e !== undefined)
+      .sort((a, b) => (b.eventDate > a.eventDate ? 1 : -1));
+
+    const periodEvents: PeriodBreakdownEvent[] = events.map((e) => ({
+      id: e.id,
+      title: e.title,
+      eventDate: e.eventDate,
+      sourceType: e.sourceType,
+      starred: e.starred,
+    }));
+
+    return {
+      sourceMix: buildSourceMixFromEvents(events),
+      totalImpactingEvents: events.length,
+      keyEventTitles: selectedRecord.keyEventIds.map((id) => eventMap.get(id)?.title ?? id),
+      periodEvents,
+      subtitle: `${selectedRecord.inPeriodEventIds.length} new in period · ${events.length} active drivers`,
+    };
+  }, [selectedRecord, eventMap]);
+
   const renderDeltaBadge = (deltaCenti: number) => {
     if (deltaCenti > 0) {
       return (
-        <span className="inline-flex items-center gap-0.5 px-2 py-0.5 rounded text-xs font-mono font-semibold bg-changingsea/30 text-sky border border-changingsea">
-          <ArrowUpRight className="w-3.5 h-3.5" />
+        <span className="inline-flex items-center gap-0.5 px-2 py-0.5 rounded text-xs font-mono font-semibold tabular-nums bg-[#2dd4bf]/15 text-[#2dd4bf] border border-[#2dd4bf]/40">
+          <ArrowUpRight className="w-3.5 h-3.5 shrink-0" />
           {signedCenti(deltaCenti)}
         </span>
       );
     }
     if (deltaCenti < 0) {
       return (
-        <span className="inline-flex items-center gap-0.5 px-2 py-0.5 rounded text-xs font-mono font-semibold bg-passion/25 text-passion border border-passion">
-          <ArrowDownRight className="w-3.5 h-3.5" />
+        <span className="inline-flex items-center gap-0.5 px-2 py-0.5 rounded text-xs font-mono font-semibold tabular-nums bg-[#f43f5e]/15 text-[#f43f5e] border border-[#f43f5e]/40">
+          <ArrowDownRight className="w-3.5 h-3.5 shrink-0" />
           {signedCenti(deltaCenti)}
         </span>
       );
     }
     return (
-      <span className="inline-flex items-center gap-0.5 px-2 py-0.5 rounded text-xs font-mono text-steel bg-charcoal border border-steel/50">
-        <Minus className="w-3.5 h-3.5" />
+      <span className="inline-flex items-center gap-0.5 px-2 py-0.5 rounded text-xs font-mono tabular-nums text-muted bg-surface2 border border-hairline">
+        <Minus className="w-3.5 h-3.5 shrink-0" />
         0.00
       </span>
     );
   };
 
   return (
-    <aside className="space-y-4">
-      {/* Hero Current Composite Score Card */}
-      <div className="bg-[#1e2227] border-2 border-passion/80 rounded-xl p-4 shadow-xl">
-        <div className="flex items-center justify-between">
-          <span className="text-xs font-mono uppercase tracking-wider text-sky">
-            CURRENT COMPOSITE SCORE ({latestPeriod.period.label})
-          </span>
-          <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-charcoal text-passion border border-passion/50">
-            VS {priorPeriod?.period.label ?? 'PRIOR'}
+    <aside
+      aria-label="Composite Sentiment and Stakeholder Attribution"
+      className="bg-[#1e2227] border border-[#2e353d] rounded-xl divide-y divide-[#2e353d] shadow-xl overflow-hidden"
+    >
+      {/* Section 1: Composite Sentiment Header */}
+      <section className="p-4">
+        <div className="flex items-center justify-between gap-2">
+          <h2 className="text-xs font-semibold text-[#98a6b3] tracking-wide">
+            Composite Sentiment · {latestPeriod.period.label}
+          </h2>
+          <span className="text-xs font-mono tabular-nums text-[#98a6b3]">
+            vs {priorPeriod?.period.label ?? 'Prior'}
           </span>
         </div>
 
-        <div className="mt-2 flex items-baseline justify-between">
-          <div className="text-4xl font-extrabold font-mono text-white tracking-tight">
+        <div className="mt-2 flex items-baseline justify-between gap-3">
+          <div className="text-4xl font-bold font-mono tabular-nums text-white tracking-tight">
             {centiToDisplay(result.latest.composite.scoreCenti)}
-            <span className="text-sm font-normal text-sky ml-1">/ 100</span>
+            <span className="text-sm font-normal text-[#98a6b3] ml-1.5">/ 100</span>
           </div>
           {renderDeltaBadge(result.latest.composite.deltaCenti)}
         </div>
 
         {/* Weight Distribution Bar */}
-        <div className="mt-3">
-          <div className="flex justify-between text-[11px] font-mono text-sky mb-1">
+        <div className="mt-3.5">
+          <div className="w-full h-1.5 rounded-full overflow-hidden flex bg-[#16191d] border border-[#2e353d]">
+            <div style={{ width: `${result.weights.navy}%`, backgroundColor: AUDIENCE_COLORS.navy }} />
+            <div style={{ width: `${result.weights.executive}%`, backgroundColor: AUDIENCE_COLORS.executive }} />
+            <div style={{ width: `${result.weights.congress}%`, backgroundColor: AUDIENCE_COLORS.congress }} />
+            <div style={{ width: `${result.weights.public}%`, backgroundColor: AUDIENCE_COLORS.public }} />
+          </div>
+          <div className="flex flex-wrap justify-between gap-2 text-[11px] font-mono tabular-nums text-[#98a6b3] mt-1.5">
+            <span>Navy {result.weights.navy}%</span>
             <span>Exec {result.weights.executive}%</span>
             <span>Cong {result.weights.congress}%</span>
-            <span>Navy {result.weights.navy}%</span>
             <span>Public {result.weights.public}%</span>
-          </div>
-          <div className="w-full h-2 rounded-full overflow-hidden flex bg-charcoal border border-steel/50">
-            <div style={{ width: `${result.weights.executive}%`, backgroundColor: '#75abd1' }} />
-            <div style={{ width: `${result.weights.congress}%`, backgroundColor: '#509ca2' }} />
-            <div style={{ width: `${result.weights.navy}%`, backgroundColor: '#38bdf8' }} />
-            <div style={{ width: `${result.weights.public}%`, backgroundColor: '#9ca3af' }} />
           </div>
         </div>
 
         {/* 6-Month Forecast Summary */}
         {lastForecast && (
-          <div className="mt-3 pt-3 border-t border-steel/50 flex items-center justify-between text-xs">
-            <div className="flex items-center gap-1.5 text-sky">
-              <TrendingUp className="w-4 h-4 text-passion" />
-              <span>6-Mo Forecast ({lastForecast.period.label}):</span>
+          <div className="mt-3 pt-3 border-t border-[#2e353d] flex items-center justify-between gap-2 text-xs">
+            <div className="flex items-center gap-1.5 text-[#98a6b3]">
+              <TrendingUp className="w-3.5 h-3.5 text-passion shrink-0" />
+              <span>6-Mo Forecast ({lastForecast.period.label})</span>
             </div>
-            <div className="font-mono text-white font-semibold">
+            <div className="font-mono tabular-nums text-white font-semibold text-right">
               EV {centiToDisplay(lastForecast.composite.evCenti)}{' '}
-              <span className="text-sky font-normal">
+              <span className="text-[#98a6b3] font-normal">
                 [{centiToDisplay(lastForecast.composite.p10Centi)}–
                 {centiToDisplay(lastForecast.composite.p90Centi)}]
               </span>
             </div>
           </div>
         )}
-      </div>
+      </section>
 
-      {/* 4 Audience Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-2.5">
-        {ALL_AUDIENCES.map((aud) => {
-          const cur = result.latest[aud];
-          const topContrib = latestPeriod.audiences[aud].contributions[0];
-          return (
-            <div
-              key={aud}
-              className={`bg-[#1e2227] border ${AUDIENCE_BORDER[aud]} rounded-xl p-3.5 shadow-md`}
-            >
-              <div className="flex items-center justify-between">
-                <div>
-                  <h3 className="text-xs font-bold uppercase tracking-wider text-white">
-                    {AUDIENCE_LABELS[aud]}
-                  </h3>
-                  <span className="text-[11px] font-mono text-sky">
-                    Composite Weight: {result.weights[aud]}% · Raw{' '}
-                    {bpsToDisplay(latestPeriod.audiences[aud].rawBps)} pts
-                  </span>
-                </div>
-                <div className="text-right">
-                  <div className="text-2xl font-bold font-mono text-white">
+      {/* Section 2: 4-Row Aligned Stakeholder Table */}
+      <section className="p-4">
+        <table className="w-full border-collapse text-left">
+          <thead>
+            <tr className="border-b border-[#2e353d] text-xs font-medium text-[#98a6b3]">
+              <th scope="col" className="pb-2 font-medium">
+                Stakeholder
+              </th>
+              <th scope="col" className="pb-2 text-right font-medium pr-3">
+                Score
+              </th>
+              <th scope="col" className="pb-2 text-right font-medium">
+                Delta
+              </th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-[#2e353d]/70">
+            {STAKEHOLDER_ORDER.map((aud) => {
+              const cur = result.latest[aud];
+              const clampedScore = Math.max(0, Math.min(100, cur.scoreCenti / 100));
+              const deltaClass =
+                cur.deltaCenti > 0
+                  ? 'text-[#2dd4bf]'
+                  : cur.deltaCenti < 0
+                    ? 'text-[#f43f5e]'
+                    : 'text-[#98a6b3]';
+
+              return (
+                <tr key={aud} className="hover:bg-[#252a30]/50 transition-colors">
+                  <td className="py-2.5 pr-2 align-middle">
+                    <div className="flex items-center gap-2">
+                      <span
+                        className="w-2 h-2 rounded-full shrink-0"
+                        style={{ backgroundColor: AUDIENCE_COLORS[aud] }}
+                        aria-hidden="true"
+                      />
+                      <span className="text-xs font-medium text-white truncate">
+                        {AUDIENCE_LABELS[aud]}
+                      </span>
+                      <span className="text-[11px] font-mono tabular-nums text-[#98a6b3]">
+                        {result.weights[aud]}%
+                      </span>
+                    </div>
+                    <div className="mt-1.5 ml-4 h-1.5 w-24 sm:w-28 rounded-full bg-[#16191d] overflow-hidden">
+                      <div
+                        className="h-full rounded-full"
+                        style={{
+                          width: `${clampedScore}%`,
+                          backgroundColor: AUDIENCE_COLORS[aud],
+                        }}
+                      />
+                    </div>
+                  </td>
+                  <td className="py-2.5 pr-3 text-right align-middle font-mono text-sm font-semibold tabular-nums text-white">
                     {centiToDisplay(cur.scoreCenti)}
-                  </div>
-                  <div className="mt-0.5">{renderDeltaBadge(cur.deltaCenti)}</div>
-                </div>
-              </div>
-              {topContrib && (
-                <div className="mt-2 pt-2 border-t border-steel/40 text-[11px] text-sky/90 truncate">
-                  <span className="font-mono text-white">
-                    {bpsToDisplay(topContrib.effectiveBps)} pts:
-                  </span>{' '}
-                  {topContrib.title}
-                </div>
-              )}
-            </div>
-          );
-        })}
-      </div>
+                  </td>
+                  <td
+                    className={`py-2.5 text-right align-middle font-mono text-xs font-semibold tabular-nums ${deltaClass}`}
+                  >
+                    {cur.deltaCenti === 0 ? '0.00' : signedCenti(cur.deltaCenti)}
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </section>
 
-      {/* Selected Period Deterministic Math Inspector */}
-      <div className="bg-[#1e2227] border border-[#363c44] rounded-xl p-4 shadow-xl">
-        <div className="flex items-center justify-between border-b border-steel/50 pb-2 mb-2.5">
-          <div>
-            <span className="text-[11px] font-mono uppercase text-passion block">
-              DETERMINISTIC PERIOD INSPECTOR
-            </span>
-            <h3 className="text-sm font-bold text-white font-mono">
-              {selectedRecord.period.label} ({selectedRecord.period.id}) · Composite{' '}
-              {centiToDisplay(selectedRecord.compositeCenti)}
-            </h3>
-          </div>
-          {selectedRecord.period.id !== latestPeriod.period.id && (
+      {/* Section 3: Selected Period Drivers */}
+      <section className="p-4 space-y-2.5">
+        <div className="flex items-center justify-between gap-2">
+          <h3 className="text-xs font-semibold text-white font-mono tabular-nums">
+            Selected Period Drivers · {selectedRecord.period.label}
+          </h3>
+          <div className="flex items-center gap-1.5 shrink-0">
+            {selectedRecord.period.id !== latestPeriod.period.id && (
+              <button
+                type="button"
+                onClick={() => setSelectedPeriodId(latestPeriod.period.id)}
+                className="px-2 py-1 text-[11px] font-mono rounded bg-[#16191d] border border-[#2e353d] text-[#98a6b3] hover:text-white hover:border-sky transition"
+              >
+                Jump to Latest
+              </button>
+            )}
             <button
-              onClick={() => setSelectedPeriodId(latestPeriod.period.id)}
-              className="px-2 py-1 text-[11px] font-mono rounded bg-charcoal border border-steel text-sky hover:text-white"
+              type="button"
+              onClick={() => setInspectModalOpen(true)}
+              className="inline-flex items-center gap-1 px-2 py-1 text-[11px] font-mono rounded bg-[#16191d] border border-[#2e353d] text-sky hover:text-white hover:border-sky transition"
             >
-              Jump to Latest
+              <Eye className="w-3 h-3" />
+              <span>Breakdown</span>
             </button>
-          )}
+          </div>
         </div>
 
-        <p className="text-[11px] text-sky mb-2">
-          Window <span className="font-mono text-white">{selectedRecord.period.startDate}</span> →{' '}
-          <span className="font-mono text-white">{selectedRecord.period.endDate}</span> (
-          {selectedRecord.period.sampleDates.length} month-end sample
-          {selectedRecord.period.sampleDates.length > 1 ? 's' : ''})
+        <p className="text-xs font-mono tabular-nums text-[#98a6b3]">
+          {selectedRecord.period.startDate} → {selectedRecord.period.endDate} ·{' '}
+          <span className="text-white font-semibold">
+            {centiToDisplay(selectedRecord.compositeCenti)}
+          </span>{' '}
+          composite
         </p>
 
-        <div className="space-y-2 max-h-64 overflow-y-auto pr-1">
-          {ALL_AUDIENCES.map((aud) => {
-            const aScore = selectedRecord.audiences[aud];
-            return (
-              <div
-                key={aud}
-                className="bg-charcoal/80 border border-steel/40 rounded-lg p-2 text-xs"
-              >
-                <div className="flex items-center justify-between font-mono font-semibold text-white mb-1">
-                  <span>{AUDIENCE_LABELS[aud]}</span>
-                  <span>
-                    {centiToDisplay(aScore.scoreCenti)} (Raw {bpsToDisplay(aScore.rawBps)})
-                  </span>
-                </div>
-                {aScore.contributions.slice(0, 3).map((c) => (
-                  <div
-                    key={c.eventId}
-                    className="flex items-center justify-between gap-2 text-[11px] text-sky/90 py-0.5 border-t border-steel/25"
-                  >
-                    <span className="truncate flex items-center gap-1">
-                      {c.starred && <Star className="w-3 h-3 text-passion fill-passion shrink-0" />}
-                      <span className="truncate">{c.title}</span>
+        {selectedDrivers.length === 0 ? (
+          <div className="py-3 text-xs text-[#98a6b3]">
+            Baseline time-decay window (no direct ledger drivers in this period).
+          </div>
+        ) : (
+          <div className="divide-y divide-[#2e353d]/70 border-y border-[#2e353d]">
+            {selectedDrivers.map((d) => {
+              const isPos = d.dominantBps >= 0;
+              return (
+                <button
+                  key={d.eventId}
+                  type="button"
+                  onClick={() => setActiveTab('ledger')}
+                  title={`Inspect "${d.title}" in Evidence Ledger`}
+                  className="w-full py-2 px-1 flex items-center justify-between gap-2.5 text-left text-xs hover:bg-[#252a30]/60 transition group"
+                >
+                  <div className="flex items-center gap-2 min-w-0">
+                    <span className="text-[11px] font-mono tabular-nums text-[#98a6b3] shrink-0">
+                      {d.eventDate}
                     </span>
-                    <span
-                      className={`font-mono shrink-0 ${
-                        c.effectiveBps >= 0 ? 'text-changingsea' : 'text-passion'
-                      }`}
-                    >
-                      {bpsToDisplay(c.effectiveBps)}
+                    {d.starred && (
+                      <Star className="w-3 h-3 text-passion fill-passion shrink-0" />
+                    )}
+                    <span className="text-gray-100 group-hover:text-white truncate">
+                      {d.title}
                     </span>
                   </div>
-                ))}
-              </div>
-            );
-          })}
-        </div>
+                  <div className="flex items-center gap-1 shrink-0">
+                    <span
+                      className={`font-mono tabular-nums font-semibold ${
+                        isPos ? 'text-[#2dd4bf]' : 'text-[#f43f5e]'
+                      }`}
+                    >
+                      {bpsToDisplay(d.dominantBps)}
+                    </span>
+                    <ChevronRight className="w-3.5 h-3.5 text-[#98a6b3] opacity-60 group-hover:opacity-100" />
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+        )}
 
         <button
+          type="button"
           onClick={() => setActiveTab('control')}
-          className="mt-3 w-full py-1.5 rounded bg-charcoal border border-sky/50 hover:border-passion text-xs font-medium text-sky hover:text-white transition"
+          className="w-full py-2 px-3 rounded-lg bg-[#16191d] border border-[#2e353d] hover:border-sky hover:bg-[#252a30] text-xs font-medium text-sky hover:text-white transition"
         >
           Adjust Audience Weights or Add Event →
         </button>
-      </div>
+      </section>
+
+      <PeriodBreakdownModal
+        isOpen={inspectModalOpen}
+        onClose={() => setInspectModalOpen(false)}
+        label={selectedRecord.period.label}
+        composite={selectedRecord.compositeCenti / 100}
+        scores={{
+          executive: selectedRecord.audiences.executive.scoreCenti / 100,
+          congress: selectedRecord.audiences.congress.scoreCenti / 100,
+          navy: selectedRecord.audiences.navy.scoreCenti / 100,
+          public: selectedRecord.audiences.public.scoreCenti / 100,
+        }}
+        sourceMix={selectedModalData.sourceMix}
+        totalImpactingEvents={selectedModalData.totalImpactingEvents}
+        keyEventTitles={selectedModalData.keyEventTitles}
+        periodEvents={selectedModalData.periodEvents}
+        subtitle={selectedModalData.subtitle}
+      />
     </aside>
   );
 };

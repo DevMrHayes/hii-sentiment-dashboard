@@ -80,11 +80,20 @@ const AUDIENCE_COLORS: Record<AudienceId, string> = {
 };
 
 const PHASE_COLORS = {
-  annual: '#8b98a5',
+  annual: '#98a6b3',
   quarterly: '#509ca2',
   monthly: '#75abd1',
   forecast: '#ea7722',
 };
+
+const PHASE_META = [
+  { key: 'annual', label: '2011–2025 Annual', color: PHASE_COLORS.annual },
+  { key: 'quarterly', label: '2026 Q1–Q3 Quarterly', color: PHASE_COLORS.quarterly },
+  { key: 'monthly', label: '2026-10 Monthly', color: PHASE_COLORS.monthly },
+  { key: 'forecast', label: '6-Mo Forecast', color: PHASE_COLORS.forecast },
+] as const;
+
+const SERIES_ORDER: AudienceId[] = ['navy', 'executive', 'congress', 'public'];
 
 const NUMBER_BADGES = ['①', '②', '③', '④', '⑤', '⑥', '⑦', '⑧', '⑨', '⑩', '⑪', '⑫'];
 
@@ -170,7 +179,7 @@ export const TrendChart: React.FC = () => {
         composite: pt.compositeCenti / 100,
         keyEventCount: keyCount,
         keyEventTitles: keyTitles,
-        keyMarkerY: keyCount > 0 ? 95 : undefined,
+        keyMarkerY: keyCount > 0 ? 22 : undefined,
         revisionCount: revCount,
         revisionMarkerY: revCount > 0 ? 98 : undefined,
         sourceMix,
@@ -227,7 +236,7 @@ export const TrendChart: React.FC = () => {
     }
 
     // Bridge the gap between last historical point and first forecast point
-    if (lastHist && result.forecast.length > 0) {
+    if (lastHist && result.forecast.length > 0 && lastHist.composite !== undefined) {
       lastHist.forecastEv = lastHist.composite;
       lastHist.forecastExecEv = lastHist.executive;
       lastHist.forecastCongEv = lastHist.congress;
@@ -235,10 +244,16 @@ export const TrendChart: React.FC = () => {
       lastHist.forecastPublicEv = lastHist.public;
       lastHist.forecastP10 = lastHist.composite;
       lastHist.forecastP90 = lastHist.composite;
+      lastHist.forecastBand = [lastHist.composite, lastHist.composite];
     }
 
     return list;
-  }, [result.timeline, result.forecast, revisionsByPeriod]);
+  }, [result.timeline, result.forecast, revisionsByPeriod, eventMap, catalystMap]);
+
+  const selectedPeriodLabel = useMemo(
+    () => data.find((d) => d.id === selectedPeriodId)?.label ?? data.filter((d) => !d.isForecast).slice(-1)[0]?.label ?? 'Latest',
+    [data, selectedPeriodId],
+  );
 
   // Pinned events resolution
   const pinnedEventsWithPeriod = useMemo(() => {
@@ -297,124 +312,198 @@ export const TrendChart: React.FC = () => {
     return (
       <span
         key={label}
-        className={`inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded text-[10px] font-mono font-medium border ${
+        className={`inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[11px] font-mono font-medium tabular-nums border ${
           isPositive
-            ? 'bg-emerald-950/60 text-emerald-300 border-emerald-700/60'
-            : 'bg-rose-950/60 text-rose-300 border-rose-700/60'
+            ? 'bg-lift/10 text-lift border-lift/30'
+            : 'bg-drag/10 text-drag border-drag/30'
         }`}
       >
-        <span className="text-steel font-sans">{label}:</span>
-        {isPositive ? <TrendingUp className="w-2.5 h-2.5 inline text-emerald-400" /> : <TrendingDown className="w-2.5 h-2.5 inline text-rose-400" />}
+        <span className="text-muted font-sans">{label}:</span>
+        {isPositive ? (
+          <TrendingUp className="w-3 h-3 inline text-lift" />
+        ) : (
+          <TrendingDown className="w-3 h-3 inline text-drag" />
+        )}
         <span>{bpsToDisplay(bps)} pts</span>
       </span>
     );
   };
 
   return (
-    <div className="bg-[#1e2227] border border-[#363c44] rounded-xl p-4 shadow-xl transition-all">
-      {/* Header & Controls */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3">
-        <div>
-          <div className="flex flex-wrap items-center gap-2">
-            <h2 className="text-base font-bold text-white tracking-wide flex items-center gap-2">
-              <Layers className="w-4 h-4 text-sky" />
-              <span>MULTI-AUDIENCE SENTIMENT TRAJECTORY & 6-MONTH FORECAST</span>
+    <section
+      aria-label="Multi-Audience Sentiment Trajectory and Forecast"
+      className="bg-surface1 border border-hairline rounded-xl p-4 shadow-xl transition-all"
+    >
+      {/* Unified 2-Row Chart Header & Controls */}
+      <div className="space-y-2.5 pb-3 border-b border-hairline mb-3">
+        {/* Row 1: Title + Action Controls */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
+          <div className="flex flex-wrap items-center gap-2 min-w-0">
+            <Layers className="w-4 h-4 text-sky shrink-0" />
+            <h2 className="text-sm sm:text-base font-bold text-white tracking-wide">
+              Sentiment Trajectory &amp; 6-Month Forecast
             </h2>
-            <span className="px-2 py-0.5 text-[11px] font-mono rounded bg-charcoal border border-steel/60 text-sky">
-              Longitudinal Horizon 2011–2027
+            <span className="px-2 py-0.5 text-[11px] font-mono tabular-nums rounded bg-surface0 border border-hairline text-muted">
+              2011–2027
             </span>
           </div>
-          <p className="text-xs text-sky/80 mt-0.5">
-            Click any period node to inspect event attribution. Use Full Width mode and Presentation Pins for executive briefings.
-          </p>
-        </div>
 
-        {/* Action Controls: Compact Hover Mode Toggle, Presentation Pins & Full Width Toggle */}
-        <div className="flex flex-wrap items-center gap-2 self-start sm:self-auto shrink-0">
-          <div
-            className="inline-flex items-center rounded-lg bg-[#16191d] border border-steel/60 p-0.5 text-[11px] font-mono"
-            title="Switch compact hover chart between Audience Scores Bar Chart and Source Mix Pie Chart (Double-click any point for full pane)"
-          >
+          <div className="flex flex-wrap items-center gap-2 self-start sm:self-auto shrink-0">
+            <div
+              role="group"
+              aria-label="Hover tooltip display mode"
+              className="inline-flex items-center rounded-lg bg-surface0 border border-hairline p-0.5 text-xs font-mono"
+              title="Switch compact hover chart between Audience Scores and Source Mix"
+            >
+              <button
+                type="button"
+                onClick={() => setHoverMode('scores')}
+                aria-pressed={hoverMode === 'scores'}
+                className={`flex items-center gap-1 px-2.5 py-1 rounded-md transition ${
+                  hoverMode === 'scores'
+                    ? 'bg-passion-solid text-white font-bold shadow-sm'
+                    : 'text-muted hover:text-white'
+                }`}
+              >
+                <BarChart3 className="w-3.5 h-3.5" />
+                <span>Scores</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => setHoverMode('sources')}
+                aria-pressed={hoverMode === 'sources'}
+                className={`flex items-center gap-1 px-2.5 py-1 rounded-md transition ${
+                  hoverMode === 'sources'
+                    ? 'bg-passion-solid text-white font-bold shadow-sm'
+                    : 'text-muted hover:text-white'
+                }`}
+              >
+                <PieChart className="w-3.5 h-3.5" />
+                <span>Sources</span>
+              </button>
+            </div>
+
             <button
               type="button"
-              onClick={() => setHoverMode('scores')}
-              className={`flex items-center gap-1 px-2.5 py-1 rounded-md transition ${
-                hoverMode === 'scores'
-                  ? 'bg-passion text-white font-bold shadow-sm'
-                  : 'text-sky/80 hover:text-white'
-              }`}
+              onClick={() => {
+                const targetId = selectedPeriodId || result.timeline[result.timeline.length - 1]?.period.id;
+                if (targetId) setInspectedPeriodId(targetId);
+              }}
+              aria-label={`Inspect period breakdown for ${selectedPeriodLabel}`}
+              className="flex items-center gap-1.5 px-2.5 py-1.5 rounded bg-surface0 border border-hairline hover:border-sky text-xs font-medium text-white transition"
+              title="Open visual Score & Source Mix breakdown modal for the selected period"
             >
-              <BarChart3 className="w-3.5 h-3.5" />
-              <span>Scores</span>
+              <Eye className="w-3.5 h-3.5 text-sky" />
+              <span>Inspect ({selectedPeriodLabel})</span>
             </button>
+
             <button
               type="button"
-              onClick={() => setHoverMode('sources')}
-              className={`flex items-center gap-1 px-2.5 py-1 rounded-md transition ${
-                hoverMode === 'sources'
-                  ? 'bg-passion text-white font-bold shadow-sm'
-                  : 'text-sky/80 hover:text-white'
+              onClick={() => setShowPinDrawer(!showPinDrawer)}
+              aria-expanded={showPinDrawer}
+              className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded text-xs font-mono tabular-nums border transition ${
+                pinnedEventIds.length > 0 || showPinDrawer
+                  ? 'bg-passion/15 border-passion/60 text-passion font-semibold'
+                  : 'bg-surface0 border-hairline text-muted hover:text-white hover:border-sky'
               }`}
             >
-              <PieChart className="w-3.5 h-3.5" />
-              <span>Sources</span>
+              <Pin className="w-3.5 h-3.5 fill-current" />
+              <span>Pins ({pinnedEventIds.length})</span>
+              <ChevronDown className={`w-3 h-3 transition-transform ${showPinDrawer ? 'rotate-180' : ''}`} />
+            </button>
+
+            <button
+              type="button"
+              onClick={() => setIsChartExpanded(!isChartExpanded)}
+              aria-pressed={isChartExpanded}
+              className="flex items-center gap-1.5 px-2.5 py-1.5 rounded bg-surface0 border border-hairline hover:border-sky text-xs font-medium text-white transition shadow-sm"
+              title={isChartExpanded ? 'Switch to side-by-side mode' : 'Expand graph full width'}
+            >
+              {isChartExpanded ? (
+                <>
+                  <Minimize2 className="w-3.5 h-3.5 text-passion" />
+                  <span>Side-by-Side</span>
+                </>
+              ) : (
+                <>
+                  <Maximize2 className="w-3.5 h-3.5 text-sky" />
+                  <span>Full Width</span>
+                </>
+              )}
             </button>
           </div>
+        </div>
 
-          <button
-            type="button"
-            onClick={() => setShowPinDrawer(!showPinDrawer)}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-semibold font-mono border transition ${
-              pinnedEventIds.length > 0 || showPinDrawer
-                ? 'bg-passion/20 border-passion text-passion'
-                : 'bg-charcoal border-steel/60 text-sky hover:text-white hover:border-sky'
-            }`}
-          >
-            <Pin className="w-3.5 h-3.5 fill-current" />
-            <span>Pinned Milestones ({pinnedEventIds.length})</span>
-            <ChevronDown className={`w-3 h-3 transition-transform ${showPinDrawer ? 'rotate-180' : ''}`} />
-          </button>
+        {/* Row 2: Series Toggle Pills + Inline Phase Granularity Key */}
+        <div className="flex flex-wrap items-center justify-between gap-2">
+          <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar text-xs">
+            <button
+              type="button"
+              onClick={() => toggleLine('composite')}
+              aria-pressed={visibleLines.composite}
+              className={`flex items-center gap-1.5 px-2.5 py-1 rounded border transition font-medium whitespace-nowrap ${
+                visibleLines.composite
+                  ? 'bg-surface2 border-white/70 text-white font-semibold'
+                  : 'bg-surface0 border-hairline text-muted opacity-65'
+              }`}
+            >
+              <span className="w-3 h-1 bg-white rounded-full inline-block" />
+              <span>Composite</span>
+            </button>
 
-          <button
-            type="button"
-            onClick={() => setIsChartExpanded(!isChartExpanded)}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded bg-charcoal border border-steel/60 hover:border-sky text-xs font-semibold text-white transition shadow-sm"
-            title={isChartExpanded ? 'Switch to side-by-side mode' : 'Expand graph full width'}
-          >
-            {isChartExpanded ? (
-              <>
-                <Minimize2 className="w-3.5 h-3.5 text-passion" />
-                <span>Side-by-Side Mode</span>
-              </>
-            ) : (
-              <>
-                <Maximize2 className="w-3.5 h-3.5 text-sky" />
-                <span>Full Width Presentation</span>
-              </>
-            )}
-          </button>
+            {SERIES_ORDER.map((aud) => (
+              <button
+                key={aud}
+                type="button"
+                onClick={() => toggleLine(aud)}
+                aria-pressed={visibleLines[aud]}
+                className={`flex items-center gap-1.5 px-2.5 py-1 rounded border transition whitespace-nowrap ${
+                  visibleLines[aud]
+                    ? 'bg-surface2 border-sky/50 text-white font-medium'
+                    : 'bg-surface0 border-hairline text-muted opacity-65'
+                }`}
+              >
+                <span
+                  className="w-2.5 h-2.5 rounded-full inline-block"
+                  style={{ backgroundColor: AUDIENCE_COLORS[aud] }}
+                />
+                <span>{AUDIENCE_LABELS[aud]}</span>
+              </button>
+            ))}
+          </div>
+
+          <div className="hidden md:flex items-center gap-3 text-[11px] font-mono text-muted">
+            <Calendar className="w-3.5 h-3.5 text-sky shrink-0" />
+            {PHASE_META.map((ph) => (
+              <span key={ph.key} className="inline-flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full" style={{ backgroundColor: ph.color }} />
+                <span>{ph.label}</span>
+              </span>
+            ))}
+          </div>
         </div>
       </div>
 
       {/* Presentation Callouts Pinning Drawer */}
       {showPinDrawer && (
-        <div className="mb-4 p-3.5 rounded-lg bg-[#16191d] border border-passion/50 shadow-inner space-y-3">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-steel/40 pb-2">
+        <div className="mb-3 p-3.5 rounded-lg bg-surface0 border border-hairline shadow-inner space-y-3">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-hairline pb-2">
             <div>
               <span className="text-xs font-bold text-white flex items-center gap-1.5">
                 <Sparkles className="w-3.5 h-3.5 text-passion" />
-                <span>EXECUTIVE PINNING MANAGER</span>
+                <span>Executive Pinning Manager</span>
               </span>
-              <p className="text-[11px] text-sky/80">
-                Select any key milestone below to pin clean numbered reference markers directly onto the timeline chart.
+              <p className="text-xs text-muted">
+                Select key milestones to pin clean numbered reference markers onto the timeline.
               </p>
             </div>
             <input
               type="text"
+              aria-label="Filter starred milestones"
               value={pinSearch}
               onChange={(e) => setPinSearch(e.target.value)}
               placeholder="Search key events..."
-              className="px-2.5 py-1 text-xs rounded bg-charcoal border border-steel text-white placeholder-steel/70 focus:outline-none focus:border-passion w-full sm:w-56"
+              className="px-2.5 py-1 text-xs rounded bg-surface1 border border-hairline text-white placeholder-muted focus:outline-none focus:border-sky w-full sm:w-56"
             />
           </div>
 
@@ -429,18 +518,18 @@ export const TrendChart: React.FC = () => {
                   className={`flex items-start gap-2 p-2 rounded text-left text-xs transition border ${
                     isPinned
                       ? 'bg-passion/15 border-passion text-white font-medium'
-                      : 'bg-[#1e2227] border-steel/40 text-sky hover:text-white hover:border-steel'
+                      : 'bg-surface1 border-hairline text-muted hover:text-white hover:border-sky'
                   }`}
                 >
                   <div
                     className={`w-4 h-4 rounded mt-0.5 flex items-center justify-center shrink-0 border ${
-                      isPinned ? 'bg-passion border-passion text-white' : 'border-steel'
+                      isPinned ? 'bg-passion-solid border-passion-solid text-white' : 'border-hairline'
                     }`}
                   >
                     {isPinned && <Check className="w-3 h-3 stroke-[3]" />}
                   </div>
                   <div className="min-w-0">
-                    <span className="text-[10px] font-mono text-passion block">{ev.eventDate}</span>
+                    <span className="text-[11px] font-mono tabular-nums text-sky block">{ev.eventDate}</span>
                     <span className="truncate block font-semibold text-white">{ev.title}</span>
                   </div>
                 </button>
@@ -450,74 +539,14 @@ export const TrendChart: React.FC = () => {
         </div>
       )}
 
-      {/* Interactive Series Filter Toggles */}
-      <div className="flex items-center gap-1.5 overflow-x-auto pb-2 mb-2 text-xs">
-        <button
-          onClick={() => toggleLine('composite')}
-          className={`flex items-center gap-1.5 px-2.5 py-1 rounded border transition font-medium whitespace-nowrap ${
-            visibleLines.composite
-              ? 'bg-charcoal border-white text-white font-bold'
-              : 'bg-charcoal/40 border-steel/40 text-steel'
-          }`}
-        >
-          <span className="w-3 h-1 bg-white rounded-full inline-block" />
-          <span>Composite ({result.weights.executive}/{result.weights.congress}/{result.weights.navy}/{result.weights.public})</span>
-        </button>
-
-        {ALL_AUDIENCES.map((aud) => (
-          <button
-            key={aud}
-            onClick={() => toggleLine(aud)}
-            className={`flex items-center gap-1.5 px-2.5 py-1 rounded border transition whitespace-nowrap ${
-              visibleLines[aud]
-                ? 'bg-charcoal border-sky/60 text-white font-medium'
-                : 'bg-charcoal/40 border-steel/40 text-steel'
-            }`}
-          >
-            <span
-              className="w-2.5 h-2.5 rounded-full inline-block"
-              style={{ backgroundColor: AUDIENCE_COLORS[aud] }}
-            />
-            <span>{AUDIENCE_LABELS[aud]}</span>
-          </button>
-        ))}
-      </div>
-
-      {/* Clean Timeline Phase Header Track (Completely resolves overlapping text) */}
-      <div className="flex flex-wrap items-center justify-between gap-2 px-3 py-2 bg-[#14171a] border border-[#2d333b] rounded-lg mb-2 text-xs font-mono">
-        <div className="flex items-center gap-1.5 text-steel text-[11px] font-sans">
-          <Calendar className="w-3.5 h-3.5 text-sky" />
-          <span className="font-semibold text-white/90">Timeline Granularity:</span>
-        </div>
-
-        <div className="flex flex-wrap items-center gap-3 text-[11px]">
-          <div className="flex items-center gap-1.5">
-            <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: PHASE_COLORS.annual }} />
-            <span className="text-white/80 font-medium">2011–2025 Annual (15 Years)</span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: PHASE_COLORS.quarterly }} />
-            <span className="text-white/80 font-medium">2026 Q1–Q3 Quarterly</span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: PHASE_COLORS.monthly }} />
-            <span className="text-white/80 font-medium">2026-10 Monthly</span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: PHASE_COLORS.forecast }} />
-            <span className="text-passion font-semibold">2026-11 → 2027-05 6-Mo Forecast</span>
-          </div>
-        </div>
-      </div>
-
       {/* Main Chart Canvas: Horizontally scrollable on mobile (auto-focused on recent months & forecast) */}
-      <div className="sm:hidden flex items-center justify-between text-[11px] font-mono text-sky/90 bg-[#14171a] border border-[#2d333b] rounded px-2.5 py-1.5 mb-1.5">
-        <span>← Swipe timeline for 2011–2025 history</span>
+      <div className="sm:hidden flex items-center justify-between text-xs font-mono text-sky bg-surface0 border border-hairline rounded px-2.5 py-1.5 mb-1.5">
+        <span>← Swipe timeline for history</span>
         <div className="flex items-center gap-1.5">
           <button
             type="button"
             onClick={() => chartScrollRef.current?.scrollTo({ left: 0, behavior: 'smooth' })}
-            className="px-1.5 py-0.5 rounded bg-charcoal border border-steel/60 text-[10px] text-steel hover:text-white"
+            className="px-2 py-0.5 rounded bg-surface1 border border-hairline text-xs text-muted hover:text-white"
           >
             2011
           </button>
@@ -527,7 +556,7 @@ export const TrendChart: React.FC = () => {
               const el = chartScrollRef.current;
               if (el) el.scrollTo({ left: el.scrollWidth - el.clientWidth, behavior: 'smooth' });
             }}
-            className="px-1.5 py-0.5 rounded bg-passion/20 border border-passion/60 text-[10px] text-passion font-bold"
+            className="px-2 py-0.5 rounded bg-passion-solid text-xs text-white font-bold"
           >
             Recent →
           </button>
@@ -539,7 +568,7 @@ export const TrendChart: React.FC = () => {
         onDoubleClick={() => {
           if (hoveredIdRef.current) setInspectedPeriodId(hoveredIdRef.current);
         }}
-        className="w-full bg-[#16191d] rounded-lg border border-[#2d333b] p-2 overflow-x-auto sm:overflow-x-visible transition-all duration-300"
+        className="w-full bg-surface0 rounded-lg border border-hairline p-2 overflow-x-auto sm:overflow-x-visible transition-all duration-300"
       >
         <div className="min-w-[980px] sm:min-w-0 w-full h-[360px] sm:h-[430px]">
           <ResponsiveContainer width="100%" height="100%">
@@ -562,20 +591,20 @@ export const TrendChart: React.FC = () => {
               }
             }}
           >
-            <CartesianGrid stroke="#363c44" strokeDasharray="3 3" strokeOpacity={0.6} />
+            <CartesianGrid stroke="#2e353d" strokeDasharray="3 3" strokeOpacity={0.7} vertical={false} />
             <XAxis
               dataKey="id"
-              stroke="#8b98a5"
-              tick={{ fill: '#ffffff', fontSize: 11, fontFamily: 'JetBrains Mono' }}
+              stroke="#98a6b3"
+              tick={{ fill: '#98a6b3', fontSize: 11, fontFamily: 'IBM Plex Mono' }}
               interval={0}
               angle={-30}
               textAnchor="end"
               height={52}
             />
             <YAxis
-              domain={[20, 100]}
-              stroke="#8b98a5"
-              tick={{ fill: '#ffffff', fontSize: 11, fontFamily: 'JetBrains Mono' }}
+              domain={[18, 100]}
+              stroke="#98a6b3"
+              tick={{ fill: '#98a6b3', fontSize: 11, fontFamily: 'IBM Plex Mono' }}
               ticks={[20, 30, 40, 50, 60, 70, 80, 90, 100]}
             />
 
@@ -587,8 +616,8 @@ export const TrendChart: React.FC = () => {
               label={{
                 value: 'Neutral Baseline (50.00)',
                 position: 'insideBottomLeft',
-                fill: '#75abd1',
-                fontSize: 10,
+                fill: '#98a6b3',
+                fontSize: 11,
               }}
             />
 
@@ -662,28 +691,18 @@ export const TrendChart: React.FC = () => {
               }}
             />
 
-            {/* Forecast Confidence Fan Area (P10 to P90) */}
+            {/* Forecast Confidence Fan Area (Ranged P10 to P90 preserving gridlines & Neutral baseline) */}
             <Area
               type="monotone"
-              dataKey="forecastP90"
+              dataKey="forecastBand"
               stroke="#ea7722"
               strokeWidth={1}
               strokeDasharray="2 2"
               fill="#ea7722"
               fillOpacity={0.18}
-              name="Forecast P90"
+              name="Forecast P10–P90"
               isAnimationActive={false}
-            />
-            <Area
-              type="monotone"
-              dataKey="forecastP10"
-              stroke="#ea7722"
-              strokeWidth={1}
-              strokeDasharray="2 2"
-              fill="#16191d"
-              fillOpacity={1}
-              name="Forecast P10"
-              isAnimationActive={false}
+              connectNulls={false}
             />
 
             {/* Historical Series Lines */}
@@ -732,6 +751,56 @@ export const TrendChart: React.FC = () => {
               />
             )}
 
+            {/* Forecast Audience Lines */}
+            {visibleLines.executive && (
+              <Line
+                type="monotone"
+                dataKey="forecastExecEv"
+                stroke={AUDIENCE_COLORS.executive}
+                strokeWidth={1.35}
+                strokeDasharray="3 3"
+                strokeOpacity={0.65}
+                dot={false}
+                isAnimationActive={false}
+              />
+            )}
+            {visibleLines.congress && (
+              <Line
+                type="monotone"
+                dataKey="forecastCongEv"
+                stroke={AUDIENCE_COLORS.congress}
+                strokeWidth={1.35}
+                strokeDasharray="3 3"
+                strokeOpacity={0.65}
+                dot={false}
+                isAnimationActive={false}
+              />
+            )}
+            {visibleLines.navy && (
+              <Line
+                type="monotone"
+                dataKey="forecastNavyEv"
+                stroke={AUDIENCE_COLORS.navy}
+                strokeWidth={1.35}
+                strokeDasharray="3 3"
+                strokeOpacity={0.65}
+                dot={false}
+                isAnimationActive={false}
+              />
+            )}
+            {visibleLines.public && (
+              <Line
+                type="monotone"
+                dataKey="forecastPublicEv"
+                stroke={AUDIENCE_COLORS.public}
+                strokeWidth={1.35}
+                strokeDasharray="3 3"
+                strokeOpacity={0.65}
+                dot={false}
+                isAnimationActive={false}
+              />
+            )}
+
             {/* Composite Historical Line */}
             {visibleLines.composite && (
               <Line
@@ -739,7 +808,7 @@ export const TrendChart: React.FC = () => {
                 dataKey="composite"
                 stroke="#ffffff"
                 strokeWidth={3}
-                dot={{ r: 4, fill: '#ea7722', stroke: '#ffffff', strokeWidth: 1.5 }}
+                dot={{ r: 3.5, fill: '#ea7722', stroke: '#ffffff', strokeWidth: 1.5 }}
                 activeDot={{ r: 6, fill: '#ea7722', stroke: '#ffffff', strokeWidth: 2 }}
                 name="Composite"
                 isAnimationActive={false}
@@ -747,29 +816,31 @@ export const TrendChart: React.FC = () => {
             )}
 
             {/* Forecast Expected Value Line */}
-            <Line
-              type="monotone"
-              dataKey="forecastEv"
-              stroke="#ea7722"
-              strokeWidth={2.5}
-              strokeDasharray="4 3"
-              dot={{ r: 3.5, fill: '#ffffff', stroke: '#ea7722', strokeWidth: 1.5 }}
-              name="Forecast EV"
-              isAnimationActive={false}
-            />
+            {visibleLines.composite && (
+              <Line
+                type="monotone"
+                dataKey="forecastEv"
+                stroke="#ea7722"
+                strokeWidth={2.5}
+                strokeDasharray="4 3"
+                dot={{ r: 3.5, fill: '#ffffff', stroke: '#ea7722', strokeWidth: 1.5 }}
+                name="Forecast EV"
+                isAnimationActive={false}
+              />
+            )}
 
-            {/* Starred Key Event Dots */}
+            {/* Starred Key Event Baseline Markers (y=22 so they never collide with upper curves or top pins) */}
             {data
               .filter((d) => d.keyEventCount > 0 && !d.isForecast)
               .map((d) => (
                 <ReferenceDot
                   key={`star_${d.id}`}
                   x={d.id}
-                  y={95}
-                  r={3.5}
-                  fill="#ea7722"
-                  stroke="#ffffff"
-                  strokeWidth={1}
+                  y={22}
+                  r={3}
+                  fill="#75abd1"
+                  stroke="#16191d"
+                  strokeWidth={1.5}
                 />
               ))}
           </ComposedChart>
@@ -777,16 +848,16 @@ export const TrendChart: React.FC = () => {
         </div>
       </div>
 
-      {/* Executive Pinned Milestones Deck (Clean, structured presentation rack) */}
+      {/* Executive Pinned Milestones Deck (Accessible semantic <button> + sibling unpin control) */}
       {orderedPinnedList.length > 0 && (
-        <div className="mt-4 border-t border-[#363c44] pt-3">
+        <div className="mt-4 border-t border-hairline pt-3">
           <div className="flex items-center justify-between gap-2 mb-2">
             <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-white">
               <Pin className="w-3.5 h-3.5 text-passion" />
               <span>Executive Pinned Milestones Deck ({orderedPinnedList.length})</span>
             </div>
-            <span className="text-[11px] text-sky/75">
-              Corresponds to numbered markers {orderedPinnedList.map((p) => p.badge).join(' ')} on timeline
+            <span className="text-xs text-muted hidden sm:inline">
+              Markers {orderedPinnedList.map((p) => p.badge).join(' ')} on timeline
             </span>
           </div>
 
@@ -796,53 +867,55 @@ export const TrendChart: React.FC = () => {
               return (
                 <div
                   key={ev.id}
-                  onClick={() => setSelectedPeriodId(periodId)}
-                  className={`group relative flex flex-col justify-between p-3 rounded-lg border transition-all cursor-pointer ${
+                  className={`group relative rounded-lg border transition-all ${
                     isSelected
-                      ? 'bg-[#222831] border-passion ring-1 ring-passion/60 shadow-lg'
-                      : 'bg-[#16191d] border-[#363c44] hover:border-steel hover:bg-[#1a1e23]'
+                      ? 'bg-surface2 border-sky ring-1 ring-sky/40 shadow-lg'
+                      : 'bg-surface0 border-hairline hover:border-sky/60 hover:bg-surface2/60'
                   }`}
                 >
-                  <div>
-                    <div className="flex items-center justify-between gap-2 mb-1.5">
-                      <div className="flex items-center gap-1.5">
-                        <span className="flex items-center justify-center w-5 h-5 rounded bg-passion/20 border border-passion/50 text-passion text-xs font-mono font-bold">
+                  <button
+                    type="button"
+                    onClick={() => setSelectedPeriodId(periodId)}
+                    className="w-full h-full flex flex-col justify-between p-3 pr-9 text-left rounded-lg"
+                  >
+                    <div>
+                      <div className="flex items-center gap-1.5 mb-1.5">
+                        <span className="flex items-center justify-center w-5 h-5 rounded bg-passion/20 border border-passion/50 text-passion text-xs font-mono font-bold tabular-nums">
                           {badge}
                         </span>
-                        <span className="text-[11px] font-mono text-white/90 font-semibold">
+                        <span className="text-[11px] font-mono tabular-nums text-white font-semibold">
                           {ev.eventDate}
                         </span>
                       </div>
 
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          togglePinnedEvent(ev.id);
-                        }}
-                        className="text-steel hover:text-passion p-1 rounded hover:bg-charcoal transition-colors"
-                        title="Unpin milestone"
-                      >
-                        <X className="w-3.5 h-3.5" />
-                      </button>
+                      <h4 className="text-xs font-semibold text-white line-clamp-2 leading-snug mb-2 group-hover:text-sky transition-colors">
+                        {ev.title}
+                      </h4>
                     </div>
 
-                    <h4 className="text-xs font-semibold text-white line-clamp-2 leading-snug mb-2 group-hover:text-sky transition-colors">
-                      {ev.title}
-                    </h4>
-                  </div>
+                    <div className="w-full flex flex-wrap gap-1 mt-auto pt-2 border-t border-hairline">
+                      {ev.impacts.map((imp) => {
+                        const bps = baseBps(imp);
+                        const labels: Record<string, string> = {
+                          executive: 'Exec',
+                          congress: 'Cong',
+                          navy: 'Navy',
+                          public: 'Pub',
+                        };
+                        return renderImpactPill(labels[imp.audience] ?? imp.audience, bps);
+                      })}
+                    </div>
+                  </button>
 
-                  <div className="flex flex-wrap gap-1 mt-auto pt-2 border-t border-[#2d333b]">
-                    {ev.impacts.map((imp) => {
-                      const bps = baseBps(imp);
-                      const labels: Record<string, string> = {
-                        executive: 'Exec',
-                        congress: 'Cong',
-                        navy: 'Navy',
-                        public: 'Pub',
-                      };
-                      return renderImpactPill(labels[imp.audience] ?? imp.audience, bps);
-                    })}
-                  </div>
+                  <button
+                    type="button"
+                    onClick={() => togglePinnedEvent(ev.id)}
+                    aria-label={`Unpin ${ev.title}`}
+                    className="absolute top-2.5 right-2.5 text-muted hover:text-white p-1 rounded hover:bg-surface2 transition-colors"
+                    title="Unpin milestone"
+                  >
+                    <X className="w-3.5 h-3.5" />
+                  </button>
                 </div>
               );
             })}
@@ -877,7 +950,7 @@ export const TrendChart: React.FC = () => {
           />
         );
       })()}
-    </div>
+    </section>
   );
 };
 

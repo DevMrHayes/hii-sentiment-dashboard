@@ -3,28 +3,55 @@
 @tailwind utilities;
 
 :root {
+  --surface-0: #16191d;
+  --surface-1: #1e2227;
+  --surface-2: #252a30;
+  --hairline: #2e353d;
+  --text-muted: #98a6b3;
+  --lift: #2dd4bf;
+  --drag: #f43f5e;
   --hii-charcoal: #24272a;
   --hii-deepsea: #003b4d;
   --hii-sky: #75abd1;
   --hii-changingsea: #509ca2;
   --hii-steel: #5b6670;
   --hii-passion: #ea7722;
+  --hii-passion-solid: #c75b12;
   --hii-white: #ffffff;
 }
 
 body {
-  background-color: #24272a;
-  color: #ffffff;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background-color: #16191d;
+  color: #f3f4f6;
+  font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Custom subtle scrollbars matching HII Steel & Deep Sea */
+:focus-visible {
+  outline: 2px solid #75abd1;
+  outline-offset: 2px;
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Custom subtle scrollbars matching HII Slate & Hairline */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #24272a;
+  background: #16191d;
 }
 ::-webkit-scrollbar-thumb {
   background: #5b6670;

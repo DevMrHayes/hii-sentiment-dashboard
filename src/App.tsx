@@ -25,34 +25,41 @@ const DashboardContent: React.FC = () => {
     isChartExpanded,
   } = useDashboard();
 
+  const isForecastGroup = activeTab === 'forecast' || activeTab === 'control';
+  const isOperationsGroup =
+    activeTab === 'research' || activeTab === 'revisions' || activeTab === 'export';
+
   return (
-    <div className="min-h-screen bg-charcoal text-white flex flex-col">
+    <div className="min-h-screen bg-surface0 text-gray-100 flex flex-col">
       <HeaderBar />
       <LiveResearchBanner />
 
       {/* Retroactive Revision Alert Banner */}
       {recentRevisionsBanner.length > 0 && (
         <div className="max-w-[1600px] w-full mx-auto px-4 mt-3">
-          <div className="bg-deepsea border-2 border-passion rounded-lg p-3 flex items-center justify-between gap-3 shadow-lg">
+          <div className="bg-surface1 border border-passion/70 rounded-lg p-3 flex items-center justify-between gap-3 shadow-lg">
             <div className="flex items-center gap-2.5 text-xs">
               <GitCommit className="w-5 h-5 text-passion shrink-0" />
               <div>
-                <span className="font-bold text-white">
+                <span className="font-bold text-white tabular-nums">
                   Retroactive Score Revision Detected ({recentRevisionsBanner.length} period/audience adjustments):
                 </span>{' '}
-                <span className="text-sky">{recentRevisionsBanner[0]?.explanation}</span>
+                <span className="text-muted">{recentRevisionsBanner[0]?.explanation}</span>
               </div>
             </div>
             <div className="flex items-center gap-2 shrink-0">
               <button
+                type="button"
                 onClick={() => setActiveTab('revisions')}
-                className="px-2.5 py-1 rounded bg-passion text-white text-xs font-bold"
+                className="px-2.5 py-1 rounded bg-passion-solid hover:bg-passion text-white text-xs font-bold transition"
               >
                 View Revisions Audit
               </button>
               <button
+                type="button"
                 onClick={dismissRevisionsBanner}
-                className="p-1 text-sky hover:text-white"
+                aria-label="Dismiss revision alert"
+                className="p-1 text-muted hover:text-white transition"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -62,10 +69,93 @@ const DashboardContent: React.FC = () => {
       )}
 
       <main
-        className={`w-full mx-auto px-4 py-5 flex-1 transition-all duration-300 ${
+        className={`w-full mx-auto px-3 sm:px-4 py-5 flex-1 transition-all duration-300 space-y-4 ${
           isChartExpanded && activeTab === 'dashboard' ? 'max-w-[1850px]' : 'max-w-[1600px]'
         }`}
       >
+        {isForecastGroup && (
+          <div
+            role="tablist"
+            aria-label="Forecast and Weights workspace views"
+            className="inline-flex flex-wrap items-center gap-1 p-1 rounded-lg bg-surface1 border border-hairline"
+          >
+            <button
+              type="button"
+              role="tab"
+              aria-selected={activeTab === 'forecast'}
+              onClick={() => setActiveTab('forecast')}
+              className={`px-3 py-1.5 rounded-md text-xs font-medium transition ${
+                activeTab === 'forecast'
+                  ? 'bg-surface2 text-white border border-hairline shadow-sm'
+                  : 'text-muted hover:text-white border border-transparent'
+              }`}
+            >
+              6-Month Scenario &amp; Catalyst Studio
+            </button>
+            <button
+              type="button"
+              role="tab"
+              aria-selected={activeTab === 'control'}
+              onClick={() => setActiveTab('control')}
+              className={`px-3 py-1.5 rounded-md text-xs font-medium transition ${
+                activeTab === 'control'
+                  ? 'bg-surface2 text-white border border-hairline shadow-sm'
+                  : 'text-muted hover:text-white border border-transparent'
+              }`}
+            >
+              Composite Weights &amp; Manual Evidence
+            </button>
+          </div>
+        )}
+
+        {isOperationsGroup && (
+          <div
+            role="tablist"
+            aria-label="Operations workspace views"
+            className="inline-flex flex-wrap items-center gap-1 p-1 rounded-lg bg-surface1 border border-hairline"
+          >
+            <button
+              type="button"
+              role="tab"
+              aria-selected={activeTab === 'research'}
+              onClick={() => setActiveTab('research')}
+              className={`px-3 py-1.5 rounded-md text-xs font-medium transition ${
+                activeTab === 'research'
+                  ? 'bg-surface2 text-white border border-hairline shadow-sm'
+                  : 'text-muted hover:text-white border border-transparent'
+              }`}
+            >
+              Research &amp; Schedule
+            </button>
+            <button
+              type="button"
+              role="tab"
+              aria-selected={activeTab === 'revisions'}
+              onClick={() => setActiveTab('revisions')}
+              className={`px-3 py-1.5 rounded-md text-xs font-medium transition ${
+                activeTab === 'revisions'
+                  ? 'bg-surface2 text-white border border-hairline shadow-sm'
+                  : 'text-muted hover:text-white border border-transparent'
+              }`}
+            >
+              Retroactive Revisions Audit
+            </button>
+            <button
+              type="button"
+              role="tab"
+              aria-selected={activeTab === 'export'}
+              onClick={() => setActiveTab('export')}
+              className={`px-3 py-1.5 rounded-md text-xs font-medium transition ${
+                activeTab === 'export'
+                  ? 'bg-surface2 text-white border border-hairline shadow-sm'
+                  : 'text-muted hover:text-white border border-transparent'
+              }`}
+            >
+              Deterministic Markdown Export
+            </button>
+          </div>
+        )}
+
         {activeTab === 'dashboard' && (
           isChartExpanded ? (
             <div className="space-y-6">
@@ -79,7 +169,7 @@ const DashboardContent: React.FC = () => {
                 <div className="lg:col-span-8">
                   <EventTimeline compact />
                 </div>
-                <div className="lg:col-span-4">
+                <div className="lg:col-span-4 order-first lg:order-none">
                   <ScoreRail />
                 </div>
               </div>
@@ -90,7 +180,7 @@ const DashboardContent: React.FC = () => {
                 <TrendChart />
                 <EventTimeline compact />
               </div>
-              <div className="lg:col-span-4">
+              <div className="lg:col-span-4 order-first lg:order-none">
                 <ScoreRail />
               </div>
             </div>
