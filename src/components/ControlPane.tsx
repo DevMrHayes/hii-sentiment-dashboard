@@ -3,6 +3,7 @@ import {
   CheckCircle2,
   FileText,
   Link2,
+  Lock,
   PlusCircle,
   RotateCcw,
   Sliders,
@@ -10,6 +11,7 @@ import {
   Upload,
   X,
 } from 'lucide-react';
+import { useAuth } from '../context/AuthContext';
 import { useDashboard } from '../context/DashboardContext';
 import {
   ALL_AUDIENCES,
@@ -56,6 +58,13 @@ const PRESET_PROFILES: Array<{ label: string; weights: AudienceWeights; desc: st
 
 export const ControlPane: React.FC = () => {
   const { state, result, updateWeights, upsertEvent, resetToLatestSeed } = useDashboard();
+
+  let isAdmin = true;
+  try {
+    isAdmin = useAuth().userRole === 'admin';
+  } catch {
+    // running without AuthProvider in unit tests
+  }
 
   // Weights state
   const [draftWeights, setDraftWeights] = useState<AudienceWeights>({ ...state.settings.weights });
@@ -262,6 +271,15 @@ export const ControlPane: React.FC = () => {
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      {!isAdmin && (
+        <div className="lg:col-span-2 flex items-center gap-3 px-4 py-3 rounded-xl bg-amber-500/10 border border-amber-500/40 text-amber-200 text-xs">
+          <Lock className="w-4 h-4 text-amber-400 shrink-0" />
+          <div>
+            <span className="font-bold">Viewer Clearance (Read-Only):</span> Stakeholder weight configuration and manual evidence ingestion are restricted to the designated administrator. You may inspect current weight profiles and rubric formulas below.
+          </div>
+        </div>
+      )}
+
       {/* Left Column: Audience Composite Weight Studio */}
       <div className="bg-[#1e2227] border border-[#363c44] rounded-xl p-5 shadow-xl space-y-4">
         <div className="flex items-center justify-between border-b border-steel/50 pb-3">
@@ -297,6 +315,7 @@ export const ControlPane: React.FC = () => {
                   </span>
                   <input
                     type="number"
+                    disabled={!isAdmin}
                     min={0}
                     max={100}
                     value={draftWeights[aud]}
@@ -306,20 +325,21 @@ export const ControlPane: React.FC = () => {
                         [aud]: Math.max(0, Math.min(100, Number(e.target.value) || 0)),
                       }))
                     }
-                    className="w-16 bg-deepsea border border-steel rounded px-2 py-0.5 text-right text-white font-bold"
+                    className="w-16 bg-deepsea border border-steel rounded px-2 py-0.5 text-right text-white font-bold disabled:opacity-60 disabled:cursor-not-allowed"
                   />
                   <span className="text-white">%</span>
                 </div>
               </div>
               <input
                 type="range"
+                disabled={!isAdmin}
                 min={0}
                 max={100}
                 value={draftWeights[aud]}
                 onChange={(e) =>
                   setDraftWeights((prev) => ({ ...prev, [aud]: Number(e.target.value) }))
                 }
-                className="w-full accent-passion cursor-pointer"
+                className="w-full accent-passion cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
               />
             </div>
           ))}
@@ -335,8 +355,9 @@ export const ControlPane: React.FC = () => {
               <button
                 key={p.label}
                 type="button"
+                disabled={!isAdmin}
                 onClick={() => setDraftWeights({ ...p.weights })}
-                className="text-left p-2.5 rounded bg-charcoal/70 border border-steel/50 hover:border-sky transition"
+                className="text-left p-2.5 rounded bg-charcoal/70 border border-steel/50 hover:border-sky disabled:opacity-60 disabled:cursor-not-allowed transition"
               >
                 <div className="text-xs font-semibold text-white">{p.label}</div>
                 <div className="text-[11px] text-sky/80 mt-0.5 line-clamp-2">{p.desc}</div>
@@ -351,18 +372,20 @@ export const ControlPane: React.FC = () => {
             <label className="text-sky block mb-1">Author:</label>
             <input
               type="text"
+              disabled={!isAdmin}
               value={weightAuthor}
               onChange={(e) => setWeightAuthor(e.target.value)}
-              className="w-full bg-charcoal border border-steel rounded px-2.5 py-1.5 text-white"
+              className="w-full bg-charcoal border border-steel rounded px-2.5 py-1.5 text-white disabled:opacity-60 disabled:cursor-not-allowed"
             />
           </div>
           <div>
             <label className="text-sky block mb-1">Audit Reason:</label>
             <input
               type="text"
+              disabled={!isAdmin}
               value={weightReason}
               onChange={(e) => setWeightReason(e.target.value)}
-              className="w-full bg-charcoal border border-steel rounded px-2.5 py-1.5 text-white"
+              className="w-full bg-charcoal border border-steel rounded px-2.5 py-1.5 text-white disabled:opacity-60 disabled:cursor-not-allowed"
             />
           </div>
         </div>
@@ -370,8 +393,9 @@ export const ControlPane: React.FC = () => {
         <div className="flex items-center justify-between gap-3">
           <button
             type="button"
+            disabled={!isAdmin}
             onClick={() => setDraftWeights(normalizeWeights(draftWeights))}
-            className="px-3 py-2 rounded bg-charcoal border border-steel hover:border-sky text-xs font-mono text-sky flex items-center gap-1.5"
+            className="px-3 py-2 rounded bg-charcoal border border-steel hover:border-sky disabled:opacity-50 disabled:cursor-not-allowed text-xs font-mono text-sky flex items-center gap-1.5"
           >
             <RotateCcw className="w-3.5 h-3.5" />
             <span>Auto-Normalize to 100%</span>
@@ -379,8 +403,9 @@ export const ControlPane: React.FC = () => {
 
           <button
             type="button"
+            disabled={!isAdmin}
             onClick={() => void handleSaveWeights()}
-            className="px-4 py-2 rounded bg-passion hover:bg-passion/90 text-xs font-bold text-white shadow-lg transition"
+            className="px-4 py-2 rounded bg-passion hover:bg-passion/90 disabled:opacity-50 disabled:cursor-not-allowed text-xs font-bold text-white shadow-lg transition"
           >
             Apply & Persist Composite Weights
           </button>
@@ -403,8 +428,9 @@ export const ControlPane: React.FC = () => {
           </div>
           <button
             type="button"
+            disabled={!isAdmin}
             onClick={resetToLatestSeed}
-            className="px-3 py-1.5 rounded bg-charcoal border border-steel hover:border-sky text-sky hover:text-white flex items-center gap-1.5 text-xs font-mono transition"
+            className="px-3 py-1.5 rounded bg-charcoal border border-steel hover:border-sky disabled:opacity-50 disabled:cursor-not-allowed text-sky hover:text-white flex items-center gap-1.5 text-xs font-mono transition"
           >
             <RotateCcw className="w-3.5 h-3.5 text-changingsea" />
             <span>Reset Cache to Seed ({state.events.length} Events)</span>
@@ -414,7 +440,13 @@ export const ControlPane: React.FC = () => {
 
       {/* Right Column: Manual Evidence & Rubric Entry Studio */}
       <form
-        onSubmit={(e) => void handleAddEvent(e)}
+        onSubmit={(e) => {
+          if (!isAdmin) {
+            e.preventDefault();
+            return;
+          }
+          void handleAddEvent(e);
+        }}
         className="bg-[#1e2227] border border-[#363c44] rounded-xl p-5 shadow-xl space-y-4"
       >
         <div className="border-b border-steel/50 pb-3">
@@ -438,14 +470,16 @@ export const ControlPane: React.FC = () => {
             <input
               ref={fileInputRef}
               type="file"
+              disabled={!isAdmin}
               accept=".txt,.md,.csv,.json,.pdf,.doc,.docx"
               onChange={(e) => void handleDocumentUpload(e)}
               className="hidden"
             />
             <button
               type="button"
+              disabled={!isAdmin}
               onClick={() => fileInputRef.current?.click()}
-              className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#1e2227] border border-passion/70 hover:bg-passion hover:text-white text-white font-semibold transition"
+              className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#1e2227] border border-passion/70 hover:bg-passion hover:text-white disabled:opacity-50 disabled:cursor-not-allowed text-white font-semibold transition"
             >
               <Upload className="w-3.5 h-3.5 text-passion group-hover:text-white" />
               <span>Upload Document</span>
@@ -457,16 +491,18 @@ export const ControlPane: React.FC = () => {
               <Link2 className="w-3.5 h-3.5 text-sky absolute left-2.5 top-2" />
               <input
                 type="text"
+                disabled={!isAdmin}
                 value={sourceUrl}
                 onChange={(e) => setSourceUrl(e.target.value)}
                 placeholder="Paste article URL (https://...) or doc:// reference"
-                className="w-full pl-8 pr-2.5 py-1.5 bg-[#16191d] border border-steel rounded text-white font-mono text-xs focus:outline-none focus:border-passion"
+                className="w-full pl-8 pr-2.5 py-1.5 bg-[#16191d] border border-steel rounded text-white font-mono text-xs focus:outline-none focus:border-passion disabled:opacity-60 disabled:cursor-not-allowed"
               />
             </div>
             <button
               type="button"
+              disabled={!isAdmin}
               onClick={handleParseArticleUrl}
-              className="px-3 py-1.5 rounded bg-deepsea border border-sky/60 hover:border-passion text-white font-semibold whitespace-nowrap transition"
+              className="px-3 py-1.5 rounded bg-deepsea border border-sky/60 hover:border-passion disabled:opacity-50 disabled:cursor-not-allowed text-white font-semibold whitespace-nowrap transition"
             >
               Parse Link
             </button>
@@ -499,10 +535,11 @@ export const ControlPane: React.FC = () => {
             <input
               type="text"
               required
+              disabled={!isAdmin}
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               placeholder="e.g., Navy Awards Newport News CVN-82 Advanced Procurement Contract"
-              className="w-full bg-charcoal border border-steel rounded px-2.5 py-1.5 text-white"
+              className="w-full bg-charcoal border border-steel rounded px-2.5 py-1.5 text-white disabled:opacity-60 disabled:cursor-not-allowed"
             />
           </div>
           <div>
@@ -510,9 +547,10 @@ export const ControlPane: React.FC = () => {
             <input
               type="date"
               required
+              disabled={!isAdmin}
               value={eventDate}
               onChange={(e) => setEventDate(e.target.value)}
-              className="w-full bg-charcoal border border-steel rounded px-2.5 py-1.5 text-white font-mono"
+              className="w-full bg-charcoal border border-steel rounded px-2.5 py-1.5 text-white font-mono disabled:opacity-60 disabled:cursor-not-allowed"
             />
           </div>
         </div>
@@ -521,6 +559,7 @@ export const ControlPane: React.FC = () => {
           <div>
             <label className="text-sky block mb-1">Source Type</label>
             <select
+              disabled={!isAdmin}
               value={sourceType}
               onChange={(e) => {
                 const st = e.target.value as SourceType;
@@ -533,7 +572,7 @@ export const ControlPane: React.FC = () => {
                   public: { ...prev.public, credibility: defCred },
                 }));
               }}
-              className="w-full bg-charcoal border border-steel rounded px-2.5 py-1.5 text-white"
+              className="w-full bg-charcoal border border-steel rounded px-2.5 py-1.5 text-white disabled:opacity-60 disabled:cursor-not-allowed"
             >
               {ALL_SOURCE_TYPES.map((s) => (
                 <option key={s} value={s}>
@@ -546,18 +585,24 @@ export const ControlPane: React.FC = () => {
             <label className="text-sky block mb-1">Primary Source Reference</label>
             <input
               type="text"
+              disabled={!isAdmin}
               value={sourceUrl}
               onChange={(e) => setSourceUrl(e.target.value)}
-              className="w-full bg-charcoal border border-steel rounded px-2.5 py-1.5 text-white font-mono"
+              className="w-full bg-charcoal border border-steel rounded px-2.5 py-1.5 text-white font-mono disabled:opacity-60 disabled:cursor-not-allowed"
             />
           </div>
           <div className="flex items-end pb-1">
-            <label className="inline-flex items-center gap-2 cursor-pointer text-white font-medium">
+            <label
+              className={`inline-flex items-center gap-2 text-white font-medium ${
+                isAdmin ? 'cursor-pointer' : 'cursor-not-allowed opacity-60'
+              }`}
+            >
               <input
                 type="checkbox"
+                disabled={!isAdmin}
                 checked={starred}
                 onChange={(e) => setStarred(e.target.checked)}
-                className="accent-passion w-4 h-4"
+                className="accent-passion w-4 h-4 disabled:cursor-not-allowed"
               />
               <span>★ Highlight as Starred Key Event</span>
             </label>
@@ -568,10 +613,11 @@ export const ControlPane: React.FC = () => {
           <label className="text-sky block mb-1">Factual Summary & Attribution Context</label>
           <textarea
             rows={2}
+            disabled={!isAdmin}
             value={summary}
             onChange={(e) => setSummary(e.target.value)}
             placeholder="Describe the statutory, contractual, or market impact on HII..."
-            className="w-full bg-charcoal border border-steel rounded px-2.5 py-1.5 text-white"
+            className="w-full bg-charcoal border border-steel rounded px-2.5 py-1.5 text-white disabled:opacity-60 disabled:cursor-not-allowed"
           />
         </div>
 
@@ -592,14 +638,19 @@ export const ControlPane: React.FC = () => {
                 }`}
               >
                 <div className="flex flex-wrap items-center justify-between gap-2">
-                  <label className="inline-flex items-center gap-2 font-bold text-white cursor-pointer">
+                  <label
+                    className={`inline-flex items-center gap-2 font-bold text-white ${
+                      isAdmin ? 'cursor-pointer' : 'cursor-not-allowed opacity-60'
+                    }`}
+                  >
                     <input
                       type="checkbox"
+                      disabled={!isAdmin}
                       checked={on}
                       onChange={(e) =>
                         setEnabledAudiences((prev) => ({ ...prev, [aud]: e.target.checked }))
                       }
-                      className="accent-passion"
+                      className="accent-passion disabled:cursor-not-allowed"
                     />
                     <span>{AUDIENCE_LABELS[aud]}</span>
                   </label>
@@ -613,6 +664,7 @@ export const ControlPane: React.FC = () => {
                 {on && (
                   <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 mt-2 font-mono text-[11px]">
                     <select
+                      disabled={!isAdmin}
                       value={cfg.direction}
                       onChange={(e) =>
                         setImpactConfig((prev) => ({
@@ -620,7 +672,7 @@ export const ControlPane: React.FC = () => {
                           [aud]: { ...prev[aud], direction: Number(e.target.value) as DirectionCode },
                         }))
                       }
-                      className="bg-deepsea border border-steel rounded px-1.5 py-1 text-white"
+                      className="bg-deepsea border border-steel rounded px-1.5 py-1 text-white disabled:opacity-60 disabled:cursor-not-allowed"
                     >
                       <option value={1}>+1 Positive</option>
                       <option value={0}>0 Neutral</option>
@@ -628,6 +680,7 @@ export const ControlPane: React.FC = () => {
                     </select>
 
                     <select
+                      disabled={!isAdmin}
                       value={cfg.magnitude}
                       onChange={(e) =>
                         setImpactConfig((prev) => ({
@@ -635,7 +688,7 @@ export const ControlPane: React.FC = () => {
                           [aud]: { ...prev[aud], magnitude: Number(e.target.value) as MagnitudeLevel },
                         }))
                       }
-                      className="bg-deepsea border border-steel rounded px-1.5 py-1 text-white"
+                      className="bg-deepsea border border-steel rounded px-1.5 py-1 text-white disabled:opacity-60 disabled:cursor-not-allowed"
                     >
                       <option value={1}>Mag 1 (Minor)</option>
                       <option value={2}>Mag 2 (Moderate)</option>
@@ -645,6 +698,7 @@ export const ControlPane: React.FC = () => {
                     </select>
 
                     <select
+                      disabled={!isAdmin}
                       value={cfg.credibility}
                       onChange={(e) =>
                         setImpactConfig((prev) => ({
@@ -655,7 +709,7 @@ export const ControlPane: React.FC = () => {
                           },
                         }))
                       }
-                      className="bg-deepsea border border-steel rounded px-1.5 py-1 text-white"
+                      className="bg-deepsea border border-steel rounded px-1.5 py-1 text-white disabled:opacity-60 disabled:cursor-not-allowed"
                     >
                       <option value={4}>Cred T4 (1.00x)</option>
                       <option value={3}>Cred T3 (0.85x)</option>
@@ -664,6 +718,7 @@ export const ControlPane: React.FC = () => {
                     </select>
 
                     <select
+                      disabled={!isAdmin}
                       value={cfg.scope}
                       onChange={(e) =>
                         setImpactConfig((prev) => ({
@@ -671,7 +726,7 @@ export const ControlPane: React.FC = () => {
                           [aud]: { ...prev[aud], scope: e.target.value as ScopeClass },
                         }))
                       }
-                      className="bg-deepsea border border-steel rounded px-1.5 py-1 text-white"
+                      className="bg-deepsea border border-steel rounded px-1.5 py-1 text-white disabled:opacity-60 disabled:cursor-not-allowed"
                     >
                       <option value="program">Scope: Program</option>
                       <option value="company">Scope: Company</option>
@@ -680,6 +735,7 @@ export const ControlPane: React.FC = () => {
                     </select>
 
                     <select
+                      disabled={!isAdmin}
                       value={cfg.persistence}
                       onChange={(e) =>
                         setImpactConfig((prev) => ({
@@ -687,7 +743,7 @@ export const ControlPane: React.FC = () => {
                           [aud]: { ...prev[aud], persistence: e.target.value as PersistenceClass },
                         }))
                       }
-                      className="bg-deepsea border border-steel rounded px-1.5 py-1 text-white"
+                      className="bg-deepsea border border-steel rounded px-1.5 py-1 text-white disabled:opacity-60 disabled:cursor-not-allowed"
                     >
                       <option value="transient">Transient (Half-life 35d)</option>
                       <option value="quarter">Quarter (Half-life 90d)</option>
@@ -704,23 +760,26 @@ export const ControlPane: React.FC = () => {
         <div className="grid grid-cols-2 gap-2 text-xs pt-1">
           <input
             type="text"
+            disabled={!isAdmin}
             value={author}
             onChange={(e) => setAuthor(e.target.value)}
             placeholder="Author"
-            className="bg-charcoal border border-steel rounded px-2.5 py-1.5 text-white"
+            className="bg-charcoal border border-steel rounded px-2.5 py-1.5 text-white disabled:opacity-60 disabled:cursor-not-allowed"
           />
           <input
             type="text"
+            disabled={!isAdmin}
             value={reason}
             onChange={(e) => setReason(e.target.value)}
             placeholder="Audit reason"
-            className="bg-charcoal border border-steel rounded px-2.5 py-1.5 text-white"
+            className="bg-charcoal border border-steel rounded px-2.5 py-1.5 text-white disabled:opacity-60 disabled:cursor-not-allowed"
           />
         </div>
 
         <button
           type="submit"
-          className="w-full py-2 rounded bg-passion hover:bg-passion/90 text-xs font-bold text-white shadow-lg transition"
+          disabled={!isAdmin}
+          className="w-full py-2 rounded bg-passion hover:bg-passion/90 disabled:opacity-50 disabled:cursor-not-allowed text-xs font-bold text-white shadow-lg transition"
         >
           Commit Event to Evidence Ledger & Recompute Scores
         </button>

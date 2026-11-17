@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { ExternalLink, FilePlus2, FileText, Filter, Search, Star } from 'lucide-react';
+import { useAuth } from '../context/AuthContext';
 import { useDashboard } from '../context/DashboardContext';
 import { ALL_AUDIENCES, ALL_SOURCE_TYPES, AUDIENCE_LABELS, baseBps, bpsToDisplay, sortEvents, type AudienceId, type SourceType } from '../engine';
 
@@ -25,6 +26,13 @@ export const EventTimeline: React.FC<{ compact?: boolean }> = ({ compact = false
     toggleStar,
     setActiveTab,
   } = useDashboard();
+
+  let isAdmin = true;
+  try {
+    isAdmin = useAuth().userRole === 'admin';
+  } catch {
+    // running without AuthProvider in unit tests
+  }
 
   const [search, setSearch] = useState('');
   const [sourceFilter, setSourceFilter] = useState<SourceType | 'all'>('all');
@@ -134,15 +142,17 @@ export const EventTimeline: React.FC<{ compact?: boolean }> = ({ compact = false
             ))}
           </select>
 
-          <button
-            type="button"
-            onClick={() => setActiveTab('control')}
-            className="flex items-center gap-1.5 px-2.5 py-1.5 rounded bg-passion/20 border border-passion/70 hover:bg-passion text-white font-semibold transition"
-            title="Submit a new article link or upload a supporting document"
-          >
-            <FilePlus2 className="w-3.5 h-3.5" />
-            <span>+ Add Article / Doc</span>
-          </button>
+          {isAdmin && (
+            <button
+              type="button"
+              onClick={() => setActiveTab('control')}
+              className="flex items-center gap-1.5 px-2.5 py-1.5 rounded bg-passion/20 border border-passion/70 hover:bg-passion text-white font-semibold transition"
+              title="Submit a new article link or upload a supporting document"
+            >
+              <FilePlus2 className="w-3.5 h-3.5" />
+              <span>+ Add Article / Doc</span>
+            </button>
+          )}
         </div>
       </div>
 
@@ -160,9 +170,21 @@ export const EventTimeline: React.FC<{ compact?: boolean }> = ({ compact = false
             <div className="flex flex-wrap items-start justify-between gap-2">
               <div className="flex items-start gap-2.5">
                 <button
-                  onClick={() => void toggleStar(ev.id, !ev.starred)}
-                  title={ev.starred ? 'Unstar Key Event' : 'Star as Key Event (highlights on chart)'}
-                  className="mt-0.5 p-1 rounded hover:bg-deepsea transition"
+                  type="button"
+                  disabled={!isAdmin}
+                  onClick={() => isAdmin && void toggleStar(ev.id, !ev.starred)}
+                  title={
+                    !isAdmin
+                      ? ev.starred
+                        ? 'Key Event (Read-only Viewer)'
+                        : 'Read-only Viewer'
+                      : ev.starred
+                        ? 'Unstar Key Event'
+                        : 'Star as Key Event (highlights on chart)'
+                  }
+                  className={`mt-0.5 p-1 rounded transition ${
+                    isAdmin ? 'hover:bg-deepsea' : 'opacity-60 cursor-not-allowed'
+                  }`}
                 >
                   <Star
                     className={`w-4 h-4 ${

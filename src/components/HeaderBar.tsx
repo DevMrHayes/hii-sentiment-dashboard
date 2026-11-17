@@ -305,7 +305,9 @@ export const HeaderBar: React.FC = () => {
                       </span>
                     </div>
                   </div>
-                  <span className="text-[10px] font-mono text-changingsea shrink-0">Configure →</span>
+                  <span className="text-[10px] font-mono text-changingsea shrink-0">
+                    {userRole === 'admin' ? 'Configure →' : 'View →'}
+                  </span>
                 </button>
 
                 {/* FinOps Budget Guard Item */}
@@ -356,7 +358,7 @@ export const HeaderBar: React.FC = () => {
                     className="flex items-center justify-center gap-1.5 px-2.5 py-2 rounded-lg bg-passion/20 border border-passion/60 hover:bg-passion hover:text-white text-white font-semibold transition"
                   >
                     <FilePlus2 className="w-3.5 h-3.5 text-passion group-hover:text-white" />
-                    <span>Add Article / Doc</span>
+                    <span>{userRole === 'admin' ? 'Add Article / Doc' : 'View Controls'}</span>
                   </button>
 
                   <button

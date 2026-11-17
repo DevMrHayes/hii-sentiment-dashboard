@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
-import { TrendingUp } from 'lucide-react';
+import { Lock, TrendingUp } from 'lucide-react';
+import { useAuth } from '../context/AuthContext';
 import { useDashboard } from '../context/DashboardContext';
 import {
   AUDIENCE_LABELS,
@@ -14,6 +15,13 @@ import {
 
 export const CatalystStudio: React.FC = () => {
   const { state, result, saveCatalysts } = useDashboard();
+
+  let isAdmin = true;
+  try {
+    isAdmin = useAuth().userRole === 'admin';
+  } catch {
+    // running without AuthProvider in unit tests
+  }
 
   const sensitivities = useMemo(
     () => catalystSensitivity(state.events, state.catalysts, state.settings),
@@ -32,6 +40,15 @@ export const CatalystStudio: React.FC = () => {
 
   return (
     <div className="space-y-6">
+      {!isAdmin && (
+        <div className="flex items-center gap-3 px-4 py-3 rounded-xl bg-amber-500/10 border border-amber-500/40 text-amber-200 text-xs">
+          <Lock className="w-4 h-4 text-amber-400 shrink-0" />
+          <div>
+            <span className="font-bold">Viewer Clearance (Read-Only):</span> You can inspect the 6-month scenario trajectory and active forward catalysts. Toggling scenarios or adjusting catalyst probabilities is restricted to the designated administrator.
+          </div>
+        </div>
+      )}
+
       {/* 6-Month Forecast Table */}
       <div className="bg-[#1e2227] border border-[#363c44] rounded-xl p-5 shadow-xl">
         <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
@@ -119,9 +136,10 @@ export const CatalystStudio: React.FC = () => {
                   <div className="flex items-start gap-2.5">
                     <input
                       type="checkbox"
+                      disabled={!isAdmin}
                       checked={cat.enabled}
                       onChange={(e) => handleToggle(cat.id, e.target.checked)}
-                      className="mt-1 accent-passion w-4 h-4 cursor-pointer"
+                      className="mt-1 accent-passion w-4 h-4 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
                     />
                     <div>
                       <div className="flex flex-wrap items-center gap-2">
@@ -157,8 +175,9 @@ export const CatalystStudio: React.FC = () => {
                         <button
                           key={step}
                           type="button"
+                          disabled={!isAdmin}
                           onClick={() => handleProbability(cat.id, step)}
-                          className={`px-2 py-1 rounded text-xs font-mono font-semibold border transition ${
+                          className={`px-2 py-1 rounded text-xs font-mono font-semibold border transition disabled:opacity-50 disabled:cursor-not-allowed ${
                             cat.probability === step
                               ? 'bg-passion text-white border-passion'
                               : 'bg-deepsea text-sky border-steel/50 hover:border-sky'

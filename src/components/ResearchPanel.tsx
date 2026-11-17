@@ -15,7 +15,9 @@ import {
   HelpCircle,
   FileSearch,
   AlertTriangle,
+  Lock,
 } from 'lucide-react';
+import { useAuth } from '../context/AuthContext';
 import { useDashboard } from '../context/DashboardContext';
 import {
   ALL_AUDIENCES,
@@ -90,6 +92,13 @@ export const ResearchPanel: React.FC = () => {
     resolveSanityCheck,
   } = useDashboard();
 
+  let isAdmin = true;
+  try {
+    isAdmin = useAuth().userRole === 'admin';
+  } catch {
+    // running without AuthProvider in unit tests
+  }
+
   // Sanity check form state
   const [scPeriod, setScPeriod] = useState('');
   const [scAspect, setScAspect] = useState('');
@@ -133,6 +142,15 @@ export const ResearchPanel: React.FC = () => {
 
   return (
     <div className="space-y-6">
+      {!isAdmin && (
+        <div className="flex items-center gap-3 px-4 py-3 rounded-xl bg-amber-500/10 border border-amber-500/40 text-amber-200 text-xs">
+          <Lock className="w-4 h-4 text-amber-400 shrink-0" />
+          <div>
+            <span className="font-bold">Viewer Clearance (Read-Only):</span> You can inspect research runs, agent schedules, sanity checks, and audit trails. Only the designated administrator can trigger sweeps, change schedules/budgets, or commit ledger items.
+          </div>
+        </div>
+      )}
+
       {/* Top 2-Column Grid: Monday Scheduler + FinOps Monthly Budget Guard */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Column 1: Weekly Monday Morning Multi-Agent Schedule & Run Now */}
@@ -147,9 +165,14 @@ export const ResearchPanel: React.FC = () => {
                 Automated weekly sentiment sweep every Monday morning via Cloud Scheduler (`0 7 * * 1` America/New_York) plus on-demand <strong>Run Now</strong> execution.
               </p>
             </div>
-            <label className="inline-flex items-center gap-2 cursor-pointer px-3 py-1 rounded bg-charcoal border border-sky/50 text-xs font-mono">
+            <label
+              className={`inline-flex items-center gap-2 px-3 py-1 rounded bg-charcoal border border-sky/50 text-xs font-mono ${
+                isAdmin ? 'cursor-pointer' : 'cursor-not-allowed opacity-60'
+              }`}
+            >
               <input
                 type="checkbox"
+                disabled={!isAdmin}
                 checked={scheduleConfig.enabled}
                 onChange={(e) =>
                   void updateSchedule({
@@ -157,7 +180,7 @@ export const ResearchPanel: React.FC = () => {
                     enabled: e.target.checked,
                   })
                 }
-                className="accent-passion w-4 h-4"
+                className="accent-passion w-4 h-4 disabled:cursor-not-allowed"
               />
               <span className={scheduleConfig.enabled ? 'text-changingsea font-bold' : 'text-steel'}>
                 {scheduleConfig.enabled ? 'SCHEDULE ACTIVE' : 'PAUSED'}
@@ -193,6 +216,7 @@ export const ResearchPanel: React.FC = () => {
             <div>
               <label className="text-sky block mb-1">Monday Execution Time (ET)</label>
               <select
+                disabled={!isAdmin}
                 value={scheduleConfig.hourEt}
                 onChange={(e) => {
                   const hourEt = e.target.value;
@@ -203,7 +227,7 @@ export const ResearchPanel: React.FC = () => {
                     cronExpression: `0 ${hr} * * 1`,
                   });
                 }}
-                className="w-full bg-charcoal border border-steel rounded px-2.5 py-1.5 text-white font-mono"
+                className="w-full bg-charcoal border border-steel rounded px-2.5 py-1.5 text-white font-mono disabled:opacity-60 disabled:cursor-not-allowed"
               >
                 <option value="06:00">06:00 AM ET (cron: 0 6 * * 1)</option>
                 <option value="07:00">07:00 AM ET (cron: 0 7 * * 1)</option>
@@ -215,6 +239,7 @@ export const ResearchPanel: React.FC = () => {
             <div>
               <label className="text-sky block mb-1">Research Agent Depth Mode</label>
               <select
+                disabled={!isAdmin}
                 value={scheduleConfig.mode}
                 onChange={(e) =>
                   void updateSchedule({
@@ -222,7 +247,7 @@ export const ResearchPanel: React.FC = () => {
                     mode: e.target.value as 'deep_research' | 'grounded_search',
                   })
                 }
-                className="w-full bg-charcoal border border-steel rounded px-2.5 py-1.5 text-white font-mono"
+                className="w-full bg-charcoal border border-steel rounded px-2.5 py-1.5 text-white font-mono disabled:opacity-60 disabled:cursor-not-allowed"
               >
                 <option value="deep_research">
                   Gemini Deep Research + Argon (~$0.38/sweep)
@@ -234,9 +259,14 @@ export const ResearchPanel: React.FC = () => {
             </div>
           </div>
 
-          <label className="flex items-center gap-2 text-xs text-white cursor-pointer pt-1">
+          <label
+            className={`flex items-center gap-2 text-xs text-white pt-1 ${
+              isAdmin ? 'cursor-pointer' : 'cursor-not-allowed opacity-60'
+            }`}
+          >
             <input
               type="checkbox"
+              disabled={!isAdmin}
               checked={scheduleConfig.autoPromoteCredibility3Plus}
               onChange={(e) =>
                 void updateSchedule({
@@ -244,7 +274,7 @@ export const ResearchPanel: React.FC = () => {
                   autoPromoteCredibility3Plus: e.target.checked,
                 })
               }
-              className="accent-passion w-4 h-4"
+              className="accent-passion w-4 h-4 disabled:cursor-not-allowed"
             />
             <span>
               Auto-promote primary institutional discoveries (`Credibility Tier ≥ 3`) into the ledger during Monday sweeps
@@ -255,18 +285,18 @@ export const ResearchPanel: React.FC = () => {
           <div className="pt-2 border-t border-steel/40 flex flex-wrap items-center justify-between gap-2">
             <button
               type="button"
-              disabled={isResearchRunning || budget.totalSpendUsd >= budget.monthlyCapUsd}
+              disabled={!isAdmin || isResearchRunning || budget.totalSpendUsd >= budget.monthlyCapUsd}
               onClick={() => void handleLaunchNow(true)}
-              className="px-3 py-2 rounded bg-charcoal border border-sky/60 hover:border-passion disabled:opacity-50 text-xs font-mono text-sky hover:text-white transition"
+              className="px-3 py-2 rounded bg-charcoal border border-sky/60 hover:border-passion disabled:opacity-50 disabled:cursor-not-allowed text-xs font-mono text-sky hover:text-white transition"
             >
               Simulate Monday 07:00 AM Sweep
             </button>
 
             <button
               type="button"
-              disabled={isResearchRunning || budget.totalSpendUsd >= budget.monthlyCapUsd}
+              disabled={!isAdmin || isResearchRunning || budget.totalSpendUsd >= budget.monthlyCapUsd}
               onClick={() => void handleLaunchNow(false)}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded bg-passion hover:bg-passion/90 disabled:opacity-50 text-xs font-bold text-white shadow-lg transition"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded bg-passion hover:bg-passion/90 disabled:opacity-50 disabled:cursor-not-allowed text-xs font-bold text-white shadow-lg transition"
             >
               {isResearchRunning ? (
                 <>
@@ -333,6 +363,7 @@ export const ResearchPanel: React.FC = () => {
                 <button
                   key={t.id}
                   type="button"
+                  disabled={!isAdmin}
                   onClick={() => {
                     void updateBudgetConfig({
                       ...budgetConfig,
@@ -344,7 +375,7 @@ export const ResearchPanel: React.FC = () => {
                       mode: t.mode,
                     });
                   }}
-                  className={`w-full text-left p-2.5 rounded-lg border transition ${
+                  className={`w-full text-left p-2.5 rounded-lg border transition disabled:opacity-60 disabled:cursor-not-allowed ${
                     active
                       ? 'bg-charcoal border-passion shadow'
                       : 'bg-charcoal/60 border-steel/40 hover:border-sky'
@@ -371,6 +402,7 @@ export const ResearchPanel: React.FC = () => {
             </div>
             <input
               type="range"
+              disabled={!isAdmin}
               min={1}
               max={15}
               step={0.5}
@@ -382,11 +414,16 @@ export const ResearchPanel: React.FC = () => {
                   selectedTierId: 'custom',
                 })
               }
-              className="w-full accent-passion cursor-pointer"
+              className="w-full accent-passion cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
             />
-            <label className="flex items-center gap-2 text-white cursor-pointer">
+            <label
+              className={`flex items-center gap-2 text-white ${
+                isAdmin ? 'cursor-pointer' : 'cursor-not-allowed opacity-60'
+              }`}
+            >
               <input
                 type="checkbox"
+                disabled={!isAdmin}
                 checked={budgetConfig.autoDowngradeAt80Pct}
                 onChange={(e) =>
                   void updateBudgetConfig({
@@ -394,7 +431,7 @@ export const ResearchPanel: React.FC = () => {
                     autoDowngradeAt80Pct: e.target.checked,
                   })
                 }
-                className="accent-passion w-4 h-4"
+                className="accent-passion w-4 h-4 disabled:cursor-not-allowed"
               />
               <span>
                 Auto-downgrade from Deep Research ($0.38) to Flash Grounded Search ($0.05) at 80% monthly spend
@@ -464,8 +501,9 @@ export const ResearchPanel: React.FC = () => {
 
           <button
             type="button"
+            disabled={!isAdmin}
             onClick={() => setShowSanityModal(!showSanityModal)}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-passion hover:bg-passion/90 text-white font-bold text-xs shadow-md transition self-start sm:self-auto"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-passion hover:bg-passion/90 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold text-xs shadow-md transition self-start sm:self-auto"
           >
             <Plus className="w-3.5 h-3.5" />
             <span>{showSanityModal ? 'Hide Form' : 'Log Sanity Check Item'}</span>
@@ -473,7 +511,7 @@ export const ResearchPanel: React.FC = () => {
         </div>
 
         {/* Input Form for New Sanity Check */}
-        {showSanityModal && (
+        {isAdmin && showSanityModal && (
           <form onSubmit={handleAddSanityCheck} className="p-4 rounded-xl bg-[#14171a] border border-[#2d333b] space-y-3">
             <span className="text-xs font-bold text-white flex items-center gap-1.5">
               <Plus className="w-3.5 h-3.5 text-sky" />
@@ -617,13 +655,14 @@ export const ResearchPanel: React.FC = () => {
                   {isQueued ? (
                     <button
                       type="button"
+                      disabled={!isAdmin}
                       onClick={() =>
                         resolveSanityCheck(
                           sc.id,
                           `Sanity checked on ${new Date().toISOString().slice(0, 10)}: Corroborated against primary historical and financial disclosures.`
                         )
                       }
-                      className="px-2.5 py-1 rounded bg-charcoal border border-emerald-600/60 hover:bg-emerald-950/50 text-emerald-300 text-xs font-mono transition"
+                      className="px-2.5 py-1 rounded bg-charcoal border border-emerald-600/60 hover:bg-emerald-950/50 disabled:opacity-50 disabled:cursor-not-allowed text-emerald-300 text-xs font-mono transition"
                     >
                       Mark Verified
                     </button>
@@ -635,9 +674,10 @@ export const ResearchPanel: React.FC = () => {
 
                   <button
                     type="button"
+                    disabled={!isAdmin}
                     onClick={() => deleteSanityCheck(sc.id)}
-                    className="p-1 rounded text-steel hover:text-passion hover:bg-charcoal transition"
-                    title="Delete Sanity Check"
+                    className="p-1 rounded text-steel hover:text-passion hover:bg-charcoal disabled:opacity-40 disabled:cursor-not-allowed transition"
+                    title={isAdmin ? 'Delete Sanity Check' : 'Read-only Viewer'}
                   >
                     <Trash2 className="w-3.5 h-3.5" />
                   </button>
@@ -743,16 +783,18 @@ export const ResearchPanel: React.FC = () => {
                     <div className="flex items-center gap-2 shrink-0">
                       <button
                         type="button"
+                        disabled={!isAdmin}
                         onClick={() => void approvePending(item.id)}
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-changingsea hover:bg-changingsea/90 text-xs font-bold text-white shadow transition"
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-changingsea hover:bg-changingsea/90 disabled:opacity-50 disabled:cursor-not-allowed text-xs font-bold text-white shadow transition"
                       >
                         <Check className="w-4 h-4" />
                         <span>Approve & Commit</span>
                       </button>
                       <button
                         type="button"
+                        disabled={!isAdmin}
                         onClick={() => void rejectPending(item.id)}
-                        className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded bg-charcoal border border-steel hover:border-passion text-xs text-sky hover:text-passion transition"
+                        className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded bg-charcoal border border-steel hover:border-passion disabled:opacity-50 disabled:cursor-not-allowed text-xs text-sky hover:text-passion transition"
                       >
                         <X className="w-4 h-4" />
                         <span>Reject</span>

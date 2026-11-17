@@ -195,9 +195,9 @@ interface DashboardContextValue {
   resolveSanityCheck: (id: string, findings: string) => void;
 }
 
-const CURRENT_LEDGER_SEED_VERSION = 'v9_164_events_demo_ui_upgrade';
+const CURRENT_LEDGER_SEED_VERSION = 'v10_shared_viewer_ready';
 const SEED_VERSION_KEY = 'hii_sentiment_seed_version';
-const STORAGE_KEY = 'hii_sentiment_ledger_state_v9';
+const STORAGE_KEY = 'hii_sentiment_ledger_state_v10';
 
 const DashboardContext = createContext<DashboardContextValue | null>(null);
 
@@ -232,6 +232,7 @@ export const DashboardProvider: React.FC<{ children: React.ReactNode }> = ({ chi
       localStorage.removeItem('hii_sentiment_ledger_state_v6');
       localStorage.removeItem('hii_sentiment_ledger_state_v7');
       localStorage.removeItem('hii_sentiment_ledger_state_v8');
+      localStorage.removeItem('hii_sentiment_ledger_state_v9');
       localStorage.setItem(SEED_VERSION_KEY, CURRENT_LEDGER_SEED_VERSION);
     } catch {
       // ignore
@@ -300,6 +301,7 @@ export const DashboardProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   });
 
   const addSanityCheck = useCallback((input: Omit<SanityCheckItem, 'id' | 'createdAt' | 'status'>) => {
+    if (userRole !== 'admin') return;
     const item = createSanityCheckItem(input);
     setSanityChecks((prev) => {
       const next = [item, ...prev];
@@ -308,9 +310,10 @@ export const DashboardProvider: React.FC<{ children: React.ReactNode }> = ({ chi
       } catch {}
       return next;
     });
-  }, []);
+  }, [userRole]);
 
   const deleteSanityCheck = useCallback((id: string) => {
+    if (userRole !== 'admin') return;
     setSanityChecks((prev) => {
       const next = prev.filter((i) => i.id !== id);
       try {
@@ -318,9 +321,10 @@ export const DashboardProvider: React.FC<{ children: React.ReactNode }> = ({ chi
       } catch {}
       return next;
     });
-  }, []);
+  }, [userRole]);
 
   const resolveSanityCheck = useCallback((id: string, findings: string) => {
+    if (userRole !== 'admin') return;
     setSanityChecks((prev) => {
       const next = markSanityCheckVerified(prev, id, findings);
       try {
@@ -328,7 +332,7 @@ export const DashboardProvider: React.FC<{ children: React.ReactNode }> = ({ chi
       } catch {}
       return next;
     });
-  }, []);
+  }, [userRole]);
 
   const [pinnedEventIds, setPinnedEventIds] = useState<string[]>(() => {
     try {
@@ -431,7 +435,7 @@ export const DashboardProvider: React.FC<{ children: React.ReactNode }> = ({ chi
       setState(next);
       if (revisions.length) setRecentRevisionsBanner(revisions);
     },
-    [state],
+    [state, userRole],
   );
 
   const updateSchedule = useCallback(async (schedule: ScheduleConfig) => {
@@ -457,7 +461,7 @@ export const DashboardProvider: React.FC<{ children: React.ReactNode }> = ({ chi
       ...prev,
       settings: { ...prev.settings, schedule },
     }));
-  }, []);
+  }, [userRole]);
 
   const updateBudgetConfig = useCallback(async (cfg: BudgetConfig) => {
     if (userRole !== 'admin') {
@@ -482,7 +486,7 @@ export const DashboardProvider: React.FC<{ children: React.ReactNode }> = ({ chi
       ...prev,
       settings: { ...prev.settings, budgetConfig: cfg },
     }));
-  }, []);
+  }, [userRole]);
 
   const toggleStar = useCallback(async (eventId: string, starred: boolean) => {
     if (userRole !== 'admin') return;
@@ -501,7 +505,7 @@ export const DashboardProvider: React.FC<{ children: React.ReactNode }> = ({ chi
       // fallback
     }
     setState((prev) => engineSetStar(prev, eventId, starred));
-  }, []);
+  }, [userRole]);
 
   const upsertEvent = useCallback(
     async (event: EventInput, author: string, reason: string): Promise<ScoreRevision[]> => {
@@ -529,7 +533,7 @@ export const DashboardProvider: React.FC<{ children: React.ReactNode }> = ({ chi
       if (revisions.length) setRecentRevisionsBanner(revisions);
       return revisions;
     },
-    [state],
+    [state, userRole],
   );
 
   const deleteEvent = useCallback(
@@ -558,7 +562,7 @@ export const DashboardProvider: React.FC<{ children: React.ReactNode }> = ({ chi
       if (revisions.length) setRecentRevisionsBanner(revisions);
       return revisions;
     },
-    [state],
+    [state, userRole],
   );
 
   const saveCatalysts = useCallback(async (catalysts: ForecastCatalyst[]) => {
@@ -581,7 +585,7 @@ export const DashboardProvider: React.FC<{ children: React.ReactNode }> = ({ chi
       // fallback
     }
     setState((prev) => ({ ...prev, catalysts }));
-  }, []);
+  }, [userRole]);
 
   const approvePending = useCallback(
     async (pendingId: string, overrides?: Partial<EventInput>): Promise<ScoreRevision[]> => {
@@ -609,7 +613,7 @@ export const DashboardProvider: React.FC<{ children: React.ReactNode }> = ({ chi
       if (revisions.length) setRecentRevisionsBanner(revisions);
       return revisions;
     },
-    [state],
+    [state, userRole],
   );
 
   const rejectPending = useCallback(async (pendingId: string) => {
@@ -629,7 +633,7 @@ export const DashboardProvider: React.FC<{ children: React.ReactNode }> = ({ chi
       // fallback
     }
     setState((prev) => engineRejectPending(prev, pendingId));
-  }, []);
+  }, [userRole]);
 
   const triggerResearchRun = useCallback(
     async (audiences: AudienceId[], mode = 'auto', isMondayScheduledSweep = false) => {
@@ -886,7 +890,7 @@ export const DashboardProvider: React.FC<{ children: React.ReactNode }> = ({ chi
 
   // Automated Monday 07:00 ET Scheduled Sweep Auto-Trigger
   useEffect(() => {
-    if (userRole === 'viewer' || !scheduleConfig.enabled || isResearchRunning) return;
+    if (userRole !== 'admin' || !scheduleConfig.enabled || isResearchRunning) return;
     const now = new Date();
     const nextDue = scheduleConfig.nextScheduledRunAt ? new Date(scheduleConfig.nextScheduledRunAt) : null;
     const lastRun = scheduleConfig.lastScheduledRunAt ? new Date(scheduleConfig.lastScheduledRunAt) : null;
@@ -900,6 +904,7 @@ export const DashboardProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   }, [userRole, scheduleConfig, isResearchRunning, triggerResearchRun]);
   const takeSnapshot = useCallback(
     async (label: string) => {
+      if (userRole !== 'admin') return;
       try {
         const res = await fetch('/api/snapshots', {
           method: 'POST',
@@ -917,7 +922,7 @@ export const DashboardProvider: React.FC<{ children: React.ReactNode }> = ({ chi
       const { state: next } = engineTakeSnapshot(state, label, new Date().toISOString());
       setState(next);
     },
-    [state],
+    [state, userRole],
   );
 
   const resetToLatestSeed = useCallback(() => {

@@ -597,10 +597,8 @@ export async function approveAccessRequest(
   const reqSnapshot = await getDoc(reqDocRef);
 
   const displayName = reqSnapshot.exists()
-
-    ? (reqSnapshot.data() as AccessRequestRecord).displayName || ''
-
-    : '';
+    ? (reqSnapshot.data() as AccessRequestRecord).displayName || normalizedEmail.split('@')[0]
+    : normalizedEmail.split('@')[0];
 
 
 
