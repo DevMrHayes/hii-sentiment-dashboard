@@ -62,6 +62,8 @@ from extractor import find_fuzzy_duplicate, validate_and_normalize_candidate  # 
 
 from query_packs import AUDIENCE_QUERY_PACKS  # noqa: E402
 
+from source_link_guard import clean_url, is_generic_hub_url  # noqa: E402
+
 
 
 DATA_DIR = os.path.join(REPO_ROOT, "data")
@@ -100,7 +102,7 @@ OFFLINE_DISCOVERY_POOL: Dict[str, List[Dict[str, Any]]] = {
 
             "sourceType": "exec_order",
 
-            "sourceUrls": ["https://www.whitehouse.gov/briefing-room/presidential-actions/2026/11/executive-order-dpa-maritime-industrial-base/"],
+            "sourceUrls": ["https://www.whitehouse.gov/wp-content/uploads/2026/02/Restoring-Americas-Maritime-Dominance.pdf"],
 
             "summary": "Executive Branch issues implementation guidance for Title III DPA and Maritime Industrial Base capital matching grants supporting dry dock and automated panel-line upgrades at Newport News and Ingalls.",
 
@@ -130,7 +132,7 @@ OFFLINE_DISCOVERY_POOL: Dict[str, List[Dict[str, Any]]] = {
 
             "sourceType": "gao_report",
 
-            "sourceUrls": ["https://www.gao.gov/products/gao-24-106899"],
+            "sourceUrls": ["https://www.gao.gov/products/gao-24-106831"],
 
             "summary": "Retroactively indexed July 2024 GAO supplemental briefing to HASC Seapower noting spares lead-time friction on CVN-78/79 weapons elevators prior to 2025 vendor qualification reforms.",
 
@@ -160,7 +162,7 @@ OFFLINE_DISCOVERY_POOL: Dict[str, List[Dict[str, Any]]] = {
 
             "sourceType": "contract_award",
 
-            "sourceUrls": ["https://www.defense.gov/News/Contracts/"],
+            "sourceUrls": ["https://www.hii.com/news/hii-is-awarded-contracts-for-construction-of-block-vi-virginia-class-and-build-ii-columbia-class-submarines"],
 
             "summary": "Department of the Navy awards HII Newport News Shipbuilding a $1.18B long-lead material and nuclear propulsion component contract for Virginia-class Block VI fast attack submarines.",
 
@@ -192,7 +194,7 @@ OFFLINE_DISCOVERY_POOL: Dict[str, List[Dict[str, Any]]] = {
 
             "sourceType": "analyst_rating",
 
-            "sourceUrls": ["https://ir.hii.com/news-releases/news-release-details/defense-equity-consensus-upgrade-2027-fcf-visibility"],
+            "sourceUrls": ["https://www.sec.gov/Archives/edgar/data/1501585/000150158526000054/hii2026q3earningsrelease.htm"],
 
             "summary": "Cluster of three institutional equity research desks upgrade NYSE:HII citing improving labor retention at Newport News, Charleston module throughput, and Mission Technologies margin expansion.",
 
@@ -376,7 +378,9 @@ async def run_tier_b_vertex_pipeline(
 
                         "Provide 1 concise, high-signal, factual dated event (YYYY-MM-DD) affecting Huntington Ingalls "
 
-                        "Industries (NYSE: HII), including whether it cross-impacts another audience (executive, congress, navy, public)."
+                        "Industries (NYSE: HII), including whether it cross-impacts another audience (executive, congress, navy, public). "
+
+                        "Include the DIRECT article, SEC filing, Congress bill, GAO/CRS report, or release URL — NEVER a homepage or newsroom index root."
 
                     ),
 
@@ -436,7 +440,7 @@ Output ONLY a valid JSON array of event objects matching this exact closed-rubri
 
     "sourceType": "hearing|gao_report|crs_report|exec_order|budget_request|navy_statement|contract_award|earnings|stock_move|analyst_rating|news_media|legislation",
 
-    "sourceUrls": ["https://www.hii.com/news/<slug>", "https://ir.hii.com/financials/quarterly-results/default.aspx", "https://www.defense.gov/News/Contracts/"], // CRITICAL: Must be real, valid live URLs (www.hii.com/news/..., ir.hii.com/.../default.aspx, defense.gov/News/..., congress.gov/bill/...), NEVER dead links.
+    "sourceUrls": ["https://www.hii.com/news/<exact-article-slug>", "https://news.usni.org/YYYY/MM/DD/<exact-article-slug>"], // CRITICAL: Include 1-2 DIRECT, specific article, SEC Archives filing (sec.gov/Archives/edgar/data/1501585/...), GAO report (gao.gov/products/gao-...), Congress bill (congress.gov/bill/...), Federal Register document, or numeric DoD/Navy Article URLs. NEVER return generic portal hubs (e.g., hii.com/newsroom, defense.gov/News/Contracts/, ir.hii.com/.../default.aspx, comptroller.defense.gov/Budget-Materials/).
 
     "summary": "2-sentence factual summary explaining HII shipbuilding or financial impact and cross-audience attribution.",
 
@@ -497,6 +501,13 @@ Output ONLY a valid JSON array of event objects matching this exact closed-rubri
         if not isinstance(parsed, list):
 
             raise ValueError("Extractor did not return a JSON list")
+
+        for item in parsed:
+            if isinstance(item, dict) and isinstance(item.get("sourceUrls"), list):
+                item["sourceUrls"] = [
+                    cu for cu in (clean_url(str(u)) for u in item["sourceUrls"])
+                    if cu and not is_generic_hub_url(cu)
+                ]
 
 
 

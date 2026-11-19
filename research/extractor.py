@@ -8,6 +8,11 @@ import json
 import re
 from typing import Any, Dict, List, Optional
 
+try:
+    from source_link_guard import clean_url, is_generic_hub_url
+except ImportError:
+    from research.source_link_guard import clean_url, is_generic_hub_url
+
 VALID_AUDIENCES = {"executive", "congress", "navy", "public"}
 VALID_SOURCE_TYPES = {
     "hearing",
@@ -111,6 +116,17 @@ def validate_and_normalize_candidate(raw: Dict[str, Any], run_id: str, discovere
             }
         )
 
+    raw_urls = raw.get("sourceUrls") or []
+    filtered_urls = []
+    for u in raw_urls:
+        cu = clean_url(str(u))
+        if cu and not is_generic_hub_url(cu):
+            filtered_urls.append(cu)
+    # Only retain valid non-hub URLs; preserve raw external doc:// links if any
+    for u in raw_urls:
+        if isinstance(u, str) and u.startswith("doc://"):
+            filtered_urls.append(u)
+
     event_id = compute_event_id(title, event_date, source_type)
     return {
         "id": event_id,
@@ -118,7 +134,7 @@ def validate_and_normalize_candidate(raw: Dict[str, Any], run_id: str, discovere
         "eventDate": event_date,
         "discoveredAt": discovered_at,
         "sourceType": source_type,
-        "sourceUrls": list(raw.get("sourceUrls") or ["https://hii.com/news/"]),
+        "sourceUrls": filtered_urls[:2],
         "summary": str(raw.get("summary", "")).strip(),
         "impacts": impacts_out,
         "starred": bool(raw.get("starred", False)),

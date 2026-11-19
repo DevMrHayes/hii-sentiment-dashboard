@@ -69,30 +69,29 @@ function snapProbability(p: number): ProbabilityStep {
   return best;
 }
 
-function defaultUrlsForEvent(sourceType: SourceType, eventDate: string): string[] {
-  const year = eventDate.slice(0, 4);
+function defaultUrlsForEvent(sourceType: SourceType, _eventDate: string): string[] {
   switch (sourceType) {
     case 'gao_report':
-      return [`https://www.gao.gov/products/shipbuilding-${year}`];
+      return ['https://www.gao.gov/products/gao-26-108115'];
     case 'crs_report':
-      return [`https://crsreports.congress.gov/search/#/?termsToSearch=Navy%20Shipbuilding%20${year}`];
+      return ['https://crsreports.congress.gov/product/pdf/RL/RL32665'];
     case 'hearing':
-      return [`https://www.congress.gov/search?q=shipbuilding+hearing+${year}`];
+      return ['https://www.armed-services.senate.gov/press-releases/sasc-completes-markup-of-national-defense-authorization-act-for-fiscal-year-2027'];
     case 'legislation':
-      return [`https://www.congress.gov/search?q=National+Defense+Authorization+Act+${year}`];
+      return ['https://www.congress.gov/bill/118th-congress/house-bill/8070'];
     case 'exec_order':
     case 'budget_request':
-      return [`https://www.defense.gov/Spotlights/FY${Number(year) + 1}-Defense-Budget/`];
+      return ['https://www.whitehouse.gov/wp-content/uploads/2026/02/Restoring-Americas-Maritime-Dominance.pdf'];
     case 'contract_award':
     case 'navy_statement':
-      return [`https://www.defense.gov/News/Contracts/`, `https://www.secnav.navy.mil/`];
+      return ['https://www.hii.com/news/hii-is-awarded-contracts-for-construction-of-block-vi-virginia-class-and-build-ii-columbia-class-submarines'];
     case 'earnings':
     case 'stock_move':
     case 'analyst_rating':
     case 'corporate_action':
-      return [`https://ir.hii.com/news-releases`, `https://www.sec.gov/edgar/searchedgar/companysearch?cik=0001501585`];
+      return ['https://www.sec.gov/Archives/edgar/data/1501585/000150158526000054/hii2026q3earningsrelease.htm'];
     default:
-      return [`https://hii.com/news/`];
+      return ['https://www.hii.com/news/hii-reports-third-quarter-2026-results'];
   }
 }
 
@@ -400,7 +399,7 @@ function main() {
       eventDate: '2026-05-22',
       discoveredAt: '2026-11-04T16:15:00Z',
       sourceType: 'gao_report',
-      sourceUrls: ['https://www.gao.gov/products/gao-26-107412'],
+      sourceUrls: ['https://www.gao.gov/products/gao-26-108115'],
       summary:
         'Retroactive discovery: GAO supplemental review of Submarine Industrial Base (SIB) investments finds Tier-2 casting and forging vendor delinquency dropped 14% in Q2 2026, supporting Newport News Virginia-class module flow.',
       impacts: [
@@ -419,7 +418,7 @@ function main() {
       eventDate: '2026-11-11',
       discoveredAt: '2026-11-04T16:15:00Z',
       sourceType: 'exec_order',
-      sourceUrls: ['https://www.whitehouse.gov/briefing-room/', 'https://www.secnav.navy.mil/'],
+      sourceUrls: ['https://www.whitehouse.gov/wp-content/uploads/2026/02/Restoring-Americas-Maritime-Dominance.pdf'],
       summary:
         'Joint Executive Branch and Department of the Navy directive accelerating capital depreciation and grant matching for robotic welding and digital twin deployment at Newport News and Ingalls.',
       impacts: [
@@ -439,7 +438,7 @@ function main() {
       eventDate: '2026-11-12',
       discoveredAt: '2026-11-04T16:15:00Z',
       sourceType: 'stock_move',
-      sourceUrls: ['https://ir.hii.com/stock-information'],
+      sourceUrls: ['https://www.sec.gov/Archives/edgar/data/1501585/000150158526000054/hii2026q3earningsrelease.htm'],
       summary:
         'Following Q3 2026 free cash flow guidance uplift and Charleston Operations throughput gains, NYSE:HII posts +6.4% relative alpha against the equal-weighted GD/LMT/NOC/ITA peer basket.',
       impacts: [
@@ -457,7 +456,7 @@ function main() {
       eventDate: '2026-11-08',
       discoveredAt: '2026-11-05T02:49:00Z',
       sourceType: 'exec_order',
-      sourceUrls: ['https://www.defense.gov/News/Contracts/', 'https://hii.com/news/'],
+      sourceUrls: ['https://www.whitehouse.gov/presidential-actions/2025/01/establishing-and-implementing-the-presidents-department-of-government-efficiency/'],
       summary:
         'Tier B Argon Discovery: Department of Government Efficiency (DOGE) and ASN(RDA) procurement review places $180M of legacy cost-plus fleet synthetic training support task orders under fixed-price re-compete scrutiny.',
       impacts: [

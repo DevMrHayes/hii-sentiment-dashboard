@@ -109,7 +109,6 @@ const CLIENT_DISCOVERY_CANDIDATES: Array<Omit<PendingEvent, 'id' | 'discoveredAt
     sourceType: 'corporate_action',
     sourceUrls: [
       'https://www.hii.com/news/hii-increases-quarterly-dividend-to-141-per-share',
-      'https://ir.hii.com/stock-info/dividend-history/default.aspx',
     ],
     summary:
       'Board of Directors raises quarterly cash dividend to $1.41/share alongside Q3 $51B backlog visibility, signaling sustained cash generation and capital return discipline to institutional shareholders.',
@@ -195,9 +194,9 @@ interface DashboardContextValue {
   resolveSanityCheck: (id: string, findings: string) => void;
 }
 
-const CURRENT_LEDGER_SEED_VERSION = 'v10_shared_viewer_ready';
+const CURRENT_LEDGER_SEED_VERSION = 'v11_direct_source_links';
 const SEED_VERSION_KEY = 'hii_sentiment_seed_version';
-const STORAGE_KEY = 'hii_sentiment_ledger_state_v10';
+const STORAGE_KEY = 'hii_sentiment_ledger_state_v11';
 
 const DashboardContext = createContext<DashboardContextValue | null>(null);
 
@@ -233,6 +232,7 @@ export const DashboardProvider: React.FC<{ children: React.ReactNode }> = ({ chi
       localStorage.removeItem('hii_sentiment_ledger_state_v7');
       localStorage.removeItem('hii_sentiment_ledger_state_v8');
       localStorage.removeItem('hii_sentiment_ledger_state_v9');
+      localStorage.removeItem('hii_sentiment_ledger_state_v10');
       localStorage.setItem(SEED_VERSION_KEY, CURRENT_LEDGER_SEED_VERSION);
     } catch {
       // ignore

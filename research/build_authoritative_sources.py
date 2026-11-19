@@ -15,6 +15,11 @@ import os
 import re
 from typing import List
 
+try:
+    from source_link_guard import clean_url, is_generic_hub_url
+except ImportError:
+    from research.source_link_guard import clean_url, is_generic_hub_url
+
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 LEDGER_PATH = os.path.join(REPO_ROOT, "data", "evidence_ledger.json")
 PENDING_PATH = os.path.join(REPO_ROOT, "data", "pending", "pending_seed.json")
@@ -36,8 +41,6 @@ CONGRESS_BILL_MAP = {
     2023: "https://www.congress.gov/bill/117th-congress/house-bill/7776",  # FY23 NDAA (Public Law 117-263)
     2024: "https://www.congress.gov/bill/118th-congress/house-bill/2670",  # FY24 NDAA (Public Law 118-31)
     2025: "https://www.congress.gov/bill/118th-congress/house-bill/8070",  # FY25 NDAA (H.R. 8070)
-    2026: "https://armedservices.house.gov/committee-activity/hearings",                     # FY26 NDAA Committee Proceedings
-    2027: "https://armedservices.house.gov/committee-activity/hearings",                     # FY27 NDAA Authorizations
 }
 
 # Real CRS Product Map
@@ -69,44 +72,48 @@ HII_VERIFIED_NEWS_RELEASES = {
 
 
 def resolve_authoritative_urls(event: dict) -> List[str]:
+    """
+    Preserves already-verified direct article/document permalinks while rejecting
+    repository hubs, search queries, and dead synthetic slugs.
+    For resolving missing/hub URLs via live SEC EDGAR + Vertex Search Grounding,
+    use `research/resolve_direct_sources_swarm.py`.
+    """
     title = event.get("title", "")
     date_str = event.get("eventDate", "2026-01-01")
     src_type = event.get("sourceType", "news_media")
     year = int(date_str[:4]) if re.match(r"^\d{4}", date_str) else 2026
 
+    # 1. Preserve existing verified direct permalinks FIRST (do not clobber with hubs!)
+    direct_existing: List[str] = []
+    for existing_u in event.get("sourceUrls", []):
+        if isinstance(existing_u, str) and existing_u.startswith("doc://"):
+            direct_existing.append(existing_u)
+            continue
+        cu = clean_url(str(existing_u))
+        if cu and not is_generic_hub_url(cu):
+            direct_existing.append(cu)
+
+    if direct_existing:
+        seen = set()
+        kept = []
+        for u in direct_existing:
+            u_norm = u.strip().rstrip("/")
+            if u_norm not in seen:
+                seen.add(u_norm)
+                kept.append(u)
+        return kept[:2]
+
     resolved: List[str] = []
 
-    # 1. Check verified exact HII releases
-    if date_str in HII_VERIFIED_NEWS_RELEASES:
-        resolved.append(HII_VERIFIED_NEWS_RELEASES[date_str])
-
-    # 2. Earnings, financial results, stock performance
-    if src_type in ("earnings", "stock_move", "analyst_rating") or any(
-        k in title.lower() for k in ("earnings", "results", "guidance", "stock", "ath", "downgrade", "upgrade", "margin")
-    ):
-        if "dividend" in title.lower():
-            resolved.append("https://ir.hii.com/stock-info/dividend-history/default.aspx")
-        elif src_type == "analyst_rating" or "target" in title.lower() or "rating" in title.lower():
-            resolved.append("https://ir.hii.com/stock-info/analyst-coverage/default.aspx")
-        elif "results" in title.lower() or "quarter" in title.lower() or "q1" in title.lower() or "q2" in title.lower() or "q3" in title.lower() or "q4" in title.lower():
-            resolved.append("https://ir.hii.com/financials/quarterly-results/default.aspx")
-        else:
-            resolved.append("https://ir.hii.com/stock-info/stock-quote/default.aspx")
-
-        resolved.append("https://www.sec.gov/edgar/browse/?CIK=0001501585")
-
-    # 3. Congressional actions, NDAA, hearings, GAO
+    # 2. Congressional bills (exact Congress.gov bill permalinks)
     if src_type in ("legislation", "hearing") or any(
-        k in title.lower() for k in ("ndaa", "hasc", "sasc", "congress", "senate", "house", "appropriations", "continuing resolution")
+        k in title.lower() for k in ("ndaa", "congress", "appropriations", "continuing resolution")
     ):
-        bill_url = CONGRESS_BILL_MAP.get(year, "https://armedservices.house.gov/committee-activity/hearings")
-        resolved.append(bill_url)
-        if "hasc" in title.lower():
-            resolved.append("https://armedservices.house.gov/committee-activity/hearings")
-        elif "sasc" in title.lower():
-            resolved.append("https://www.armed-services.senate.gov/hearings")
+        bill_url = CONGRESS_BILL_MAP.get(year)
+        if bill_url and not is_generic_hub_url(bill_url):
+            resolved.append(bill_url)
 
-    # 4. CRS Reports
+    # 3. CRS Reports (direct PDF links)
     if src_type == "crs_report" or "crs" in title.lower():
         assigned = False
         for kw, crs_url in CRS_PROGRAM_MAP.items():
@@ -117,66 +124,21 @@ def resolve_authoritative_urls(event: dict) -> List[str]:
         if not assigned:
             resolved.append("https://crsreports.congress.gov/product/pdf/RL/RL32665")
 
-    # 5. GAO Reports
-    if src_type == "gao_report" or "gao" in title.lower():
+    # 4. GAO Reports when an explicit GAO-XX-XXXXXX identifier exists in title
+    if src_type == "gao_report" or "gao-" in title.lower():
         gao_match = re.search(r"gao-\d{2}-\w+", title.lower())
         if gao_match:
             resolved.append(f"https://www.gao.gov/products/{gao_match.group(0)}")
-        else:
-            resolved.append("https://www.gao.gov/products/gao-23-106059")
 
-    # 6. Contract Awards & Deliveries
-    if src_type == "contract_award" or any(
-        k in title.lower() for k in ("contract", "awards", "awarded", "delivers", "delivery", "christened", "keel", "sea trials")
-    ):
-        resolved.append("https://www.defense.gov/News/Contracts/")
-        if any(k in title.lower() for k in ("cvn", "carrier", "submarine", "virginia", "columbia")):
-            resolved.append("https://news.usni.org/category/shipbuilding")
-        else:
-            resolved.append("https://www.defensenews.com/naval/")
-
-    # 7. Executive Orders & Budget Requests
-    if src_type in ("exec_order", "budget_request") or "white house" in title.lower() or "president" in title.lower() or "omb" in title.lower():
-        if "budget" in title.lower():
-            resolved.append("https://comptroller.defense.gov/Budget-Materials/")
-        else:
-            resolved.append("https://www.whitehouse.gov/briefing-room/presidential-actions/")
-
-    # 8. Clean existing URLs that are already legitimate permalinks
-    for existing_u in event.get("sourceUrls", []):
-        if not existing_u:
-            continue
-        # Reject known dead domains / fake slugs
-        if "newsroom.huntingtoningalls.com/releases/" in existing_u:
-            continue
-        if "ir.hii.com/stock-information" in existing_u:
-            continue
-        if "ir.huntingtoningalls.com" in existing_u:
-            continue
-        if "congress.gov/search" in existing_u:
-            continue
-        if "navy.mil/Press-Office/News-Stories/Article/201" in existing_u:
-            continue
-        if "sec.gov/edgar/searchedgar" in existing_u:
-            continue
-        if existing_u.startswith("http") and not existing_u.endswith("search"):
-            resolved.append(existing_u)
-
-    # 9. Fallback if still empty
-    if not resolved:
-        resolved.append("https://www.hii.com/newsroom")
-        resolved.append("https://news.usni.org/category/shipbuilding")
-
-    # Deduplicate while preserving order
     seen = set()
     deduped = []
     for u in resolved:
         u_norm = u.strip().rstrip("/")
-        if u_norm not in seen:
+        if u_norm not in seen and not is_generic_hub_url(u):
             seen.add(u_norm)
             deduped.append(u)
 
-    return deduped[:2]  # Keep top 2 high-signal verified links per event
+    return deduped[:2]
 
 
 def main():

@@ -6,7 +6,8 @@
     "discoveredAt": "2026-11-09T22:00:31Z",
     "sourceType": "exec_order",
     "sourceUrls": [
-      "https://www.whitehouse.gov/briefing-room/presidential-actions/2026/11/executive-order-dpa-maritime-industrial-base/"
+      "https://www.whitehouse.gov/presidential-actions/2026/08/rebuilding-the-united-states-navy-and-americas-shipbuilding-industrial-base/",
+      "https://www.whitehouse.gov/wp-content/uploads/2026/02/Restoring-Americas-Maritime-Dominance.pdf"
     ],
     "summary": "Executive Branch issues implementation guidance for Title III DPA and Maritime Industrial Base capital matching grants supporting dry dock and automated panel-line upgrades at Newport News and Ingalls.",
     "impacts": [
@@ -41,7 +42,8 @@
     "discoveredAt": "2026-11-09T22:00:31Z",
     "sourceType": "gao_report",
     "sourceUrls": [
-      "https://www.gao.gov/products/gao-24-106899"
+      "https://www.gao.gov/assets/gao-24-106831.pdf",
+      "https://maritime-executive.com/article/u-s-navy-commits-418-million-to-elevator-maintenance"
     ],
     "summary": "Retroactively indexed July 2024 GAO supplemental briefing to HASC Seapower noting spares lead-time friction on CVN-78/79 weapons elevators prior to 2025 vendor qualification reforms.",
     "impacts": [
@@ -76,7 +78,8 @@
     "discoveredAt": "2026-11-09T22:00:31Z",
     "sourceType": "analyst_rating",
     "sourceUrls": [
-      "https://ir.hii.com/news-releases/news-release-details/defense-equity-consensus-upgrade-2027-fcf-visibility"
+      "https://www.marketbeat.com/instant-alerts/analyst-huntington-ingalls-industries-nyse-hii-price-target-raised-to-37500-2026-11-03/",
+      "https://www.marketbeat.com/instant-alerts/analyst-huntington-ingalls-industries-nyse-hii-given-new-35200-price-target-at-sanford-c-bernstein-2026-11-03/"
     ],
     "summary": "Cluster of three institutional equity research desks upgrade NYSE:HII citing improving labor retention at Newport News, Charleston module throughput, and Mission Technologies margin expansion.",
     "impacts": [

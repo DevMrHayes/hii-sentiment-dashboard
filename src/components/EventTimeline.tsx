@@ -16,6 +16,42 @@ function safeExternalHref(url: string): string | null {
   }
 }
 
+function formatSourceLabel(url: string): string {
+  try {
+    const u = new URL(url);
+    const host = u.hostname.toLowerCase().replace(/^www\./, '');
+    const path = u.pathname.toLowerCase();
+    if (host === 'hii.com') return 'HII Release';
+    if (host === 'ir.hii.com') return 'HII Investor';
+    if (host === 'sec.gov' || host === 'data.sec.gov') return 'SEC Filing';
+    if (host === 'news.usni.org') return 'USNI News';
+    if (host === 'defense.gov' || host === 'war.gov') return 'Defense.gov';
+    if (host === 'navy.mil') return 'Navy.mil';
+    if (host === 'gao.gov') return 'GAO Report';
+    if (host === 'congress.gov') return 'Congress.gov';
+    if (host === 'crsreports.congress.gov' || host === 'everycrsreport.com' || host === 'sgp.fas.org') {
+      return 'CRS Report';
+    }
+    if (host === 'federalregister.gov') return 'Federal Register';
+    if (host === 'whitehouse.gov' || host.endsWith('whitehouse.archives.gov')) return 'White House';
+    if (host === 'armed-services.senate.gov') return 'Senate Armed Services';
+    if (host === 'armedservices.house.gov') return 'House Armed Services';
+    if (host === 'cbo.gov') return 'CBO Report';
+    if (host === 'defensenews.com') return 'Defense News';
+    if (host === 'breakingdefense.com') return 'Breaking Defense';
+    if (host === 'navalnews.com') return 'Naval News';
+    if (host === 'maritime-executive.com') return 'Maritime Exec';
+    if (host === 'seapowermagazine.org') return 'Seapower';
+    if (host === 'reuters.com') return 'Reuters';
+    if (host === 'wsj.com') return 'WSJ';
+    if (host === 'bloomberg.com') return 'Bloomberg';
+    if (path.includes('8k') || path.includes('10q') || path.includes('10k')) return 'SEC Filing';
+    return host;
+  } catch {
+    return 'Source';
+  }
+}
+
 export const EventTimeline: React.FC<{ compact?: boolean }> = ({ compact = false }) => {
   const {
     state,
@@ -213,33 +249,41 @@ export const EventTimeline: React.FC<{ compact?: boolean }> = ({ compact = false
                 </div>
               </div>
 
-              {ev.sourceUrls.length > 0 && (() => {
-                const rawUrl = ev.sourceUrls[0]!;
-                if (rawUrl.startsWith('doc://')) {
-                  return (
-                    <span
-                      className="inline-flex items-center gap-1 text-[11px] font-mono text-changingsea bg-changingsea/15 border border-changingsea/40 px-2 py-0.5 rounded"
-                      title="Uploaded local reference document"
-                    >
-                      <FileText className="w-3 h-3" />
-                      <span>{decodeURIComponent(rawUrl.replace('doc://', ''))}</span>
-                    </span>
-                  );
-                }
-                const safeHref = safeExternalHref(rawUrl);
-                if (!safeHref) return null;
-                return (
-                  <a
-                    href={safeHref}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-[11px] font-mono text-sky hover:text-passion"
-                  >
-                    <span>Source</span>
-                    <ExternalLink className="w-3 h-3" />
-                  </a>
-                );
-              })()}
+              {ev.sourceUrls.length > 0 && (
+                <div className="flex flex-wrap items-center gap-1.5 shrink-0">
+                  {ev.sourceUrls.slice(0, 2).map((rawUrl, idx) => {
+                    if (rawUrl.startsWith('doc://')) {
+                      return (
+                        <span
+                          key={`${rawUrl}_${idx}`}
+                          className="inline-flex items-center gap-1 text-[11px] font-mono text-changingsea bg-changingsea/15 border border-changingsea/40 px-2 py-0.5 rounded"
+                          title="Uploaded local reference document"
+                        >
+                          <FileText className="w-3 h-3" />
+                          <span>{decodeURIComponent(rawUrl.replace('doc://', ''))}</span>
+                        </span>
+                      );
+                    }
+                    const safeHref = safeExternalHref(rawUrl);
+                    if (!safeHref) return null;
+                    const label = formatSourceLabel(safeHref);
+                    return (
+                      <a
+                        key={`${safeHref}_${idx}`}
+                        href={safeHref}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        title={safeHref}
+                        aria-label={`${label}: ${safeHref}`}
+                        className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-surface0 border border-hairline hover:border-sky text-[11px] font-mono text-sky hover:text-white transition"
+                      >
+                        <span>{label}</span>
+                        <ExternalLink className="w-3 h-3" />
+                      </a>
+                    );
+                  })}
+                </div>
+              )}
             </div>
 
             <p className="text-xs text-sky/90 mt-1.5 pl-7">{ev.summary}</p>
